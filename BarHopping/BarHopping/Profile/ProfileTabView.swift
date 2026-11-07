@@ -70,11 +70,13 @@ struct ProfileTabView: View {
                         .clipShape(Circle())
                         .overlay(Circle().stroke(Color.pink.opacity(0.3), lineWidth: 2))
                 } else {
-                    Image(systemName: "person.circle.fill")
+                    Image(UserAvatarIcon.assetName)
                         .resizable()
-                        .scaledToFit()
+                        .scaledToFill()
                         .frame(width: 74, height: 74)
-                        .foregroundStyle(.secondary)
+                        .clipShape(Circle())
+                        .overlay(Circle().stroke(Color.pink.opacity(0.3), lineWidth: 2))
+                        .accessibilityLabel("大頭貼")
                 }
 
                 Button {

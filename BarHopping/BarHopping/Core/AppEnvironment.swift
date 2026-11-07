@@ -12,6 +12,9 @@ enum AppEnvironment {
 
     static func makeDraftStore() -> DraftStoring { FileDraftStore() }
 
+    /// 超商點位來源（地圖用）。資料代理接上 App 內附資料後改成實際實作。
+    static func makeConvenienceStoreProvider() -> ConvenienceStoreProviding { EmptyConvenienceStoreProvider() }
+
     /// 環境變數優先於 Info.plist；只接受 http(s) 網址。
     static var apiBaseURL: URL? {
         let candidates = [

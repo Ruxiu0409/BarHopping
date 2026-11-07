@@ -49,12 +49,16 @@ struct OnboardingView: View {
                         }
                         .scrollBounceBehavior(.basedOnSize)
                     }
+                    .id(step)
+                    .transition(AppMotion.transition(.reveal, reduceMotion: reduceMotion))
                 } else {
                     ViewThatFits(in: .vertical) {
                         page(compact: compact, availableHeight: geometry.size.height)
                             .fixedSize(horizontal: false, vertical: true)
                         page(compact: true, availableHeight: geometry.size.height)
                     }
+                    .id(step)
+                    .transition(AppMotion.transition(.reveal, reduceMotion: reduceMotion))
                     .frame(maxHeight: .infinity, alignment: .bottom)
                 }
             }
@@ -86,8 +90,6 @@ struct OnboardingView: View {
         .padding(.horizontal, compact ? 20 : 24)
         .padding(.top, compact ? 4 : 12)
         .padding(.bottom, 8)
-        .id(step)
-        .transition(AppMotion.transition(.reveal, reduceMotion: reduceMotion))
     }
 
     private var navigation: some View {

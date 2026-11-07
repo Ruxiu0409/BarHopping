@@ -2,7 +2,7 @@
 
 查核及下載日期：2026-11-07。
 
-這 12 張照片皆來自 Pexels，依 [Pexels License](https://www.pexels.com/license/) 與 [使用條款第 5 節](https://www.pexels.com/terms-of-service/) 使用。授權允許免費用於商業及非商業 App，並與論壇文字、酒譜及介面整合後隨 App 打包。不得將照片獨立販售、散布為素材或桌布，也不得暗示作者或品牌背書。Pexels 不強制署名，本 App 仍在文章詳細頁及全螢幕照片下方標示作者、來源與授權。
+這 20 張照片皆來自 Pexels，依 [Pexels License](https://www.pexels.com/license/) 與 [使用條款第 5 節](https://www.pexels.com/terms-of-service/) 使用。授權允許免費用於商業及非商業 App，並與論壇文字、酒譜及介面整合後隨 App 打包。不得將照片獨立販售、散布為素材或桌布，也不得暗示作者或品牌背書。Pexels 不強制署名，本 App 仍在文章詳細頁及全螢幕照片下方標示作者、來源與授權。
 
 照片為情境參考，並非貼文作者親自拍攝或對應酒譜的實作成品，照片本身無法判斷飲品是否含酒精。已檢視照片，排除清楚人臉、浮水印與以品牌商標為主體的照片。
 
@@ -24,5 +24,17 @@
 | `forum-orange-layers.jpg` | 以柳橙片裝飾的漸層雞尾酒 | [Pexels #34299757](https://www.pexels.com/photo/vibrant-tropical-cocktail-with-orange-garnish-34299757/) | mohammad mohebbi | [Pexels License](https://www.pexels.com/license/) | 81,020 bytes |
 | `forum-orange-cocktail.jpg` | 大理石桌面上的柑橘與香草裝飾調酒 | [Pexels #24870686](https://www.pexels.com/photo/cocktail-with-orange-24870686/) | Kadir Avşar | [Pexels License](https://www.pexels.com/license/) | 97,639 bytes |
 | `forum-whisky-amber.jpg` | 木桌上帶冰塊與橙皮的琥珀色威士忌杯 | [Pexels #28559493](https://www.pexels.com/photo/elegant-glass-of-whiskey-on-wooden-surface-28559493/) | Jonathan Borba | [Pexels License](https://www.pexels.com/license/) | 104,502 bytes |
+| `forum-white-drink.jpg` | 吧檯上以捲曲檸檬皮裝飾的乳白色飲品 | [Pexels #6164191](https://www.pexels.com/photo/glass-with-cocktail-on-counter-in-bar-6164191/) | Maria Bortolotto | [Pexels License](https://www.pexels.com/license/) | 107,152 bytes |
+| `forum-lemon-soda.jpg` | 灰色背景前以檸檬片裝飾的黃色高杯飲品 | [Pexels #18142598](https://www.pexels.com/photo/yellow-cocktail-with-lemon-slice-18142598/) | Denys Gromov | [Pexels License](https://www.pexels.com/license/) | 99,338 bytes |
+| `forum-grapefruit-glass.jpg` | 水晶杯中的橙紅色冰飲與葡萄柚、檸檬切片 | [Pexels #11832019](https://www.pexels.com/photo/juice-in-crystal-glass-with-slices-of-lemon-and-grapefruit-11832019/) | Studio Naae | [Pexels License](https://www.pexels.com/license/) | 197,863 bytes |
+| `forum-mojito-tall.jpg` | 窗前高杯中的碎冰、薄荷與萊姆飲品 | [Pexels #5817631](https://www.pexels.com/photo/a-glass-of-mojito-with-mint-leaves-5817631/) | Shameel mukkath | [Pexels License](https://www.pexels.com/license/) | 167,623 bytes |
+| `forum-lemon-mint.jpg` | 淺綠桌面上裝有檸檬片與薄荷的透明飲品 | [Pexels #4021979](https://www.pexels.com/photo/mojito-with-mint-and-lemon-on-white-background-4021979/) | https://kaboompics.com/ | [Pexels License](https://www.pexels.com/license/) | 89,149 bytes |
+| `forum-night-street.jpg` | 路燈照亮的夜間街道與寬闊人行道 | [Pexels #12689701](https://www.pexels.com/photo/empty-street-at-night-12689701/) | Erik Mclean | [Pexels License](https://www.pexels.com/license/) | 171,611 bytes |
+| `forum-gin-highball.jpg` | 反光桌面上有檸檬皮裝飾的透明高杯飲品 | [Pexels #7094949](https://www.pexels.com/photo/clear-drinking-glass-with-water-7094949/) | Graham Walker | [Pexels License](https://www.pexels.com/license/) | 118,959 bytes |
+| `forum-bar-tools.jpg` | 吧檯上的雪克杯、量酒器、吧匙與濾冰器 | [Pexels #4485347](https://www.pexels.com/photo/stainless-steel-shaker-and-wine-measuring-cup-on-the-bar-counter-4485347/) | Antoni Shkraba | [Pexels License](https://www.pexels.com/license/) | 180,478 bytes |
 
-合計 **1,469,492 bytes（1.47 MB）**，共 12 張，每張小於 200 KB，全部圖片小於 4 MB。
+合計 **2,601,665 bytes（2.60 MB）**，共 20 張，每張小於 200 KB。本次新增 8 張，共 **1,132,173 bytes（1.13 MB）**，小於 4 MB。新照片皆以長邊 1200px、JPEG 品質 75 轉存，原始下載檔於完成查核後刪除。
+
+論壇配置由原本 28 次照片引用調整為 20 次，13 篇附圖貼文的照片各用一次。新增照片與既有照片不是同一張，也未選用相同作者、相同場景的近似照。照片的中文描述由縮圖、詳細頁及全螢幕檢視共用為 accessibilityLabel。
+
+Debug 建立假資料時，`ForumPhotoLibrary.validate` 會檢查照片庫與所有貼文的名稱唯一性、登錄關係、每篇最多四張，以及每個名稱能否載入本機 asset。

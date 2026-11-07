@@ -1,4 +1,7 @@
 import Foundation
+#if DEBUG && canImport(UIKit)
+import UIKit
+#endif
 
 /// 論壇假資料：以超商買得到的材料調酒為主。
 /// 只用通用品名，不寫真實品牌或超商名稱；份量適中，不鼓勵拚酒或混很多種烈酒。
@@ -218,23 +221,27 @@ enum ForumMockData {
         ]
         let images: [String: [ForumPhoto]] = [
             "mock-1": [ForumPhotoLibrary.citrusGlass, ForumPhotoLibrary.citrusPrep],
-            "mock-2": [ForumPhotoLibrary.gardenGlass],
-            "mock-3": [ForumPhotoLibrary.citrusGlass, ForumPhotoLibrary.citrusPrep],
-            "mock-5": [ForumPhotoLibrary.whiskyAmber, ForumPhotoLibrary.whiskyBar, ForumPhotoLibrary.citrusPrep],
-            "mock-6": [ForumPhotoLibrary.orangeCocktail, ForumPhotoLibrary.citrusPrep],
+            "mock-2": [ForumPhotoLibrary.whiteDrink],
+            "mock-3": [ForumPhotoLibrary.lemonSoda],
+            "mock-5": [ForumPhotoLibrary.whiskyAmber],
+            "mock-6": [ForumPhotoLibrary.orangeCocktail, ForumPhotoLibrary.grapefruitGlass],
             "mock-7": [ForumPhotoLibrary.beerTall, ForumPhotoLibrary.beerMug],
-            "mock-8": [ForumPhotoLibrary.gardenGlass, ForumPhotoLibrary.citrusPrep],
-            "mock-9": [ForumPhotoLibrary.mintLime, ForumPhotoLibrary.gardenGlass, ForumPhotoLibrary.citrusPrep],
-            "mock-10": [ForumPhotoLibrary.whiskyBar, ForumPhotoLibrary.citrusPrep],
-            "mock-11": [ForumPhotoLibrary.mintLime, ForumPhotoLibrary.citrusPrep],
-            "mock-12": [ForumPhotoLibrary.orangeLayers, ForumPhotoLibrary.orangeCocktail],
-            "mock-13": [ForumPhotoLibrary.citrusPrep],
-            "mock-16": [ForumPhotoLibrary.barBrick, ForumPhotoLibrary.barStools, ForumPhotoLibrary.whiskyBar, ForumPhotoLibrary.orangeCocktail],
+            "mock-8": [ForumPhotoLibrary.gardenGlass, ForumPhotoLibrary.ginHighball],
+            "mock-9": [ForumPhotoLibrary.mintLime, ForumPhotoLibrary.mojitoTall],
+            "mock-10": [ForumPhotoLibrary.whiskyBar],
+            "mock-11": [ForumPhotoLibrary.lemonMint],
+            "mock-12": [ForumPhotoLibrary.orangeLayers],
+            "mock-13": [ForumPhotoLibrary.barTools],
+            "mock-16": [ForumPhotoLibrary.barBrick, ForumPhotoLibrary.barStools, ForumPhotoLibrary.nightStreet],
         ]
-        return posts.map { post in
+        let illustratedPosts = posts.map { post in
             var illustrated = post
             illustrated.photos = images[post.id] ?? []
             return illustrated
         }
+        #if DEBUG && canImport(UIKit)
+        ForumPhotoLibrary.validate(illustratedPosts) { UIImage(named: $0) != nil }
+        #endif
+        return illustratedPosts
     }
 }

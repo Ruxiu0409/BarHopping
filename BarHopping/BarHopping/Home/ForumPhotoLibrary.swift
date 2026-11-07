@@ -25,4 +25,41 @@ enum ForumPhotoLibrary {
         author: "mohammad mohebbi", sourceURL: URL(string: "https://www.pexels.com/photo/vibrant-tropical-cocktail-with-orange-garnish-34299757/")!)
     static let orangeCocktail = ForumPhoto(imageName: "forum-orange-cocktail", description: "大理石桌面上的柑橘與香草裝飾調酒",
         author: "Kadir Avşar", sourceURL: URL(string: "https://www.pexels.com/photo/cocktail-with-orange-24870686/")!)
+    static let whiteDrink = ForumPhoto(imageName: "forum-white-drink", description: "吧檯上以捲曲檸檬皮裝飾的乳白色飲品",
+        author: "Maria Bortolotto", sourceURL: URL(string: "https://www.pexels.com/photo/glass-with-cocktail-on-counter-in-bar-6164191/")!)
+    static let lemonSoda = ForumPhoto(imageName: "forum-lemon-soda", description: "灰色背景前以檸檬片裝飾的黃色高杯飲品",
+        author: "Denys Gromov", sourceURL: URL(string: "https://www.pexels.com/photo/yellow-cocktail-with-lemon-slice-18142598/")!)
+    static let grapefruitGlass = ForumPhoto(imageName: "forum-grapefruit-glass", description: "水晶杯中的橙紅色冰飲與葡萄柚、檸檬切片",
+        author: "Studio Naae", sourceURL: URL(string: "https://www.pexels.com/photo/juice-in-crystal-glass-with-slices-of-lemon-and-grapefruit-11832019/")!)
+    static let mojitoTall = ForumPhoto(imageName: "forum-mojito-tall", description: "窗前高杯中的碎冰、薄荷與萊姆飲品",
+        author: "Shameel mukkath", sourceURL: URL(string: "https://www.pexels.com/photo/a-glass-of-mojito-with-mint-leaves-5817631/")!)
+    static let lemonMint = ForumPhoto(imageName: "forum-lemon-mint", description: "淺綠桌面上裝有檸檬片與薄荷的透明飲品",
+        author: "https://kaboompics.com/", sourceURL: URL(string: "https://www.pexels.com/photo/mojito-with-mint-and-lemon-on-white-background-4021979/")!)
+    static let nightStreet = ForumPhoto(imageName: "forum-night-street", description: "路燈照亮的夜間街道與寬闊人行道",
+        author: "Erik Mclean", sourceURL: URL(string: "https://www.pexels.com/photo/empty-street-at-night-12689701/")!)
+    static let ginHighball = ForumPhoto(imageName: "forum-gin-highball", description: "反光桌面上有檸檬皮裝飾的透明高杯飲品",
+        author: "Graham Walker", sourceURL: URL(string: "https://www.pexels.com/photo/clear-drinking-glass-with-water-7094949/")!)
+    static let barTools = ForumPhoto(imageName: "forum-bar-tools", description: "吧檯上的雪克杯、量酒器、吧匙與濾冰器",
+        author: "Antoni Shkraba", sourceURL: URL(string: "https://www.pexels.com/photo/stainless-steel-shaker-and-wine-measuring-cup-on-the-bar-counter-4485347/")!)
+
+    static let all: [ForumPhoto] = [
+        citrusGlass, mintLime, citrusPrep, gardenGlass, whiskyAmber, whiskyBar,
+        barBrick, barStools, beerTall, beerMug, orangeLayers, orangeCocktail,
+        whiteDrink, lemonSoda, grapefruitGlass, mojitoTall, lemonMint, nightStreet,
+        ginHighball, barTools,
+    ]
+
+    #if DEBUG
+    static func validate(_ posts: [ForumPost], assetExists: (String) -> Bool) {
+        let libraryNames = all.map(\.imageName)
+        let usedNames = posts.flatMap(\.photos).map(\.imageName)
+        assert(Set(libraryNames).count == libraryNames.count, "論壇照片庫有重複名稱")
+        assert(Set(usedNames).count == usedNames.count, "論壇貼文之間或同篇內有重複照片")
+        assert(Set(usedNames).isSubset(of: Set(libraryNames)), "論壇貼文使用未登錄照片")
+        assert(posts.allSatisfy { $0.photos.count <= 4 }, "論壇貼文超過四張照片")
+        for name in Set(libraryNames + usedNames) {
+            assert(assetExists(name), "論壇照片缺少 asset：\(name)")
+        }
+    }
+    #endif
 }

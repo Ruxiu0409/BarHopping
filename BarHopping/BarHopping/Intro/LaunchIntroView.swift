@@ -7,7 +7,21 @@ struct LaunchIntroView: View {
     private var intro: GlassIntro {
         GlassIntro(
             appName: "BarHopping",
-            mark: .symbol("wineglass.fill", color: AppTheme.accent),
+            mark: .custom(
+                bodyDiameterRatio: 0.76,
+                outline: { rect, _ in
+                    let side = min(rect.width, rect.height) * 0.76
+                    let iconRect = CGRect(
+                        x: rect.midX - side / 2,
+                        y: rect.midY - side / 2,
+                        width: side,
+                        height: side
+                    )
+                    return RoundedRectangle(cornerRadius: side * 0.2237, style: .continuous)
+                        .path(in: iconRect)
+                },
+                view: { LaunchAppIconView() }
+            ),
             pages: [],
             finale: [],
             tint: AppTheme.accent,

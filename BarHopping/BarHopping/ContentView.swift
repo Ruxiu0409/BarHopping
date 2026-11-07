@@ -6,34 +6,59 @@ struct ContentView: View {
     @State private var userProfile = UserProfileStore()
 
     var body: some View {
-        TabView(selection: $router.selectedTab) {
-            ForEach(AppTab.allCases) { tab in
-                Tab(value: tab) {
-                    switch tab {
-                    case .home: HomeTabView()
-                    case .map: MapTabView()
-                    case .run: RunTabView()
-                    case .groups: GroupsTabView()
-                    case .profile: ProfileTabView()
-                    }
-                } label: {
-                    if tab == .profile, let userAvatar = userProfile.customAvatarImage {
-                        userAvatar
-                        Text(tab.title)
-                    } else if tab == .profile {
-                        // 沒選預設圖示時，用使用者大頭貼當作「你」分頁的圖示。
-                        Image(uiImage: UserAvatarIcon.tabImage())
-                        Text(tab.title)
-                    } else {
-                        Label(tab.title, systemImage: tab.systemImage)
+        if #available(iOS 18.0, *) {
+            TabView(selection: $router.selectedTab) {
+                ForEach(AppTab.allCases) { tab in
+                    Tab(value: tab) {
+                        tabContent(for: tab)
+                    } label: {
+                        tabLabel(for: tab)
                     }
                 }
             }
+            .tint(Color(red: 252 / 255, green: 82 / 255, blue: 0))
+            .environment(router)
+            .environment(planner)
+            .environment(userProfile)
+        } else {
+            TabView(selection: $router.selectedTab) {
+                ForEach(AppTab.allCases) { tab in
+                    tabContent(for: tab)
+                        .tabItem {
+                            tabLabel(for: tab)
+                        }
+                        .tag(tab)
+                }
+            }
+            .tint(Color(red: 252 / 255, green: 82 / 255, blue: 0))
+            .environment(router)
+            .environment(planner)
+            .environment(userProfile)
         }
-        .tint(Color(red: 252 / 255, green: 82 / 255, blue: 0))
-        .environment(router)
-        .environment(planner)
-        .environment(userProfile)
+    }
+
+    @ViewBuilder
+    private func tabContent(for tab: AppTab) -> some View {
+        switch tab {
+        case .home: HomeTabView()
+        case .map: MapTabView()
+        case .run: RunTabView()
+        case .groups: GroupsTabView()
+        case .profile: ProfileTabView()
+        }
+    }
+
+    @ViewBuilder
+    private func tabLabel(for tab: AppTab) -> some View {
+        if tab == .profile, let userAvatar = userProfile.customAvatarImage {
+            userAvatar
+            Text(tab.title)
+        } else if tab == .profile {
+            Image(uiImage: UserAvatarIcon.tabImage())
+            Text(tab.title)
+        } else {
+            Label(tab.title, systemImage: tab.systemImage)
+        }
     }
 }
 

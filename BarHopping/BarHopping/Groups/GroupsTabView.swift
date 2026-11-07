@@ -3,7 +3,9 @@ import SwiftUI
 
 struct GroupsTabView: View {
     private let title = "找個伴，走進下一條巷弄"
-    @State private var store = GroupsStore()
+    @Environment(GroupsStore.self) private var store
+    @AppStorage(OnboardingConfig.drinkLevelKey) private var preferredDrinkLevel = ""
+    @State private var didApplyDrinkPreference = false
     @State private var path: [GroupsDestination] = []
     @State private var section = Section.mine
     @State private var selectedDrinkLevel: GroupDrinkLevel?
@@ -60,7 +62,14 @@ struct GroupsTabView: View {
                 }
             }
         }
-        .environment(store)
+        .onAppear {
+            guard !didApplyDrinkPreference else { return }
+            selectedDrinkLevel = GroupDrinkLevel(rawValue: preferredDrinkLevel)
+            didApplyDrinkPreference = true
+        }
+        .onChange(of: preferredDrinkLevel) {
+            selectedDrinkLevel = GroupDrinkLevel(rawValue: preferredDrinkLevel)
+        }
         .environment(\.locale, Locale(identifier: "zh_TW"))
         .tint(AppTheme.accentOnDark)
     }

@@ -4,6 +4,10 @@ struct ContentView: View {
     @State private var router = AppRouter()
     @State private var planner = PlannerStore(api: AppEnvironment.makeAPI(), drafts: AppEnvironment.makeDraftStore())
     @State private var userProfile = UserProfileStore()
+    @State private var groups = GroupsStore()
+    @State private var didCheckOnboarding = false
+    @State private var showsOnboarding = false
+    @AppStorage(OnboardingConfig.completionKey) private var completedOnboarding = false
 
     var body: some View {
         TabView(selection: $router.selectedTab) {
@@ -20,9 +24,22 @@ struct ContentView: View {
         .tint(AppTheme.accent)
         .preferredColorScheme(.dark)
         .dismissesKeyboardOnOutsideTap()
+        .onAppear {
+            guard !didCheckOnboarding else { return }
+            didCheckOnboarding = true
+            showsOnboarding = OnboardingConfig.showsOnEveryLaunch || !completedOnboarding
+        }
+        .fullScreenCover(isPresented: $showsOnboarding) {
+            OnboardingView {
+                completedOnboarding = true
+                showsOnboarding = false
+            }
+            .environment(groups)
+        }
         .environment(router)
         .environment(planner)
         .environment(userProfile)
+        .environment(groups)
     }
 
     @ViewBuilder

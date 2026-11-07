@@ -56,9 +56,28 @@ config 保留 `© OpenStreetMap contributors` 與 [OpenFreeMap](https://openfree
 
 ## 示範熱門路線熱力圖
 
-`taichung-demo-popular-routes.json` 包含 20 條示範串店路線。站點來自 App 內附酒吧目錄，路徑由 [FOSSGIS 步行路由服務](https://routing.openstreetmap.de/) 的 OSRM `routed-foot` 產生。路徑 © OpenStreetMap contributors，採 [ODbL 授權](https://www.openstreetmap.org/copyright)。`runCount` 是手寫的假人數，不是真實使用者統計；地圖開啟熱門圖層時標示「示範資料」。
+`taichung-demo-popular-routes.json` 包含 144 條示範步行路線，混合酒吧串店與地標周邊散步／路跑路徑，每條實際路由長度 1–5 公里。主要覆蓋區名額為西區 24、中區 12、北區 18、南區 14、東區 14、西屯區 24、南屯區 18、北屯區 20。跨區路線只在起點的主要覆蓋組計一次，分組以鄰近地標為準，並非行政界線裁切。涵蓋審計新村、勤美、一中、逢甲、七期，以及南區、東區、北屯、東海等周邊。
 
-從專案根目錄執行 `python3 tools/heat/make_demo_routes.py` 可用快取重產資料；加上 `--refresh` 會重新請求路由。`tools/heat/raw/` 是不納入版本控制的路由快取。公共路由服務僅供這次開發產生示範資料，App 顯示熱力圖不會呼叫此服務。
+產生器讀取 App 內附的 65 間酒吧目錄，保留市區地標 2.5 公里內的酒吧；另外人工選定常見地標附近的概略座標，不宣稱為入口或精確地理編碼。以固定種子 `20261107` 打亂直線距離 850–3,300 公尺的相鄰點對，優先分散端點覆蓋，再按各組名額選取合格路線。相同座標點對去重，沒有新增或捏造店家。`stopPlaceIds` 中的酒吧 ID 沿用目錄，地標使用 `landmark-行政區-序號` 示範 ID，與 `stopNames` 一一對應。
+
+路徑由 [FOSSGIS 步行路由服務](https://routing.openstreetmap.de/) 的 OSRM `routed-foot` 產生。路徑 © OpenStreetMap contributors，採 [ODbL 授權](https://www.openstreetmap.org/copyright)。依[服務使用規範](https://routing.openstreetmap.de/about.html)，單執行緒依序查詢，請求至少間隔 1.5 秒，User-Agent 為 `BarHopping-dev/0.1 (student project)`；失敗最多嘗試三次，退避 10／30 秒並尊重數字秒數的 Retry-After。回應依完整路由 URL 的 SHA-256 雜湊快取到 `tools/heat/raw/`，重跑不重複請求已有路線，失敗的 NoRoute 等回應也保留。超出 1–5 公里、繞行比超過 2.4，或端點吸附超過 100 公尺的路線會跳過並另選候選；原因記在 `tools/heat/report.json`。
+
+`runCount` 仍是人工設定區間後以固定種子抽取的示範數字，範圍 5–250，審計新村、勤美、一中、逢甲、七期較高，外圍較低，並非真實使用者統計。地圖與路跑共用這份示範資料，地圖開啟熱門圖層時標示「示範資料」。公共路由服務僅供開發產生資料，App 顯示熱力圖不會呼叫此服務。
+
+輸出座標保留五位小數並移除連續重複點，JSON 使用緊湊格式，產生器拒絕寫入超過 1.5 MB 的結果。保留道路頂點而不逐路線做 Douglas–Peucker，讓不同路線沿相同道路時仍可依現有一公尺格點合併熱度。
+
+從專案根目錄重跑：
+
+```bash
+python3 tools/heat/make_demo_routes.py           # 優先使用快取
+python3 tools/heat/make_demo_routes.py --offline # 完全離線；缺快取就停止
+python3 tools/heat/check_heatmap.py             # 直接編譯 App Core，驗證解碼與計算
+python3 tools/heat/check_heatmap.py --debug     # 相同資料的 debug 計算時間
+```
+
+本次輸出共 388,209 公尺，21 條酒吧到酒吧、123 條含地標路線，沒有候選因品質檢查被跳過。JSON 為 637,219 bytes，13,534 個輸入路段去重後為 7,778 邊，再合併為 808 個 feature。直接執行 App Core，在 arm64 macOS 主機各量測一次，最終 JSON 的 release 計算約 43.6 ms、debug 約 333.9 ms，解碼另約 51.6／65.9 ms。相同路徑先前曾量得 12.7／65.3 ms，主機時間有明顯波動。這不是手機渲染時間；詳細數值及輸出 SHA-256 見 `tools/heat/verification.json`。考量 debug 單次計算可能造成主執行緒停頓，建議載入時在背景計算一次並快取結果，本輪不修改 App 端。
+
+固定酒吧輸入、程式與快取下，重跑的 JSON 及產生報告相同。`--refresh` 會重新查詢，路由服務的 OSM 更新可能改變結果。`tools/heat/raw/` 不納入版本控制，另一台電腦首次執行需連網。`check_heatmap.py` 使用暫存目錄並自動清理，回報原始路段、去重路段、合併 feature 數、JSON 解碼與熱力圖運算時間；這是主機上的 Core 計算，不含 MapLibre 渲染或 iPhone 效能。
 
 ## 政府開放資料增補（2026-11-07）
 

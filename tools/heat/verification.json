@@ -1,0 +1,45 @@
+{
+  "sha256": "2755051b11adeb046ebde21d38a551fa6d59997ab5f7189535c65bb1af16c14a",
+  "reproducibility": "Two offline generations produced identical JSON and generation reports.",
+  "host": "arm64 macOS, Apple Swift 6.4, 8 logical CPUs; shared host, final load not sampled",
+  "measurements": [
+    {
+      "bytes": 637219,
+      "decodeMilliseconds": 51.6025,
+      "heatmapMilliseconds": 43.600125,
+      "inputSegments": 13534,
+      "maximumSharedRunCount": 903,
+      "mergedFeatures": 808,
+      "routes": 144,
+      "scope": "one macOS host run; App Core implementation; excludes MapLibre rendering and iPhone timing",
+      "sumFeatureRunCounts": 157946,
+      "uniqueEdges": 7778,
+      "optimization": "release -O"
+    },
+    {
+      "bytes": 637219,
+      "decodeMilliseconds": 65.856791,
+      "heatmapMilliseconds": 333.908584,
+      "inputSegments": 13534,
+      "maximumSharedRunCount": 903,
+      "mergedFeatures": 808,
+      "routes": 144,
+      "scope": "one macOS host run; App Core implementation; excludes MapLibre rendering and iPhone timing",
+      "sumFeatureRunCounts": 157946,
+      "uniqueEdges": 7778,
+      "optimization": "debug -Onone"
+    }
+  ],
+  "note": "Each optimization measured once against final JSON. Excludes iPhone and MapLibre. Earlier same-geometry measurements were 12.7 ms release / 65.3 ms debug; substantial host timing variation, no device latency claim. All final assertions passed.",
+  "build": {
+    "status": "failed",
+    "exitCode": 65,
+    "reason": "DrinkPassStore not found in HomeTabView.swift:209, RunTabView.swift:93, ContentView.swift:8; outside this task scope",
+    "log": "/tmp/bh-heat2-build.log",
+    "derivedDataRemoved": true,
+    "diskBeforeBuild": "2.1 GiB",
+    "diskAfterBuildBeforeCleanup": "1.8 GiB",
+    "diskAfterCleanup": "1.9 GiB",
+    "diskAtFinalCheck": "660 MiB; stopped further builds and measurements"
+  }
+}

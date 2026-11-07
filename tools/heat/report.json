@@ -1,0 +1,754 @@
+{
+  "seed": 20261107,
+  "routeCount": 144,
+  "districtCounts": {
+    "西區": 24,
+    "中區": 12,
+    "北區": 18,
+    "南區": 14,
+    "東區": 14,
+    "西屯區": 24,
+    "南屯區": 18,
+    "北屯區": 20
+  },
+  "districtDistanceMeters": {
+    "西區": 75193,
+    "中區": 30094,
+    "北區": 48201,
+    "南區": 43434,
+    "東區": 39737,
+    "西屯區": 65754,
+    "南屯區": 35817,
+    "北屯區": 49979
+  },
+  "distanceMeters": 388209,
+  "bytes": 637219,
+  "kinds": {
+    "bar-to-bar": 21,
+    "landmark-walk": 123
+  },
+  "skippedCount": 0,
+  "skipped": [],
+  "routes": [
+    {
+      "id": "demo-route-24e9c38f2a513d768984",
+      "district": "西區",
+      "kind": "bar-to-bar"
+    },
+    {
+      "id": "demo-route-057350fe54d03f61ad73",
+      "district": "西區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-4ba4b87daf53b39389a9",
+      "district": "西區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-834407ee2373d86970fe",
+      "district": "西區",
+      "kind": "bar-to-bar"
+    },
+    {
+      "id": "demo-route-588764f1a8dfac48aea2",
+      "district": "西區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-d21710792fa7e718ccab",
+      "district": "西區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-88f3092355a486993ef3",
+      "district": "西區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-9acca552cb9f931d5462",
+      "district": "西區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-32dde9503883f6182da9",
+      "district": "西區",
+      "kind": "bar-to-bar"
+    },
+    {
+      "id": "demo-route-679018bd137054b9168b",
+      "district": "西區",
+      "kind": "bar-to-bar"
+    },
+    {
+      "id": "demo-route-8ac0e75d92add131b148",
+      "district": "西區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-79db863346c574377f56",
+      "district": "西區",
+      "kind": "bar-to-bar"
+    },
+    {
+      "id": "demo-route-87d705dcded9cded5689",
+      "district": "西區",
+      "kind": "bar-to-bar"
+    },
+    {
+      "id": "demo-route-2343e8a45b79eb7ff2cf",
+      "district": "西區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-c2e91275eb15757fec9c",
+      "district": "西區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-81ce7b4c33779cdc6579",
+      "district": "西區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-7968965fc6fa45e2027e",
+      "district": "西區",
+      "kind": "bar-to-bar"
+    },
+    {
+      "id": "demo-route-e3a8608a690b52aae80a",
+      "district": "西區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-7153b7e1004fff0879c8",
+      "district": "西區",
+      "kind": "bar-to-bar"
+    },
+    {
+      "id": "demo-route-de5946fc13641b0e13e7",
+      "district": "西區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-0fc85d3685f05150d6e4",
+      "district": "西區",
+      "kind": "bar-to-bar"
+    },
+    {
+      "id": "demo-route-8a74dc1070b12939e479",
+      "district": "西區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-2e4f6cf465b9810a6f1b",
+      "district": "西區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-9b41908682f8cc39fb90",
+      "district": "西區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-26f88608c6e0e062bc05",
+      "district": "中區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-98535aeef2d8c811efbe",
+      "district": "中區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-b259edf7227b6e33d0e9",
+      "district": "中區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-8b72bc5872af54a3af0d",
+      "district": "中區",
+      "kind": "bar-to-bar"
+    },
+    {
+      "id": "demo-route-7dfd26183292424b61a8",
+      "district": "中區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-ea3c2e80d869e828e25f",
+      "district": "中區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-f92d2d03c23acb647dba",
+      "district": "中區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-f65026bf04ef9b609f66",
+      "district": "中區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-3f583171f502cbb26928",
+      "district": "中區",
+      "kind": "bar-to-bar"
+    },
+    {
+      "id": "demo-route-5c5cc9bfeac3e9c30c4a",
+      "district": "中區",
+      "kind": "bar-to-bar"
+    },
+    {
+      "id": "demo-route-90f7997b653aa07c8406",
+      "district": "中區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-c44d2ae50e0173f549f3",
+      "district": "中區",
+      "kind": "bar-to-bar"
+    },
+    {
+      "id": "demo-route-b1c477c12c30c972443f",
+      "district": "北區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-8646fc298828b2132061",
+      "district": "北區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-3aa5b65ddf7f6174262e",
+      "district": "北區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-66193f9c9df2e9e3d9d3",
+      "district": "北區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-db60c89189ceb40242d3",
+      "district": "北區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-c6d943ee87cb58177144",
+      "district": "北區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-9ef82c85cbb4af206657",
+      "district": "北區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-ac408702b93dc858683d",
+      "district": "北區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-e1c2f01a7dbfa918a3de",
+      "district": "北區",
+      "kind": "bar-to-bar"
+    },
+    {
+      "id": "demo-route-0cc4a1e1ad31f25ed8d8",
+      "district": "北區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-027cf51b21c4cb729feb",
+      "district": "北區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-b9ee7b8b98b0c453afe4",
+      "district": "北區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-765d86f3de6c0fab667f",
+      "district": "北區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-06283822c9a87c17ee49",
+      "district": "北區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-a222cc2e70a2764de519",
+      "district": "北區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-504943dcc879ce1b41ea",
+      "district": "北區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-30564a673784b08d9879",
+      "district": "北區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-cef29626f5154f9b18e8",
+      "district": "北區",
+      "kind": "bar-to-bar"
+    },
+    {
+      "id": "demo-route-35fc74309e946b2ab5d4",
+      "district": "南區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-ae10d665ba7cf30e78e7",
+      "district": "南區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-398d8d325b7f159db34a",
+      "district": "南區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-ade5764265640cf5f899",
+      "district": "南區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-a6aa9163eb5f28e0e522",
+      "district": "南區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-f03df7f2e3d24232042a",
+      "district": "南區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-7d533ead4fb565970c67",
+      "district": "南區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-22ae3ecfc68e2e0afdba",
+      "district": "南區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-39a68a00944f5bd385e5",
+      "district": "南區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-52c1b2dfe5066ff16d1e",
+      "district": "南區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-bbf3caccacd65c2f28f1",
+      "district": "南區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-811d8f40c6a79bcc174e",
+      "district": "南區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-063182868687996f21bd",
+      "district": "南區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-d1d8cb6d62bebe9a189a",
+      "district": "南區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-e0f7a03c8294ec566e27",
+      "district": "東區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-f449e1ea780a5caff02d",
+      "district": "東區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-f3483b0386b82ae7c373",
+      "district": "東區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-0ed0bee4af00a8509cb0",
+      "district": "東區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-2b576fc98664d5efd132",
+      "district": "東區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-0291697e7622f43dbb94",
+      "district": "東區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-33d9922514bdab37de74",
+      "district": "東區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-a6d73802877771ebd71b",
+      "district": "東區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-67e1318527ab05065634",
+      "district": "東區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-48a53a6bed87021e1e3a",
+      "district": "東區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-bf6d9987f77099d198eb",
+      "district": "東區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-0ac36d368b21aa46defd",
+      "district": "東區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-6af8d300e6213349550c",
+      "district": "東區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-82dac962203b3aeed482",
+      "district": "東區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-d49ec278c16c1fa7ecda",
+      "district": "西屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-915086c5e68f0146664d",
+      "district": "西屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-8aca8a52cfbcd29c5272",
+      "district": "西屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-64e6ee733e06a3ff7d97",
+      "district": "西屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-40c3bb4ef69e7ac97cf9",
+      "district": "西屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-a913dcc9bd340a719770",
+      "district": "西屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-4b6447ff42cd69547f82",
+      "district": "西屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-6d50b34ef3b2384294fb",
+      "district": "西屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-64b251464376de00669b",
+      "district": "西屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-4c0f084d52c1e0b7e358",
+      "district": "西屯區",
+      "kind": "bar-to-bar"
+    },
+    {
+      "id": "demo-route-d3899da00a81ff8355f9",
+      "district": "西屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-c376ab3e226aacad7d18",
+      "district": "西屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-3551b4db641aa152a1aa",
+      "district": "西屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-6235e2c5e2484a9f3496",
+      "district": "西屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-d0b2306e3071f962c45c",
+      "district": "西屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-acd5698dde996a61ca45",
+      "district": "西屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-e7fd89d023fcb0f80187",
+      "district": "西屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-a35d88bc3ae2f27687ea",
+      "district": "西屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-845452120d11339665da",
+      "district": "西屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-6ef8d20fc95daa17eb03",
+      "district": "西屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-73b9af068b24bc0de55f",
+      "district": "西屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-a2b5760285238752ee42",
+      "district": "西屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-3a3f518b0686d660b0bc",
+      "district": "西屯區",
+      "kind": "bar-to-bar"
+    },
+    {
+      "id": "demo-route-195a8c7f7c4127a5b252",
+      "district": "西屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-20528c46b222e05b7964",
+      "district": "南屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-92d81416585d53563bd0",
+      "district": "南屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-afcef7e6b04e845eb423",
+      "district": "南屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-7ef81da8b2213c0d53e0",
+      "district": "南屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-2148dfb29a6855f0656a",
+      "district": "南屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-c3efab4ff44f7783a82a",
+      "district": "南屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-840a9500d8ed39cb696a",
+      "district": "南屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-ff353ef345df6fc0e84b",
+      "district": "南屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-fab8e3eab4e0f877e3dc",
+      "district": "南屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-b431fc461b2a7d4e914d",
+      "district": "南屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-a755a28b2f35904fff1c",
+      "district": "南屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-2373d02c0340590cdd74",
+      "district": "南屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-5667a569f5ac322cde8a",
+      "district": "南屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-9e74296011c76409ad1e",
+      "district": "南屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-3e4c343451c895f17229",
+      "district": "南屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-d94b8b61fd2c92a3812d",
+      "district": "南屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-dee416eb704503562b79",
+      "district": "南屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-abfbe3b69f190fbf2b21",
+      "district": "南屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-1d18715ed9f12c809142",
+      "district": "北屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-4579967824299fb7009b",
+      "district": "北屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-fcf2db0ca5beb414e920",
+      "district": "北屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-07a68aaf2c238c265a1f",
+      "district": "北屯區",
+      "kind": "bar-to-bar"
+    },
+    {
+      "id": "demo-route-bcae60b09b5e5ce7b16b",
+      "district": "北屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-3ac1b8ecb63166d5aab7",
+      "district": "北屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-4570d115623e7d3c6098",
+      "district": "北屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-d228890d3b3b3ccd5ab5",
+      "district": "北屯區",
+      "kind": "bar-to-bar"
+    },
+    {
+      "id": "demo-route-35065a23d564d987a344",
+      "district": "北屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-3e5b8b57934f44ca9eb5",
+      "district": "北屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-5e8237650038978cd99b",
+      "district": "北屯區",
+      "kind": "bar-to-bar"
+    },
+    {
+      "id": "demo-route-f06b139890ba95fea6a3",
+      "district": "北屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-88e2c09e8d3c61ccd6f1",
+      "district": "北屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-3f6b225fa38efde02a07",
+      "district": "北屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-b34cedf61a61f67f91e7",
+      "district": "北屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-9de20f772147dd8f2c93",
+      "district": "北屯區",
+      "kind": "bar-to-bar"
+    },
+    {
+      "id": "demo-route-35f528663ac3b24db4a9",
+      "district": "北屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-654c1a48342cfb18681c",
+      "district": "北屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-2d78d215b431e197d3a8",
+      "district": "北屯區",
+      "kind": "landmark-walk"
+    },
+    {
+      "id": "demo-route-1a731f8c8e5ee0cb7ad9",
+      "district": "北屯區",
+      "kind": "landmark-walk"
+    }
+  ]
+}

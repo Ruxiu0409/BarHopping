@@ -6,7 +6,7 @@
 
 每完成一項工作（一個功能、一次修正、一份文件）就照以下步驟做：
 
-1. **Commit**：只 add 這次相關的檔案，寫清楚的 commit message。
+1. **Commit**：只 add 這次相關的檔案，寫清楚的 commit message，然後直接 push 到 `main`（不開分支、不開 PR）。
 2. **檢查 GitHub**：執行 `git fetch`，再用 `git log --oneline HEAD..origin/<目前分支>` 看遠端有沒有新 commit。
 3. **有新東西就 pull**：執行 `git pull --rebase`。
    - 有衝突時停下來，把衝突的檔案和內容告訴使用者，不要自己挑一邊覆蓋。

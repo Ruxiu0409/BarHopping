@@ -51,6 +51,51 @@ struct GroupAvatar: View {
     }
 }
 
+struct GroupMemberAvatar: View {
+    let member: GroupMember
+    var size: CGFloat = 34
+
+    private static let colors: [Color] = [AppTheme.accent, .teal, .indigo, .pink, .orange, .cyan]
+    private var colorIndex: Int { member.id.unicodeScalars.reduce(0) { $0 + Int($1.value) } % Self.colors.count }
+
+    var body: some View {
+        Text(String(member.nickname.prefix(1)))
+            .font(.system(size: size * 0.42, weight: .bold))
+            .foregroundStyle(.white)
+            .frame(width: size, height: size)
+            .background(Self.colors[colorIndex].gradient, in: Circle())
+            .overlay(Circle().strokeBorder(GroupsStyle.canvas, lineWidth: 2))
+            .accessibilityLabel(member.nickname)
+    }
+}
+
+struct GroupMemberAvatarStack: View {
+    let members: [GroupMember]
+    var totalCount: Int? = nil
+    var size: CGFloat = 32
+
+    private var count: Int { totalCount ?? members.count }
+
+    var body: some View {
+        HStack(spacing: -9) {
+            ForEach(Array(members.prefix(4))) { member in
+                GroupMemberAvatar(member: member, size: size)
+                    .zIndex(Double(4 - (members.firstIndex(where: { $0.id == member.id }) ?? 0)))
+            }
+            if count > 4 {
+                Text("+\(count - 4)")
+                    .font(.system(size: size * 0.32, weight: .semibold))
+                    .foregroundStyle(AppTheme.textSecondary)
+                    .frame(width: size, height: size)
+                    .background(AppTheme.elevated, in: Circle())
+                    .overlay(Circle().strokeBorder(GroupsStyle.canvas, lineWidth: 2))
+                    .accessibilityLabel("另外 \(count - 4) 位成員")
+            }
+        }
+        .accessibilityElement(children: .contain)
+    }
+}
+
 struct GroupSummary: View {
     let group: SocialGroup
     var body: some View {
@@ -59,7 +104,7 @@ struct GroupSummary: View {
                 GroupAvatar(symbol: group.symbol)
                 VStack(alignment: .leading, spacing: 6) {
                     Text(group.name).font(.headline).foregroundStyle(.primary)
-                    Label("\(group.members.count) 位成員・\(group.isPublic ? "公開" : "私密")", systemImage: group.isPublic ? "person.2" : "lock")
+                    Label(group.isPublic ? "公開團體" : "私密團體・邀請加入", systemImage: group.isPublic ? "person.2" : "lock")
                         .font(.subheadline).foregroundStyle(.secondary)
                 }
                 Spacer(minLength: 0)
@@ -74,6 +119,12 @@ struct GroupSummary: View {
                 }
             }
             GroupTags(tags: group.tags)
+            HStack(spacing: 10) {
+                GroupMemberAvatarStack(members: group.members, size: 30)
+                Text("\(group.members.count) 位同行夥伴")
+                    .font(.caption.weight(.medium)).foregroundStyle(.secondary)
+                Spacer(minLength: 0)
+            }
             if let next = group.nextEvent {
                 Label("下次揪團 \(GroupsStyle.date(next.date))", systemImage: "calendar")
                     .font(.subheadline).foregroundStyle(AppTheme.accentOnDark)

@@ -24,8 +24,12 @@ struct GroupsTabView: View {
                     }
                     .pickerStyle(.segmented)
                     if section == .mine { myGroups } else { exploreGroups }
-                    Text("本機體驗・團體、活動與留言皆為示意資料，關閉 App 後不會保留，也不會傳送給其他人。")
-                        .font(.caption).foregroundStyle(.secondary)
+                    Label {
+                        Text("本機示意社群・團體、成員、活動與留言不會傳送給其他人。活動路線使用 App 內店家目錄，並非實際招募或店家合作。")
+                    } icon: {
+                        Image(systemName: "info.circle")
+                    }
+                    .font(.caption).foregroundStyle(.secondary)
                 }
                 .padding(20)
             }

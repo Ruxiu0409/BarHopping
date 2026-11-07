@@ -122,6 +122,10 @@ struct GroupDetailView: View {
                             GroupRouteSummary(event: event)
                             Label("\(event.participantIDs.count) 人參加・\(event.isParticipating ? "你已參加" : "你尚未參加")", systemImage: event.isParticipating ? "checkmark.circle.fill" : "person.2")
                                 .foregroundStyle(AppTheme.accentOnDark)
+                            GroupMemberAvatarStack(
+                                members: group.members.filter { event.participantIDs.contains($0.id) },
+                                totalCount: event.participantIDs.count
+                            )
                         }
                         .font(.subheadline).foregroundStyle(.primary)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -137,7 +141,16 @@ struct GroupDetailView: View {
             DisclosureGroup {
                 ForEach(group.members) { member in
                     HStack(alignment: .firstTextBaseline) {
-                        Text(member.nickname)
+                        HStack(spacing: 10) {
+                            GroupMemberAvatar(member: member, size: 34)
+                            VStack(alignment: .leading, spacing: 3) {
+                                Text(member.nickname)
+                                if member.id == group.members.first(where: \.isAdmin)?.id {
+                                    Text("團主")
+                                        .font(.caption2).foregroundStyle(AppTheme.accentOnDark)
+                                }
+                            }
+                        }
                         Spacer()
                         Text(member.role).font(.subheadline).foregroundStyle(.secondary)
                     }
@@ -167,7 +180,7 @@ struct GroupDetailView: View {
                         Spacer(minLength: 0)
                     }
                     Text(entry.text).font(.body)
-                    Text(GroupsStyle.date(entry.date)).font(.caption).foregroundStyle(.secondary)
+                    Text(entry.date, style: .relative).font(.caption).foregroundStyle(.secondary)
                 }
                 .accessibilityElement(children: .combine)
                 Divider()

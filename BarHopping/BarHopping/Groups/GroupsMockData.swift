@@ -1,8 +1,37 @@
 import Foundation
 
-/// 所有團體均為虛構；座標在台中街道附近，距離僅為活動示意估算。
+/// 團體、成員、活動和留言皆為本機示意；路線店家取自 App 內附的臺中 OSM 目錄。
 enum GroupsMockData {
     static let tags = ["西區", "逢甲", "七期", "精釀", "調酒", "新手友善"]
+
+    private static let roster: [(String, String)] = [
+        ("member-yiwen", "以文"), ("member-jason", "Jason"), ("member-mika", "Mika"),
+        ("member-cheng", "小陳"), ("member-vicky", "Vicky"), ("member-hao", "阿豪"),
+        ("member-lin", "小林"), ("member-yu", "小宇"), ("member-ting", "婷婷"),
+    ]
+
+    private static let activityTitles = [
+        "勤美散步・精釀兩站", "逢甲下班小聚", "歌劇院周邊・慢慢走兩站",
+        "美術園道晚餐後散步",
+    ]
+    private static let announcements = [
+        "這次先排兩站，想提早離開或只散步聊天都可以，集合前再確認店家營業狀況。",
+        "逢甲小聚先抓 19:30 集合，晚到的人在群裡說一聲就好，不用趕路。",
+        "這次走歌劇院周邊，會留時間休息；不喝酒或改喝無酒精都很自在。",
+        "美術園道先吃晚餐再散步，路線只作規劃參考，出發前會再看一次店家資訊。",
+        "本週改走無酒精友善路線，想帶朋友來也可以，記得先回覆大概人數。",
+        "逢甲散步不趕店，大家到齊後再決定停留多久，回程方式也可以先討論。",
+        "集合後先找地方坐下來聊聊，飲品依個人狀況選擇，完全不勸酒。",
+        "這次以精釀交流為主，每站都可以只點無酒精飲品或跳過。",
+        "品飲團預計控制在小團，路線與店家資訊當天出發前再確認。",
+    ]
+    private static let replies = [
+        "我可以準時到，先走第一站就好。", "收到，我下班後直接過去，晚到會先留言。",
+        "想參加，這次我會選無酒精的。", "謝謝整理路線，我先確認回程交通。",
+        "我可以帶一位朋友，會先在這裡更新人數。", "好期待！我會先看一下集合點附近怎麼走。",
+        "收到，慢慢走就好，我大約八點到。", "這次想試試精釀，也會記得補水。",
+        "我先保留時間，出發前再確認能不能到。",
+    ]
 
     static func makeGroups(now: Date = .now) -> [SocialGroup] {
         let definitions: [(String, String, [String], String, String, Bool, Bool, GroupDrinkLevel)] = [
@@ -17,23 +46,30 @@ enum GroupsMockData {
             ("七期週末品飲團", "分享喜歡的酒款與故事，不勸酒、不拚杯。", ["七期", "調酒"], "wineglass.fill", "TASTE2", true, false, .social)
         ]
         return definitions.enumerated().map { index, item in
-            let routeIndex = index % 4
+            let routeIndex = [0, 1, 2, 0, 0, 1, 3, 0, 2][index]
             let admin = GroupMember(id: "host-\(index)", nickname: ["阿禾", "小鹿", "米粒", "阿哲"][routeIndex], isAdmin: true)
-            var members = [admin, GroupMember(id: "member-\(index)-1", nickname: "小安", isAdmin: false), GroupMember(id: "member-\(index)-2", nickname: "木木", isAdmin: false)]
+            let memberCount = [5, 4, 6, 3, 5, 4, 6, 5, 4][index]
+            var members = [admin] + roster.prefix(memberCount).map {
+                GroupMember(id: "\($0.0)-\(index)", nickname: $0.1, isAdmin: false)
+            }
             if item.6 { members.append(GroupMember(id: GroupMember.currentID, nickname: "我", isAdmin: false)) }
             let plan = route(index: routeIndex, now: now)
-            let event = GroupEvent(id: UUID(), title: ["週末草悟道慢慢走", "下班後的逢甲小聚", "七期夜色散步", "週末巷口見"][routeIndex], date: futureDate(days: index + 2, now: now), meetingPoint: plan.origin?.name ?? "草悟道入口", plan: plan, distanceMeters: [1800, 1500, 2200, 1600][routeIndex], participantIDs: [admin.id, members[1].id])
-            return SocialGroup(id: UUID(), name: item.0, introduction: item.1, isPublic: item.5, drinkLevel: item.7, tags: item.2, symbol: item.3, inviteCode: item.4, members: members, lastActiveAt: now.addingTimeInterval(Double(-index - 1) * 3600), events: [event], messages: [
-                GroupMessage(id: UUID(), author: admin.nickname, text: "歡迎加入！依自己的步調參加，無酒精飲品也很棒。集合前請先安排好回家的方式。", date: now.addingTimeInterval(-7200), isAnnouncement: true),
-                GroupMessage(id: UUID(), author: "小安", text: "期待一起認識台中的巷弄，下次集合見！", date: now.addingTimeInterval(-3600), isAnnouncement: false)
+            let participants = Set([admin.id] + members.dropFirst().prefix(2).map(\.id))
+            let event = GroupEvent(id: UUID(), title: activityTitles[routeIndex], date: futureDate(days: index + 2, hour: [19, 19, 20, 18][routeIndex], now: now), meetingPoint: plan.origin?.name ?? "草悟道入口", plan: plan, distanceMeters: nil, participantIDs: participants)
+            let activeMember = members[min(1, members.count - 1)]
+            let secondMember = members[min(2, members.count - 1)]
+            return SocialGroup(id: UUID(), name: item.0, introduction: item.1, isPublic: item.5, drinkLevel: item.7, tags: item.2, symbol: item.3, inviteCode: item.4, members: members, lastActiveAt: now.addingTimeInterval(Double(-[12, 35, 75, 165, 310, 520, 740, 1_100, 1_560][index]) * 60), events: [event], messages: [
+                GroupMessage(id: UUID(), author: admin.nickname, text: announcements[index], date: now.addingTimeInterval(-86_400), isAnnouncement: true),
+                GroupMessage(id: UUID(), author: activeMember.nickname, text: replies[index], date: now.addingTimeInterval(-5_400), isAnnouncement: false),
+                GroupMessage(id: UUID(), author: secondMember.nickname, text: "我先把時間留起來，出發前再確認集合地點。", date: now.addingTimeInterval(-1_200), isAnnouncement: false),
             ])
         }
     }
 
-    private static func futureDate(days: Int, now: Date) -> Date {
+    private static func futureDate(days: Int, hour: Int, now: Date) -> Date {
         let calendar = Calendar(identifier: .gregorian)
         let day = calendar.date(byAdding: .day, value: days, to: now) ?? now
-        return calendar.date(bySettingHour: 19, minute: 0, second: 0, of: day) ?? day
+        return calendar.date(bySettingHour: hour, minute: 30, second: 0, of: day) ?? day
     }
 
     private static func route(index: Int, now: Date) -> RoutePlan {
@@ -45,10 +81,18 @@ enum GroupsMockData {
         ]
         let street = streets[index]
         let origin = Waypoint.custom(name: street.0, at: Coordinate(latitude: street.1, longitude: street.2))
-        let names = [["葉影釀所", "巷尾小酌", "暮光吧台"], ["星巷調飲室", "轉角麥香"], ["夜光小室", "城市杯緣", "樹下調飲"], ["木窗小館", "巷口釀室"]][index]
-        let stops = names.enumerated().map { offset, name in
-            Stop(waypoint: Waypoint(id: UUID().uuidString, name: name, coordinate: Coordinate(latitude: street.1 + Double(offset + 1) * 0.0015, longitude: street.2 + (offset % 2 == 0 ? 0.001 : -0.001)), placeId: nil), dwellMinutes: 30)
+        let names = [
+            ["Bar MED", "吳留手串燒居酒屋", "放醉城巿餐酒館"],
+            ["金茗茗茶酒館", "SPIKE 飛鏢酒吧"],
+            ["禾樂精釀-新光遠百門市", "Drunken-duck Beer House"],
+            ["Vender Bar", "月聲", "那晚 the night"],
+        ][index]
+        let places: [Place] = (try? MockFixtures.places.get()) ?? []
+        let stops = names.enumerated().compactMap { offset, name -> Stop? in
+            guard let place = places.first(where: { $0.name == name }) else { return nil }
+            return Stop(waypoint: Waypoint(id: UUID().uuidString, name: place.name, coordinate: place.coordinate, placeId: place.id), dwellMinutes: 30 + (offset == 0 ? 15 : 0))
         }
-        return RoutePlan(id: UUID().uuidString, title: ["草悟道晚風散步", "逢甲下班散步", "七期夜色散步", "美術園道小聚"][index], origin: origin, stops: stops, endMode: .returnToOrigin, destination: nil, updatedAt: now)
+        let title = ["草悟道晚風散步", "逢甲下班散步", "七期夜色散步", "美術園道小聚"][index]
+        return RoutePlan(id: UUID().uuidString, title: title, origin: origin, stops: stops, endMode: .returnToOrigin, destination: nil, updatedAt: now)
     }
 }

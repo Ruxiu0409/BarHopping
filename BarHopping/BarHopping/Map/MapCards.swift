@@ -11,7 +11,12 @@ struct PlaceCard: View {
     var onClose: () -> Void
 
     var body: some View {
+        let editorialInfo = PlaceEditorialInfo.forPlace(place)
         VStack(alignment: .leading, spacing: 8) {
+            if let editorialInfo, let photoURL = editorialInfo.photoURL {
+                venuePhoto(photoURL, credit: editorialInfo.photoCredit)
+            }
+
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(place.name)
@@ -32,8 +37,42 @@ struct PlaceCard: View {
                 .buttonStyle(.plain)
                 .accessibilityLabel("關閉")
             }
+
+            if let editorialInfo {
+                Text(editorialInfo.summary)
+                    .font(.caption)
+                    .foregroundStyle(MapTheme.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                if let phoneNumber = editorialInfo.phoneNumber,
+                   let phoneURL = URL(string: "tel:\(phoneNumber.filter { $0.isNumber || $0 == "+" })") {
+                    Link(destination: phoneURL) {
+                        Label(phoneNumber, systemImage: "phone")
+                            .font(.caption.weight(.medium))
+                    }
+                    .tint(MapTheme.accentOnDark)
+                }
+            }
+
             infoRow("mappin.and.ellipse", place.address)
-            infoRow("clock", place.openingHoursText)
+            infoRow("clock", editorialInfo?.openingHours ?? place.openingHoursText ?? (editorialInfo == nil ? nil : "請查看店家最新營業公告"))
+
+            if let editorialInfo {
+                HStack {
+                    Text(editorialInfo.photoCredit ?? "資料來源：\(editorialInfo.sourceTitle)")
+                        .font(.system(size: 10))
+                        .foregroundStyle(MapTheme.textSecondary)
+                    Spacer(minLength: 4)
+                    if let websiteURL = editorialInfo.websiteURL, let websiteLabel = editorialInfo.websiteLabel {
+                        Link(websiteLabel, destination: websiteURL)
+                            .font(.caption.weight(.semibold))
+                            .tint(MapTheme.accentOnDark)
+                    }
+                    Link("來源", destination: editorialInfo.sourceURL)
+                        .font(.caption.weight(.semibold))
+                        .tint(MapTheme.accentOnDark)
+                }
+            }
+
             HStack(spacing: 8) {
                 Button(action: onAdd) {
                     Label(inRoute ? "已加入路線" : "加入路線", systemImage: inRoute ? "checkmark" : "plus")
@@ -58,6 +97,31 @@ struct PlaceCard: View {
             .controlSize(.regular)
         }
         .mapCard()
+    }
+
+    private func venuePhoto(_ url: URL, credit: String?) -> some View {
+        AsyncImage(url: url) { phase in
+            if let image = phase.image {
+                image
+                    .resizable()
+                    .scaledToFill()
+            } else {
+                ZStack {
+                    LinearGradient(
+                        colors: [MapTheme.elevated, MapTheme.surface],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                    Image(systemName: phase.error == nil ? "photo" : "wineglass")
+                        .font(.title2)
+                        .foregroundStyle(MapTheme.textSecondary)
+                }
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .frame(height: 104)
+        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+        .accessibilityLabel("\(place.name) 店家照片\(credit.map { "，\($0)" } ?? "")")
     }
 
     private func infoRow(_ icon: String, _ text: String?) -> some View {

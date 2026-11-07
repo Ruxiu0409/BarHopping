@@ -26,6 +26,12 @@ struct GroupEventDetailView: View {
                             Label(event.meetingPoint, systemImage: "mappin.and.ellipse")
                             GroupRouteSummary(event: event)
                             Label("\(event.participantIDs.count) 人參加", systemImage: "person.2")
+                            if let group = store.group(groupID) {
+                                GroupMemberAvatarStack(
+                                    members: group.members.filter { event.participantIDs.contains($0.id) },
+                                    totalCount: event.participantIDs.count
+                                )
+                            }
                             if store.group(groupID)?.isJoined == true {
                                 Button(event.isParticipating ? "不參加這次活動" : "參加這次活動", systemImage: event.isParticipating ? "checkmark.circle.fill" : "plus.circle") {
                                     store.toggleParticipation(groupID: groupID, eventID: eventID)
@@ -40,7 +46,7 @@ struct GroupEventDetailView: View {
                         }
                         route(event)
                         GroupSafetyNote()
-                        Text("本機示意活動，參加狀態不會通知其他人。店名為虛構，請勿直接前往。")
+                        Text("活動與參加狀態為本機示意，不會通知其他人。店家資料取自 App 內附目錄，不代表店家合作或確認活動；出發前請重新確認營業資訊與路線。")
                             .font(.caption).foregroundStyle(.secondary)
                     }.padding(20)
                 }

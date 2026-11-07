@@ -6,7 +6,7 @@ struct LaunchIntroView: View {
 
     private var intro: GlassIntro {
         GlassIntro(
-            appName: "BarHopping",
+            appName: "逢酒必喝 BarHopping",
             mark: .custom(
                 bodyDiameterRatio: 0.76,
                 outline: { rect, _ in
@@ -37,9 +37,15 @@ struct LaunchIntroView: View {
             .glassIntro(intro)
             .overlay(alignment: .bottom) {
                 VStack(spacing: 12) {
-                    Text("BarHopping")
-                        .font(.largeTitle.bold())
-                        .foregroundStyle(AppTheme.textPrimary)
+                    VStack(spacing: 4) {
+                        Text("逢酒必喝")
+                            .font(.largeTitle.bold())
+                        Text("BarHopping")
+                            .font(.title3.weight(.medium))
+                    }
+                    .foregroundStyle(AppTheme.textPrimary)
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel("逢酒必喝 BarHopping")
                     Text("串起城市裡的微醺夜晚")
                         .font(.subheadline)
                         .foregroundStyle(AppTheme.accentOnDark)

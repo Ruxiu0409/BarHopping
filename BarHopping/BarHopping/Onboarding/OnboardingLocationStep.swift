@@ -3,6 +3,7 @@ import SwiftUI
 import UIKit
 
 struct OnboardingLocationStep: View {
+    var compact = false
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.openURL) private var openURL
     @State private var provider = LocationProvider()
@@ -18,7 +19,7 @@ struct OnboardingLocationStep: View {
     private var isDenied: Bool { authorization == .denied || authorization == .restricted }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .leading, spacing: compact ? 10 : 20) {
             Label("附近酒吧，一眼找到", systemImage: "mappin.and.ellipse")
             Label("抵達店家，完成「買酒」打卡", systemImage: "checkmark.seal")
             Text("只需允許「使用 App 期間」定位。稍後也能到設定開啟。")
@@ -47,7 +48,8 @@ struct OnboardingLocationStep: View {
         }
         .fixedSize(horizontal: false, vertical: true)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(20)
+        .font(compact ? .subheadline : .body)
+        .padding(compact ? 14 : 20)
         .appGradientCard(cornerRadius: 28)
         .task(id: isRequesting) {
             guard isRequesting else { return }

@@ -4,7 +4,6 @@ struct OnboardingView: View {
     let onComplete: () -> Void
     @Environment(GroupsStore.self) private var groups
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    @Environment(\.verticalSizeClass) private var verticalSizeClass
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
     @AppStorage(OnboardingConfig.drinkLevelKey) private var drinkLevelRawValue = ""
@@ -16,16 +15,16 @@ struct OnboardingView: View {
     private var selectedLevel: GroupDrinkLevel? { GroupDrinkLevel(rawValue: drinkLevelRawValue) }
     private var title: String {
         switch step {
-        case 1: "從你的位置出發"
+        case 1: "逢酒必喝 BarHopping"
         case 2: "選擇你的酒量"
         default: "找個合拍的團體"
         }
     }
-    private var symbol: String {
+    private var greeting: String {
         switch step {
-        case 1: "location.fill"
-        case 2: selectedLevel?.symbol ?? "wineglass"
-        default: "person.3.fill"
+        case 1: "hello"
+        case 2: "cheers"
+        default: "let's go"
         }
     }
     private var subtitle: String {
@@ -36,48 +35,59 @@ struct OnboardingView: View {
         }
     }
 
-    private var pinsFooter: Bool { !dynamicTypeSize.isAccessibilitySize && verticalSizeClass != .compact }
-
     var body: some View {
-        ScrollViewReader { scrollProxy in
-            ScrollView {
-                GlassEffectContainer(spacing: 24) {
-                    VStack(spacing: 24) {
-                        OnboardingHero(symbol: symbol)
-                            .id("onboarding.top")
-                        stepContent
-                        if !pinsFooter { footer }
+        GeometryReader { geometry in
+            let compact = geometry.size.height < 740 || dynamicTypeSize >= .xxLarge
+            VStack(spacing: 0) {
+                navigation
+                if dynamicTypeSize.isAccessibilitySize {
+                    ViewThatFits(in: .vertical) {
+                        page(compact: true, availableHeight: geometry.size.height)
+                            .fixedSize(horizontal: false, vertical: true)
+                        ScrollView {
+                            page(compact: true, availableHeight: geometry.size.height)
+                        }
+                        .scrollBounceBehavior(.basedOnSize)
                     }
-                    .padding(.horizontal, 24)
-                    .padding(.top, 12)
-                    .padding(.bottom, 24)
-                    .frame(maxWidth: 480)
-                    .frame(maxWidth: .infinity)
-                    .id(step)
-                    .transition(AppMotion.transition(.reveal, reduceMotion: reduceMotion))
+                } else {
+                    ViewThatFits(in: .vertical) {
+                        page(compact: compact, availableHeight: geometry.size.height)
+                            .fixedSize(horizontal: false, vertical: true)
+                        page(compact: true, availableHeight: geometry.size.height)
+                    }
+                    .frame(maxHeight: .infinity, alignment: .bottom)
                 }
             }
-            .scrollBounceBehavior(.basedOnSize)
-            .safeAreaInset(edge: .top, spacing: 0) { navigation }
-            .safeAreaInset(edge: .bottom, spacing: 0) {
-                if pinsFooter { footer }
-            }
-            .background {
-                AppTheme.background.ignoresSafeArea()
-                if !reduceTransparency {
-                    RadialGradient(colors: [AppTheme.accent.opacity(0.25), .clear], center: .top, startRadius: 0, endRadius: 420)
-                        .ignoresSafeArea()
-                }
-            }
-            .foregroundStyle(AppTheme.textPrimary)
-            .tint(AppTheme.accentOnDark)
-            .preferredColorScheme(.dark)
-            .interactiveDismissDisabled()
-            .onChange(of: step) {
-                scrollProxy.scrollTo("onboarding.top", anchor: .top)
-                headingFocused = true
+            .frame(maxWidth: 528)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        .background {
+            AppTheme.background.ignoresSafeArea()
+            if !reduceTransparency {
+                RadialGradient(colors: [AppTheme.accent.opacity(0.25), .clear], center: .top, startRadius: 0, endRadius: 420)
+                    .ignoresSafeArea()
             }
         }
+        .foregroundStyle(AppTheme.textPrimary)
+        .tint(AppTheme.accentOnDark)
+        .preferredColorScheme(.dark)
+        .interactiveDismissDisabled()
+        .onChange(of: step) { headingFocused = true }
+    }
+
+    private func page(compact: Bool, availableHeight: CGFloat) -> some View {
+        VStack(spacing: compact ? 8 : 16) {
+            VStack(spacing: compact ? 8 : 14) {
+                stepContent(compact: compact)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            footer(compact: compact, availableHeight: availableHeight)
+        }
+        .padding(.horizontal, compact ? 20 : 24)
+        .padding(.top, compact ? 4 : 12)
+        .padding(.bottom, 8)
+        .id(step)
+        .transition(AppMotion.transition(.reveal, reduceMotion: reduceMotion))
     }
 
     private var navigation: some View {
@@ -87,16 +97,43 @@ struct OnboardingView: View {
                     .frame(minHeight: 44)
             }
             Spacer(minLength: 8)
-            Text("BarHopping")
-                .font(.subheadline.weight(.semibold))
+            Text("逢酒必喝 BarHopping")
+                .font(.footnote.weight(.semibold))
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
                 .foregroundStyle(AppTheme.textSecondary)
                 .accessibilityHidden(true)
         }
         .padding(.horizontal, 24)
+        .frame(minHeight: 44)
     }
 
-    private var footer: some View {
-        VStack(spacing: 10) {
+    private func footer(compact: Bool, availableHeight: CGFloat) -> some View {
+        VStack(spacing: compact ? 6 : 10) {
+            Text(greeting)
+                .font(.onboardingHello(size: min(64, max(44, availableHeight * 0.07))))
+                .foregroundStyle(AppTheme.accentOnDark)
+                .lineLimit(1)
+                .minimumScaleFactor(0.75)
+                .accessibilityHidden(true)
+            VStack(spacing: 2) {
+                Text(step == 1 ? "逢酒必喝" : title)
+                    .font(compact ? .title2.weight(.semibold) : .largeTitle.weight(.semibold))
+                    .minimumScaleFactor(0.8)
+                if step == 1 {
+                    Text("BarHopping")
+                        .font(.subheadline.weight(.medium))
+                        .foregroundStyle(AppTheme.textSecondary)
+                }
+            }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(title)
+            .accessibilityAddTraits(.isHeader)
+            .accessibilityFocused($headingFocused)
+            Text(subtitle)
+                .font(compact ? .subheadline : .body)
+                .minimumScaleFactor(0.85)
+                .foregroundStyle(AppTheme.textSecondary)
             HStack(spacing: 8) {
                 ForEach(1...3, id: \.self) { index in
                     Capsule()
@@ -104,36 +141,23 @@ struct OnboardingView: View {
                         .frame(width: index == step ? 20 : 6, height: 6)
                 }
             }
-            .padding(.bottom, 8)
             .accessibilityElement(children: .ignore)
             .accessibilityLabel("步驟 \(step)，共 3 步")
-            Text(title)
-                .font(.largeTitle.weight(.semibold))
-                .accessibilityAddTraits(.isHeader)
-                .accessibilityFocused($headingFocused)
-            Text(subtitle)
-                .font(.body)
-                .foregroundStyle(AppTheme.textSecondary)
-            actions.padding(.top, 8)
+            actions.padding(.top, 4)
         }
         .multilineTextAlignment(.center)
         .fixedSize(horizontal: false, vertical: true)
-        .padding(.horizontal, 24)
-        .padding(.top, 20)
-        .padding(.bottom, 16)
-        .frame(maxWidth: 528)
         .frame(maxWidth: .infinity)
-        .background(AppTheme.background)
     }
 
-    @ViewBuilder private var stepContent: some View {
+    @ViewBuilder private func stepContent(compact: Bool) -> some View {
         switch step {
         case 1:
-            OnboardingLocationStep()
+            OnboardingLocationStep(compact: compact)
         case 2:
-            VStack(spacing: 12) {
+            VStack(spacing: compact ? 6 : 12) {
                 ForEach(GroupDrinkLevel.allCases) { level in
-                    OnboardingDrinkLevelCard(level: level, isSelected: selectedLevel == level) {
+                    OnboardingDrinkLevelCard(level: level, isSelected: selectedLevel == level, compact: compact) {
                         withAppAnimation(AppMotion.tap, reduceMotion: reduceMotion) {
                             drinkLevelRawValue = level.rawValue
                         }
@@ -142,10 +166,10 @@ struct OnboardingView: View {
             }
             .sensoryFeedback(.selection, trigger: drinkLevelRawValue)
         default:
-            VStack(spacing: 16) {
+            VStack(spacing: compact ? 6 : 12) {
                 ForEach(recommendedIDs, id: \.self) { id in
                     if let group = groups.group(id) {
-                        OnboardingGroupCard(group: group) { groups.join(id) }
+                        OnboardingGroupCard(group: group, compact: compact) { groups.join(id) }
                     }
                 }
                 if recommendedIDs.isEmpty {
@@ -157,7 +181,7 @@ struct OnboardingView: View {
                     )
                 }
                 Text("本機體驗・加入狀態只保留於這次 App 工作階段，不會通知其他人。")
-                    .font(.caption).foregroundStyle(AppTheme.textSecondary)
+                    .font(.caption2).foregroundStyle(AppTheme.textSecondary)
             }
         }
     }
@@ -167,22 +191,32 @@ struct OnboardingView: View {
             Button(action: advance) {
                 Text(step == 3 ? "完成" : "下一步")
                     .font(.headline)
-                    .frame(minWidth: 160, minHeight: 32)
+                    .frame(minWidth: 160, minHeight: 46)
                     .padding(.horizontal, 12)
+                    .contentShape(Capsule())
             }
-            .modifier(OnboardingActionStyle())
-            .tint(AppTheme.accent)
-            .controlSize(.large)
+            .buttonStyle(.plain)
+            .foregroundStyle(.white)
+            .background(AppTheme.accent.opacity(step == 2 && selectedLevel == nil ? 0.4 : 1), in: Capsule())
             .disabled(step == 2 && selectedLevel == nil)
             .accessibilityHint(step == 2 && selectedLevel == nil ? "請先選擇一個酒量分類" : "")
             if step == 1 {
-                Button("稍後再說") { move(to: 2) }
-                    .frame(minHeight: 44)
+                secondaryAction("稍後再說") { move(to: 2) }
             } else if step == 3 {
-                Button("略過", action: onComplete)
-                    .frame(minHeight: 44)
+                secondaryAction("略過", action: onComplete)
             }
         }
+    }
+
+    private func secondaryAction(_ title: String, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Text(title)
+                .font(.footnote)
+                .foregroundStyle(AppTheme.textSecondary)
+                .frame(maxWidth: .infinity, minHeight: 44)
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
     }
 
     private func advance() {

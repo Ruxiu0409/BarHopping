@@ -3,7 +3,7 @@ import Foundation
 // MARK: - MockBarHoppingAPI
 //
 // 依共用契約（docs/specs/00-product-and-contract.md 第 5–7 節）模擬 HTTP API v1。
-// 資料見 MockFixtures.swift（台中市 28 間虛構酒吧）。路線幾何為示範用的 L 形折線，
+// 酒吧與服務範圍讀取 App 內附的臺中市 OSM JSON。路線幾何為示範用的 L 形折線，
 // 不是實際路由結果，warnings 會註明。
 //
 // 可觸發的錯誤情境（給 UI 測試用；先通過輸入驗證才會觸發）：
@@ -31,28 +31,43 @@ nonisolated struct MockBarHoppingAPI: BarHoppingAPI {
     var serviceArea: GeoJSONPolygon
     /// 關掉延遲可加快預覽或邏輯驗證。
     var simulatesLatency: Bool
+    private var dataError: Error?
+    private var placeDataUpdatedAt: Date = .distantPast
 
-    init(places: [Place] = MockFixtures.places,
-         serviceArea: GeoJSONPolygon = MockFixtures.serviceArea,
+    init(places: [Place]? = nil,
+         serviceArea: GeoJSONPolygon? = nil,
          simulatesLatency: Bool = true) {
-        self.places = places.sorted { $0.id < $1.id }
-        self.serviceArea = serviceArea
+        self.places = places ?? []
+        self.serviceArea = serviceArea ?? GeoJSONPolygon(coordinates: [])
         self.simulatesLatency = simulatesLatency
+        do {
+            if places == nil { self.places = try MockFixtures.places.get() }
+            if serviceArea == nil { self.serviceArea = try MockFixtures.serviceArea.get() }
+            if let places {
+                placeDataUpdatedAt = places.map(\.updatedAt).max() ?? .distantPast
+            } else {
+                placeDataUpdatedAt = try MockFixtures.metadata.get().placeDataUpdatedAt
+            }
+        } catch {
+            dataError = error
+        }
+        self.places.sort { $0.id < $1.id }
     }
 
     // MARK: GET /v1/config
 
     func config() async throws -> AppConfig {
+        try checkData()
         try await sleep(milliseconds: Self.placesDelay)
         return AppConfig(
             serviceArea: serviceArea,
             maxStops: Self.maxStops,
-            mapStyleUrl: URL(string: "https://tiles.openfreemap.org/styles/liberty")!,
+            mapStyleUrl: URL(string: "https://tiles.openfreemap.org/styles/dark")!,
             attributions: [
                 Attribution(text: "© OpenStreetMap contributors", url: URL(string: "https://www.openstreetmap.org/copyright")!),
                 Attribution(text: "OpenFreeMap", url: URL(string: "https://openfreemap.org")!),
             ],
-            placeDataUpdatedAt: MockFixtures.placeDataUpdatedAt)
+            placeDataUpdatedAt: placeDataUpdatedAt)
     }
 
     // MARK: GET /v1/places
@@ -67,6 +82,7 @@ nonisolated struct MockBarHoppingAPI: BarHoppingAPI {
         }
         let q = query?.trimmingCharacters(in: .whitespacesAndNewlines)
 
+        try checkData()
         try await sleep(milliseconds: Self.placesDelay)
 
         let matches = places.filter { place in
@@ -84,6 +100,7 @@ nonisolated struct MockBarHoppingAPI: BarHoppingAPI {
     // MARK: GET /v1/places/{id}
 
     func place(id: String) async throws -> Place {
+        try checkData()
         try await sleep(milliseconds: Self.placesDelay)
         guard let place = places.first(where: { $0.id == id }) else {
             throw ServiceError(clientRequestId: nil, code: .placeNotFound,
@@ -95,6 +112,7 @@ nonisolated struct MockBarHoppingAPI: BarHoppingAPI {
     // MARK: POST /v1/routes/preview
 
     func previewRoute(_ request: RouteRequest) async throws -> RouteResult {
+        try checkData()
         try validate(request)   // 輸入非法時不呼叫「路由引擎」，立即回應
         let plan = request.plan
         let rid = request.clientRequestId
@@ -242,6 +260,10 @@ nonisolated struct MockBarHoppingAPI: BarHoppingAPI {
     }
 
     // MARK: - 工具
+
+    private func checkData() throws {
+        if let dataError { throw dataError }
+    }
 
     private static func isValid(_ b: BoundingBox) -> Bool {
         [b.west, b.south, b.east, b.north].allSatisfy(\.isFinite)

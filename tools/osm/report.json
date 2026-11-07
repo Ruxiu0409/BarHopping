@@ -1,0 +1,453 @@
+{
+  "primary": [
+    {
+      "sourceId": "node/4423649811",
+      "name": "SPIKE 飛鏢酒吧",
+      "amenity": "bar",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/4655543965",
+      "name": "Soul",
+      "amenity": "bar",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/4882704021",
+      "name": "Drunken-duck Beer House",
+      "amenity": "bar",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/5031349823",
+      "name": "Sachsen",
+      "amenity": "bar",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/5562871380",
+      "name": "故事 ストーリー串燒 酒場",
+      "amenity": "bar",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/6105022592",
+      "name": "Amanking",
+      "amenity": "bar",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/6106605008",
+      "name": "Left Cafe",
+      "amenity": "bar",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/6241778567",
+      "name": "House II",
+      "amenity": "bar",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/6259820985",
+      "name": "特斯拉交流餐酒館",
+      "amenity": "bar",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/6313717985",
+      "name": "啜飲室",
+      "amenity": "bar",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/7125697870",
+      "name": "濺聲房俱樂部 Gym Club",
+      "amenity": "bar",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/7284671892",
+      "name": "農莊",
+      "amenity": "bar",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/7284672037",
+      "name": "Mushroom",
+      "amenity": "bar",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/8250740352",
+      "name": "雙城美式餐廳",
+      "amenity": "bar",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/10168174345",
+      "name": "禾倉酒場",
+      "amenity": "pub",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/10895503569",
+      "name": "那晚 the night",
+      "amenity": "bar",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/10914501400",
+      "name": "禾樂精釀-新光遠百門市",
+      "amenity": "bar",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/10917441173",
+      "name": "Bar MED",
+      "amenity": "bar",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/11002943806",
+      "name": "春光閣",
+      "amenity": "bar",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/11287618241",
+      "name": "108CLUB",
+      "amenity": "bar",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/11420318870",
+      "name": "ChangeX Beer",
+      "amenity": "pub",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/13391309091",
+      "name": "Mr. Lonely",
+      "amenity": "bar",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/13957337896",
+      "name": "N9",
+      "amenity": "bar",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/14006235445",
+      "name": "Vender Bar",
+      "amenity": "bar",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/14088580258",
+      "name": "月聲",
+      "amenity": "bar",
+      "collection": "primary"
+    },
+    {
+      "sourceId": "node/14188593601",
+      "name": "103生有幸",
+      "amenity": "bar",
+      "collection": "primary"
+    }
+  ],
+  "supplemental": [
+    {
+      "sourceId": "node/4256709454",
+      "name": "Ironfire炭烤 酒吧",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/4308829878",
+      "name": "御狸殿居酒屋",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/4339469589",
+      "name": "Saobao Bar&Kitchen",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/4636344790",
+      "name": "掌門精釀啤酒",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/5534174346",
+      "name": "札卡餐酒館",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/5552464437",
+      "name": "bistro88義法餐酒館",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/5645870212",
+      "name": "泰藏玖Thai Bistro",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/6203243078",
+      "name": "乾杯燒肉居酒屋",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/6510327267",
+      "name": "居酒屋",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/7125697918",
+      "name": "少箖居酒屋",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/7170215610",
+      "name": "醉便宜居酒屋",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/7256073187",
+      "name": "VVG Food Play & Bar",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/7259793135",
+      "name": "怪Bar",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/7259793137",
+      "name": "鐵木餐酒館",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/7612054185",
+      "name": "貓瓶子小酒館",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/7836694752",
+      "name": "大廳酒吧",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/7836854085",
+      "name": "精釀餐酒館",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/8111898557",
+      "name": "J's Bar",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/8557945249",
+      "name": "好泰泰餐酒館",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/8748627300",
+      "name": "樂丸大眾酒場",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/8862669362",
+      "name": "禾壤餐酒館",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/10029125584",
+      "name": "舟舟 Bar Boat",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/10080207423",
+      "name": "九族居酒屋",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/10118954831",
+      "name": "吳留手串燒居酒屋",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/11873114870",
+      "name": "絆 小酒館 Lim Jiu La",
+      "amenity": "cafe",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/11898593237",
+      "name": "茫海鐵板燒餐酒館",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/13467855164",
+      "name": "CHAR CHAR Steak & Bar",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "node/14050159033",
+      "name": "95 Cafe&Bistro",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    },
+    {
+      "sourceId": "way/592647423",
+      "name": "UZO Mediterranean Bar & Grill",
+      "amenity": "restaurant",
+      "collection": "supplemental"
+    }
+  ],
+  "excluded": [
+    {
+      "sourceId": "node/3627213619",
+      "name": "金旺菸酒",
+      "amenity": "bar",
+      "collection": "primary",
+      "reason": "菸酒零售店"
+    },
+    {
+      "sourceId": "node/4660530034",
+      "name": "",
+      "amenity": "bar",
+      "collection": "primary",
+      "reason": "沒有名稱"
+    },
+    {
+      "sourceId": "node/5491837372",
+      "name": "時時香RICE BAR",
+      "amenity": "restaurant",
+      "collection": "supplemental",
+      "reason": "餐飲／咖啡／飲料 bar"
+    },
+    {
+      "sourceId": "node/5645870851",
+      "name": "Salut Pizza Bar 比薩店",
+      "amenity": "restaurant",
+      "collection": "supplemental",
+      "reason": "餐飲／咖啡／飲料 bar"
+    },
+    {
+      "sourceId": "node/6304966303",
+      "name": "",
+      "amenity": "pub",
+      "collection": "primary",
+      "reason": "沒有名稱"
+    },
+    {
+      "sourceId": "node/7558055614",
+      "name": "喫茶小舖",
+      "amenity": "bar",
+      "collection": "primary",
+      "reason": "手搖飲料連鎖店"
+    },
+    {
+      "sourceId": "node/8013548527",
+      "name": "向陽蔬食飲料Bar",
+      "amenity": "restaurant",
+      "collection": "supplemental",
+      "reason": "餐飲／咖啡／飲料 bar"
+    },
+    {
+      "sourceId": "node/8169232541",
+      "name": "銀櫃KTV",
+      "amenity": "bar",
+      "collection": "primary",
+      "reason": "KTV／卡拉 OK"
+    },
+    {
+      "sourceId": "node/8169232542",
+      "name": "美樂地KTV",
+      "amenity": "bar",
+      "collection": "primary",
+      "reason": "KTV／卡拉 OK"
+    },
+    {
+      "sourceId": "node/13460068801",
+      "name": "ODD EVEN COFFEE BAR",
+      "amenity": "cafe",
+      "collection": "supplemental",
+      "reason": "餐飲／咖啡／飲料 bar"
+    },
+    {
+      "sourceId": "way/527008414",
+      "name": "",
+      "amenity": "bar",
+      "collection": "primary",
+      "reason": "沒有名稱"
+    },
+    {
+      "sourceId": "way/549623399",
+      "name": "",
+      "amenity": "bar",
+      "collection": "primary",
+      "reason": "沒有名稱"
+    },
+    {
+      "sourceId": "way/1323001830",
+      "name": "",
+      "amenity": "biergarten",
+      "collection": "primary",
+      "reason": "沒有名稱"
+    }
+  ],
+  "source": "OpenStreetMap via Overpass",
+  "endpoint": "https://overpass-api.de/api/interpreter",
+  "license": "ODbL-1.0",
+  "copyright": "https://www.openstreetmap.org/copyright",
+  "placeDataUpdatedAt": "2026-11-07T04:25:06Z",
+  "boundaryDataUpdatedAt": "2026-11-07T04:26:06Z",
+  "fetchedAt": "2026-11-07T04:26:57.112726+00:00",
+  "counts": {
+    "bars": 55,
+    "primary": 26,
+    "supplemental": 29,
+    "excluded": 13,
+    "convenienceStores": {
+      "7-ELEVEN": 747,
+      "全家": 507
+    }
+  },
+  "boundary": {
+    "sourceId": "relation/2921154",
+    "originalVertices": 9614,
+    "vertices": 162,
+    "toleranceMeters": 312.5,
+    "outerRings": 1
+  }
+}

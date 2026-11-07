@@ -1,0 +1,772 @@
+[
+  {
+    "id": "osm-node-10029125584",
+    "coordinate": {
+      "latitude": 24.1575143,
+      "longitude": 120.6575234
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/10029125584",
+    "name": "舟舟 Bar Boat",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-10080207423",
+    "coordinate": {
+      "latitude": 24.1154395,
+      "longitude": 120.6888773
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/10080207423",
+    "name": "九族居酒屋",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-10118954831",
+    "coordinate": {
+      "latitude": 24.1485036,
+      "longitude": 120.6629544
+    },
+    "address": "臺中市西區中興里7鄰中興街111號",
+    "openingHoursText": "18:00-01:00",
+    "source": "osm",
+    "sourceId": "node/10118954831",
+    "name": "吳留手串燒居酒屋",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-10168174345",
+    "coordinate": {
+      "latitude": 24.109482,
+      "longitude": 120.690972
+    },
+    "address": "臺中市大里區東榮路一段69號",
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/10168174345",
+    "name": "禾倉酒場",
+    "category": "pub",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-10895503569",
+    "coordinate": {
+      "latitude": 24.1380952,
+      "longitude": 120.6662221
+    },
+    "address": "臺中市西區公民里21鄰五廊街120之2號",
+    "openingHoursText": "Mo-Su 19:30-02:30",
+    "source": "osm",
+    "sourceId": "node/10895503569",
+    "name": "那晚 the night",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-10914501400",
+    "coordinate": {
+      "latitude": 24.1651308,
+      "longitude": 120.6457076
+    },
+    "address": "臺中市西屯區臺灣大道三段226號",
+    "openingHoursText": "Mo-Sa 18:00-24:00",
+    "source": "osm",
+    "sourceId": "node/10914501400",
+    "name": "禾樂精釀-新光遠百門市",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-10917441173",
+    "coordinate": {
+      "latitude": 24.1475305,
+      "longitude": 120.6621793
+    },
+    "address": "臺中市西區中興一巷26號",
+    "openingHoursText": "Tu-Th 18:00-00:00; Fr, Sa 18:00-02:00; Su 18:00-00:00",
+    "source": "osm",
+    "sourceId": "node/10917441173",
+    "name": "Bar MED",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-11002943806",
+    "coordinate": {
+      "latitude": 24.1363775,
+      "longitude": 120.6830526
+    },
+    "address": "40001臺中市中區建國路103號",
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/11002943806",
+    "name": "春光閣",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-11287618241",
+    "coordinate": {
+      "latitude": 24.1700752,
+      "longitude": 120.6601725
+    },
+    "address": null,
+    "openingHoursText": "24/7",
+    "source": "osm",
+    "sourceId": "node/11287618241",
+    "name": "108CLUB",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-11420318870",
+    "coordinate": {
+      "latitude": 24.1379577,
+      "longitude": 120.6816477
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/11420318870",
+    "name": "ChangeX Beer",
+    "category": "pub",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-11873114870",
+    "coordinate": {
+      "latitude": 24.147581,
+      "longitude": 120.672069
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/11873114870",
+    "name": "絆 小酒館 Lim Jiu La",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-11898593237",
+    "coordinate": {
+      "latitude": 24.1401921,
+      "longitude": 120.6790746
+    },
+    "address": "臺中市中區光復里2鄰民族路96號",
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/11898593237",
+    "name": "茫海鐵板燒餐酒館",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-13391309091",
+    "coordinate": {
+      "latitude": 24.1539543,
+      "longitude": 120.6679686
+    },
+    "address": "臺中市北區淡溝里23鄰英才路387號",
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/13391309091",
+    "name": "Mr. Lonely",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-13467855164",
+    "coordinate": {
+      "latitude": 24.1880109,
+      "longitude": 120.6852349
+    },
+    "address": "臺中市北屯區仁和里24鄰崇德十路一段415號",
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/13467855164",
+    "name": "CHAR CHAR Steak & Bar",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-13957337896",
+    "coordinate": {
+      "latitude": 24.1699154,
+      "longitude": 120.6431088
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/13957337896",
+    "name": "N9",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-14006235445",
+    "coordinate": {
+      "latitude": 24.1355662,
+      "longitude": 120.6624983
+    },
+    "address": "403025臺中市西區五權西四街118號",
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/14006235445",
+    "name": "Vender Bar",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-14050159033",
+    "coordinate": {
+      "latitude": 24.3454707,
+      "longitude": 120.6206955
+    },
+    "address": "臺中市大甲區順天里13鄰中華街95號",
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/14050159033",
+    "name": "95 Cafe&Bistro",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-14088580258",
+    "coordinate": {
+      "latitude": 24.1354417,
+      "longitude": 120.6615708
+    },
+    "address": "403029臺中市西區美村路一段674號1樓",
+    "openingHoursText": "20:00-02:00; Sa off",
+    "source": "osm",
+    "sourceId": "node/14088580258",
+    "name": "月聲",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-14188593601",
+    "coordinate": {
+      "latitude": 24.1700676,
+      "longitude": 120.6603482
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/14188593601",
+    "name": "103生有幸",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-4256709454",
+    "coordinate": {
+      "latitude": 24.0685288,
+      "longitude": 120.6996721
+    },
+    "address": "413台中市霧峰區德泰街11號",
+    "openingHoursText": "6",
+    "source": "osm",
+    "sourceId": "node/4256709454",
+    "name": "Ironfire炭烤 酒吧",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-4308829878",
+    "coordinate": {
+      "latitude": 24.1574342,
+      "longitude": 120.6532741
+    },
+    "address": null,
+    "openingHoursText": "Mo-Sa 17:00-24:00; Su off",
+    "source": "osm",
+    "sourceId": "node/4308829878",
+    "name": "御狸殿居酒屋",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-4339469589",
+    "coordinate": {
+      "latitude": 24.1431292,
+      "longitude": 120.6758096
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/4339469589",
+    "name": "Saobao Bar&Kitchen",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-4423649811",
+    "coordinate": {
+      "latitude": 24.176854,
+      "longitude": 120.639339
+    },
+    "address": "40744臺中市西屯區逢明街85號",
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/4423649811",
+    "name": "SPIKE 飛鏢酒吧",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-4636344790",
+    "coordinate": {
+      "latitude": 24.1565499,
+      "longitude": 120.6614369
+    },
+    "address": "40353台中市西區台灣大道二段490號",
+    "openingHoursText": "Mo-Su 15:00-01:00",
+    "source": "osm",
+    "sourceId": "node/4636344790",
+    "name": "掌門精釀啤酒",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-4655543965",
+    "coordinate": {
+      "latitude": 24.1383621,
+      "longitude": 120.6805313
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/4655543965",
+    "name": "Soul",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-4882704021",
+    "coordinate": {
+      "latitude": 24.1512233,
+      "longitude": 120.6426712
+    },
+    "address": "臺中市南屯區公益路二段266號",
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/4882704021",
+    "name": "Drunken-duck Beer House",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-5031349823",
+    "coordinate": {
+      "latitude": 24.1408611,
+      "longitude": 120.6829908
+    },
+    "address": "臺中市中區105號",
+    "openingHoursText": "Mo-Su 17:30-03:00",
+    "source": "osm",
+    "sourceId": "node/5031349823",
+    "name": "Sachsen",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-5534174346",
+    "coordinate": {
+      "latitude": 24.1707787,
+      "longitude": 120.6874172
+    },
+    "address": "北平路四段",
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/5534174346",
+    "name": "札卡餐酒館",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-5552464437",
+    "coordinate": {
+      "latitude": 24.1510441,
+      "longitude": 120.6499931
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/5552464437",
+    "name": "bistro88義法餐酒館",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-5562871380",
+    "coordinate": {
+      "latitude": 24.1512555,
+      "longitude": 120.6719471
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/5562871380",
+    "name": "故事 ストーリー串燒 酒場",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-5645870212",
+    "coordinate": {
+      "latitude": 24.1495829,
+      "longitude": 120.6469578
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/5645870212",
+    "name": "泰藏玖Thai Bistro",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-6105022592",
+    "coordinate": {
+      "latitude": 24.1652412,
+      "longitude": 120.6402152
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/6105022592",
+    "name": "Amanking",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-6106605008",
+    "coordinate": {
+      "latitude": 24.155501,
+      "longitude": 120.6609564
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/6106605008",
+    "name": "Left Cafe",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-6203243078",
+    "coordinate": {
+      "latitude": 24.1650586,
+      "longitude": 120.6436052
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/6203243078",
+    "name": "乾杯燒肉居酒屋",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-6241778567",
+    "coordinate": {
+      "latitude": 24.1547436,
+      "longitude": 120.6608608
+    },
+    "address": "臺中市西區中美街461號二樓",
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/6241778567",
+    "name": "House II",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-6259820985",
+    "coordinate": {
+      "latitude": 24.350341,
+      "longitude": 120.6217536
+    },
+    "address": "臺中市大甲區新政路168號",
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/6259820985",
+    "name": "特斯拉交流餐酒館",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-6313717985",
+    "coordinate": {
+      "latitude": 24.1475706,
+      "longitude": 120.6622967
+    },
+    "address": null,
+    "openingHoursText": "Mo-Th 17:00-23:30, Fr 17:00-01:00, Sa 11:30-01:00, Su 11:30-23:30",
+    "source": "osm",
+    "sourceId": "node/6313717985",
+    "name": "啜飲室",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-6510327267",
+    "coordinate": {
+      "latitude": 24.2452818,
+      "longitude": 120.5498512
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/6510327267",
+    "name": "居酒屋",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-7125697870",
+    "coordinate": {
+      "latitude": 24.142245,
+      "longitude": 120.684148
+    },
+    "address": "台中市中區自由路二段135-1號",
+    "openingHoursText": "Mo-Su 21:00-04:00",
+    "source": "osm",
+    "sourceId": "node/7125697870",
+    "name": "濺聲房俱樂部 Gym Club",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-7125697918",
+    "coordinate": {
+      "latitude": 24.1536741,
+      "longitude": 120.6706708
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/7125697918",
+    "name": "少箖居酒屋",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-7170215610",
+    "coordinate": {
+      "latitude": 24.1870946,
+      "longitude": 120.7026659
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/7170215610",
+    "name": "醉便宜居酒屋",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-7256073187",
+    "coordinate": {
+      "latitude": 24.162894,
+      "longitude": 120.6400672
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/7256073187",
+    "name": "VVG Food Play & Bar",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-7259793135",
+    "coordinate": {
+      "latitude": 24.1632439,
+      "longitude": 120.6741486
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/7259793135",
+    "name": "怪Bar",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-7259793137",
+    "coordinate": {
+      "latitude": 24.1631766,
+      "longitude": 120.6741071
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/7259793137",
+    "name": "鐵木餐酒館",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-7284671892",
+    "coordinate": {
+      "latitude": 24.1800844,
+      "longitude": 120.5903819
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/7284671892",
+    "name": "農莊",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-7284672037",
+    "coordinate": {
+      "latitude": 24.1819037,
+      "longitude": 120.5919027
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/7284672037",
+    "name": "Mushroom",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-7612054185",
+    "coordinate": {
+      "latitude": 24.1521202,
+      "longitude": 120.6998222
+    },
+    "address": "404臺中市北區東光一街21號",
+    "openingHoursText": "Tu-Fr 18:00-23:30; Mo, Sa 11:30-14:30, 18:00-21:00",
+    "source": "osm",
+    "sourceId": "node/7612054185",
+    "name": "貓瓶子小酒館",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-7836694752",
+    "coordinate": {
+      "latitude": 24.1557149,
+      "longitude": 120.6632891
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/7836694752",
+    "name": "大廳酒吧",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-7836854085",
+    "coordinate": {
+      "latitude": 24.1434435,
+      "longitude": 120.6670812
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/7836854085",
+    "name": "精釀餐酒館",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-8111898557",
+    "coordinate": {
+      "latitude": 24.1670299,
+      "longitude": 120.6875409
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/8111898557",
+    "name": "J's Bar",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-8250740352",
+    "coordinate": {
+      "latitude": 24.1543146,
+      "longitude": 120.6606957
+    },
+    "address": "臺中市西區Zhongmei street west district446號",
+    "openingHoursText": "Mo-Su 07:00-22:00",
+    "source": "osm",
+    "sourceId": "node/8250740352",
+    "name": "雙城美式餐廳",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-8557945249",
+    "coordinate": {
+      "latitude": 24.1591789,
+      "longitude": 120.682109
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/8557945249",
+    "name": "好泰泰餐酒館",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-8748627300",
+    "coordinate": {
+      "latitude": 24.1415541,
+      "longitude": 120.6818795
+    },
+    "address": null,
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/8748627300",
+    "name": "樂丸大眾酒場",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-node-8862669362",
+    "coordinate": {
+      "latitude": 24.1436301,
+      "longitude": 120.6548942
+    },
+    "address": "臺中市南屯區大同里12鄰精誠路472號",
+    "openingHoursText": null,
+    "source": "osm",
+    "sourceId": "node/8862669362",
+    "name": "禾壤餐酒館",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  },
+  {
+    "id": "osm-way-592647423",
+    "coordinate": {
+      "latitude": 24.1552646,
+      "longitude": 120.657324
+    },
+    "address": "40360台中市西區精誠五街22號",
+    "openingHoursText": "Tu-Fr 06:00-24:00; Sa,Su 17:00-01:00; Mo off",
+    "source": "osm",
+    "sourceId": "way/592647423",
+    "name": "UZO Mediterranean Bar & Grill",
+    "category": "bar",
+    "updatedAt": "2026-11-07T04:25:06Z"
+  }
+]

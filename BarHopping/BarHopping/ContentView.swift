@@ -6,35 +6,19 @@ struct ContentView: View {
     @State private var userProfile = UserProfileStore()
 
     var body: some View {
-        if #available(iOS 18.0, *) {
-            TabView(selection: $router.selectedTab) {
-                ForEach(AppTab.allCases) { tab in
-                    Tab(value: tab) {
-                        tabContent(for: tab)
-                    } label: {
-                        tabLabel(for: tab)
-                    }
-                }
-            }
-            .tint(Color(red: 252 / 255, green: 82 / 255, blue: 0))
-            .environment(router)
-            .environment(planner)
-            .environment(userProfile)
-        } else {
-            TabView(selection: $router.selectedTab) {
-                ForEach(AppTab.allCases) { tab in
+        TabView(selection: $router.selectedTab) {
+            ForEach(AppTab.allCases) { tab in
+                Tab(value: tab) {
                     tabContent(for: tab)
-                        .tabItem {
-                            tabLabel(for: tab)
-                        }
-                        .tag(tab)
+                } label: {
+                    tabLabel(for: tab)
                 }
             }
-            .tint(Color(red: 252 / 255, green: 82 / 255, blue: 0))
-            .environment(router)
-            .environment(planner)
-            .environment(userProfile)
         }
+        .tint(Color(red: 252 / 255, green: 82 / 255, blue: 0))
+        .environment(router)
+        .environment(planner)
+        .environment(userProfile)
     }
 
     @ViewBuilder

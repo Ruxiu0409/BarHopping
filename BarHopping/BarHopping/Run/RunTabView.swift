@@ -9,10 +9,6 @@ struct RunTabView: View {
     @State private var titleText = ""
     @FocusState private var titleFocused: Bool
 
-    /// 最近一次儲存或載入時的 planVersion，用來判斷是否有未儲存的變更。
-    @State private var savedVersion: Int?
-    /// 路由失敗時的 planVersion，用來判斷錯誤是否仍對應目前規劃。
-    @State private var failedVersion: Int?
 
     @State private var toast: Toast?
     @State private var toastTask: Task<Void, Never>?
@@ -40,9 +36,8 @@ struct RunTabView: View {
             .sheet(isPresented: $showDrafts) {
                 SavedDraftsView(drafts: planner.drafts,
                                 currentPlanId: plan.id,
-                                hasUnsavedChanges: hasUnsavedChanges) { draft in
+                                hasUnsavedChanges: planner.hasUnsavedChanges) { draft in
                     planner.load(draft)
-                    savedVersion = planner.planVersion
                     titleText = planner.plan.title
                     showToast("已載入「\(draft.plan.title)」")
                 }
@@ -50,12 +45,11 @@ struct RunTabView: View {
             .confirmationDialog("開始新路線？", isPresented: $confirmNewPlan, titleVisibility: .visible) {
                 Button("開始新路線", role: .destructive) {
                     planner.startNewPlan()
-                    savedVersion = planner.planVersion
                     titleText = planner.plan.title
                 }
                 Button("取消", role: .cancel) {}
             } message: {
-                Text(hasUnsavedChanges ? "目前的規劃有未儲存的變更，開始新路線後會消失。" : "目前的規劃會被清空。")
+                Text(planner.hasUnsavedChanges ? "目前的規劃有未儲存的變更，開始新路線後會消失。" : "目前的規劃會被清空。")
             }
         }
         .tint(RunTheme.accent)
@@ -67,9 +61,6 @@ struct RunTabView: View {
             if !titleFocused { titleText = new }
         }
         .onChange(of: planner.notice) { _, _ in consumeNotice() }
-        .onChange(of: planner.routingState) { _, new in
-            if case .failed = new { failedVersion = planner.planVersion }
-        }
     }
 
     // MARK: - 狀態（過期、錯誤、已儲存估算）
@@ -87,7 +78,7 @@ struct RunTabView: View {
                         .foregroundStyle(.secondary)
                     Button("重新計算") { planner.computeRoute() }
                         .buttonStyle(.borderedProminent)
-                        .disabled(!canCompute)
+                        .disabled(!planner.canCompute)
                 }
                 .padding(.vertical, 4)
             }
@@ -102,12 +93,9 @@ struct RunTabView: View {
         return nil
     }
 
-    /// 錯誤發生後規劃是否沒有再修改過。
-    private var errorIsCurrent: Bool { failedVersion == planner.planVersion }
-
     /// NO_WALKABLE_ROUTE 指出、且仍在目前規劃中的站點 id。
     private var problemIds: Set<String> {
-        guard let e = routingError, e.code == .noWalkableRoute, errorIsCurrent else { return [] }
+        guard let e = routingError, e.code == .noWalkableRoute else { return [] }
         return Set(e.waypointIds)
     }
 
@@ -121,11 +109,6 @@ struct RunTabView: View {
                     .font(.subheadline)
                 if !error.message.isEmpty {
                     Text("服務訊息：\(error.message)")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                }
-                if !errorIsCurrent {
-                    Text("規劃已在錯誤後修改，可以再試一次。")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                 }
@@ -160,7 +143,7 @@ struct RunTabView: View {
                 } label: {
                     Label("重試", systemImage: "arrow.clockwise")
                 }
-                .disabled(!canCompute)
+                .disabled(!planner.canCompute)
             }
         }
     }
@@ -197,27 +180,14 @@ struct RunTabView: View {
             endpointRow(title: "起點", waypoint: plan.origin, icon: "figure.walk.circle.fill",
                         missingText: "到地圖使用目前位置或長按地圖設定起點")
 
-            Picker("終點", selection: Binding(
-                get: { customEndRequested ? .custom : plan.endMode },
-                set: { mode in
-                    if mode == .returnToOrigin {
-                        customEndRequested = false
-                        if plan.endMode != .returnToOrigin { planner.setReturnToOrigin() }
-                    } else if plan.endMode == .custom {
-                        return
-                    } else if let d = plan.destination {
-                        planner.setDestination(d)
-                    } else {
-                        customEndRequested = true
-                    }
-                })) {
+            Picker("終點", selection: Binding(get: { plan.endMode }, set: { planner.setEndMode($0) })) {
                 Text("回到起點").tag(EndMode.returnToOrigin)
                 Text("自訂終點").tag(EndMode.custom)
             }
             .pickerStyle(.segmented)
             .accessibilityLabel("終點模式")
 
-            if plan.endMode == .custom || customEndRequested {
+            if plan.endMode == .custom {
                 endpointRow(title: "終點", waypoint: plan.destination, icon: "flag.checkered.circle.fill",
                             missingText: "長按地圖設定終點")
             } else {
@@ -228,11 +198,7 @@ struct RunTabView: View {
         } header: {
             Text("路線")
         }
-        .onChange(of: plan.endMode) { _, _ in customEndRequested = false }
     }
-
-    /// 選了「自訂終點」但還沒有終點：PlannerStore 需要 Waypoint 才能切換，先引導到地圖。
-    @State private var customEndRequested = false
 
     @ViewBuilder
     private func endpointRow(title: String, waypoint: Waypoint?, icon: String, missingText: String) -> some View {
@@ -349,12 +315,12 @@ struct RunTabView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .controlSize(.large)
-                .disabled(!canCompute)
+                .disabled(!planner.canCompute)
                 .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
             }
 
-            if !missingRequirements.isEmpty {
-                Text("還缺：\(missingRequirements.joined(separator: "、"))")
+            if !plan.missingRequirements.isEmpty {
+                Text("還缺：\(plan.missingRequirements.joined(separator: "、"))")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }
@@ -412,31 +378,13 @@ struct RunTabView: View {
         }
     }
 
-    /// 使用者選了「自訂終點」但尚未在地圖設定時，也視為缺少終點（PlannerStore 仍是回到起點）。
-    private var missingRequirements: [String] {
-        var m = plan.missingRequirements
-        if customEndRequested && plan.endMode == .returnToOrigin { m.append("終點") }
-        return m
-    }
-
-    private var canCompute: Bool { planner.canCompute && missingRequirements.isEmpty }
-
-    private var planHasContent: Bool {
-        plan.origin != nil || !plan.stops.isEmpty || plan.destination != nil || plan.title != RoutePlan.empty().title
-    }
-
-    private var hasUnsavedChanges: Bool {
-        planHasContent && savedVersion != planner.planVersion
-    }
 
     private func save() async {
         commitTitle()
         isSaving = true
         defer { isSaving = false }
-        let version = planner.planVersion
         do {
             try await planner.saveDraft()
-            savedVersion = version
             showToast("已儲存「\(plan.title)」")
         } catch {
             let message = (error as? ServiceError)?.message ?? error.localizedDescription

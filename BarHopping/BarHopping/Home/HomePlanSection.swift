@@ -36,7 +36,8 @@ struct HomePlanSection: View {
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, 4)
-            } else if !drafts.isEmpty {
+            }
+            if !drafts.isEmpty {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("最近的草稿")
                         .font(.subheadline.weight(.semibold))

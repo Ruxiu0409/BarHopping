@@ -70,6 +70,10 @@ struct HomeTabView: View {
                 async let d: Void = loadDrafts()
                 _ = await (f, d)
             }
+            .safeAreaInset(edge: .top, spacing: 0) {
+                // 導覽列隱藏時，讓狀態列底下有模糊背景，內容不會直接疊在時間和電量上。
+                Color.clear.frame(height: 0).background(.bar)
+            }
             .toolbar(.hidden, for: .navigationBar)
             .navigationTitle("首頁")
             .navigationDestination(for: PostRoute.self) { route in
@@ -180,13 +184,20 @@ struct HomeTabView: View {
         router.selectedTab = .run
     }
 
+    private func showRecent(_ all: [SavedDraft]) {
+        drafts = Array(all.sorted { $0.savedAt > $1.savedAt }.prefix(Self.recentDraftLimit))
+    }
+
     private func loadDrafts() async {
         do {
-            let all = try await planner.drafts.loadAll()
-            drafts = Array(all.sorted { $0.savedAt > $1.savedAt }.prefix(Self.recentDraftLimit))
+            showRecent(try await planner.drafts.loadAll())
             draftError = nil
         } catch is CancellationError {
             return
+        } catch let error as DraftLoadError {
+            // 部分檔案損壞：照常顯示讀得到的草稿，損壞的檔案不動。
+            showRecent(error.report.drafts)
+            draftError = "有 \(error.report.failures.count) 份草稿讀不到，到路跑的已儲存路線查看"
         } catch {
             drafts = []
             draftError = "草稿暫時讀不到，下拉可以重試"

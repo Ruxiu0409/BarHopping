@@ -1,33 +1,41 @@
 import SwiftUI
+import PhotosUI
+import UIKit
 
 /// 「你」個人分頁：個人檔案、通票狀態、跑吧統計、安全代駕與圖資授權
 struct ProfileTabView: View {
     @Environment(UserProfileStore.self) private var userProfile
     @State private var showingAvatarPicker = false
+    @State private var showingCamera = false
+    @State private var showingProfileEditor = false
     @State private var showingPassRedemption = false
     @State private var showingRideAlert = false
     @State private var showingSuccessRedeemAlert = false
+    @State private var showingAvatarError = false
+    @State private var avatarErrorMessage = ""
+    @State private var selectedPhoto: PhotosPickerItem?
+    @State private var selectedConnections: ProfileConnectionKind?
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 20) {
-                    // MARK: - 1. 個人檔案卡片
+                    // MARK: - 個人檔案與社群資訊
                     profileHeaderCard
 
-                    // MARK: - 2. 跑吧通票狀態（Demo 核心亮點）
+                    // MARK: - 跑吧通票
                     barHoppingPassCard
 
-                    // MARK: - 3. 跑吧數據統計
+                    // MARK: - 跑吧統計
                     statsOverviewSection
 
-                    // MARK: - 4. 微醺成就徽章
+                    // MARK: - 成就徽章
                     badgesSection
 
-                    // MARK: - 5. 平安微醺（安全叫車／代駕捷徑）
+                    // MARK: - 安全回家
                     safetyRideCard
 
-                    // MARK: - 6. 地圖資料來源與版本資訊
+                    // MARK: - 資料來源
                     legalAttributionSection
                 }
                 .padding(.horizontal, 16)
@@ -40,8 +48,27 @@ struct ProfileTabView: View {
             .sheet(isPresented: $showingAvatarPicker) {
                 avatarPickerSheet
             }
+            .sheet(isPresented: $showingProfileEditor) {
+                ProfileEditorSheet()
+            }
+            .sheet(item: $selectedConnections) { kind in
+                ProfileConnectionsSheet(kind: kind)
+            }
             .sheet(isPresented: $showingPassRedemption) {
                 passRedemptionSheet
+            }
+            .fullScreenCover(isPresented: $showingCamera) {
+                CameraCaptureView(onImageCaptured: saveAvatar, onCancel: { showingCamera = false })
+                    .ignoresSafeArea()
+            }
+            .onChange(of: selectedPhoto) { _, item in
+                guard let item else { return }
+                Task { await loadPhoto(item) }
+            }
+            .alert("無法更新大頭貼", isPresented: $showingAvatarError) {
+                Button("好", role: .cancel) { }
+            } message: {
+                Text(avatarErrorMessage)
             }
             .alert("已準備為您叫車", isPresented: $showingRideAlert) {
                 Button("確定", role: .cancel) { }
@@ -62,63 +89,211 @@ struct ProfileTabView: View {
     // MARK: - 視圖元件
 
     private var profileHeaderCard: some View {
-        HStack(spacing: 16) {
-            ZStack(alignment: .bottomTrailing) {
-                if let avatar = userProfile.customAvatarImage {
-                    avatar
+        VStack(alignment: .leading, spacing: 18) {
+            HStack(alignment: .top, spacing: 16) {
+                avatarView(size: 92)
+
+                VStack(alignment: .leading, spacing: 7) {
+                    HStack(spacing: 7) {
+                        Text(userProfile.nickname)
+                            .font(.title2.bold())
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.8)
+                    }
+
+                    Text(userProfile.levelTitle)
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(AppTheme.accent)
+
+                    Text(userProfile.profileHandle)
+                        .font(.caption)
+                        .foregroundStyle(AppTheme.textSecondary)
+                }
+
+                Spacer(minLength: 0)
+            }
+
+            Text(userProfile.profileBio.isEmpty ? "還沒有寫下個人介紹。" : userProfile.profileBio)
+                .font(.subheadline)
+                .lineSpacing(4)
+                .foregroundStyle(AppTheme.textPrimary.opacity(0.9))
+                .fixedSize(horizontal: false, vertical: true)
+
+            Label(userProfile.profileLocation, systemImage: "mappin.and.ellipse")
+                .font(.caption.weight(.medium))
+                .foregroundStyle(AppTheme.textTertiary)
+
+            HStack(spacing: 0) {
+                socialCount(value: userProfile.postCount, title: "貼文")
+                socialDivider
+                Button { selectedConnections = .following } label: {
+                    socialCountLabel(value: userProfile.followingCount, title: "追蹤中")
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("查看追蹤中，\(userProfile.followingCount) 人")
+                socialDivider
+                Button { selectedConnections = .followers } label: {
+                    socialCountLabel(value: userProfile.followerCount, title: "粉絲")
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("查看粉絲，\(userProfile.followerCount) 人")
+            }
+            .padding(.vertical, 3)
+
+            HStack(spacing: 10) {
+                Button {
+                    showingProfileEditor = true
+                } label: {
+                    Label("編輯個人檔案", systemImage: "pencil")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(ProfileSecondaryButtonStyle())
+
+                ShareLink(item: "來 BarHopping 看看 \(userProfile.nickname) 的台中夜生活路線！") {
+                    Image(systemName: "square.and.arrow.up")
+                        .frame(width: 46, height: 42)
+                }
+                .buttonStyle(ProfileSecondaryButtonStyle())
+                .accessibilityLabel("分享個人檔案")
+            }
+        }
+        .padding(18)
+        .background {
+            RoundedRectangle(cornerRadius: 22)
+                .fill(LinearGradient(
+                    colors: [AppTheme.surface, AppTheme.surface.opacity(0.84), AppTheme.elevated.opacity(0.8)],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                ))
+                .overlay(alignment: .topTrailing) {
+                    Circle()
+                        .fill(AppTheme.accent.opacity(0.1))
+                        .frame(width: 150, height: 150)
+                        .blur(radius: 34)
+                        .offset(x: 40, y: -68)
+                        .clipShape(RoundedRectangle(cornerRadius: 22))
+                }
+        }
+        .overlay {
+            RoundedRectangle(cornerRadius: 22)
+                .strokeBorder(AppTheme.separator)
+        }
+    }
+
+    @MainActor
+    private func loadPhoto(_ item: PhotosPickerItem) async {
+        do {
+            guard let data = try await item.loadTransferable(type: Data.self),
+                  let image = UIImage(data: data) else {
+                throw ProfilePhotoLoadError.unavailable
+            }
+            try userProfile.setCustomAvatar(image)
+            showingAvatarPicker = false
+            selectedPhoto = nil
+        } catch {
+            avatarErrorMessage = "讀取照片失敗，請重新選擇一張照片。"
+            showingAvatarPicker = false
+            showingAvatarError = true
+            selectedPhoto = nil
+        }
+    }
+
+    private func saveAvatar(_ image: UIImage) {
+        do {
+            try userProfile.setCustomAvatar(image)
+            showingCamera = false
+            showingAvatarPicker = false
+        } catch {
+            avatarErrorMessage = "無法儲存照片，請確認裝置空間後再試。"
+            showingCamera = false
+            showingAvatarError = true
+        }
+    }
+
+    private func openCamera() {
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            avatarErrorMessage = "此裝置目前無法使用相機，請改從相簿選擇照片。"
+            showingAvatarError = true
+            return
+        }
+        showingAvatarPicker = false
+        Task { @MainActor in
+            try? await Task.sleep(for: .milliseconds(350))
+            showingCamera = true
+        }
+    }
+
+    private var socialDivider: some View {
+        Rectangle()
+            .fill(AppTheme.separator)
+            .frame(width: 1, height: 30)
+            .padding(.horizontal, 4)
+    }
+
+    private func socialCount(value: Int, title: String) -> some View {
+        socialCountLabel(value: value, title: title)
+            .frame(maxWidth: .infinity)
+    }
+
+    private func socialCountLabel(value: Int, title: String) -> some View {
+        VStack(spacing: 3) {
+            Text(value.formatted())
+                .font(.headline.weight(.bold).monospacedDigit())
+                .foregroundStyle(AppTheme.textPrimary)
+            Text(title)
+                .font(.caption)
+                .foregroundStyle(AppTheme.textSecondary)
+        }
+        .frame(maxWidth: .infinity)
+        .contentShape(Rectangle())
+    }
+
+    private func avatarView(size: CGFloat) -> some View {
+        ZStack(alignment: .bottomTrailing) {
+            Circle()
+                .stroke(
+                    LinearGradient(colors: [AppTheme.accent, Color.pink.opacity(0.8), AppTheme.accent.opacity(0.35)], startPoint: .topLeading, endPoint: .bottomTrailing),
+                    lineWidth: 3
+                )
+                .frame(width: size + 8, height: size + 8)
+
+            Group {
+                if let avatarData = userProfile.customAvatarData, let image = UIImage(data: avatarData) {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFill()
+                } else if let preset = userProfile.customAvatarImage {
+                    preset
                         .resizable()
                         .scaledToFit()
-                        .padding(14)
-                        .frame(width: 74, height: 74)
-                        .background(AppTheme.accentSoft)
+                        .padding(size * 0.25)
                         .foregroundStyle(AppTheme.accent)
-                        .clipShape(Circle())
-                        .overlay(Circle().stroke(AppTheme.accent.opacity(0.4), lineWidth: 2))
+                        .background(AppTheme.accentSoft)
                 } else {
                     Image(UserAvatarIcon.assetName)
                         .resizable()
                         .scaledToFill()
-                        .frame(width: 74, height: 74)
-                        .clipShape(Circle())
-                        .overlay(Circle().stroke(AppTheme.accent.opacity(0.4), lineWidth: 2))
-                        .accessibilityLabel("大頭貼")
-                }
-
-                Button {
-                    showingAvatarPicker = true
-                } label: {
-                    Image(systemName: "pencil.circle.fill")
-                        .symbolRenderingMode(.hierarchical)
-                        .foregroundStyle(AppTheme.accent)
-                        .font(.system(size: 24))
-                        .background(Circle().fill(AppTheme.elevated))
                 }
             }
+            .frame(width: size, height: size)
+            .clipShape(Circle())
+            .overlay(Circle().strokeBorder(AppTheme.background, lineWidth: 3))
+            .accessibilityLabel("大頭貼")
 
-            VStack(alignment: .leading, spacing: 6) {
-                HStack(spacing: 8) {
-                    Text(userProfile.nickname)
-                        .font(.title3.bold())
-
-                    Text(userProfile.levelTitle)
-                        .font(.caption.bold())
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 3)
-                        .background(AppTheme.accentSoft)
-                        .foregroundStyle(AppTheme.accent)
-                        .clipShape(Capsule())
-                }
-
-                Text("西屯逢甲商圈 • 活躍跑吧者")
-                    .font(.subheadline)
-                    .foregroundStyle(AppTheme.textSecondary)
+            Button {
+                showingAvatarPicker = true
+            } label: {
+                Image(systemName: "camera.fill")
+                    .font(.system(size: 12, weight: .bold))
+                    .foregroundStyle(AppTheme.background)
+                    .frame(width: 28, height: 28)
+                    .background(AppTheme.accent, in: Circle())
+                    .overlay(Circle().strokeBorder(AppTheme.background, lineWidth: 2))
             }
-
-            Spacer()
+            .buttonStyle(.plain)
+            .accessibilityLabel("更換大頭貼")
         }
-        .padding(16)
-        .background(AppTheme.surface)
-        .clipShape(RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius))
+        .frame(width: size + 8, height: size + 8)
     }
 
     private var barHoppingPassCard: some View {
@@ -307,9 +482,25 @@ struct ProfileTabView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 20) {
-                    Text("選擇你喜歡的微醺頭像")
+                    Text("更新你的個人頭像")
                         .font(.subheadline)
                         .foregroundStyle(AppTheme.textSecondary)
+
+                    HStack(spacing: 12) {
+                        PhotosPicker(selection: $selectedPhoto, matching: .images, photoLibrary: .shared()) {
+                            Label("從相簿選擇", systemImage: "photo.on.rectangle.angled")
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 48)
+                        }
+                        .buttonStyle(ProfileAccentButtonStyle())
+
+                        Button(action: openCamera) {
+                            Label("拍攝照片", systemImage: "camera")
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 48)
+                        }
+                        .buttonStyle(ProfileSecondaryButtonStyle())
+                    }
 
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 120))], spacing: 16) {
                         ForEach(UserProfileStore.presets) { preset in
@@ -365,7 +556,7 @@ struct ProfileTabView: View {
         }
         .preferredColorScheme(.dark)
         .presentationBackground(AppTheme.background)
-        .presentationDetents([.medium])
+        .presentationDetents([.medium, .large])
     }
 
     private var passRedemptionSheet: some View {

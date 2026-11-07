@@ -257,6 +257,7 @@
 				DEVELOPMENT_TEAM = 6GAF4N3B67;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "使用相機拍攝個人頭像。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "在地圖上顯示你的位置，並可設為路線起點。";
@@ -290,6 +291,7 @@
 				DEVELOPMENT_TEAM = 6GAF4N3B67;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "使用相機拍攝個人頭像。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "在地圖上顯示你的位置，並可設為路線起點。";

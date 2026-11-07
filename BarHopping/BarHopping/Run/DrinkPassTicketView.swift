@@ -2,22 +2,32 @@ import SwiftUI
 
 struct DrinkPassTicketView: View {
     let purchase: DrinkPassPurchase
+    @Environment(DrinkPassStore.self) private var store
+
+    private var currentPurchase: DrinkPassPurchase {
+        store.purchases.first { $0.id == purchase.id } ?? purchase
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text(purchase.eventName).font(.title2.bold())
+            Text(currentPurchase.eventName).font(.title2.bold())
             Label("示範購買成功", systemImage: "checkmark.seal.fill")
                 .font(.headline)
                 .foregroundStyle(AppTheme.textPrimary)
-            Text("\(purchase.option.name) × \(purchase.quantity)")
+            Text("\(currentPurchase.option.name) × \(currentPurchase.quantity)")
                 .font(.headline)
-            Text("共 \(purchase.totalCups) 杯・示範金額 NT$ \(purchase.totalPrice)")
-            Text(purchase.option.validity)
+            Text("共 \(currentPurchase.totalCups) 杯・示範金額 NT$ \(currentPurchase.totalPrice)")
+            Text(currentPurchase.option.validity)
                 .font(.footnote)
-            PassQRCodeView(payload: purchase.ticketNumber)
+            Text("剩餘 \(currentPurchase.remainingCups) 杯")
+                .font(.headline).monospacedDigit()
+            Text("票號：\(currentPurchase.ticketNumber)")
+                .font(.caption.monospaced())
+                .textSelection(.enabled)
+            PassQRCodeView(payload: DrinkPassArtwork.qrCodePayload(for: currentPurchase))
                 .frame(maxWidth: .infinity)
                 .textSelection(.enabled)
-            Text("示範票號 QR Code，無法兌換酒款")
+            Text("QR Code 內容：\(DrinkPassArtwork.qrCodePayload(for: currentPurchase))，酒票僅供示範")
                 .font(.footnote.bold())
                 .frame(maxWidth: .infinity)
             Text("未收取款項，無實際效力。紀錄只保留在本次 App 使用期間。")

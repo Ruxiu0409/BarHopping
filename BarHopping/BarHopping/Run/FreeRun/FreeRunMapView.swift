@@ -8,7 +8,6 @@ struct FreeRunMapView: View {
     var isSummary = false
     var heatSegments: [PopularRouteSegment] = []
     var heading: Double?
-    var bottomInset: CGFloat = 0
     var attributions: [String] = []
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.appReduceMotion) private var appReduceMotion
@@ -89,7 +88,7 @@ struct FreeRunMapView: View {
                         } label: {
                             Image(systemName: friend.symbol)
                                 .font(.body.bold()).foregroundStyle(.black)
-                                .frame(width: 40, height: 40)
+                                .frame(width: 44, height: 44)
                                 .background(friendColor(friend.id), in: Circle())
                                 .overlay(Circle().strokeBorder(.white, lineWidth: 2))
                         }
@@ -115,39 +114,43 @@ struct FreeRunMapView: View {
         }
         .overlay(alignment: .topTrailing) {
             if !isSummary {
-                VStack(spacing: 14) {
-                    Button("指南針，朝北", systemImage: "location.north.fill") { orientNorth() }
-                        .rotationEffect(.degrees(-(lastCamera?.heading ?? 0)))
-                    Button("圖層", systemImage: "square.3.layers.3d") { showsLayers = true }
-                        .overlay(alignment: .topTrailing) {
-                            Text("\([showsHeatmap, showsFriends, showsBars].filter { $0 }.count)")
-                                .font(.caption2.bold()).padding(4)
-                                .background(AppTheme.accent, in: Circle()).offset(x: 6, y: -6)
+                GeometryReader { geometry in
+                    let layout = geometry.size.height >= 260
+                        ? AnyLayout(VStackLayout(spacing: 10))
+                        : AnyLayout(HStackLayout(spacing: 8))
+                    layout {
+                        Button("指南針，朝北", systemImage: "location.north.fill") { orientNorth() }
+                            .rotationEffect(.degrees(-(lastCamera?.heading ?? 0)))
+                        Button("圖層", systemImage: "square.3.layers.3d") { showsLayers = true }
+                            .overlay(alignment: .topTrailing) {
+                                Text("\([showsHeatmap, showsFriends, showsBars].filter { $0 }.count)")
+                                    .font(.caption2.bold()).padding(4)
+                                    .background(AppTheme.elevated, in: Circle()).offset(x: 4, y: -4)
+                            }
+                        Button {
+                            tilted.toggle()
+                            changePitch()
+                        } label: {
+                            Text("3D").font(.subheadline.bold())
                         }
-                    Button {
-                        tilted.toggle()
-                        changePitch()
-                    } label: {
-                        Text("3D").font(.subheadline.bold())
+                        .accessibilityLabel(tilted ? "切換平面地圖" : "切換 3D 地圖")
+                        Button("回到我的位置並跟隨", systemImage: followsUser ? "location.fill" : "location") {
+                            followsUser = true
+                            recenter()
+                        }
+                        .disabled(session.currentCoordinate == nil)
                     }
-                    .accessibilityLabel(tilted ? "切換平面地圖" : "切換 3D 地圖")
-                    Button("回到我的位置並跟隨", systemImage: followsUser ? "location.fill" : "location") {
-                        followsUser = true
-                        recenter()
-                    }
-                    .disabled(session.currentCoordinate == nil)
+                    .labelStyle(.iconOnly)
+                    .buttonStyle(FreeRunMapButtonStyle())
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .padding(12)
                 }
-                .labelStyle(.iconOnly)
-                .buttonStyle(FreeRunMapButtonStyle())
-                .controlSize(.large)
-                .padding(12)
             }
         }
-        .overlay(alignment: .bottomLeading) {
+        .overlay(alignment: .topLeading) {
             if !isSummary {
                 Button("地圖與熱力圖資料來源", systemImage: "info.circle") { showsAttribution = true }
                     .labelStyle(.iconOnly).buttonStyle(FreeRunMapButtonStyle()).padding(12)
-                    .padding(.bottom, bottomInset)
             }
         }
         .sheet(isPresented: $showsLayers) {
@@ -168,11 +171,13 @@ struct FreeRunMapView: View {
                 Text("內附道路路徑以 OpenStreetMap 資料為基礎，由 FOSSGIS 步行路由產生。酒吧目錄的開放資料來源列於下方。")
                 Text("熱門路線與熱度人數為內附示範資料，不代表即時人潮。此畫面不呼叫路由服務；前往下一站的虛線只是方向提示。")
                 Link("© OpenStreetMap contributors", destination: URL(string: "https://www.openstreetmap.org/copyright")!)
+                    .frame(minHeight: 44)
                 Link("FOSSGIS 路由資料來源", destination: URL(string: "https://routing.openstreetmap.de/")!)
+                    .frame(minHeight: 44)
                 ForEach(attributions, id: \.self) { attribution in
                     Text(attribution).font(.caption).textSelection(.enabled)
                 }
-                Button("關閉") { showsAttribution = false }
+                Button("關閉") { showsAttribution = false }.frame(minWidth: 44, minHeight: 44)
             }
             .padding(24)
             }
@@ -195,7 +200,7 @@ struct FreeRunMapView: View {
                     .foregroundStyle(AppTheme.accentOnDark)
                 Text("正式分享需要雙方同意。本示範不會上傳或分享你的位置。")
                     .font(.footnote).foregroundStyle(AppTheme.textSecondary)
-                Button("關閉") { showsFriendDetail = false }.buttonStyle(.bordered)
+                Button("關閉") { showsFriendDetail = false }.buttonStyle(FreeRunActionButtonStyle())
             }
             .padding(24)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -217,7 +222,7 @@ struct FreeRunMapView: View {
             .padding(next ? 15 : 9)
             .background(visited ? AppTheme.accentOnDark : AppTheme.accent, in: Circle())
             .overlay(Circle().strokeBorder(next ? AppTheme.accentOnDark : .white.opacity(0.8), lineWidth: next ? 4 : 1))
-            .accessibilityLabel(visited ? "已買過" : (next ? "下一站推薦" : "附近酒吧"))
+            .accessibilityLabel(visited ? "已喝過" : (next ? "下一站推薦" : "附近酒吧"))
     }
 
     private func friendColor(_ id: Int) -> Color {

@@ -17,7 +17,7 @@ struct DrinkPassWalletCard: View {
                         .font(.subheadline)
                 }
             }
-            Text("可兌換 \(purchase.totalCups) 杯（示範）")
+            Text("剩餘 \(purchase.remainingCups) 杯（示範）")
                 .font(.subheadline.bold()).foregroundStyle(AppTheme.accentOnDark)
             Text("使用期限：\(purchase.option.validity)")
                 .font(.caption).foregroundStyle(AppTheme.textSecondary)

@@ -4,7 +4,6 @@ nonisolated enum FreeRunRules {
     static let arrivalMeters = 40.0
     static let departureMeters = 60.0
     static let maximumAccuracyMeters = 50.0
-    static let demoMetersPerSecond = 3.5
 
     static func distance(_ a: Coordinate, _ b: Coordinate) -> Double {
         let latitude = (b.latitude - a.latitude) * .pi / 180
@@ -112,12 +111,12 @@ nonisolated struct FreeRunSession {
             let distance = FreeRunRules.distance(previous.coordinate, sample.coordinate)
             let seconds = sample.timestamp.timeIntervalSince(previous.timestamp)
             // 忽略 GPS 漂移與不合理跳點，恢復前景後也不跨空白區間連接。
-            if distance >= 3, seconds > 0, distance / seconds <= (isDemo ? 20 : 12) {
+            if distance >= 3, seconds > 0, isDemo || distance / seconds <= 12 {
                 distanceMeters += distance
                 samples.append(sample)
                 trackSegments[trackSegments.count - 1].append(sample.coordinate)
                 self.previous = sample
-            } else if distance / max(seconds, 0.001) > (isDemo ? 20 : 12) {
+            } else if !isDemo, distance / max(seconds, 0.001) > 12 {
                 self.previous = sample
                 trackSegments.append([sample.coordinate])
             }

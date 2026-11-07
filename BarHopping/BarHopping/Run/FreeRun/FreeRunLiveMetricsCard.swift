@@ -4,7 +4,10 @@ struct FreeRunLiveMetricsCard: View {
     let session: FreeRunSession
     let now: Date
     let status: String
+    var isExpanded = false
     let expand: () -> Void
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.appReduceMotion) private var appReduceMotion
 
     var body: some View {
         VStack(spacing: 12) {
@@ -12,8 +15,9 @@ struct FreeRunLiveMetricsCard: View {
                 Label(status, systemImage: session.isPaused ? "pause.circle.fill" : "location.circle.fill")
                     .font(.caption.bold()).foregroundStyle(AppTheme.accentOnDark)
                 Spacer()
-                Button("展開", systemImage: "arrow.up.left.and.arrow.down.right", action: expand)
+                Button(isExpanded ? "收合" : "展開", systemImage: isExpanded ? "arrow.down.right.and.arrow.up.left" : "arrow.up.left.and.arrow.down.right", action: expand)
                     .font(.caption).foregroundStyle(AppTheme.textPrimary)
+                    .frame(minWidth: 44, minHeight: 44)
             }
             ViewThatFits(in: .horizontal) {
                 HStack(alignment: .firstTextBaseline, spacing: 16) { metrics }
@@ -27,9 +31,10 @@ struct FreeRunLiveMetricsCard: View {
     @ViewBuilder private var metrics: some View {
         metric(FreeRunMetricsView.clock(session.elapsed(at: now)), label: "時間", prominent: false)
         metric(String(format: "%.2f", session.distanceMeters / 1_000), label: "距離（公里）", prominent: true)
-        let elapsed = session.elapsed(at: now)
-        metric(String(format: "%.1f", elapsed > 0 ? session.distanceMeters / elapsed * 3.6 : 0),
-               label: "平均公里／小時", prominent: false)
+        metric("\(session.uniqueBarCount) 家", label: "已喝", prominent: false)
+            .accessibilityLabel("已喝 \(session.uniqueBarCount) 家")
+            .animation(AppMotion.resolved(AppMotion.tap, reduceMotion: reduceMotion || appReduceMotion),
+                       value: session.uniqueBarCount)
     }
 
     private func metric(_ value: String, label: String, prominent: Bool) -> some View {

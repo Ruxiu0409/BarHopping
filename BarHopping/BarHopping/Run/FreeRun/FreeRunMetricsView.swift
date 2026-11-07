@@ -5,12 +5,20 @@ struct FreeRunMetricsView: View {
     let now: Date
 
     var body: some View {
-        let elapsed = session.elapsed(at: now)
-        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
-            metric("經過時間", Self.clock(elapsed))
-            metric("距離", Fmt.distance(session.distanceMeters))
-            metric("平均速度", String(format: "%.1f km/h", elapsed > 0 ? session.distanceMeters / elapsed * 3.6 : 0))
-            metric("已停留酒吧", "\(session.uniqueBarCount) 間")
+        VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: 6) {
+                Text("已喝").font(.caption).foregroundStyle(AppTheme.textSecondary)
+                Text("\(session.uniqueBarCount) 家")
+                    .font(.largeTitle.bold()).monospacedDigit()
+                    .contentTransition(.numericText())
+                    .foregroundStyle(AppTheme.accentOnDark)
+            }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel("已喝 \(session.uniqueBarCount) 家")
+            HStack(spacing: 20) {
+                metric("經過時間", Self.clock(session.elapsed(at: now)))
+                metric("距離", Fmt.distance(session.distanceMeters))
+            }
         }
         .padding(20)
         .appGradientCard()

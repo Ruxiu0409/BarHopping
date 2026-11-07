@@ -17,11 +17,11 @@ struct FreeRunSummaryView: View {
                     FreeRunMapView(session: session, friends: [], now: session.endedAt ?? .now, isSummary: true)
                         .frame(height: 240)
                         .clipShape(RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius))
-                        .accessibilityLabel("這次路跑的完整軌跡與停留酒吧地圖")
+                        .accessibilityLabel("這次路跑的完整軌跡與喝酒紀錄地圖")
                 }
-                Text("停留紀錄").font(.title2.bold())
+                Text("喝酒紀錄").font(.title2.bold())
                 if session.visits.isEmpty {
-                    Text("這次沒有記錄停留的酒吧。")
+                    Text("這次沒有喝酒紀錄。")
                         .foregroundStyle(AppTheme.textSecondary)
                 }
                 ForEach(session.visits) { visit in

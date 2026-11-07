@@ -74,14 +74,14 @@ struct RunTabView: View {
     private var introduction: some View {
         VStack(spacing: 12) {
             Text("想走到哪，就走到哪").font(.title3.bold())
-            Text("按下開始，自由步行。靠近酒吧時按「買酒」，留下停留紀錄。")
+            Text("按下開始，自由步行。靠近酒吧時按「喝酒」，留下喝酒紀錄。")
                 .font(.subheadline)
                 .foregroundStyle(AppTheme.textSecondary)
                 .multilineTextAlignment(.center)
             Toggle("示範模式", isOn: $demoMode)
                 .padding(16)
                 .appGradientCard()
-            Text(demoMode ? "不用出門，以審計新村假定位體驗路跑。" : "使用真實定位，僅在 App 前景時更新。")
+            Text(demoMode ? "不用出門，體驗首站 3 秒、之後每站 5 秒的示範路跑。" : "使用真實定位，僅在 App 前景時更新。")
                 .font(.footnote).foregroundStyle(AppTheme.textSecondary)
         }
     }

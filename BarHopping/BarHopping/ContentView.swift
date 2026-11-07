@@ -14,6 +14,7 @@ struct ContentView: View {
                     case .home: HomeTabView()
                     case .map: MapTabView()
                     case .run: RunTabView()
+                    case .groups: GroupsTabView()
                     default: TabLandingView(tab: tab)
                     }
                 } label: {

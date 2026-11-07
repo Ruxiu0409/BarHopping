@@ -1,23 +1,23 @@
-//
-//  ContentView.swift
-//  BarHopping
-//
-//  Created by 蔡承曄 on 2026/11/7.
-//
-
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selectedTab: AppTab = .home
+    @State private var router = AppRouter()
+    @State private var planner = PlannerStore(api: AppEnvironment.makeAPI(), drafts: AppEnvironment.makeDraftStore())
 
     var body: some View {
-        TabView(selection: $selectedTab) {
+        TabView(selection: $router.selectedTab) {
             ForEach(AppTab.allCases) { tab in
                 Tab(tab.title, systemImage: tab.systemImage, value: tab) {
-                    TabLandingView(tab: tab)
+                    switch tab {
+                    case .map: MapTabView()
+                    case .run: RunTabView()
+                    default: TabLandingView(tab: tab)
+                    }
                 }
             }
         }
+        .environment(router)
+        .environment(planner)
     }
 }
 

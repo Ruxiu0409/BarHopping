@@ -22,7 +22,7 @@ struct HomeTabView: View {
         NavigationStack {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 20) {
-                    HomeGreetingHeader(user: HomeMockProfile.user)
+                    HomeGreetingHeader()
                         .padding(.horizontal)
 
                     if !planner.plan.stops.isEmpty || !drafts.isEmpty || draftError != nil {
@@ -33,8 +33,8 @@ struct HomeTabView: View {
                     }
 
                     VStack(alignment: .leading, spacing: 10) {
-                        HomeSectionHeader("本月足跡")
-                        HomeStatsRow(stats: HomeMockProfile.stats)
+                        HomeSectionHeader("跑吧統計")
+                        HomeStatsRow()
                             .padding(.horizontal)
                     }
 
@@ -104,16 +104,7 @@ struct HomeTabView: View {
 
     private var forumSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            HomeSectionHeader("論壇") {
-                Button {
-                    isComposing = true
-                } label: {
-                    Label("發文", systemImage: "square.and.pencil")
-                        .font(.subheadline.weight(.semibold))
-                        .foregroundStyle(HomeTheme.accentOnDark)
-                }
-                .accessibilityLabel("發新文章")
-            }
+            HomeSectionHeader("論壇")
 
             Text("未滿 18 歲請勿飲酒｜喝酒不開車")
                 .font(.caption)
@@ -200,5 +191,6 @@ struct HomeTabView: View {
 #Preview {
     HomeTabView()
         .environment(AppRouter())
+        .environment(UserProfileStore())
         .environment(PlannerStore(api: AppEnvironment.makeAPI(), drafts: AppEnvironment.makeDraftStore()))
 }

@@ -1,62 +1,135 @@
 import SwiftUI
+import UIKit
 
-/// 打招呼與使用者資訊。
+/// 與「你」分頁共用個人資料的精簡入口。
 struct HomeGreetingHeader: View {
-    let user: HomeUser
-
-    private var greeting: String {
-        switch Calendar.current.component(.hour, from: .now) {
-        case 5..<11: "早安"
-        case 11..<17: "午安"
-        default: "晚安"
-        }
-    }
-
-    var body: some View {
-        HStack(spacing: 12) {
-            InitialsAvatar(initials: user.initials, colorIndex: user.colorIndex, size: 52)
-            VStack(alignment: .leading, spacing: 2) {
-                Text("\(greeting)，\(user.nickname)")
-                    .font(.title2.bold())
-                Text(user.level)
-                    .font(.subheadline)
-                    .foregroundStyle(AppTheme.textSecondary)
-            }
-            Spacer(minLength: 0)
-        }
-        .accessibilityElement(children: .combine)
-        .accessibilityAddTraits(.isHeader)
-    }
-}
-
-/// 本月統計。
-struct HomeStatsRow: View {
-    let stats: HomeStats
+    @Environment(UserProfileStore.self) private var userProfile
+    @Environment(AppRouter.self) private var router
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
-        let items: [(String, String, String)] = [
-            ("figure.walk", Fmt.distance(stats.monthWalkedMeters), "本月步行"),
-            ("wineglass", "\(stats.barsVisited) 間", "去過的店"),
-            ("map", "\(stats.districtsExplored) 區", "探索過"),
-        ]
-        let layout = dynamicTypeSize.isAccessibilitySize
-            ? AnyLayout(VStackLayout(alignment: .leading, spacing: 8))
-            : AnyLayout(HStackLayout(spacing: 8))
-        layout {
-            ForEach(items, id: \.2) { icon, value, label in
-                VStack(alignment: .leading, spacing: 4) {
-                    Image(systemName: icon).foregroundStyle(HomeTheme.accentOnDark)
-                    Text(value).font(.headline).lineLimit(1).minimumScaleFactor(0.7)
-                    Text(label).font(.caption).foregroundStyle(AppTheme.textSecondary)
+        Button {
+            router.selectedTab = .profile
+        } label: {
+            let layout = dynamicTypeSize.isAccessibilitySize
+                ? AnyLayout(VStackLayout(alignment: .leading, spacing: 16))
+                : AnyLayout(HStackLayout(alignment: .top, spacing: 16))
+            layout {
+                avatar
+
+                VStack(alignment: .leading, spacing: 7) {
+                    Text(userProfile.nickname)
+                        .font(.title2.bold())
+                        .foregroundStyle(AppTheme.textPrimary)
+                    Text(userProfile.levelTitle)
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(AppTheme.accentOnDark)
+                    Text(userProfile.profileHandle)
+                        .font(.caption)
+                        .foregroundStyle(AppTheme.textSecondary)
                 }
-                .frame(maxHeight: .infinity, alignment: .topLeading)
-                .homeCard(padding: 12)
-                .accessibilityElement(children: .ignore)
-                .accessibilityLabel("\(label) \(value)")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .fixedSize(horizontal: false, vertical: true)
+
+                Image(systemName: "chevron.right")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(AppTheme.textSecondary)
+                    .accessibilityHidden(true)
+            }
+            .multilineTextAlignment(.leading)
+            .padding(18)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .appGlassCard(cornerRadius: 22)
+            .contentShape(RoundedRectangle(cornerRadius: 22))
+        }
+        .buttonStyle(.plain)
+        .accessibilityElement(children: .combine)
+        .accessibilityHint("切換到你分頁，查看或編輯個人檔案")
+        .accessibilityInputLabels(["個人檔案", userProfile.nickname])
+    }
+
+    // ProfileTabView.avatarView 是私有方法；維持相同圖片優先順序、尺寸與外圈。
+    private var avatar: some View {
+        Group {
+            if let data = userProfile.customAvatarData, let image = UIImage(data: data) {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFill()
+            } else if let preset = userProfile.customAvatarImage {
+                preset
+                    .resizable()
+                    .scaledToFit()
+                    .padding(92 * 0.25)
+                    .foregroundStyle(AppTheme.accentOnDark)
+                    .background(AppTheme.accentSoft)
+            } else {
+                Image(UserAvatarIcon.assetName)
+                    .resizable()
+                    .scaledToFill()
             }
         }
-        .fixedSize(horizontal: false, vertical: true)
+        .frame(width: 92, height: 92)
+        .clipShape(Circle())
+        .overlay {
+            Circle().strokeBorder(
+                LinearGradient(
+                    colors: [AppTheme.accentOnDark, AppTheme.accent, AppTheme.accentOnDark.opacity(0.8)],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                ),
+                lineWidth: 3
+            )
+        }
+        .accessibilityHidden(true)
+    }
+}
+
+/// 與「你」分頁一致的累積統計。
+struct HomeStatsRow: View {
+    @Environment(UserProfileStore.self) private var userProfile
+    @Environment(AppRouter.self) private var router
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    var body: some View {
+        let items: [(icon: String, value: String, title: String, color: Color)] = [
+            ("wineglass.fill", "\(userProfile.visitedBarsCount) 間", "已踩點酒吧", AppTheme.accentOnDark),
+            ("figure.walk", String(format: "%.1f km", userProfile.totalWalkingKm), "累積步行", AppTheme.info),
+            ("heart.fill", userProfile.soberScore, "目前狀態", AppTheme.success),
+        ]
+        Button {
+            router.selectedTab = .profile
+        } label: {
+            let layout = dynamicTypeSize.isAccessibilitySize
+                ? AnyLayout(VStackLayout(spacing: 12))
+                : AnyLayout(HStackLayout(alignment: .top, spacing: 12))
+            layout {
+                ForEach(items, id: \.title) { item in
+                    VStack(spacing: 8) {
+                        Image(systemName: item.icon)
+                            .font(.title2)
+                            .foregroundStyle(item.color)
+                            .accessibilityHidden(true)
+                        Text(item.value)
+                            .font(.headline)
+                            .foregroundStyle(AppTheme.textPrimary)
+                        Text(item.title)
+                            .font(.caption2)
+                            .foregroundStyle(AppTheme.textSecondary)
+                    }
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 14)
+                    .appGlassCard(cornerRadius: 14)
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel("\(item.title)，\(item.value)")
+                }
+            }
+        }
+        .buttonStyle(.plain)
+        .accessibilityElement(children: .combine)
+        .accessibilityHint("切換到你分頁，查看完整個人資料")
+        .accessibilityInputLabels(["跑吧統計"])
     }
 }
 

@@ -144,6 +144,51 @@ struct GroupSummary: View {
     }
 }
 
+struct GroupUpcomingEventPreview: View {
+    let event: GroupEvent
+    let members: [GroupMember]
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Label("下一場同行", systemImage: "calendar.badge.clock")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(AppTheme.accentOnDark)
+                Spacer()
+                Text(GroupsStyle.date(event.date))
+                    .font(.caption.weight(.medium))
+                    .foregroundStyle(.secondary)
+            }
+            Text(event.title)
+                .font(.headline)
+                .foregroundStyle(.primary)
+                .lineLimit(1)
+            Label(event.meetingPoint, systemImage: "mappin.and.ellipse")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+                .lineLimit(1)
+            HStack(spacing: 10) {
+                GroupMemberAvatarStack(
+                    members: members.filter { event.participantIDs.contains($0.id) },
+                    totalCount: event.participantIDs.count,
+                    size: 28
+                )
+                Text("\(event.participantIDs.count) 位已報名")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Image(systemName: "arrow.up.right")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(AppTheme.accentOnDark)
+            }
+        }
+        .padding(14)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(AppTheme.elevated.opacity(0.72), in: RoundedRectangle(cornerRadius: 16))
+        .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(AppTheme.accentOnDark.opacity(0.15)))
+    }
+}
+
 struct GroupRouteSummary: View {
     let event: GroupEvent
     var body: some View {

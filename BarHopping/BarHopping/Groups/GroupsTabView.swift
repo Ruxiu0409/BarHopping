@@ -155,6 +155,12 @@ struct GroupsTabView: View {
         GroupCard {
             NavigationLink(value: GroupsDestination.group(group.id)) { GroupSummary(group: group) }
                 .buttonStyle(.plain)
+            if let event = group.events.sorted(by: { $0.date < $1.date }).first {
+                NavigationLink(value: GroupsDestination.event(groupID: group.id, eventID: event.id)) {
+                    GroupUpcomingEventPreview(event: event, members: group.members)
+                }
+                .buttonStyle(.plain)
+            }
         }
     }
 

@@ -285,7 +285,7 @@ struct ProfileTabView: View {
                 .font(.caption2)
                 .foregroundStyle(AppTheme.textSecondary)
         }
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, minHeight: 132)
         .padding(.vertical, 14)
         .appGradientCard(cornerRadius: 14)
     }
@@ -326,8 +326,7 @@ struct ProfileTabView: View {
                 .font(.system(size: 10))
                 .foregroundStyle(AppTheme.textSecondary)
         }
-        .frame(width: 80)
-        .padding(.vertical, 10)
+        .frame(width: 96, height: 150)
         .appGradientCard(cornerRadius: 12)
     }
 

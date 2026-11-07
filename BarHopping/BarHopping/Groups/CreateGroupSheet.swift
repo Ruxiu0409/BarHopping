@@ -8,6 +8,7 @@ struct CreateGroupSheet: View {
     @State private var name = ""
     @State private var introduction = ""
     @State private var isPublic = true
+    @State private var drinkLevel = GroupDrinkLevel.light
     @State private var selectedTags: Set<String> = []
 
     var body: some View {
@@ -23,6 +24,20 @@ struct CreateGroupSheet: View {
                     Toggle("公開團體", isOn: $isPublic)
                 } footer: {
                     Text(isPublic ? "公開團體會出現在探索清單，任何人都可以加入。" : "私密團體不會出現在探索清單，建立後會產生一組邀請碼。")
+                }
+                Section {
+                    Picker("喝酒程度（必選）", selection: $drinkLevel) {
+                        ForEach(GroupDrinkLevel.allCases) { level in
+                            Label(level.title, systemImage: level.symbol).tag(level)
+                        }
+                    }
+                } header: {
+                    Text("喝酒程度")
+                } footer: {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(drinkLevel.description)
+                        if let reminder = drinkLevel.reminder { Text(reminder) }
+                    }
                 }
                 Section("選擇標籤") {
                     ForEach(GroupsMockData.tags, id: \.self) { tag in
@@ -50,7 +65,7 @@ struct CreateGroupSheet: View {
                 ToolbarItem(placement: .cancellationAction) { Button("取消") { dismiss() } }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("建立") {
-                        guard let id = store.create(name: name, introduction: introduction, isPublic: isPublic, tags: GroupsMockData.tags.filter { selectedTags.contains($0) }) else { return }
+                        guard let id = store.create(name: name, introduction: introduction, isPublic: isPublic, drinkLevel: drinkLevel, tags: GroupsMockData.tags.filter { selectedTags.contains($0) }) else { return }
                         dismiss()
                         onCreated(id)
                     }

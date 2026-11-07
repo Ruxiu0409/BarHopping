@@ -14,8 +14,8 @@ final class GroupsStore {
     func event(groupID: UUID, eventID: UUID) -> GroupEvent? {
         group(groupID)?.events.first { $0.id == eventID }
     }
-    func explore(tag: String?) -> [SocialGroup] {
-        groups.filter { $0.isPublic && (tag.map($0.tags.contains) ?? true) }
+    func explore(drinkLevel: GroupDrinkLevel?) -> [SocialGroup] {
+        groups.filter { $0.isPublic && (drinkLevel == nil || $0.drinkLevel == drinkLevel) }
     }
 
     func join(_ id: UUID) {
@@ -41,14 +41,14 @@ final class GroupsStore {
     }
 
     @discardableResult
-    func create(name: String, introduction: String, isPublic: Bool, tags: [String]) -> UUID? {
+    func create(name: String, introduction: String, isPublic: Bool, drinkLevel: GroupDrinkLevel, tags: [String]) -> UUID? {
         let name = name.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !name.isEmpty else { return nil }
         let id = UUID()
         var code: String
         repeat { code = String(UUID().uuidString.replacingOccurrences(of: "-", with: "").prefix(6)) }
         while groups.contains(where: { $0.inviteCode == code })
-        groups.insert(SocialGroup(id: id, name: name, introduction: introduction.trimmingCharacters(in: .whitespacesAndNewlines), isPublic: isPublic, tags: tags, symbol: "person.3.fill", inviteCode: code, members: [GroupMember(id: GroupMember.currentID, nickname: "我", isAdmin: true)], lastActiveAt: .now, events: [], messages: []), at: 0)
+        groups.insert(SocialGroup(id: id, name: name, introduction: introduction.trimmingCharacters(in: .whitespacesAndNewlines), isPublic: isPublic, drinkLevel: drinkLevel, tags: tags, symbol: "person.3.fill", inviteCode: code, members: [GroupMember(id: GroupMember.currentID, nickname: "我", isAdmin: true)], lastActiveAt: .now, events: [], messages: []), at: 0)
         return id
     }
 

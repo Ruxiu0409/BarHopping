@@ -65,6 +65,14 @@ struct GroupSummary: View {
                 Spacer(minLength: 0)
                 Image(systemName: "chevron.right").font(.caption.weight(.semibold)).foregroundStyle(.secondary).accessibilityHidden(true)
             }
+            VStack(alignment: .leading, spacing: 5) {
+                Label(group.drinkLevel.title, systemImage: group.drinkLevel.symbol)
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(AppTheme.accentOnDark)
+                if let reminder = group.drinkLevel.reminder {
+                    Text(reminder).font(.caption).foregroundStyle(.secondary)
+                }
+            }
             GroupTags(tags: group.tags)
             if let next = group.nextEvent {
                 Label("下次揪團 \(GroupsStyle.date(next.date))", systemImage: "calendar")

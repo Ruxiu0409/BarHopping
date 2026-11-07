@@ -2,10 +2,11 @@ import Foundation
 import SwiftUI
 
 struct GroupsTabView: View {
+    private let title = "找個伴，走進下一條巷弄"
     @State private var store = GroupsStore()
     @State private var path: [GroupsDestination] = []
     @State private var section = Section.mine
-    @State private var selectedTag: String?
+    @State private var selectedDrinkLevel: GroupDrinkLevel?
     @State private var sheet: Sheet?
 
     private enum Section: String, CaseIterable { case mine = "我的團體", explore = "探索團體" }
@@ -27,8 +28,16 @@ struct GroupsTabView: View {
                 .padding(20)
             }
             .background(GroupsStyle.canvas)
-            .navigationTitle("團體")
+            .navigationTitle(title)
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text(title)
+                        .font(.headline)
+                        .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .accessibilityAddTraits(.isHeader)
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu("團體操作", systemImage: "plus") {
                         Button("建立團體", systemImage: "person.3.fill") { sheet = .create }
@@ -64,19 +73,7 @@ struct GroupsTabView: View {
                 .font(.largeTitle.bold()).fixedSize(horizontal: false, vertical: true)
             Text("分享喜歡的路線，約好時間輕鬆出發。")
                 .font(.subheadline).foregroundStyle(.secondary)
-            ViewThatFits(in: .horizontal) {
-                HStack(spacing: 12) { actionButtons }
-                VStack(alignment: .leading, spacing: 8) { actionButtons }
-            }
         }
-    }
-
-    @ViewBuilder private var actionButtons: some View {
-        Button("建立團體", systemImage: "plus") { sheet = .create }
-            .buttonStyle(.borderedProminent).tint(AppTheme.accent).foregroundStyle(AppTheme.textPrimary)
-            .controlSize(.large).buttonBorderShape(.capsule)
-        Button("邀請碼加入", systemImage: "key") { sheet = .invite }
-            .buttonStyle(.bordered).controlSize(.large).buttonBorderShape(.capsule)
     }
 
     @ViewBuilder private var myGroups: some View {
@@ -88,7 +85,6 @@ struct GroupsTabView: View {
                     Text("找找台中同好，或建立自己的散步小隊。")
                 } actions: {
                     Button("去探索團體") { section = .explore }.buttonStyle(.borderedProminent).tint(AppTheme.accent)
-                    Button("建立我的團體") { sheet = .create }.buttonStyle(.bordered)
                 }
             }
         } else {
@@ -106,27 +102,39 @@ struct GroupsTabView: View {
             }
             ScrollView(.horizontal) {
                 HStack(spacing: 8) {
-                    tagButton(nil)
-                    ForEach(GroupsMockData.tags, id: \.self) { tagButton($0) }
+                    drinkLevelButton(nil)
+                    ForEach(GroupDrinkLevel.allCases) { drinkLevelButton($0) }
                 }
             }.scrollIndicators(.hidden)
-            let groups = store.explore(tag: selectedTag)
-            if groups.isEmpty {
-                ContentUnavailableView("還沒有符合的團體", systemImage: "line.3.horizontal.decrease", description: Text("試試其他標籤，或建立一個新團體。"))
+            if let level = selectedDrinkLevel {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(level.description)
+                    if let reminder = level.reminder { Text(reminder) }
+                }
+                .font(.subheadline).foregroundStyle(.secondary)
             }
-            ForEach(groups) { group in
-                GroupCard {
-                    NavigationLink(value: GroupsDestination.group(group.id)) { GroupSummary(group: group) }
-                        .buttonStyle(.plain)
-                    Text(group.introduction).font(.subheadline).foregroundStyle(.secondary)
-                    if group.isJoined {
-                        Label("已加入", systemImage: "checkmark.circle.fill").font(.subheadline.weight(.semibold)).foregroundStyle(AppTheme.accentOnDark)
-                    } else {
-                        Button("加入團體", systemImage: "person.badge.plus") { store.join(group.id) }
-                            .buttonStyle(.bordered).buttonBorderShape(.capsule)
+            let groups = store.explore(drinkLevel: selectedDrinkLevel)
+            VStack(alignment: .leading, spacing: 16) {
+                if groups.isEmpty {
+                    ContentUnavailableView("還沒有符合的團體", systemImage: "line.3.horizontal.decrease", description: Text("試試其他喝酒程度，或從右上角建立團體。"))
+                        .appTransition(.insertionRemoval)
+                }
+                ForEach(groups) { group in
+                    GroupCard {
+                        NavigationLink(value: GroupsDestination.group(group.id)) { GroupSummary(group: group) }
+                            .buttonStyle(.plain)
+                        Text(group.introduction).font(.subheadline).foregroundStyle(.secondary)
+                        if group.isJoined {
+                            Label("已加入", systemImage: "checkmark.circle.fill").font(.subheadline.weight(.semibold)).foregroundStyle(AppTheme.accentOnDark)
+                        } else {
+                            Button("加入團體", systemImage: "person.badge.plus") { store.join(group.id) }
+                                .buttonStyle(.bordered).buttonBorderShape(.capsule)
+                        }
                     }
+                    .appTransition(.insertionRemoval)
                 }
             }
+            .appAnimation(value: groups.map(\.id))
         }
     }
 
@@ -137,17 +145,21 @@ struct GroupsTabView: View {
         }
     }
 
-    private func tagButton(_ tag: String?) -> some View {
-        Button { selectedTag = tag } label: {
+    private func drinkLevelButton(_ level: GroupDrinkLevel?) -> some View {
+        Button { selectedDrinkLevel = level } label: {
             HStack(spacing: 4) {
-                if selectedTag == tag { Image(systemName: "checkmark") }
-                Text(tag.map { "#\($0)" } ?? "全部")
+                if selectedDrinkLevel == level { Image(systemName: "checkmark") }
+                if let level {
+                    Label(level.title, systemImage: level.symbol)
+                } else {
+                    Text("全部")
+                }
             }
             .font(.subheadline.weight(.medium))
             .padding(.horizontal, 14).padding(.vertical, 12)
-            .background(selectedTag == tag ? GroupsStyle.accent : Color(.secondarySystemGroupedBackground), in: Capsule())
-            .foregroundStyle(selectedTag == tag ? Color.white : Color.primary)
+            .background(selectedDrinkLevel == level ? GroupsStyle.accent : Color(.secondarySystemGroupedBackground), in: Capsule())
+            .foregroundStyle(selectedDrinkLevel == level ? Color.white : Color.primary)
         }
-        .accessibilityAddTraits(selectedTag == tag ? .isSelected : [])
+        .accessibilityAddTraits(selectedDrinkLevel == level ? .isSelected : [])
     }
 }

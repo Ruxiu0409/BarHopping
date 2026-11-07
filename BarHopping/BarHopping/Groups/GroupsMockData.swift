@@ -5,19 +5,25 @@ enum GroupsMockData {
     static let tags = ["西區", "逢甲", "七期", "精釀", "調酒", "新手友善"]
 
     static func makeGroups(now: Date = .now) -> [SocialGroup] {
-        let definitions: [(String, String, [String], String, String, Bool, Bool)] = [
-            ("草悟道精釀研究社", "沿著草悟道慢慢走，認識不同風味，也認識新朋友。不喝酒也歡迎一起散步。", ["西區", "精釀", "新手友善"], "leaf.fill", "WALK88", true, true),
-            ("逢甲下班小酌團", "下班後留一點時間給自己。從逢甲街區出發，輕鬆走訪巷弄裡的小店。", ["逢甲", "調酒", "新手友善"], "moon.stars.fill", "FENG66", true, false),
-            ("七期微醺散步俱樂部", "在城市燈光下散步聊天，每次選幾間小店，依自己的步調參加。", ["七期", "調酒"], "building.2.fill", "CITY28", true, false),
-            ("週末巷口散步隊", "熟朋友的週末小聚，先約好回家方式，再一起出門走走。", ["西區", "新手友善"], "figure.walk", "LANE18", false, false)
+        let definitions: [(String, String, [String], String, String, Bool, Bool, GroupDrinkLevel)] = [
+            ("草悟道精釀研究社", "沿著草悟道慢慢走，認識不同風味，也認識新朋友。不喝酒也歡迎一起散步。", ["西區", "精釀", "新手友善"], "leaf.fill", "WALK88", true, true, .light),
+            ("逢甲下班小酌團", "下班後留一點時間給自己。從逢甲街區出發，輕鬆走訪巷弄裡的小店。", ["逢甲", "調酒", "新手友善"], "moon.stars.fill", "FENG66", true, false, .light),
+            ("七期微醺散步俱樂部", "在城市燈光下散步聊天，每次選幾間小店，依自己的步調參加。", ["七期", "調酒"], "building.2.fill", "CITY28", true, false, .tipsy),
+            ("週末巷口散步隊", "熟朋友的週末小聚，先約好回家方式，再一起出門走走。", ["西區", "新手友善"], "figure.walk", "LANE18", false, false, .alcoholFree),
+            ("草悟道無酒精散步團", "帶杯喜歡的無酒精飲品，一起走走聊聊。", ["西區", "新手友善"], "cup.and.saucer.fill", "ZERO01", true, false, .alcoholFree),
+            ("逢甲清醒夜遊隊", "不喝酒也能享受夜晚，巷弄美食和聊天都歡迎。", ["逢甲", "新手友善"], "moon.stars.fill", "ZERO02", true, false, .alcoholFree),
+            ("美術園道微醺小聚", "找間安靜小店，依自己的步調品味調酒與聊天。", ["西區", "調酒"], "leaf.fill", "TIPS02", true, false, .tipsy),
+            ("西區風味交流社", "一起認識精釀風味，想休息隨時換無酒精飲品。", ["西區", "精釀"], "mug.fill", "TASTE1", true, false, .social),
+            ("七期週末品飲團", "分享喜歡的酒款與故事，不勸酒、不拚杯。", ["七期", "調酒"], "wineglass.fill", "TASTE2", true, false, .social)
         ]
         return definitions.enumerated().map { index, item in
-            let admin = GroupMember(id: "host-\(index)", nickname: ["阿禾", "小鹿", "米粒", "阿哲"][index], isAdmin: true)
+            let routeIndex = index % 4
+            let admin = GroupMember(id: "host-\(index)", nickname: ["阿禾", "小鹿", "米粒", "阿哲"][routeIndex], isAdmin: true)
             var members = [admin, GroupMember(id: "member-\(index)-1", nickname: "小安", isAdmin: false), GroupMember(id: "member-\(index)-2", nickname: "木木", isAdmin: false)]
             if item.6 { members.append(GroupMember(id: GroupMember.currentID, nickname: "我", isAdmin: false)) }
-            let plan = route(index: index, now: now)
-            let event = GroupEvent(id: UUID(), title: ["週末草悟道慢慢走", "下班後的逢甲小聚", "七期夜色散步", "週末巷口見"][index], date: futureDate(days: index + 2, now: now), meetingPoint: plan.origin?.name ?? "草悟道入口", plan: plan, distanceMeters: [1800, 1500, 2200, 1600][index], participantIDs: [admin.id, members[1].id])
-            return SocialGroup(id: UUID(), name: item.0, introduction: item.1, isPublic: item.5, tags: item.2, symbol: item.3, inviteCode: item.4, members: members, lastActiveAt: now.addingTimeInterval(Double(-index - 1) * 3600), events: [event], messages: [
+            let plan = route(index: routeIndex, now: now)
+            let event = GroupEvent(id: UUID(), title: ["週末草悟道慢慢走", "下班後的逢甲小聚", "七期夜色散步", "週末巷口見"][routeIndex], date: futureDate(days: index + 2, now: now), meetingPoint: plan.origin?.name ?? "草悟道入口", plan: plan, distanceMeters: [1800, 1500, 2200, 1600][routeIndex], participantIDs: [admin.id, members[1].id])
+            return SocialGroup(id: UUID(), name: item.0, introduction: item.1, isPublic: item.5, drinkLevel: item.7, tags: item.2, symbol: item.3, inviteCode: item.4, members: members, lastActiveAt: now.addingTimeInterval(Double(-index - 1) * 3600), events: [event], messages: [
                 GroupMessage(id: UUID(), author: admin.nickname, text: "歡迎加入！依自己的步調參加，無酒精飲品也很棒。集合前請先安排好回家的方式。", date: now.addingTimeInterval(-7200), isAnnouncement: true),
                 GroupMessage(id: UUID(), author: "小安", text: "期待一起認識台中的巷弄，下次集合見！", date: now.addingTimeInterval(-3600), isAnnouncement: false)
             ])

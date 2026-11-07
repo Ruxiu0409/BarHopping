@@ -5,6 +5,7 @@ struct SocialGroup: Identifiable {
     var name: String
     var introduction: String
     var isPublic: Bool
+    var drinkLevel: GroupDrinkLevel
     var tags: [String]
     var symbol: String
     var inviteCode: String

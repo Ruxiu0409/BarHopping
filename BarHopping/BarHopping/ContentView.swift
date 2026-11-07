@@ -9,6 +9,7 @@ struct ContentView: View {
             ForEach(AppTab.allCases) { tab in
                 Tab(tab.title, systemImage: tab.systemImage, value: tab) {
                     switch tab {
+                    case .home: HomeTabView()
                     case .map: MapTabView()
                     case .run: RunTabView()
                     default: TabLandingView(tab: tab)

@@ -581,26 +581,7 @@ struct ProfileTabView: View {
                             .foregroundStyle(AppTheme.textSecondary)
                     }
 
-                    // QR 碼視覺模擬
-                    ZStack {
-                        RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius)
-                            .fill(Color.white)
-                            .frame(width: 200, height: 200)
-                            .shadow(color: .black.opacity(0.1), radius: 8)
-
-                        VStack(spacing: 12) {
-                            Image(systemName: "qrcode")
-                                .resizable()
-                                .interpolation(.none)
-                                .scaledToFit()
-                                .frame(width: 130, height: 130)
-                                .foregroundStyle(.black)
-
-                            Text(userProfile.passCode)
-                                .font(.system(.title3, design: .monospaced, weight: .bold))
-                                .foregroundStyle(.black)
-                        }
-                    }
+                    PassQRCodeView(payload: userProfile.passCode)
 
                     VStack(spacing: 6) {
                         Text(userProfile.passName)

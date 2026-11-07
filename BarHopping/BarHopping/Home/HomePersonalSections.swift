@@ -90,7 +90,7 @@ struct HomeGreetingHeader: View {
 struct HomeStatsRow: View {
     @Environment(UserProfileStore.self) private var userProfile
     @Environment(AppRouter.self) private var router
-    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @ScaledMetric(relativeTo: .title2) private var iconHeight = 32.0
 
     var body: some View {
         let items: [(icon: String, value: String, title: String, color: Color)] = [
@@ -101,32 +101,34 @@ struct HomeStatsRow: View {
         Button {
             router.selectedTab = .profile
         } label: {
-            let layout = dynamicTypeSize.isAccessibilitySize
-                ? AnyLayout(VStackLayout(spacing: 12))
-                : AnyLayout(HStackLayout(alignment: .top, spacing: 12))
-            layout {
+            HStack(spacing: 12) {
                 ForEach(items, id: \.title) { item in
                     VStack(spacing: 8) {
                         Image(systemName: item.icon)
                             .font(.title2)
+                            .frame(height: iconHeight)
                             .foregroundStyle(item.color)
                             .accessibilityHidden(true)
                         Text(item.value)
                             .font(.headline)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.7)
                             .foregroundStyle(AppTheme.textPrimary)
                         Text(item.title)
                             .font(.caption2)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.7)
                             .foregroundStyle(AppTheme.textSecondary)
                     }
                     .multilineTextAlignment(.center)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .frame(maxWidth: .infinity)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .padding(.vertical, 14)
                     .appGradientCard(cornerRadius: 14)
                     .accessibilityElement(children: .ignore)
                     .accessibilityLabel("\(item.title)，\(item.value)")
                 }
             }
+            .fixedSize(horizontal: false, vertical: true)
         }
         .buttonStyle(.plain)
         .accessibilityElement(children: .combine)

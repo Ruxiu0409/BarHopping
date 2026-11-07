@@ -5,7 +5,18 @@ struct DrinkPassPurchase: Identifiable {
     let eventName: String
     let option: DrinkPassEvent.Option
     let quantity: Int
+    let purchasedAt: Date
+    let ticketNumber: String
     private(set) var redeemedCups = 0
+
+    init(eventName: String, option: DrinkPassEvent.Option, quantity: Int,
+         purchasedAt: Date = .now, ticketNumber: String = "DEMO-\(UUID().uuidString)") {
+        self.eventName = eventName
+        self.option = option
+        self.quantity = quantity
+        self.purchasedAt = purchasedAt
+        self.ticketNumber = ticketNumber
+    }
 
     var totalPrice: Int { option.price * quantity }
     var totalCups: Int { option.cups * quantity }
@@ -18,5 +29,4 @@ struct DrinkPassPurchase: Identifiable {
         return true
     }
 
-    var ticketNumber: String { "DEMO-\(id.uuidString)" }
 }

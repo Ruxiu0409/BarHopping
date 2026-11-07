@@ -11,12 +11,12 @@ struct DrinkPassTicketView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text(currentPurchase.eventName).font(.title2.bold())
-            Label("示範購買成功", systemImage: "checkmark.seal.fill")
+            Label("已購買", systemImage: "checkmark.seal.fill")
                 .font(.headline)
                 .foregroundStyle(AppTheme.textPrimary)
             Text("\(currentPurchase.option.name) × \(currentPurchase.quantity)")
                 .font(.headline)
-            Text("共 \(currentPurchase.totalCups) 杯・示範金額 NT$ \(currentPurchase.totalPrice)")
+            Text("共 \(currentPurchase.totalCups) 杯・NT$ \(currentPurchase.totalPrice)")
             Text(currentPurchase.option.validity)
                 .font(.footnote)
             Text("剩餘 \(currentPurchase.remainingCups) 杯")

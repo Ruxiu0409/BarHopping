@@ -86,7 +86,7 @@ struct SafeRideSheet: View {
             }
         }
         .padding(16)
-        .background(AppTheme.surface, in: RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius))
+        .appGlassCard()
     }
 
     private func providerSection(_ kind: SafeRideProvider.Kind) -> some View {
@@ -124,7 +124,7 @@ struct SafeRideSheet: View {
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(14)
-                    .background(AppTheme.surface, in: RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius))
+                    .appGlassCard()
                 }
                 .buttonStyle(.plain)
                 .accessibilityElement(children: .ignore)

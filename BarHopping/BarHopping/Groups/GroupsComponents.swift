@@ -17,7 +17,7 @@ struct GroupCard<Content: View>: View {
         VStack(alignment: .leading, spacing: 16) { content }
             .padding(18)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(.background, in: RoundedRectangle(cornerRadius: 22))
+            .appGlassCard(cornerRadius: 22)
     }
 }
 

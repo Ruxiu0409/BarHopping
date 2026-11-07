@@ -138,8 +138,7 @@ struct FreeRunView: View {
                 .font(.caption).foregroundStyle(AppTheme.textSecondary)
         }
         .padding(20)
-        .background(AppTheme.surface, in: RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius))
-        .overlay(RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius).strokeBorder(AppTheme.accentOnDark.opacity(0.5)))
+        .appGlassCard()
     }
 
     private var nearbyBars: some View {

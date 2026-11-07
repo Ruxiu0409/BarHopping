@@ -32,11 +32,7 @@ struct HomeCard: ViewModifier {
         content
             .padding(padding)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(HomeTheme.cardBackground, in: .rect(cornerRadius: HomeTheme.cornerRadius))
-            .overlay {
-                RoundedRectangle(cornerRadius: HomeTheme.cornerRadius)
-                    .strokeBorder(AppTheme.separator)
-            }
+            .appGlassCard(cornerRadius: HomeTheme.cornerRadius)
     }
 }
 

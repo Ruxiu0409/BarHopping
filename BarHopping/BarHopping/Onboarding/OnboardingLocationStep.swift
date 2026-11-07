@@ -52,7 +52,7 @@ struct OnboardingLocationStep: View {
         .fixedSize(horizontal: false, vertical: true)
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(20)
-        .background(AppTheme.surface, in: RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius))
+        .appGlassCard()
         .task(id: isRequesting) {
             guard isRequesting else { return }
             let result = await provider.requestLocation()

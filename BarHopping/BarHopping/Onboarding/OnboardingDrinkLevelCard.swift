@@ -27,7 +27,7 @@ struct OnboardingDrinkLevelCard: View {
             .fixedSize(horizontal: false, vertical: true)
             .padding(20)
             .frame(maxWidth: .infinity, minHeight: 88, alignment: .leading)
-            .background(isSelected ? AppTheme.accentSoft : AppTheme.surface, in: RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius))
+            .appGlassCard()
             .overlay {
                 RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius)
                     .strokeBorder(isSelected ? AppTheme.accentOnDark : AppTheme.separator, lineWidth: isSelected ? 2 : 1)

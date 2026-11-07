@@ -51,7 +51,7 @@ struct RunTabView: View {
                 .multilineTextAlignment(.center)
             Toggle("示範模式", isOn: $demoMode)
                 .padding(16)
-                .background(AppTheme.surface, in: RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius))
+                .appGlassCard()
             Text(demoMode ? "不用出門，以審計新村假定位體驗路跑。" : "使用真實定位，僅在 App 前景時更新。")
                 .font(.footnote).foregroundStyle(AppTheme.textSecondary)
         }

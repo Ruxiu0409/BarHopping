@@ -19,6 +19,6 @@ struct FreeRunLatestCard: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(20)
-        .background(AppTheme.surface, in: RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius))
+        .appGlassCard()
     }
 }

@@ -38,7 +38,7 @@ struct OnboardingGroupCard: View {
         .fixedSize(horizontal: false, vertical: true)
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(20)
-        .background(AppTheme.surface, in: RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius))
+        .appGlassCard()
         .sensoryFeedback(.success, trigger: group.isJoined) { _, joined in joined }
     }
 }

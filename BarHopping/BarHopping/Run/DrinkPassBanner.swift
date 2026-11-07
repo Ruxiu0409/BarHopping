@@ -31,15 +31,7 @@ struct DrinkPassBanner: View {
             .foregroundStyle(AppTheme.textPrimary)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(20)
-            .background {
-                RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius)
-                    .fill(AppTheme.surface)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius)
-                            .fill(LinearGradient(colors: [AppTheme.accent.opacity(0.38), AppTheme.accentSoft],
-                                                 startPoint: .topLeading, endPoint: .bottomTrailing))
-                    }
-            }
+            .appGlassCard()
             .contentShape(RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius))
         }
         .buttonStyle(.plain)

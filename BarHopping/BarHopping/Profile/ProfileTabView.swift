@@ -166,26 +166,7 @@ struct ProfileTabView: View {
             }
         }
         .padding(18)
-        .background {
-            RoundedRectangle(cornerRadius: 22)
-                .fill(LinearGradient(
-                    colors: [AppTheme.surface, AppTheme.surface.opacity(0.84), AppTheme.elevated.opacity(0.8)],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                ))
-                .overlay(alignment: .topTrailing) {
-                    Circle()
-                        .fill(AppTheme.accent.opacity(0.1))
-                        .frame(width: 150, height: 150)
-                        .blur(radius: 34)
-                        .offset(x: 40, y: -68)
-                        .clipShape(RoundedRectangle(cornerRadius: 22))
-                }
-        }
-        .overlay {
-            RoundedRectangle(cornerRadius: 22)
-                .strokeBorder(AppTheme.separator)
-        }
+        .appGlassCard(cornerRadius: 22)
     }
 
     @MainActor
@@ -367,8 +348,7 @@ struct ProfileTabView: View {
             }
         }
         .padding(16)
-        .background(AppTheme.surface)
-        .clipShape(RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius))
+        .appGlassCard()
     }
 
     private var statsOverviewSection: some View {
@@ -394,8 +374,7 @@ struct ProfileTabView: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 14)
-        .background(AppTheme.surface)
-        .clipShape(RoundedRectangle(cornerRadius: 14))
+        .appGlassCard(cornerRadius: 14)
     }
 
     private var badgesSection: some View {
@@ -436,8 +415,7 @@ struct ProfileTabView: View {
         }
         .frame(width: 80)
         .padding(.vertical, 10)
-        .background(AppTheme.surface)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .appGlassCard(cornerRadius: 12)
     }
 
     private var safetyRideCard: some View {
@@ -467,8 +445,7 @@ struct ProfileTabView: View {
             .font(.caption.bold())
         }
         .padding(14)
-        .background(AppTheme.surface)
-        .clipShape(RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius))
+        .appGlassCard()
     }
 
     private var legalAttributionSection: some View {
@@ -532,8 +509,7 @@ struct ProfileTabView: View {
                                 }
                                 .frame(maxWidth: .infinity)
                                 .padding()
-                                .background(AppTheme.surface)
-                                .clipShape(RoundedRectangle(cornerRadius: 14))
+                                .appGlassCard(cornerRadius: 14)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 14)
                                         .stroke(userProfile.selectedPresetId == preset.id ? AppTheme.accentOnDark : Color.clear, lineWidth: 2)

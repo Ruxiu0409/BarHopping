@@ -30,3 +30,60 @@ enum AppTheme {
 
     static let cardCornerRadius: CGFloat = 16
 }
+
+/// 全 App 共用的玻璃卡片底層，保留暗紫色的柔和光暈。
+struct AppGlassCard: ViewModifier {
+    var cornerRadius: CGFloat = AppTheme.cardCornerRadius
+
+    private var shape: RoundedRectangle { RoundedRectangle(cornerRadius: cornerRadius, style: .continuous) }
+
+    func body(content: Content) -> some View {
+        content
+            .background {
+                if #available(iOS 26.0, *) {
+                    shape.fill(.clear)
+                        .glassEffect(.regular.tint(AppTheme.accent.opacity(0.12)), in: shape)
+                } else {
+                    shape.fill(.ultraThinMaterial)
+                }
+            }
+            .background {
+                shape.fill(LinearGradient(
+                    colors: [
+                        AppTheme.surface.opacity(0.60),
+                        AppTheme.accent.opacity(0.10),
+                        AppTheme.elevated.opacity(0.44),
+                    ],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                ))
+            }
+            .overlay(alignment: .topTrailing) {
+                Circle()
+                    .fill(AppTheme.accentOnDark.opacity(0.10))
+                    .frame(width: 150, height: 150)
+                    .blur(radius: 38)
+                    .offset(x: 52, y: -70)
+                    .clipShape(shape)
+                    .allowsHitTesting(false)
+            }
+            .overlay {
+                shape.strokeBorder(
+                    LinearGradient(
+                        colors: [Color.white.opacity(0.12), AppTheme.accentOnDark.opacity(0.12), Color.white.opacity(0.06)],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    ),
+                    lineWidth: 1
+                )
+                .allowsHitTesting(false)
+            }
+            .clipShape(shape)
+    }
+}
+
+extension View {
+    func appGlassCard(cornerRadius: CGFloat = AppTheme.cardCornerRadius) -> some View {
+        modifier(AppGlassCard(cornerRadius: cornerRadius))
+    }
+}

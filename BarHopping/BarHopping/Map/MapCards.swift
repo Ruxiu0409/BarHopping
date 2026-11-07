@@ -25,9 +25,9 @@ struct PlaceCard: View {
                 Button(action: onClose) {
                     Image(systemName: "xmark")
                         .font(.footnote.weight(.bold))
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(MapTheme.textSecondary)
                         .frame(width: 30, height: 30)
-                        .background(Color(.tertiarySystemFill), in: Circle())
+                        .background(MapTheme.elevated, in: Circle())
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel("關閉")
@@ -52,7 +52,7 @@ struct PlaceCard: View {
                         .frame(width: 22, height: 20)
                 }
                 .buttonStyle(.bordered)
-                .tint(.secondary)
+                .tint(MapTheme.textSecondary)
                 .accessibilityLabel("更多操作")
             }
             .controlSize(.regular)
@@ -63,10 +63,10 @@ struct PlaceCard: View {
     private func infoRow(_ icon: String, _ text: String?) -> some View {
         Label {
             Text(text ?? "未提供")
-                .foregroundStyle(text == nil ? .secondary : .primary)
+                .foregroundStyle(text == nil ? MapTheme.textSecondary : MapTheme.textPrimary)
                 .lineLimit(2)
         } icon: {
-            Image(systemName: icon).foregroundStyle(.secondary)
+            Image(systemName: icon).foregroundStyle(MapTheme.textSecondary)
         }
         .font(.subheadline)
     }
@@ -93,9 +93,9 @@ struct WaypointCard: View {
                 Button(action: onClose) {
                     Image(systemName: "xmark")
                         .font(.footnote.weight(.bold))
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(MapTheme.textSecondary)
                         .frame(width: 30, height: 30)
-                        .background(Color(.tertiarySystemFill), in: Circle())
+                        .background(MapTheme.elevated, in: Circle())
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel("關閉")
@@ -107,7 +107,7 @@ struct WaypointCard: View {
             }
             Text("長按地圖上的其他位置，可以把這個點移過去。")
                 .font(.footnote)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(MapTheme.textSecondary)
             Button(role: .destructive, action: onDelete) {
                 Label(deleteTitle, systemImage: "trash")
                     .font(.subheadline.weight(.semibold))
@@ -129,13 +129,13 @@ struct RouteSummaryCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 6) {
-                Text("\(planner.plan.stops.count) 間酒吧")
+                Text("\(planner.plan.stops.count) 個站點")
                     .font(.subheadline.weight(.bold))
                 if let r = planner.result, planner.resultStatus != .none {
-                    Text("·").foregroundStyle(.secondary)
+                    Text("·").foregroundStyle(MapTheme.textSecondary)
                     Text(Fmt.distance(r.distanceMeters))
                         .font(.subheadline.weight(.semibold))
-                    Text("·").foregroundStyle(.secondary)
+                    Text("·").foregroundStyle(MapTheme.textSecondary)
                     Text(Fmt.duration(r.totalDurationSeconds))
                         .font(.subheadline.weight(.semibold))
                 }
@@ -171,7 +171,7 @@ struct RouteSummaryCard: View {
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.bordered)
-                .tint(.primary)
+                .tint(MapTheme.textPrimary)
             }
         }
         .mapCard()
@@ -207,12 +207,12 @@ struct RouteSummaryCard: View {
         } else if !planner.canCompute {
             Text("還需要：" + planner.plan.missingRequirements.joined(separator: "、") + "。長按地圖可設定起終點。")
                 .font(.footnote)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(MapTheme.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
         } else {
             Text(endText)
                 .font(.footnote)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(MapTheme.textSecondary)
                 .lineLimit(1)
         }
     }
@@ -256,9 +256,9 @@ struct PlaceResultsPanel: View {
                     Image(systemName: "chevron.down")
                         .font(.footnote.weight(.bold))
                         .frame(width: 30, height: 30)
-                        .background(Color(.tertiarySystemFill), in: Circle())
+                        .background(MapTheme.elevated, in: Circle())
                 }
-                .tint(.secondary)
+                .tint(MapTheme.textSecondary)
                 .accessibilityLabel("收合清單")
             }
             .padding(.bottom, 6)
@@ -330,9 +330,9 @@ struct PlaceResultsPanel: View {
                 state.select(place, moveCamera: true)
             } label: {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(place.name).font(.subheadline.weight(.semibold)).foregroundStyle(.primary).lineLimit(1)
+                    Text(place.name).font(.subheadline.weight(.semibold)).foregroundStyle(MapTheme.textPrimary).lineLimit(1)
                     Text("\(MapTheme.categoryText(place.category)) · \(place.address ?? "地址未提供")")
-                        .font(.caption).foregroundStyle(.secondary).lineLimit(1)
+                        .font(.caption).foregroundStyle(MapTheme.textSecondary).lineLimit(1)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .contentShape(Rectangle())
@@ -343,7 +343,7 @@ struct PlaceResultsPanel: View {
             } label: {
                 Image(systemName: added ? "checkmark.circle.fill" : "plus.circle.fill")
                     .font(.title2)
-                    .foregroundStyle(added ? Color.secondary : MapTheme.accent)
+                    .foregroundStyle(added ? MapTheme.textSecondary : MapTheme.accent)
             }
             .buttonStyle(.plain)
             .disabled(added)
@@ -355,7 +355,7 @@ struct PlaceResultsPanel: View {
     private func message(_ text: String, icon: String) -> some View {
         Label(text, systemImage: icon)
             .font(.footnote)
-            .foregroundStyle(.secondary)
+            .foregroundStyle(MapTheme.textSecondary)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.vertical, 8)
     }
@@ -375,11 +375,11 @@ struct AttributionBar: View {
             }
         }
         .font(.system(size: 10, weight: .medium))
-        .foregroundStyle(Color.primary.opacity(0.8))
+        .foregroundStyle(MapTheme.textSecondary)
         .lineLimit(1)
         .minimumScaleFactor(0.7)
         .padding(.horizontal, 8).padding(.vertical, 4)
-        .background(.regularMaterial, in: Capsule())
+        .background(MapTheme.surface, in: Capsule())
         .accessibilityElement(children: .contain)
         .accessibilityLabel("地圖資料來源")
     }

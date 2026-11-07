@@ -22,6 +22,7 @@ struct MapRenderModel: Equatable {
         var selected: Bool
     }
 
+    var convenienceStores: [ConvenienceStore] = []
     var places: [PlacePin] = []
     var waypoints: [WaypointPin] = []
     var legs: [[Coordinate]] = []
@@ -46,6 +47,9 @@ struct MapLibreMapView: UIViewRepresentable {
         c.mapView = map
         c.styleURL = styleURL
         c.reloadToken = styleReloadToken
+        map.overrideUserInterfaceStyle = .dark
+        map.backgroundColor = MapTheme.uiHalo
+        map.tintColor = MapTheme.uiLabel
         map.delegate = c
         map.automaticallyAdjustsContentInset = false
         map.isRotateEnabled = false
@@ -102,6 +106,7 @@ struct MapLibreMapView: UIViewRepresentable {
         private var lastModel: MapRenderModel?
         private var model = MapRenderModel()
 
+        private var convenienceSource: MLNShapeSource?
         private var placeSource: MLNShapeSource?
         private var waypointSource: MLNShapeSource?
         private var routeSource: MLNShapeSource?
@@ -109,6 +114,7 @@ struct MapLibreMapView: UIViewRepresentable {
         private var routeLayer: MLNLineStyleLayer?
         private var routeCasing: MLNLineStyleLayer?
 
+        static let convenienceLayerId = "bh-convenience-circle"
         static let placeLayerId = "bh-places-circle"
         static let waypointLayerId = "bh-waypoints-circle"
 
@@ -117,14 +123,35 @@ struct MapLibreMapView: UIViewRepresentable {
         // MARK: Style 與資料
 
         func styleDidLoad(_ style: MLNStyle) {
+            let convenienceSource = MLNShapeSource(identifier: "bh-convenience", shape: nil)
             let routeSource = MLNShapeSource(identifier: "bh-route", shape: nil)
             let snappedSource = MLNShapeSource(identifier: "bh-snapped", shape: nil)
             let placeSource = MLNShapeSource(identifier: "bh-places", shape: nil)
             let waypointSource = MLNShapeSource(identifier: "bh-waypoints", shape: nil)
-            [routeSource, snappedSource, placeSource, waypointSource].forEach { style.addSource($0) }
+            [convenienceSource, routeSource, snappedSource, placeSource, waypointSource].forEach { style.addSource($0) }
+
+            // 超商在路線、酒吧與站點下面，並以 style 的縮放門檻避免縮小時顯示。
+            let store = MLNCircleStyleLayer(identifier: Self.convenienceLayerId, source: convenienceSource)
+            store.minimumZoomLevel = Float(MapScreenState.convenienceMinimumZoom)
+            store.circleRadius = NSExpression(forConstantValue: 6)
+            store.circleColor = NSExpression(format: "MLN_MATCH(brand, '7-ELEVEN', %@, %@)",
+                                              MapTheme.uiSevenEleven, MapTheme.uiFamilyMart)
+            store.circleStrokeColor = NSExpression(forConstantValue: MapTheme.uiLabel.withAlphaComponent(0.6))
+            store.circleStrokeWidth = NSExpression(forConstantValue: 0.75)
+            style.addLayer(store)
+
+            let storeLabel = MLNSymbolStyleLayer(identifier: "bh-convenience-label", source: convenienceSource)
+            storeLabel.minimumZoomLevel = Float(MapScreenState.convenienceMinimumZoom)
+            storeLabel.text = NSExpression(forKeyPath: "label")
+            storeLabel.textFontNames = NSExpression(forConstantValue: ["Noto Sans Bold"])
+            storeLabel.textFontSize = NSExpression(forConstantValue: 9)
+            storeLabel.textColor = NSExpression(forConstantValue: UIColor.white)
+            storeLabel.textAllowsOverlap = NSExpression(forConstantValue: true)
+            storeLabel.textIgnoresPlacement = NSExpression(forConstantValue: true)
+            style.addLayer(storeLabel)
 
             let casing = MLNLineStyleLayer(identifier: "bh-route-casing", source: routeSource)
-            casing.lineColor = NSExpression(forConstantValue: UIColor.white)
+            casing.lineColor = NSExpression(forConstantValue: MapTheme.uiHalo)
             casing.lineWidth = NSExpression(forConstantValue: 9)
             casing.lineJoin = NSExpression(forConstantValue: "round")
             casing.lineCap = NSExpression(forConstantValue: "round")
@@ -139,8 +166,8 @@ struct MapLibreMapView: UIViewRepresentable {
 
             let snapped = MLNCircleStyleLayer(identifier: "bh-snapped-circle", source: snappedSource)
             snapped.circleRadius = NSExpression(forConstantValue: 3.5)
-            snapped.circleColor = NSExpression(forConstantValue: UIColor.darkGray)
-            snapped.circleStrokeColor = NSExpression(forConstantValue: UIColor.white)
+            snapped.circleColor = NSExpression(forConstantValue: MapTheme.uiLabel)
+            snapped.circleStrokeColor = NSExpression(forConstantValue: MapTheme.uiHalo)
             snapped.circleStrokeWidth = NSExpression(forConstantValue: 1.5)
             style.addLayer(snapped)
 
@@ -156,8 +183,8 @@ struct MapLibreMapView: UIViewRepresentable {
             placeLabel.text = NSExpression(forKeyPath: "name")
             placeLabel.textFontNames = NSExpression(forConstantValue: ["Noto Sans Regular"])
             placeLabel.textFontSize = NSExpression(forConstantValue: 12)
-            placeLabel.textColor = NSExpression(forConstantValue: MapTheme.uiAccentDark)
-            placeLabel.textHaloColor = NSExpression(forConstantValue: UIColor.white)
+            placeLabel.textColor = NSExpression(forConstantValue: MapTheme.uiLabel)
+            placeLabel.textHaloColor = NSExpression(forConstantValue: MapTheme.uiHalo)
             placeLabel.textHaloWidth = NSExpression(forConstantValue: 1.5)
             placeLabel.textAnchor = NSExpression(forConstantValue: "left")
             placeLabel.textOffset = NSExpression(forConstantValue: NSValue(cgVector: CGVector(dx: 0.9, dy: 0)))
@@ -179,10 +206,13 @@ struct MapLibreMapView: UIViewRepresentable {
             wpLabel.textFontNames = NSExpression(forConstantValue: ["Noto Sans Bold"])
             wpLabel.textFontSize = NSExpression(forConstantValue: 12)
             wpLabel.textColor = NSExpression(forConstantValue: UIColor.white)
+            wpLabel.textHaloColor = NSExpression(forConstantValue: MapTheme.uiHalo)
+            wpLabel.textHaloWidth = NSExpression(forConstantValue: 1)
             wpLabel.textAllowsOverlap = NSExpression(forConstantValue: true)
             wpLabel.textIgnoresPlacement = NSExpression(forConstantValue: true)
             style.addLayer(wpLabel)
 
+            self.convenienceSource = convenienceSource
             self.routeSource = routeSource
             self.snappedSource = snappedSource
             self.placeSource = placeSource
@@ -200,6 +230,15 @@ struct MapLibreMapView: UIViewRepresentable {
             let old = lastModel
             lastModel = newModel
 
+            if old?.convenienceStores != newModel.convenienceStores {
+                convenienceSource?.shape = MLNShapeCollectionFeature(shapes: newModel.convenienceStores.map { store in
+                    let feature = MLNPointFeature()
+                    feature.coordinate = store.coordinate.cl
+                    feature.attributes = ["storeId": store.id, "brand": store.brand.rawValue,
+                                          "label": store.brand == .sevenEleven ? "7" : "全"]
+                    return feature
+                })
+            }
             if old?.places != newModel.places {
                 placeSource?.shape = MLNShapeCollectionFeature(shapes: newModel.places.map { p in
                     let f = MLNPointFeature()
@@ -232,10 +271,10 @@ struct MapLibreMapView: UIViewRepresentable {
             }
             if old?.routeFaded != newModel.routeFaded {
                 let faded = newModel.routeFaded
-                routeLayer?.lineOpacity = NSExpression(forConstantValue: faded ? 0.35 : 1)
-                routeCasing?.lineOpacity = NSExpression(forConstantValue: faded ? 0.35 : 1)
+                routeLayer?.lineOpacity = NSExpression(forConstantValue: faded ? 0.6 : 1)
+                routeCasing?.lineOpacity = NSExpression(forConstantValue: faded ? 0.6 : 1)
                 routeLayer?.lineDashPattern = faded ? NSExpression(forConstantValue: [1.5, 1.2]) : nil
-                routeLayer?.lineColor = NSExpression(forConstantValue: faded ? UIColor.systemGray : MapTheme.uiAccent)
+                routeLayer?.lineColor = NSExpression(forConstantValue: MapTheme.uiAccent)
             }
         }
 
@@ -293,6 +332,14 @@ struct MapLibreMapView: UIViewRepresentable {
                 state.select(place, moveCamera: false)
                 return
             }
+            let stores = map.visibleFeatures(in: rect, styleLayerIdentifiers: [Self.convenienceLayerId])
+            if let id = nearest(stores, to: p, in: map)?.attribute(forKey: "storeId") as? String,
+               let store = state.convenienceStores.first(where: { $0.id == id }) {
+                state.selection = .convenienceStore(store)
+                state.pendingCoordinate = nil
+                state.listExpanded = false
+                return
+            }
             state.selection = nil
             state.pendingCoordinate = nil
         }
@@ -328,11 +375,16 @@ extension MapLibreMapView.Coordinator: @preconcurrency MLNMapViewDelegate {
         state.mapLoadError = "底圖載入失敗，仍可繼續編輯路線。"
     }
 
+    func mapView(_ mapView: MLNMapView, regionWillChangeWith reason: MLNCameraChangeReason, animated: Bool) {
+        state.cancelConvenienceQuery()
+    }
+
     func mapView(_ mapView: MLNMapView, regionDidChangeWith reason: MLNCameraChangeReason, animated: Bool) {
         let center = mapView.centerCoordinate
         state.camera = .init(center: Coordinate(latitude: center.latitude, longitude: center.longitude), zoom: mapView.zoomLevel)
         let b = mapView.visibleCoordinateBounds
         state.visibleBounds = BoundingBox(west: b.sw.longitude, south: b.sw.latitude, east: b.ne.longitude, north: b.ne.latitude)
+        state.refreshConvenienceStores()
         let gestures: MLNCameraChangeReason = [.gesturePan, .gesturePinch, .gestureZoomIn, .gestureZoomOut, .gestureOneFingerZoom]
         if !reason.intersection(gestures).isEmpty, !state.userMovedMap {
             state.userMovedMap = true

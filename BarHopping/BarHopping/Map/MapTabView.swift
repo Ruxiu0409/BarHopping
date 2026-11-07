@@ -40,12 +40,16 @@ struct MapTabView: View {
         }
         .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { mapFrame = $0 }
         .ignoresSafeArea(.keyboard)
+        .preferredColorScheme(.dark)
+        .foregroundStyle(MapTheme.textPrimary)
         .toolbarBackground(.visible, for: .tabBar)
         .onAppear {
             screen.loadConfigIfNeeded(api: planner.api)
             handleRouterFocus()
             consumeNotice()
+            screen.refreshConvenienceStores()
         }
+        .onDisappear { screen.cancelConvenienceQuery() }
         .onChange(of: router.mapFocusRouteRequest) { handleRouterFocus() }
         .onChange(of: planner.notice) { consumeNotice() }
         .task(id: screen.toast) {
@@ -76,6 +80,7 @@ struct MapTabView: View {
         VStack(spacing: 8) {
             searchBar
             chips
+            if screen.showsConvenienceStores { convenienceControls }
             if screen.userMovedMap && screen.searchStatus != .loading {
                 Button {
                     searchFocused = false
@@ -134,7 +139,7 @@ struct MapTabView: View {
         }
         .padding(.leading, 12).padding(.trailing, 5)
         .frame(height: 48)
-        .background(.background, in: Capsule())
+        .background(MapTheme.elevated, in: Capsule())
         .shadow(color: .black.opacity(0.15), radius: 6, y: 2)
     }
 
@@ -144,6 +149,9 @@ struct MapTabView: View {
                 chip("全部", selected: screen.categoryFilter == nil) { screen.categoryFilter = nil }
                 chip("酒吧", selected: screen.categoryFilter == .bar) { screen.categoryFilter = .bar }
                 chip("Pub", selected: screen.categoryFilter == .pub) { screen.categoryFilter = .pub }
+                chip("超商", systemImage: "storefront", selected: screen.showsConvenienceStores) {
+                    screen.toggleConvenienceStores()
+                }
                 chip(listChipTitle, systemImage: screen.listExpanded ? "chevron.down" : "list.bullet",
                      selected: screen.listExpanded) {
                     screen.selection = nil
@@ -152,6 +160,34 @@ struct MapTabView: View {
             }
             .padding(.horizontal, 2).padding(.vertical, 3)
         }
+    }
+
+    private var convenienceControls: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            HStack(spacing: 8) {
+                chip("全部", selected: screen.convenienceBrand == nil) { screen.filterConvenienceStores(nil) }
+                ForEach(ConvenienceBrand.allCases, id: \.self) { brand in
+                    chip(brand.rawValue, selected: screen.convenienceBrand == brand) {
+                        screen.filterConvenienceStores(brand)
+                    }
+                }
+                Spacer(minLength: 0)
+            }
+            if screen.convenienceStatus == .failed {
+                Button { screen.refreshConvenienceStores() } label: { convenienceStatusLabel }
+                    .buttonStyle(.plain)
+            } else {
+                convenienceStatusLabel
+            }
+        }
+    }
+
+    private var convenienceStatusLabel: some View {
+        Label(screen.convenienceStatusText, systemImage: "storefront")
+            .font(.caption)
+            .foregroundStyle(MapTheme.textSecondary)
+            .padding(.horizontal, 10).padding(.vertical, 6)
+            .background(MapTheme.surface, in: Capsule())
     }
 
     private var listChipTitle: String {
@@ -165,13 +201,14 @@ struct MapTabView: View {
                 if let systemImage { Image(systemName: systemImage).font(.caption.weight(.bold)) }
             }
             .font(.subheadline.weight(.semibold))
-            .foregroundStyle(selected ? MapTheme.accent : Color.primary)
+            .foregroundStyle(selected ? MapTheme.accent : MapTheme.textPrimary)
             .padding(.horizontal, 14).frame(height: 34)
-            .background(.background, in: Capsule())
-            .overlay(Capsule().strokeBorder(selected ? MapTheme.accent : Color(.separator), lineWidth: selected ? 1.5 : 0.5))
+            .background(MapTheme.elevated, in: Capsule())
+            .overlay(Capsule().strokeBorder(selected ? MapTheme.accent : MapTheme.separator, lineWidth: selected ? 1.5 : 0.5))
             .shadow(color: .black.opacity(0.1), radius: 2, y: 1)
         }
         .buttonStyle(.plain)
+        .accessibilityAddTraits(selected ? .isSelected : [])
     }
 
     @ViewBuilder private var banners: some View {
@@ -214,7 +251,7 @@ struct MapTabView: View {
             trailing()
         }
         .padding(.horizontal, 12).padding(.vertical, 10)
-        .background(.background, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .background(MapTheme.surface, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
         .shadow(color: .black.opacity(0.12), radius: 5, y: 2)
         .tint(MapTheme.accent)
     }
@@ -248,7 +285,7 @@ struct MapTabView: View {
                 if screen.isLocating {
                     ProgressView()
                         .frame(width: 46, height: 46)
-                        .background(.background, in: Circle())
+                        .background(MapTheme.elevated, in: Circle())
                         .shadow(color: .black.opacity(0.18), radius: 4, y: 2)
                 } else {
                     MapRoundButtonLabel(systemImage: screen.showsUserLocation ? "location.fill" : "location")
@@ -291,6 +328,16 @@ struct MapTabView: View {
                 onAdd: { planner.addStop(Waypoint.from(place), maxStops: screen.maxStops) },
                 onSetOrigin: { planner.setOrigin(Waypoint.from(place)) },
                 onSetDestination: { planner.setDestination(Waypoint.from(place)) },
+                onClose: { screen.selection = nil }))
+        case .convenienceStore(let store):
+            return AnyView(ConvenienceStoreCard(
+                store: store,
+                onAdd: {
+                    if planner.addStop(Waypoint.custom(name: store.name, at: store.coordinate), maxStops: screen.maxStops) {
+                        screen.selection = nil
+                        screen.toast = "已加入自訂站點「\(store.name)」"
+                    }
+                },
                 onClose: { screen.selection = nil }))
         case .waypoint(let id):
             guard let info = waypointInfo(id) else { return nil }
@@ -422,6 +469,7 @@ struct MapTabView: View {
 
     private var renderModel: MapRenderModel {
         var m = MapRenderModel()
+        m.convenienceStores = screen.showsConvenienceStores ? screen.convenienceStores : []
         let plan = planner.plan
         let problems = problemIds
         let selectedWaypoint: String? = if case .waypoint(let id) = screen.selection { id } else { nil }

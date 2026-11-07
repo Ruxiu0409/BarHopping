@@ -44,7 +44,7 @@ final class MapScreenState {
 
     // MARK: 底圖
 
-    static let fallbackStyleURL = URL(string: "https://tiles.openfreemap.org/styles/liberty")!
+    static let fallbackStyleURL = URL(string: "https://tiles.openfreemap.org/styles/dark")!
     static let fallbackAttributions = [
         Attribution(text: "© OpenStreetMap contributors", url: URL(string: "https://www.openstreetmap.org/copyright")!),
         Attribution(text: "OpenFreeMap", url: URL(string: "https://openfreemap.org")!),
@@ -213,11 +213,92 @@ final class MapScreenState {
         return BoundingBox(west: lon - span, south: lat - span * 0.8, east: lon + span, north: lat + span * 0.8)
     }
 
+    // MARK: 超商圖層
+
+    static let convenienceMinimumZoom = 14.0
+    var showsConvenienceStores = false
+    var convenienceBrand: ConvenienceBrand?
+    private(set) var convenienceStores: [ConvenienceStore] = []
+    private(set) var convenienceStatus: ConvenienceStatus = .zoomIn
+    @ObservationIgnored private let convenienceProvider = AppEnvironment.makeConvenienceStoreProvider()
+    @ObservationIgnored private var convenienceTask: Task<Void, Never>?
+    @ObservationIgnored private var convenienceToken = 0
+
+    enum ConvenienceStatus: Equatable {
+        case zoomIn, loading, loaded, failed
+    }
+
+    var convenienceStatusText: String {
+        switch convenienceStatus {
+        case .zoomIn: "放大地圖即可顯示超商"
+        case .loading: "正在載入超商…"
+        case .loaded: convenienceStores.isEmpty ? "這個範圍沒有超商資料" : "目前範圍 \(convenienceStores.count) 間超商"
+        case .failed: "超商資料載入失敗，點此重試"
+        }
+    }
+
+    func toggleConvenienceStores() {
+        showsConvenienceStores.toggle()
+        refreshConvenienceStores()
+    }
+
+    func filterConvenienceStores(_ brand: ConvenienceBrand?) {
+        convenienceBrand = brand
+        convenienceStores = []
+        if case .convenienceStore = selection { selection = nil }
+        refreshConvenienceStores()
+    }
+
+    func cancelConvenienceQuery() {
+        convenienceTask?.cancel()
+        convenienceTask = nil
+        convenienceToken += 1
+    }
+
+    /// 只由地圖停止移動、開關與品牌切換觸發。取消與 token 一起防止舊結果覆蓋。
+    func refreshConvenienceStores() {
+        cancelConvenienceQuery()
+        guard showsConvenienceStores, camera.zoom >= Self.convenienceMinimumZoom else {
+            convenienceStores = []
+            convenienceStatus = .zoomIn
+            if case .convenienceStore = selection { selection = nil }
+            return
+        }
+        guard let bbox = visibleBounds else { return }
+        convenienceStatus = .loading
+        let token = convenienceToken
+        let brands = Set(convenienceBrand.map { [$0] } ?? [])
+        let provider = convenienceProvider
+        convenienceTask = Task { [weak self] in
+            do {
+                try await Task.sleep(for: .milliseconds(300))
+                let stores = try await provider.stores(in: bbox, brands: brands)
+                try Task.checkCancellation()
+                guard let self, self.convenienceToken == token else { return }
+                self.convenienceStores = stores
+                self.convenienceStatus = .loaded
+                self.convenienceTask = nil
+                if case .convenienceStore(let selected) = self.selection,
+                   !stores.contains(where: { $0.id == selected.id }) {
+                    self.selection = nil
+                }
+            } catch is CancellationError {
+                return
+            } catch {
+                guard let self, self.convenienceToken == token else { return }
+                self.convenienceStores = []
+                self.convenienceStatus = .failed
+                self.convenienceTask = nil
+            }
+        }
+    }
+
     // MARK: 選取
 
     enum Selection: Equatable {
         case place(Place)
         case waypoint(String)
+        case convenienceStore(ConvenienceStore)
     }
     var selection: Selection?
 

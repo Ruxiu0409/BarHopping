@@ -60,7 +60,7 @@ struct SavedDraftsView: View {
                     Text(deleteError ?? "")
                 }
         }
-        .tint(RunTheme.accent)
+        .tint(RunTheme.accentOnDark)
         .preferredColorScheme(.dark)
     }
 
@@ -124,7 +124,7 @@ struct SavedDraftsView: View {
                     HStack {
                         Text(draft.plan.title).font(.headline)
                         if draft.id == currentPlanId {
-                            Text("目前").font(.caption.bold()).foregroundStyle(RunTheme.accent)
+                            Text("目前").font(.caption.bold()).foregroundStyle(RunTheme.accentOnDark)
                         }
                     }
                     Text(summary(draft))

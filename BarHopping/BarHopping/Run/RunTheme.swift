@@ -2,8 +2,10 @@ import SwiftUI
 
 /// 路跑分頁的配色與錯誤說明。
 enum RunTheme {
-    /// 主色 #FC5200
+    /// 跟隨全 App 主色。
     static let accent = AppTheme.accent
+    /// 深色底上的文字、圖示與細線。
+    static let accentOnDark = AppTheme.accentOnDark
 }
 
 extension ServiceError {

@@ -15,12 +15,28 @@ struct RunTabView: View {
     @State private var isSaving = false
     @State private var showDrafts = false
     @State private var confirmNewPlan = false
+    @State private var showPlanRequired = false
+    @State private var showDrinkPass = false
+    @State private var drinkPassPurchases: [DrinkPassPurchase] = []
 
     private var plan: RoutePlan { planner.plan }
 
     var body: some View {
         NavigationStack {
             List {
+                Section {
+                    RunStartButton(hasStops: !plan.stops.isEmpty, action: startRun)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 20)
+                        .listRowBackground(AppTheme.background)
+                        .listRowSeparator(.hidden)
+                        .alert("請先規劃路線", isPresented: $showPlanRequired) {
+                            Button("前往地圖規劃") { router.selectedTab = .map }
+                            Button("取消", role: .cancel) { }
+                        } message: {
+                            Text("目前還沒有站點。請先到地圖加入想去的酒吧，再回來按「開始」。")
+                        }
+                }
                 Group {
                     statusSection
                     planSection
@@ -32,6 +48,13 @@ struct RunTabView: View {
                 }
                 .listRowBackground(AppTheme.surface)
                 .listRowSeparatorTint(AppTheme.separator)
+
+                Section {
+                    DrinkPassBanner(event: DrinkPassMockData.event) { showDrinkPass = true }
+                        .listRowInsets(EdgeInsets())
+                        .listRowBackground(AppTheme.background)
+                        .listRowSeparator(.hidden)
+                }
             }
             .listStyle(.insetGrouped)
             .scrollContentBackground(.hidden)
@@ -41,6 +64,9 @@ struct RunTabView: View {
             .toolbarBackgroundVisibility(.visible, for: .navigationBar)
             .navigationTitle("路跑")
             .toolbar { toolbar }
+            .navigationDestination(isPresented: $showDrinkPass) {
+                DrinkPassDetailView(event: DrinkPassMockData.event, purchases: $drinkPassPurchases)
+            }
             .overlay(alignment: .top) { toastView }
             .sheet(isPresented: $showDrafts) {
                 SavedDraftsView(drafts: planner.drafts,
@@ -74,6 +100,16 @@ struct RunTabView: View {
         .onChange(of: planner.notice) { _, _ in consumeNotice() }
     }
 
+    private func startRun() {
+        commitTitle()
+        titleFocused = false
+        guard !plan.stops.isEmpty else {
+            showPlanRequired = true
+            return
+        }
+        router.showRouteOnMap()
+    }
+
     // MARK: - 狀態（過期、錯誤、已儲存估算）
 
     @ViewBuilder
@@ -83,7 +119,7 @@ struct RunTabView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Label("路線需重新計算", systemImage: "arrow.triangle.2.circlepath")
                         .font(.headline)
-                        .foregroundStyle(RunTheme.accent)
+                        .foregroundStyle(RunTheme.accentOnDark)
                     Text("規劃已修改，下方結果是修改前的估算。")
                         .font(.footnote)
                         .foregroundStyle(AppTheme.textSecondary)
@@ -136,6 +172,7 @@ struct RunTabView: View {
                             .foregroundStyle(AppTheme.danger)
                         HStack {
                             Button("在地圖上移動") { router.showRouteOnMap() }
+                                .tint(RunTheme.accentOnDark)
                                 .accessibilityLabel("在地圖上移動 \(item.waypoint.name)")
                             if item.isStop {
                                 Button("刪除這站", role: .destructive) { planner.removeStop(id: item.waypoint.id) }
@@ -223,7 +260,7 @@ struct RunTabView: View {
                     Text(waypoint.name).foregroundStyle(isProblem ? AppTheme.danger : AppTheme.textPrimary)
                 }
             } icon: {
-                Image(systemName: icon).foregroundStyle(isProblem ? AppTheme.danger : RunTheme.accent)
+                Image(systemName: icon).foregroundStyle(isProblem ? AppTheme.danger : RunTheme.accentOnDark)
             }
             .accessibilityElement(children: .combine)
             .accessibilityLabel("\(title)：\(waypoint.name)\(isProblem ? "，找不到可步行的道路" : "")")
@@ -239,6 +276,7 @@ struct RunTabView: View {
                 }
                 Button("到地圖設定") { router.selectedTab = .map }
                     .buttonStyle(.bordered)
+                    .tint(RunTheme.accentOnDark)
                     .controlSize(.small)
                     .accessibilityLabel("到地圖設定\(title)")
             }
@@ -263,7 +301,7 @@ struct RunTabView: View {
                 VStack(spacing: 10) {
                     Image(systemName: "wineglass")
                         .font(.largeTitle)
-                        .foregroundStyle(RunTheme.accent)
+                        .foregroundStyle(RunTheme.accentOnDark)
                         .accessibilityHidden(true)
                     Text("還沒有酒吧").font(.headline)
                     Text("到地圖搜尋或瀏覽酒吧，加入路線後會出現在這裡。")
@@ -341,7 +379,7 @@ struct RunTabView: View {
             if planner.resultStatus == .savedEstimate {
                 Label("已儲存的估算", systemImage: "bookmark.fill")
                     .font(.subheadline)
-                    .foregroundStyle(RunTheme.accent)
+                    .foregroundStyle(RunTheme.accentOnDark)
                     .accessibilityHint("這是儲存時的結果，可以重新計算取得最新路線")
             }
 
@@ -351,6 +389,7 @@ struct RunTabView: View {
                 } label: {
                     Label("在地圖查看", systemImage: "map")
                 }
+                .tint(RunTheme.accentOnDark)
             }
         }
     }
@@ -375,6 +414,7 @@ struct RunTabView: View {
                 Label("更多", systemImage: "ellipsis.circle")
             }
             .accessibilityLabel("路線選項")
+            .tint(RunTheme.accentOnDark)
         }
         ToolbarItem(placement: .topBarTrailing) {
             Button {
@@ -388,6 +428,7 @@ struct RunTabView: View {
             }
             .disabled(isSaving)
             .accessibilityLabel("儲存路線")
+            .tint(RunTheme.accentOnDark)
         }
     }
 

@@ -51,7 +51,7 @@ struct RunResultSection: View {
             if let dwell {
                 Label("在 \(to) 停留 \(Fmt.minutes(dwell))", systemImage: "wineglass")
                     .font(.footnote)
-                    .foregroundStyle(RunTheme.accent)
+                    .foregroundStyle(RunTheme.accentOnDark)
             }
         }
         .accessibilityElement(children: .combine)
@@ -65,7 +65,7 @@ struct RunResultSection: View {
         LabeledContent {
             Text(value)
                 .font(emphasized ? .headline : .body)
-                .foregroundStyle(emphasized ? RunTheme.accent : AppTheme.textPrimary)
+                .foregroundStyle(emphasized ? RunTheme.accentOnDark : AppTheme.textPrimary)
         } label: {
             Label(title, systemImage: icon)
         }

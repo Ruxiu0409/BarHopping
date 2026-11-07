@@ -34,8 +34,8 @@ struct RunStopRow: View {
                                 .font(.caption.bold())
                                 .padding(.horizontal, 6)
                                 .padding(.vertical, 2)
-                                .foregroundStyle(RunTheme.accent)
-                                .background(Capsule().strokeBorder(RunTheme.accent))
+                                .foregroundStyle(RunTheme.accentOnDark)
+                                .background(Capsule().strokeBorder(RunTheme.accentOnDark))
                         }
                     }
                     if isProblem {
@@ -61,14 +61,14 @@ struct RunStopRow: View {
                 Button { onMove(-1) } label: {
                     Label("上移", systemImage: "arrow.up")
                 }
-                .tint(RunTheme.accent)
+                .tint(RunTheme.accentOnDark)
                 .disabled(index == 0)
                 .accessibilityLabel("將 \(stop.waypoint.name) 上移")
 
                 Button { onMove(1) } label: {
                     Label("下移", systemImage: "arrow.down")
                 }
-                .tint(RunTheme.accent)
+                .tint(RunTheme.accentOnDark)
                 .disabled(index == count - 1)
                 .accessibilityLabel("將 \(stop.waypoint.name) 下移")
 

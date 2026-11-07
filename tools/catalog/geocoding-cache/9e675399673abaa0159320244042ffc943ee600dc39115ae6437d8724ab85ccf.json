@@ -1,0 +1,108 @@
+{
+  "query": {
+    "street": "179 建和路2段",
+    "city": "臺中市",
+    "format": "jsonv2",
+    "addressdetails": "1",
+    "limit": "5",
+    "countrycodes": "tw"
+  },
+  "url": "https://nominatim.openstreetmap.org/search?street=179+%E5%BB%BA%E5%92%8C%E8%B7%AF2%E6%AE%B5&city=%E8%87%BA%E4%B8%AD%E5%B8%82&format=jsonv2&addressdetails=1&limit=5&countrycodes=tw",
+  "fetchedAt": "2026-11-07T05:23:44.872972+00:00",
+  "results": [
+    {
+      "place_id": 226524377,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8535431023,
+      "lat": "24.1717261",
+      "lon": "120.7244290",
+      "category": "place",
+      "type": "house",
+      "place_rank": 30,
+      "importance": 6.650873578999036e-05,
+      "addresstype": "place",
+      "name": "",
+      "display_name": "179號, 建和路二段, 和平里, 北屯區, 臺中市, 406055, 臺灣",
+      "address": {
+        "house_number": "179號",
+        "road": "建和路二段",
+        "neighbourhood": "和平里",
+        "suburb": "北屯區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "406055",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1716761",
+        "24.1717761",
+        "120.7243790",
+        "120.7244790"
+      ]
+    },
+    {
+      "place_id": 226820036,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 202795198,
+      "lat": "24.1714989",
+      "lon": "120.7246183",
+      "category": "highway",
+      "type": "tertiary",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "tertiary",
+      "name": "建和路二段",
+      "display_name": "建和路二段, 和平里, 北屯區, 臺中市, 406, 臺灣",
+      "address": {
+        "road": "建和路二段",
+        "neighbourhood": "和平里",
+        "suburb": "北屯區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "406",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1668501",
+        "24.1761895",
+        "120.7242728",
+        "120.7247259"
+      ]
+    },
+    {
+      "place_id": 226767729,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 312365598,
+      "lat": "24.1798088",
+      "lon": "120.7257487",
+      "category": "highway",
+      "type": "residential",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "residential",
+      "name": "建和路二段",
+      "display_name": "建和路二段, 和平里, 北屯區, 臺中市, 406, 臺灣",
+      "address": {
+        "road": "建和路二段",
+        "neighbourhood": "和平里",
+        "suburb": "北屯區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "406",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1791652",
+        "24.1804611",
+        "120.7254132",
+        "120.7260681"
+      ]
+    }
+  ]
+}

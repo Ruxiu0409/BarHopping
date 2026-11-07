@@ -1,0 +1,47 @@
+{
+  "query": {
+    "street": "52-1 綏遠路2段",
+    "city": "臺中市",
+    "format": "jsonv2",
+    "addressdetails": "1",
+    "limit": "5",
+    "countrycodes": "tw"
+  },
+  "url": "https://nominatim.openstreetmap.org/search?street=52-1+%E7%B6%8F%E9%81%A0%E8%B7%AF2%E6%AE%B5&city=%E8%87%BA%E4%B8%AD%E5%B8%82&format=jsonv2&addressdetails=1&limit=5&countrycodes=tw",
+  "fetchedAt": "2026-11-07T05:23:33.861263+00:00",
+  "results": [
+    {
+      "place_id": 227895873,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8111898570,
+      "lat": "24.1702900",
+      "lon": "120.6814970",
+      "category": "amenity",
+      "type": "restaurant",
+      "place_rank": 30,
+      "importance": 6.650873578999036e-05,
+      "addresstype": "amenity",
+      "name": "那一間串燒",
+      "display_name": "那一間串燒, 52-1, 綏遠路二段, 平和里, 北屯區, 臺中市, 406, 臺灣",
+      "address": {
+        "amenity": "那一間串燒",
+        "house_number": "52-1",
+        "road": "綏遠路二段",
+        "neighbourhood": "平和里",
+        "suburb": "北屯區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "406",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1702400",
+        "24.1703400",
+        "120.6814470",
+        "120.6815470"
+      ]
+    }
+  ]
+}

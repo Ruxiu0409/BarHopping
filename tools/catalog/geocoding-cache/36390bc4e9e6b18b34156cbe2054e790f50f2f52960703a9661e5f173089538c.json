@@ -1,0 +1,174 @@
+{
+  "query": {
+    "street": "264 向上路1段",
+    "city": "臺中市",
+    "format": "jsonv2",
+    "addressdetails": "1",
+    "limit": "5",
+    "countrycodes": "tw"
+  },
+  "url": "https://nominatim.openstreetmap.org/search?street=264+%E5%90%91%E4%B8%8A%E8%B7%AF1%E6%AE%B5&city=%E8%87%BA%E4%B8%AD%E5%B8%82&format=jsonv2&addressdetails=1&limit=5&countrycodes=tw",
+  "fetchedAt": "2026-11-07T05:23:38.968734+00:00",
+  "results": [
+    {
+      "place_id": 226860904,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8534978167,
+      "lat": "24.1468939",
+      "lon": "120.6581474",
+      "category": "place",
+      "type": "house",
+      "place_rank": 30,
+      "importance": 6.650873578999036e-05,
+      "addresstype": "place",
+      "name": "",
+      "display_name": "264號, 向上路一段, 昇平里, 西區, 田心, 臺中市, 403, 臺灣",
+      "address": {
+        "house_number": "264號",
+        "road": "向上路一段",
+        "neighbourhood": "昇平里",
+        "suburb": "西區",
+        "village": "田心",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "403",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1468439",
+        "24.1469439",
+        "120.6580974",
+        "120.6581974"
+      ]
+    },
+    {
+      "place_id": 227469057,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 248415635,
+      "lat": "24.1467927",
+      "lon": "120.6467361",
+      "category": "highway",
+      "type": "secondary",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "secondary",
+      "name": "向上路一段",
+      "display_name": "向上路一段, 田心里, 南屯區, 田心, 臺中市, 40866, 臺灣",
+      "address": {
+        "road": "向上路一段",
+        "neighbourhood": "田心里",
+        "suburb": "南屯區",
+        "village": "田心",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "40866",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1467924",
+        "24.1467930",
+        "120.6466250",
+        "120.6468472"
+      ]
+    },
+    {
+      "place_id": 227517445,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 690114400,
+      "lat": "24.1467552",
+      "lon": "120.6499323",
+      "category": "highway",
+      "type": "secondary",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "secondary",
+      "name": "向上路一段",
+      "display_name": "向上路一段, 公正里, 西區, 田心, 臺中市, 403, 臺灣",
+      "address": {
+        "road": "向上路一段",
+        "neighbourhood": "公正里",
+        "suburb": "西區",
+        "village": "田心",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "403",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1467203",
+        "24.1467924",
+        "120.6468472",
+        "120.6530175"
+      ]
+    },
+    {
+      "place_id": 226892157,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 355232305,
+      "lat": "24.1467021",
+      "lon": "120.6675787",
+      "category": "highway",
+      "type": "secondary",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "secondary",
+      "name": "向上路一段",
+      "display_name": "向上路一段, 双龍里, 西區, 臺中市, 403, 臺灣",
+      "address": {
+        "road": "向上路一段",
+        "neighbourhood": "双龍里",
+        "suburb": "西區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "403",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1466967",
+        "24.1467095",
+        "120.6653032",
+        "120.6698539"
+      ]
+    },
+    {
+      "place_id": 227556906,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 575168933,
+      "lat": "24.1467078",
+      "lon": "120.6594364",
+      "category": "highway",
+      "type": "secondary",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "secondary",
+      "name": "向上路一段",
+      "display_name": "向上路一段, 昇平里, 西區, 田心, 臺中市, 403, 臺灣",
+      "address": {
+        "road": "向上路一段",
+        "neighbourhood": "昇平里",
+        "suburb": "西區",
+        "village": "田心",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "403",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1466968",
+        "24.1467078",
+        "120.6571842",
+        "120.6616887"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "query": {
+    "street": "96 五權路",
+    "city": "臺中市",
+    "format": "jsonv2",
+    "addressdetails": "1",
+    "limit": "5",
+    "countrycodes": "tw"
+  },
+  "url": "https://nominatim.openstreetmap.org/search?street=96+%E4%BA%94%E6%AC%8A%E8%B7%AF&city=%E8%87%BA%E4%B8%AD%E5%B8%82&format=jsonv2&addressdetails=1&limit=5&countrycodes=tw",
+  "fetchedAt": "2026-11-07T05:23:35.767867+00:00",
+  "results": [
+    {
+      "place_id": 227028639,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8535016857,
+      "lat": "24.1470078",
+      "lon": "120.6732573",
+      "category": "place",
+      "type": "house",
+      "place_rank": 30,
+      "importance": 6.650873578999036e-05,
+      "addresstype": "place",
+      "name": "",
+      "display_name": "96號, 五權路, 後龍里, 西區, 臺中市, 403, 臺灣",
+      "address": {
+        "house_number": "96號",
+        "road": "五權路",
+        "neighbourhood": "後龍里",
+        "suburb": "西區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "403",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1469578",
+        "24.1470578",
+        "120.6732073",
+        "120.6733073"
+      ]
+    }
+  ]
+}

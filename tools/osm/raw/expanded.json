@@ -1,0 +1,1168 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-11-07T05:20:51Z",
+    "timestamp_areas_base": "2026-11-06T22:51:45Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 3628107628,
+  "lat": 24.0772675,
+  "lon": 120.7129434,
+  "tags": {
+    "addr:city": "台中市",
+    "addr:country": "TW",
+    "addr:district": "霧峰區",
+    "addr:full": "413台中市霧峰區吉峰路141號",
+    "addr:housenumber": "141",
+    "addr:postcode": "413",
+    "addr:street": "吉峰路",
+    "name": "frozen dessert bar 三種冰"
+  }
+},
+{
+  "type": "node",
+  "id": 3899170394,
+  "lat": 24.1310255,
+  "lon": 120.6461815,
+  "tags": {
+    "brand": "Subaru",
+    "brand:wikidata": "Q172741",
+    "brand:wikipedia": "en:Subaru",
+    "name": "Subaru",
+    "shop": "car"
+  }
+},
+{
+  "type": "node",
+  "id": 4256709454,
+  "lat": 24.0685288,
+  "lon": 120.6996721,
+  "tags": {
+    "addr:city": "台中市",
+    "addr:country": "TW",
+    "addr:district": "霧峰區",
+    "addr:full": "413台中市霧峰區德泰街11號",
+    "addr:housenumber": "11",
+    "addr:postcode": "413",
+    "addr:street": "德泰街",
+    "amenity": "restaurant",
+    "capacity": "20",
+    "cuisine": "kebab",
+    "delivery": "no",
+    "level": "1",
+    "name": "Ironfire炭烤 酒吧",
+    "opening_hours": "6",
+    "phone": "+886 987 229 683",
+    "smoking": "outside",
+    "takeaway": "yes",
+    "website": "https://www.facebook.com/IRONFIREBBQ/",
+    "wheelchair": "no"
+  }
+},
+{
+  "type": "node",
+  "id": 4308829878,
+  "lat": 24.1574342,
+  "lon": 120.6532741,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "japanese",
+    "name": "御狸殿居酒屋",
+    "opening_hours": "Mo-Sa 17:00-24:00; Su off"
+  }
+},
+{
+  "type": "node",
+  "id": 4339469589,
+  "lat": 24.1431292,
+  "lon": 120.6758096,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Saobao Bar&Kitchen"
+  }
+},
+{
+  "type": "node",
+  "id": 4423649811,
+  "lat": 24.1768540,
+  "lon": 120.6393390,
+  "tags": {
+    "addr:city": "臺中市",
+    "addr:country": "TW",
+    "addr:district": "西屯區",
+    "addr:full": "40744臺中市西屯區逢明街85號",
+    "addr:housenumber": "85",
+    "addr:postcode": "40744",
+    "addr:street": "逢明街",
+    "amenity": "bar",
+    "level": "1",
+    "name": "SPIKE 飛鏢酒吧"
+  }
+},
+{
+  "type": "node",
+  "id": 4636344790,
+  "lat": 24.1565499,
+  "lon": 120.6614369,
+  "tags": {
+    "addr:city": "臺中市",
+    "addr:country": "TW",
+    "addr:district": "西區",
+    "addr:full": "40353台中市西區台灣大道二段490號",
+    "addr:housenumber": "490",
+    "addr:postcode": "40353",
+    "addr:street": "臺灣大道二段",
+    "amenity": "restaurant",
+    "branch": "台中勤美店",
+    "cuisine": "brasserie",
+    "name": "掌門精釀啤酒",
+    "name:de": "Zhang Men Craft Brewery",
+    "name:en": "Zhang Men Craft Brewery Taichung",
+    "name:zh": "掌門精釀啤酒",
+    "opening_hours": "Mo-Su 15:00-01:00",
+    "phone": "+886 4 2329 1823",
+    "website": "https://www.zhangmen.co/"
+  }
+},
+{
+  "type": "node",
+  "id": 5491837372,
+  "lat": 24.1649850,
+  "lon": 120.6436898,
+  "tags": {
+    "amenity": "restaurant",
+    "is_in": "新光三越台中中港店",
+    "level": "9",
+    "name": "時時香RICE BAR"
+  }
+},
+{
+  "type": "node",
+  "id": 5534174346,
+  "lat": 24.1707787,
+  "lon": 120.6874172,
+  "tags": {
+    "addr:street": "北平路四段",
+    "amenity": "restaurant",
+    "name": "札卡餐酒館",
+    "payment:cash": "only"
+  }
+},
+{
+  "type": "node",
+  "id": 5552464437,
+  "lat": 24.1510441,
+  "lon": 120.6499931,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "bistro88義法餐酒館"
+  }
+},
+{
+  "type": "node",
+  "id": 5562871380,
+  "lat": 24.1512555,
+  "lon": 120.6719471,
+  "tags": {
+    "amenity": "bar",
+    "name": "故事 ストーリー串燒 酒場"
+  }
+},
+{
+  "type": "node",
+  "id": 5645870212,
+  "lat": 24.1495829,
+  "lon": 120.6469578,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "泰藏玖Thai Bistro"
+  }
+},
+{
+  "type": "node",
+  "id": 5645870851,
+  "lat": 24.1530458,
+  "lon": 120.6542208,
+  "tags": {
+    "addr:city": "臺中市",
+    "addr:country": "TW",
+    "addr:district": "西區",
+    "addr:full": "403臺中市西區大業路25-9號",
+    "addr:housenumber": "25-9",
+    "addr:postcode": "403",
+    "addr:street": "大業路",
+    "amenity": "restaurant",
+    "cuisine": "pizza;mexican",
+    "diet:non-vegetarian": "yes",
+    "internet_access": "wlan",
+    "name": "Salut Pizza Bar 比薩店",
+    "name:en": "Salut Pizza Bar",
+    "name:zh": "Salut Pizza Bar 比薩店",
+    "name:zh-Hant": "Salut Pizza Bar 比薩店",
+    "opening_hours": "Tu-Su 17:30-23:30",
+    "phone": "+8864 2310 3541",
+    "website": "https://salut-pizza.business.site/#menu"
+  }
+},
+{
+  "type": "node",
+  "id": 6125131783,
+  "lat": 24.2584048,
+  "lon": 120.5195014,
+  "tags": {
+    "brand": "Barbour",
+    "brand:wikidata": "Q182399",
+    "name": "Barbour",
+    "shop": "clothes"
+  }
+},
+{
+  "type": "node",
+  "id": 6203243078,
+  "lat": 24.1650586,
+  "lon": 120.6436052,
+  "tags": {
+    "amenity": "restaurant",
+    "is_in": "新光三越台中中港店",
+    "level": "13",
+    "name": "乾杯燒肉居酒屋"
+  }
+},
+{
+  "type": "node",
+  "id": 6259820985,
+  "lat": 24.3503410,
+  "lon": 120.6217536,
+  "tags": {
+    "addr:city": "臺中市",
+    "addr:country": "TW",
+    "addr:district": "大甲區",
+    "addr:full": "臺中市大甲區新政路168號",
+    "addr:housenumber": "168",
+    "addr:street": "新政路",
+    "amenity": "bar",
+    "name": "特斯拉交流餐酒館"
+  }
+},
+{
+  "type": "node",
+  "id": 6260161185,
+  "lat": 24.1978744,
+  "lon": 120.6569587,
+  "tags": {
+    "brand": "Subaru",
+    "brand:wikidata": "Q172741",
+    "name": "Subaru",
+    "shop": "car"
+  }
+},
+{
+  "type": "node",
+  "id": 6293883033,
+  "lat": 24.2547307,
+  "lon": 120.7236556,
+  "tags": {
+    "amenity": "public_bookcase",
+    "lit": "no",
+    "name": "Reading Bar 讀冊吧 臺鐵豐原新站 候車大廳",
+    "operator": "臺中市立圖書館",
+    "public_bookcase:type": "metal_cabinet",
+    "wikimedia_commons": "File:Fengyuan_Station.jpg"
+  }
+},
+{
+  "type": "node",
+  "id": 6348033346,
+  "lat": 24.1615346,
+  "lon": 120.6473508,
+  "tags": {
+    "amenity": "public_bookcase",
+    "lit": "no",
+    "name": "Reading Bar 讀冊吧 市政大樓文心樓 一樓室內",
+    "operator": "臺中市立圖書館",
+    "public_bookcase:type": "metal_cabinet"
+  }
+},
+{
+  "type": "node",
+  "id": 6510327267,
+  "lat": 24.2452818,
+  "lon": 120.5498512,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "居酒屋"
+  }
+},
+{
+  "type": "node",
+  "id": 7125697918,
+  "lat": 24.1536741,
+  "lon": 120.6706708,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "少箖居酒屋"
+  }
+},
+{
+  "type": "node",
+  "id": 7170215610,
+  "lat": 24.1870946,
+  "lon": 120.7026659,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "醉便宜居酒屋"
+  }
+},
+{
+  "type": "node",
+  "id": 7256073187,
+  "lat": 24.1628940,
+  "lon": 120.6400672,
+  "tags": {
+    "amenity": "restaurant",
+    "check_date": "2026-10-21",
+    "name": "VVG Food Play & Bar"
+  }
+},
+{
+  "type": "node",
+  "id": 7259793135,
+  "lat": 24.1632439,
+  "lon": 120.6741486,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "怪Bar"
+  }
+},
+{
+  "type": "node",
+  "id": 7259793137,
+  "lat": 24.1631766,
+  "lon": 120.6741071,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "鐵木餐酒館"
+  }
+},
+{
+  "type": "node",
+  "id": 7612054185,
+  "lat": 24.1521202,
+  "lon": 120.6998222,
+  "tags": {
+    "addr:city": "臺中市",
+    "addr:country": "TW",
+    "addr:district": "北區",
+    "addr:full": "404臺中市北區東光一街21號",
+    "addr:housenumber": "21",
+    "addr:postcode": "404",
+    "addr:street": "東光一街",
+    "amenity": "restaurant",
+    "cuisine": "burger;buschenschank;coffee_shop;italian",
+    "internet_access": "wlan",
+    "name": "貓瓶子小酒館",
+    "name:en": "BottleCat",
+    "name:zh": "貓瓶子小酒館",
+    "opening_hours": "Tu-Fr 18:00-23:30; Mo, Sa 11:30-14:30, 18:00-21:00",
+    "phone": "+886 4 2234 9434"
+  }
+},
+{
+  "type": "node",
+  "id": 7836694752,
+  "lat": 24.1557149,
+  "lon": 120.6632891,
+  "tags": {
+    "amenity": "restaurant",
+    "is_in": "台中金典酒店",
+    "level": "15",
+    "name": "大廳酒吧",
+    "shop": "wine"
+  }
+},
+{
+  "type": "node",
+  "id": 7836854085,
+  "lat": 24.1434435,
+  "lon": 120.6670812,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "精釀餐酒館"
+  }
+},
+{
+  "type": "node",
+  "id": 8013548527,
+  "lat": 24.2524737,
+  "lon": 120.7239097,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "向陽蔬食飲料Bar"
+  }
+},
+{
+  "type": "node",
+  "id": 8111898557,
+  "lat": 24.1670299,
+  "lon": 120.6875409,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "J's Bar"
+  }
+},
+{
+  "type": "node",
+  "id": 8356596546,
+  "lat": 24.1334060,
+  "lon": 120.6813423,
+  "tags": {
+    "amenity": "toilets",
+    "name": "Public Toilet"
+  }
+},
+{
+  "type": "node",
+  "id": 8465392290,
+  "lat": 24.2899063,
+  "lon": 120.5404515,
+  "tags": {
+    "amenity": "toilets",
+    "fee": "no",
+    "name": "Public toilet",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 8515978352,
+  "lat": 24.1074557,
+  "lon": 120.6227653,
+  "tags": {
+    "amenity": "toilets",
+    "name": "Public restroom"
+  }
+},
+{
+  "type": "node",
+  "id": 8557945249,
+  "lat": 24.1591789,
+  "lon": 120.6821090,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "好泰泰餐酒館"
+  }
+},
+{
+  "type": "node",
+  "id": 8562224744,
+  "lat": 24.1480100,
+  "lon": 120.6643683,
+  "tags": {
+    "amenity": "toilets",
+    "name": "Public toilet"
+  }
+},
+{
+  "type": "node",
+  "id": 8748627300,
+  "lat": 24.1415541,
+  "lon": 120.6818795,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "樂丸大眾酒場"
+  }
+},
+{
+  "type": "node",
+  "id": 8862669362,
+  "lat": 24.1436301,
+  "lon": 120.6548942,
+  "tags": {
+    "addr:city": "臺中市",
+    "addr:country": "TW",
+    "addr:district": "南屯區",
+    "addr:full": "臺中市南屯區大同里12鄰精誠路472號",
+    "addr:hamlet": "大同里",
+    "addr:housenumber": "472",
+    "addr:neighbourhood": "12鄰",
+    "addr:street": "精誠路",
+    "amenity": "restaurant",
+    "name": "禾壤餐酒館",
+    "name:en": "SOIL Restaurant",
+    "name:zh": "禾壤餐酒館"
+  }
+},
+{
+  "type": "node",
+  "id": 9160768181,
+  "lat": 24.1483357,
+  "lon": 120.6830559,
+  "tags": {
+    "name": "薔薇派圓石teabar",
+    "shop": "beverages"
+  }
+},
+{
+  "type": "node",
+  "id": 9689088907,
+  "lat": 24.1792448,
+  "lon": 120.6018815,
+  "tags": {
+    "amenity": "toilets",
+    "fee": "no",
+    "name": "Public toilets",
+    "wheelchair": "no"
+  }
+},
+{
+  "type": "node",
+  "id": 10029125584,
+  "lat": 24.1575143,
+  "lon": 120.6575234,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "舟舟 Bar Boat"
+  }
+},
+{
+  "type": "node",
+  "id": 10080207423,
+  "lat": 24.1154395,
+  "lon": 120.6888773,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "九族居酒屋"
+  }
+},
+{
+  "type": "node",
+  "id": 10114877293,
+  "lat": 24.1668064,
+  "lon": 120.6374681,
+  "tags": {
+    "addr:city": "臺中市",
+    "addr:country": "TW",
+    "addr:district": "西屯區",
+    "addr:full": "臺中市西屯區潮洋里6鄰朝富路38之3號",
+    "addr:hamlet": "潮洋里",
+    "addr:housenumber": "38之3",
+    "addr:neighbourhood": "6鄰",
+    "addr:street": "朝富路",
+    "clothes": "women",
+    "name": "芭杜Bardot朝富店",
+    "opening_hours": "Mo-Su 12:00-22:00",
+    "operator": "芭杜Bardot",
+    "phone": "+886-4-2258-9339",
+    "shop": "clothes"
+  }
+},
+{
+  "type": "node",
+  "id": 10118954831,
+  "lat": 24.1485036,
+  "lon": 120.6629544,
+  "tags": {
+    "addr:city": "臺中市",
+    "addr:country": "TW",
+    "addr:district": "西區",
+    "addr:full": "臺中市西區中興里7鄰中興街111號",
+    "addr:hamlet": "中興里",
+    "addr:housenumber": "111",
+    "addr:neighbourhood": "7鄰",
+    "addr:street": "中興街",
+    "amenity": "restaurant",
+    "contact:facebook": "吳留手串燒居酒屋-台中店-1496926003854255",
+    "cuisine": "japanese",
+    "name": "吳留手串燒居酒屋",
+    "opening_hours": "18:00-01:00",
+    "phone": "+886423028611"
+  }
+},
+{
+  "type": "node",
+  "id": 10168174345,
+  "lat": 24.1094820,
+  "lon": 120.6909720,
+  "tags": {
+    "addr:city": "臺中市",
+    "addr:country": "TW",
+    "addr:district": "大里區",
+    "addr:full": "臺中市大里區東榮路一段69號",
+    "addr:housenumber": "69",
+    "addr:street": "東榮路一段",
+    "amenity": "pub",
+    "brewery": "no",
+    "name": "禾倉酒場",
+    "smoking": "no"
+  }
+},
+{
+  "type": "node",
+  "id": 10914501400,
+  "lat": 24.1651308,
+  "lon": 120.6457076,
+  "tags": {
+    "addr:city": "臺中市",
+    "addr:country": "TW",
+    "addr:district": "西屯區",
+    "addr:full": "臺中市西屯區臺灣大道三段226號",
+    "addr:housenumber": "226",
+    "addr:street": "臺灣大道三段",
+    "amenity": "bar",
+    "contact:phone": "04-23129878",
+    "name": "禾樂精釀-新光遠百門市",
+    "opening_hours": "Mo-Sa 18:00-24:00",
+    "real_ale": "yes",
+    "website": "https://hellowbrewery.com.tw/"
+  }
+},
+{
+  "type": "node",
+  "id": 10917441173,
+  "lat": 24.1475305,
+  "lon": 120.6621793,
+  "tags": {
+    "addr:city": "臺中市",
+    "addr:country": "TW",
+    "addr:district": "西區",
+    "addr:full": "臺中市西區中興一巷26號",
+    "addr:housenumber": "26號",
+    "addr:street": "中興一巷",
+    "amenity": "bar",
+    "cocktails": "yes",
+    "drink:cocktail": "served",
+    "name": "Bar MED",
+    "opening_hours": "Tu-Th 18:00-00:00; Fr, Sa 18:00-02:00; Su 18:00-00:00",
+    "phone": "0423055578"
+  }
+},
+{
+  "type": "node",
+  "id": 11262071276,
+  "lat": 24.1054196,
+  "lon": 120.6877115,
+  "tags": {
+    "addr:city": "臺中市",
+    "addr:country": "TW",
+    "addr:district": "大里區",
+    "addr:full": "臺中市大里區長榮里26鄰大里路59之5號",
+    "addr:hamlet": "長榮里",
+    "addr:housenumber": "59之5",
+    "addr:neighbourhood": "26鄰",
+    "addr:street": "大里路",
+    "drive_through": "yes",
+    "name": "馬拉桑精釀啤酒",
+    "opening_hours": "Mo-Fr 09:00-18:00",
+    "operator": "爺特國際有限公司",
+    "shop": "alcohol",
+    "website": "https://myship.7-11.com.tw/general/detail/GM2107267387791"
+  }
+},
+{
+  "type": "node",
+  "id": 11508789939,
+  "lat": 24.1373060,
+  "lon": 120.6865872,
+  "tags": {
+    "amenity": "public_bookcase",
+    "lit": "no",
+    "name": "Reading Bar 讀冊吧 臺鐵臺中新站 候車大廳",
+    "operator": "臺中市立圖書館",
+    "public_bookcase:type": "metal_cabinet"
+  }
+},
+{
+  "type": "node",
+  "id": 11508789940,
+  "lat": 24.1369413,
+  "lon": 120.6864142,
+  "tags": {
+    "amenity": "public_bookcase",
+    "lit": "no",
+    "name": "Reading Bar 讀冊吧 臺鐵臺中新站 第二月台",
+    "operator": "臺中市立圖書館",
+    "public_bookcase:type": "metal_cabinet"
+  }
+},
+{
+  "type": "node",
+  "id": 11508789941,
+  "lat": 24.1458388,
+  "lon": 120.6851654,
+  "tags": {
+    "amenity": "public_bookcase",
+    "capacity": "50",
+    "lit": "no",
+    "name": "Reading Bar 讀冊吧 精武圖書館 一樓入口處",
+    "operator": "臺中市立圖書館",
+    "public_bookcase:type": "metal_cabinet"
+  }
+},
+{
+  "type": "node",
+  "id": 11508789942,
+  "lat": 24.1517729,
+  "lon": 120.6848364,
+  "tags": {
+    "amenity": "public_bookcase",
+    "lit": "no",
+    "name": "Reading Bar 讀冊吧 中友百貨公司 C棟前人行道旁",
+    "operator": "臺中市立圖書館",
+    "public_bookcase:type": "metal_cabinet"
+  }
+},
+{
+  "type": "node",
+  "id": 11508789943,
+  "lat": 24.1551293,
+  "lon": 120.6824497,
+  "tags": {
+    "amenity": "public_bookcase",
+    "lit": "no",
+    "name": "Reading Bar 讀冊吧 中山堂 一樓室內",
+    "operator": "臺中市立圖書館",
+    "public_bookcase:type": "metal_cabinet"
+  }
+},
+{
+  "type": "node",
+  "id": 11508805925,
+  "lat": 24.1576460,
+  "lon": 120.6664016,
+  "tags": {
+    "amenity": "public_bookcase",
+    "lit": "no",
+    "name": "Reading Bar 讀冊吧 國立自然科學博物館 西屯路售票處(左)",
+    "operator": "臺中市立圖書館",
+    "public_bookcase:type": "metal_cabinet"
+  }
+},
+{
+  "type": "node",
+  "id": 11508805926,
+  "lat": 24.1573701,
+  "lon": 120.6666038,
+  "tags": {
+    "amenity": "public_bookcase",
+    "lit": "no",
+    "name": "Reading Bar 讀冊吧 國立自然科學博物館 西屯路售票處(右)",
+    "operator": "臺中市立圖書館",
+    "public_bookcase:type": "metal_cabinet"
+  }
+},
+{
+  "type": "node",
+  "id": 11508811155,
+  "lat": 24.1372238,
+  "lon": 120.6630064,
+  "tags": {
+    "amenity": "public_bookcase",
+    "capacity": "50",
+    "lit": "no",
+    "name": "Reading Bar 讀冊吧 臺鐵臺中新站 五權西三街東側",
+    "operator": "臺中市立圖書館",
+    "public_bookcase:type": "metal_cabinet"
+  }
+},
+{
+  "type": "node",
+  "id": 11508811156,
+  "lat": 24.1409072,
+  "lon": 120.6654361,
+  "tags": {
+    "amenity": "public_bookcase",
+    "lit": "no",
+    "name": "Reading Bar 讀冊吧 臺中市大墩文化中心 中心後方出入口",
+    "operator": "臺中市立圖書館",
+    "public_bookcase:type": "metal_cabinet"
+  }
+},
+{
+  "type": "node",
+  "id": 11508875621,
+  "lat": 24.1715920,
+  "lon": 120.6604681,
+  "tags": {
+    "amenity": "public_bookcase",
+    "brand": "讀冊吧",
+    "colour": "yellow",
+    "covered": "yes",
+    "fee": "no",
+    "lit": "yes",
+    "location": "pavement",
+    "name": "Reading Bar 讀冊吧 捷運文華高中站 一樓人行道旁",
+    "opening_hours": "24/7",
+    "operator": "臺中市立圖書館",
+    "operator:type": "government",
+    "public_bookcase:type": "metal_cabinet",
+    "support": "ground"
+  }
+},
+{
+  "type": "node",
+  "id": 11508884857,
+  "lat": 24.1620680,
+  "lon": 120.6463520,
+  "tags": {
+    "amenity": "public_bookcase",
+    "check_date": "2026-07-27",
+    "lit": "no",
+    "name": "Reading Bar 讀冊吧 市政大樓惠中樓 一樓室內",
+    "operator": "臺中市立圖書館",
+    "public_bookcase:type": "metal_cabinet"
+  }
+},
+{
+  "type": "node",
+  "id": 11508884858,
+  "lat": 24.1597247,
+  "lon": 120.6473974,
+  "tags": {
+    "amenity": "public_bookcase",
+    "lit": "no",
+    "name": "Reading Bar 讀冊吧 順天經貿廣場 順天建設商辦大樓前",
+    "operator": "臺中市立圖書館",
+    "public_bookcase:type": "metal_cabinet"
+  }
+},
+{
+  "type": "node",
+  "id": 11508884859,
+  "lat": 24.1583622,
+  "lon": 120.6463495,
+  "tags": {
+    "amenity": "public_bookcase",
+    "lit": "no",
+    "name": "Reading Bar 讀冊吧 臺中市政府地方稅務局文心分局 一樓室內",
+    "operator": "臺中市立圖書館",
+    "public_bookcase:type": "metal_cabinet"
+  }
+},
+{
+  "type": "node",
+  "id": 11508884860,
+  "lat": 24.1654523,
+  "lon": 120.6337778,
+  "tags": {
+    "amenity": "public_bookcase",
+    "lit": "no",
+    "name": "Reading Bar 讀冊吧 西屯區戶政事務所 一樓室內",
+    "operator": "臺中市立圖書館",
+    "public_bookcase:type": "metal_cabinet"
+  }
+},
+{
+  "type": "node",
+  "id": 11873114870,
+  "lat": 24.1475810,
+  "lon": 120.6720690,
+  "tags": {
+    "addr:floor": "1",
+    "amenity": "cafe",
+    "check_date": "2024-05-02",
+    "cuisine": "bistro",
+    "food": "yes",
+    "level": "0",
+    "name": "絆 小酒館 Lim Jiu La",
+    "name:zh": "絆 小酒館 Lim Jiu La"
+  }
+},
+{
+  "type": "node",
+  "id": 11898593237,
+  "lat": 24.1401921,
+  "lon": 120.6790746,
+  "tags": {
+    "addr:city": "臺中市",
+    "addr:country": "TW",
+    "addr:district": "中區",
+    "addr:full": "臺中市中區光復里2鄰民族路96號",
+    "addr:hamlet": "光復里",
+    "addr:housenumber": "96號",
+    "addr:neighbourhood": "2鄰",
+    "addr:street": "民族路",
+    "amenity": "restaurant",
+    "level": "2",
+    "name": "茫海鐵板燒餐酒館"
+  }
+},
+{
+  "type": "node",
+  "id": 12146911336,
+  "lat": 24.1372235,
+  "lon": 120.6628059,
+  "tags": {
+    "amenity": "public_bookcase",
+    "capacity": "50",
+    "lit": "no",
+    "name": "Reading Bar 讀冊吧 臺鐵臺中新站 五權西三街西側",
+    "operator": "臺中市立圖書館",
+    "public_bookcase:type": "metal_cabinet"
+  }
+},
+{
+  "type": "node",
+  "id": 12146911337,
+  "lat": 24.1344611,
+  "lon": 120.6755221,
+  "tags": {
+    "amenity": "public_bookcase",
+    "capacity": "50",
+    "lit": "no",
+    "name": "Reading Bar 讀冊吧",
+    "operator": "臺中市立圖書館",
+    "public_bookcase:type": "metal_cabinet"
+  }
+},
+{
+  "type": "node",
+  "id": 12146916318,
+  "lat": 24.1436604,
+  "lon": 120.6842003,
+  "tags": {
+    "amenity": "public_bookcase",
+    "capacity": "50",
+    "lit": "no",
+    "name": "Reading Bar 讀冊吧 臺中公園湖心亭 湖心亭內",
+    "operator": "臺中市立圖書館",
+    "public_bookcase:type": "metal_cabinet"
+  }
+},
+{
+  "type": "node",
+  "id": 12146916319,
+  "lat": 24.1328832,
+  "lon": 120.6812271,
+  "tags": {
+    "amenity": "public_bookcase",
+    "capacity": "50",
+    "lit": "no",
+    "name": "Reading Bar 臺中文化創意園區 綠建築一樓",
+    "operator": "臺中市立圖書館",
+    "public_bookcase:type": "metal_cabinet"
+  }
+},
+{
+  "type": "node",
+  "id": 12146916320,
+  "lat": 24.1276616,
+  "lon": 120.6686949,
+  "tags": {
+    "amenity": "public_bookcase",
+    "capacity": "50",
+    "lit": "no",
+    "name": "Reading Bar 讀冊吧 高等行政法院 一樓室內",
+    "operator": "臺中市立圖書館",
+    "public_bookcase:type": "metal_cabinet"
+  }
+},
+{
+  "type": "node",
+  "id": 12968634331,
+  "lat": 24.1702819,
+  "lon": 120.6462389,
+  "tags": {
+    "addr:city": "臺中市",
+    "addr:country": "TW",
+    "addr:district": "西屯區",
+    "addr:full": "臺中市西屯區上石里1上石路180號",
+    "addr:hamlet": "上石里",
+    "addr:housenumber": "180",
+    "addr:neighbourhood": "1",
+    "addr:street": "上石路",
+    "hairdresser": "barber",
+    "male": "yes",
+    "name": "CuteBee Barbershop 男士理髮店-青海店",
+    "opening_hours": "Mo-Su 11:00-19:30",
+    "operator": "CuteBee Barbershop 男士理髮店",
+    "payment:cash": "yes",
+    "phone": "+886424523116",
+    "shop": "hairdresser",
+    "website": "https://www.cutbee.tw/"
+  }
+},
+{
+  "type": "node",
+  "id": 13460068801,
+  "lat": 24.1528550,
+  "lon": 120.6658173,
+  "tags": {
+    "addr:city": "臺中市",
+    "addr:country": "TW",
+    "addr:district": "西區",
+    "addr:full": "403臺中市西區臺灣大道二段311巷1弄42號",
+    "addr:housenumber": "42",
+    "addr:postcode": "403",
+    "addr:street": "臺灣大道二段311巷1弄",
+    "amenity": "cafe",
+    "contact:facebook": "oddevencoffeestudio",
+    "contact:instagram": "odd_even_coffee",
+    "contact:line": "423jhkzs",
+    "name": "ODD EVEN COFFEE BAR",
+    "opening_hours": "Mo-Th 08:30-17:30; Fr 08:30-00:00; Sa 11:00-00:00; Su 11:00-17:30",
+    "phone": "+886 4 23297660",
+    "website": "https://www.oddevencoffeestudio.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 13467855164,
+  "lat": 24.1880109,
+  "lon": 120.6852349,
+  "tags": {
+    "addr:city": "臺中市",
+    "addr:country": "TW",
+    "addr:district": "北屯區",
+    "addr:full": "臺中市北屯區仁和里24鄰崇德十路一段415號",
+    "addr:hamlet": "仁和里",
+    "addr:housenumber": "415",
+    "addr:neighbourhood": "24鄰",
+    "addr:street": "崇德十路一段",
+    "amenity": "restaurant",
+    "cuisine": "steak_house",
+    "name": "CHAR CHAR Steak & Bar"
+  }
+},
+{
+  "type": "node",
+  "id": 13856287648,
+  "lat": 24.1966777,
+  "lon": 120.7076990,
+  "tags": {
+    "addr:city": "臺中市",
+    "addr:country": "TW",
+    "addr:district": "北屯區",
+    "addr:full": "406臺中市北屯區敦富路852號",
+    "addr:housenumber": "852號",
+    "addr:postcode": "406",
+    "addr:street": "敦富路",
+    "amenity": "clinic",
+    "healthcare": "clinic",
+    "healthcare:speciality": "美容護膚",
+    "name": "淨膚寶 Skin Bar 北屯好市多店",
+    "phone": "+886 4 24369722"
+  }
+},
+{
+  "type": "node",
+  "id": 14006235445,
+  "lat": 24.1355662,
+  "lon": 120.6624983,
+  "tags": {
+    "addr:city": "臺中市",
+    "addr:country": "TW",
+    "addr:district": "西區",
+    "addr:full": "403025臺中市西區五權西四街118號",
+    "addr:housenumber": "118",
+    "addr:postcode": "403025",
+    "addr:street": "五權西四街",
+    "air_conditioning": "yes",
+    "amenity": "bar",
+    "food": "yes",
+    "indoor_seating": "yes",
+    "name": "Vender Bar",
+    "outdoor_seating": "no"
+  }
+},
+{
+  "type": "node",
+  "id": 14050159033,
+  "lat": 24.3454707,
+  "lon": 120.6206955,
+  "tags": {
+    "addr:city": "臺中市",
+    "addr:country": "TW",
+    "addr:district": "大甲區",
+    "addr:full": "臺中市大甲區順天里13鄰中華街95號",
+    "addr:hamlet": "順天里",
+    "addr:housenumber": "95",
+    "addr:neighbourhood": "13鄰",
+    "addr:street": "中華街",
+    "amenity": "restaurant",
+    "cuisine": "pasta;italian;coffee_shop;brunch",
+    "name": "95 Cafe&Bistro",
+    "phone": "+886 4 2688 5795",
+    "website": "https://95cafe-bistro.weebly.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 14050173680,
+  "lat": 24.1350837,
+  "lon": 120.6605947,
+  "tags": {
+    "addr:city": "臺中市",
+    "addr:country": "TW",
+    "addr:district": "西區",
+    "addr:floor": "1",
+    "addr:full": "403029臺中市西區五權七街133號1樓",
+    "addr:housenumber": "133",
+    "addr:postcode": "403029",
+    "addr:street": "五權七街",
+    "hairdresser": "barber",
+    "name": "Barbie Hair",
+    "shop": "hairdresser"
+  }
+},
+{
+  "type": "way",
+  "id": 592647423,
+  "center": {
+    "lat": 24.1552646,
+    "lon": 120.6573240
+  },
+  "tags": {
+    "addr:city": "台中市",
+    "addr:country": "TW",
+    "addr:district": "西區",
+    "addr:full": "40360台中市西區精誠五街22號",
+    "addr:housenumber": "22",
+    "addr:postcode": "40360",
+    "addr:street": "精誠五街",
+    "amenity": "restaurant",
+    "building": "yes",
+    "capacity": "65",
+    "cuisine": "mediterranean;american",
+    "delivery": "no",
+    "name": "UZO Mediterranean Bar & Grill",
+    "opening_hours": "Tu-Fr 06:00-24:00; Sa,Su 17:00-01:00; Mo off",
+    "outdoor_seating": "yes",
+    "phone": "+886 4 2327 3518",
+    "smoking": "outside",
+    "takeaway": "yes",
+    "website": "http://www.uzobar.com"
+  }
+},
+{
+  "type": "way",
+  "id": 951225651,
+  "center": {
+    "lat": 24.1916469,
+    "lon": 120.6602490
+  },
+  "tags": {
+    "building": "yes",
+    "building:levels": "1",
+    "name": "頑板Bar"
+  }
+},
+{
+  "type": "way",
+  "id": 977561918,
+  "center": {
+    "lat": 24.1590983,
+    "lon": 120.6071645
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "Subaru"
+  }
+}
+
+  ]
+}

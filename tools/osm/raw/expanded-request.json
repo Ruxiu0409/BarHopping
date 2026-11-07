@@ -1,0 +1,5 @@
+{
+  "fetchedAt": "2026-11-07T05:22:29.076028+00:00",
+  "query": "[out:json][timeout:180];area[\"name\"=\"臺中市\"][\"boundary\"=\"administrative\"]->.city;nwr(area.city)[name~\"酒吧|酒館|居酒屋|酒場|精釀|調酒|[Bb][Ii][Ss][Tt][Rr][Oo]|[Bb][Aa][Rr]|[Pp][Uu][Bb]|[Ll][Oo][Uu][Nn][Gg][Ee]\"];out center tags;",
+  "endpoint": "https://overpass-api.de/api/interpreter"
+}

@@ -1,0 +1,13 @@
+{
+  "datasetUrl": "https://data.gov.tw/dataset/177893",
+  "downloadUrl": "https://data.moenv.gov.tw/api/frontstage/datastore.search",
+  "license": "政府資料開放授權條款第1版",
+  "licenseUrl": "https://data.gov.tw/license",
+  "fetchedAt": "2026-11-07T05:20:10.797616+00:00",
+  "requestBody": {
+    "resource_id": "8e0bda24-9d41-4e83-a54e-a19ecc2cb9c3",
+    "limit": 20000,
+    "offset": 0
+  },
+  "sha256": "07a9f5f64b395cc927158f3955e06fa24406ec41576745c1b59c6d73858bfe31"
+}

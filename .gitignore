@@ -3,9 +3,5 @@ DerivedData/
 build/
 xcuserdata/
 *.xcuserstate
-tools/osm/raw/
-tools/catalog/raw/
-tools/catalog/geocoding-cache/
 tools/**/__pycache__/
-tools/heat/raw/
 BarHopping/BarHopping/Onboarding/Fonts/*.otf

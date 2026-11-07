@@ -1,0 +1,138 @@
+{
+  "query": {
+    "street": "95-1 自由路二段",
+    "city": "臺中市",
+    "format": "jsonv2",
+    "addressdetails": "1",
+    "limit": "5",
+    "countrycodes": "tw"
+  },
+  "url": "https://nominatim.openstreetmap.org/search?street=95-1+%E8%87%AA%E7%94%B1%E8%B7%AF%E4%BA%8C%E6%AE%B5&city=%E8%87%BA%E4%B8%AD%E5%B8%82&format=jsonv2&addressdetails=1&limit=5&countrycodes=tw",
+  "fetchedAt": "2026-11-07T05:23:48.190580+00:00",
+  "results": [
+    {
+      "place_id": 225292826,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 57935063,
+      "lat": "24.1411852",
+      "lon": "120.6833205",
+      "category": "highway",
+      "type": "secondary",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "secondary",
+      "name": "自由路二段",
+      "display_name": "自由路二段, 公園里, 中區, 臺中市, 40046, 臺灣",
+      "address": {
+        "road": "自由路二段",
+        "neighbourhood": "公園里",
+        "suburb": "中區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "40046",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1401079",
+        "24.1422679",
+        "120.6822094",
+        "120.6844263"
+      ]
+    },
+    {
+      "place_id": 229449954,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 216648143,
+      "lat": "24.1428462",
+      "lon": "120.6850272",
+      "category": "highway",
+      "type": "tertiary",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "tertiary",
+      "name": "自由路二段",
+      "display_name": "自由路二段, 公園里, 中區, 臺中市, 400718, 臺灣",
+      "address": {
+        "road": "自由路二段",
+        "neighbourhood": "公園里",
+        "suburb": "中區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "400718",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1422679",
+        "24.1432035",
+        "120.6844263",
+        "120.6857257"
+      ]
+    },
+    {
+      "place_id": 228344719,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 902150216,
+      "lat": "24.1397258",
+      "lon": "120.6818385",
+      "category": "highway",
+      "type": "secondary",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "secondary",
+      "name": "自由路二段",
+      "display_name": "自由路二段, 公園里, 中區, 臺中市, 40042, 臺灣",
+      "address": {
+        "road": "自由路二段",
+        "neighbourhood": "公園里",
+        "suburb": "中區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "40042",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1393511",
+        "24.1401079",
+        "120.6814601",
+        "120.6822094"
+      ]
+    },
+    {
+      "place_id": 227133788,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 1050553589,
+      "lat": "24.1382800",
+      "lon": "120.6803307",
+      "category": "highway",
+      "type": "secondary",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "secondary",
+      "name": "自由路二段",
+      "display_name": "自由路二段, 公園里, 中區, 臺中市, 40041, 臺灣",
+      "address": {
+        "road": "自由路二段",
+        "neighbourhood": "公園里",
+        "suburb": "中區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "40041",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1379092",
+        "24.1386461",
+        "120.6799494",
+        "120.6807165"
+      ]
+    }
+  ]
+}

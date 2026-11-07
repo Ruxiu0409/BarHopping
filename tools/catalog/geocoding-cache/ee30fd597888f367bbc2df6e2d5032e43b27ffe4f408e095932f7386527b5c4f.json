@@ -1,0 +1,48 @@
+{
+  "query": {
+    "street": "262 河南路2段",
+    "city": "臺中市",
+    "format": "jsonv2",
+    "addressdetails": "1",
+    "limit": "5",
+    "countrycodes": "tw"
+  },
+  "url": "https://nominatim.openstreetmap.org/search?street=262+%E6%B2%B3%E5%8D%97%E8%B7%AF2%E6%AE%B5&city=%E8%87%BA%E4%B8%AD%E5%B8%82&format=jsonv2&addressdetails=1&limit=5&countrycodes=tw",
+  "fetchedAt": "2026-11-07T05:23:50.629364+00:00",
+  "results": [
+    {
+      "place_id": 227270784,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 336616370,
+      "lat": "24.1754568",
+      "lon": "120.6493069",
+      "category": "building",
+      "type": "commercial",
+      "place_rank": 30,
+      "importance": 6.650873578999036e-05,
+      "addresstype": "building",
+      "name": "中港長鴻",
+      "display_name": "中港長鴻, 262, 河南路二段, 逢福里, 西屯區, 水湳經貿園區, 臺中市, 40744, 臺灣",
+      "address": {
+        "building": "中港長鴻",
+        "house_number": "262",
+        "road": "河南路二段",
+        "neighbourhood": "逢福里",
+        "suburb": "西屯區",
+        "village": "水湳經貿園區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "40744",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1751475",
+        "24.1757737",
+        "120.6489329",
+        "120.6495986"
+      ]
+    }
+  ]
+}

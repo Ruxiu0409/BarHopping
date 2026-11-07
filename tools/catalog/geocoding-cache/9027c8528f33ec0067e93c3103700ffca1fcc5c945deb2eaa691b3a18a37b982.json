@@ -1,0 +1,79 @@
+{
+  "query": {
+    "street": "22 中興1巷",
+    "city": "臺中市",
+    "format": "jsonv2",
+    "addressdetails": "1",
+    "limit": "5",
+    "countrycodes": "tw"
+  },
+  "url": "https://nominatim.openstreetmap.org/search?street=22+%E4%B8%AD%E8%88%881%E5%B7%B7&city=%E8%87%BA%E4%B8%AD%E5%B8%82&format=jsonv2&addressdetails=1&limit=5&countrycodes=tw",
+  "fetchedAt": "2026-11-07T05:23:45.751003+00:00",
+  "results": [
+    {
+      "place_id": 226404793,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8534961497,
+      "lat": "24.1475527",
+      "lon": "120.6622852",
+      "category": "place",
+      "type": "house",
+      "place_rank": 30,
+      "importance": 6.650873578999036e-05,
+      "addresstype": "place",
+      "name": "",
+      "display_name": "22號, 中興一巷, 中興里, 西區, 田心, 臺中市, 403, 臺灣",
+      "address": {
+        "house_number": "22號",
+        "road": "中興一巷",
+        "neighbourhood": "中興里",
+        "suburb": "西區",
+        "village": "田心",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "403",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1475027",
+        "24.1476027",
+        "120.6622352",
+        "120.6623352"
+      ]
+    },
+    {
+      "place_id": 226421314,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 482644009,
+      "lat": "24.1472193",
+      "lon": "120.6626824",
+      "category": "highway",
+      "type": "service",
+      "place_rank": 27,
+      "importance": 0.04006650873579003,
+      "addresstype": "road",
+      "name": "中興一巷",
+      "display_name": "中興一巷, 中興里, 西區, 田心, 臺中市, 403, 臺灣",
+      "address": {
+        "road": "中興一巷",
+        "neighbourhood": "中興里",
+        "suburb": "西區",
+        "village": "田心",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "403",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1470453",
+        "24.1473830",
+        "120.6622705",
+        "120.6630901"
+      ]
+    }
+  ]
+}

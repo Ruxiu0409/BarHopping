@@ -1,0 +1,175 @@
+{
+  "query": {
+    "street": "38 大川街",
+    "city": "臺中市",
+    "format": "jsonv2",
+    "addressdetails": "1",
+    "limit": "5",
+    "countrycodes": "tw"
+  },
+  "url": "https://nominatim.openstreetmap.org/search?street=38+%E5%A4%A7%E5%B7%9D%E8%A1%97&city=%E8%87%BA%E4%B8%AD%E5%B8%82&format=jsonv2&addressdetails=1&limit=5&countrycodes=tw",
+  "fetchedAt": "2026-11-07T05:23:30.020014+00:00",
+  "results": [
+    {
+      "place_id": 229576814,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8535324043,
+      "lat": "24.1460730",
+      "lon": "120.6422099",
+      "category": "place",
+      "type": "house",
+      "place_rank": 30,
+      "importance": 6.650873578999036e-05,
+      "addresstype": "place",
+      "name": "",
+      "display_name": "38號, 大川街, 惠中里, 南屯區, 田心, 臺中市, 408030, 臺灣",
+      "address": {
+        "house_number": "38號",
+        "road": "大川街",
+        "neighbourhood": "惠中里",
+        "suburb": "南屯區",
+        "village": "田心",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "408030",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1460230",
+        "24.1461230",
+        "120.6421599",
+        "120.6422599"
+      ]
+    },
+    {
+      "place_id": 226082222,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 572283360,
+      "lat": "24.1502563",
+      "lon": "120.6420495",
+      "category": "highway",
+      "type": "residential",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "residential",
+      "name": "大川街",
+      "display_name": "大川街, 惠中里, 南屯區, 田心, 臺中市, 408346, 臺灣",
+      "address": {
+        "road": "大川街",
+        "neighbourhood": "惠中里",
+        "suburb": "南屯區",
+        "village": "田心",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "408346",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1498727",
+        "24.1503396",
+        "120.6419144",
+        "120.6424670"
+      ]
+    },
+    {
+      "place_id": 228807373,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 651142347,
+      "lat": "24.1503378",
+      "lon": "120.6431484",
+      "category": "highway",
+      "type": "residential",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "residential",
+      "name": "大川街",
+      "display_name": "大川街, 惠中里, 南屯區, 田心, 臺中市, 408034, 臺灣",
+      "address": {
+        "road": "大川街",
+        "neighbourhood": "惠中里",
+        "suburb": "南屯區",
+        "village": "田心",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "408034",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1503360",
+        "24.1503396",
+        "120.6424670",
+        "120.6438297"
+      ]
+    },
+    {
+      "place_id": 225393978,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 651139821,
+      "lat": "24.1483668",
+      "lon": "120.6418986",
+      "category": "highway",
+      "type": "residential",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "residential",
+      "name": "大川街",
+      "display_name": "大川街, 惠中里, 南屯區, 田心, 臺中市, 40867, 臺灣",
+      "address": {
+        "road": "大川街",
+        "neighbourhood": "惠中里",
+        "suburb": "南屯區",
+        "village": "田心",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "40867",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1468609",
+        "24.1498727",
+        "120.6418827",
+        "120.6419144"
+      ]
+    },
+    {
+      "place_id": 225399408,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 104750413,
+      "lat": "24.1461843",
+      "lon": "120.6418790",
+      "category": "highway",
+      "type": "residential",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "residential",
+      "name": "大川街",
+      "display_name": "大川街, 惠中里, 南屯區, 田心, 臺中市, 408770, 臺灣",
+      "address": {
+        "road": "大川街",
+        "neighbourhood": "惠中里",
+        "suburb": "南屯區",
+        "village": "田心",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "408770",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1455077",
+        "24.1468609",
+        "120.6418790",
+        "120.6418843"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "query": {
+    "street": "210 榮華街",
+    "city": "臺中市",
+    "format": "jsonv2",
+    "addressdetails": "1",
+    "limit": "5",
+    "countrycodes": "tw"
+  },
+  "url": "https://nominatim.openstreetmap.org/search?street=210+%E6%A6%AE%E8%8F%AF%E8%A1%97&city=%E8%87%BA%E4%B8%AD%E5%B8%82&format=jsonv2&addressdetails=1&limit=5&countrycodes=tw",
+  "fetchedAt": "2026-11-07T05:23:52.917421+00:00",
+  "results": [
+    {
+      "place_id": 227299639,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8535087362,
+      "lat": "24.1664227",
+      "lon": "120.6869476",
+      "category": "place",
+      "type": "house",
+      "place_rank": 30,
+      "importance": 6.650873578999036e-05,
+      "addresstype": "place",
+      "name": "",
+      "display_name": "210號, 榮華街, 崇德里, 北區, 臺中市, 404, 臺灣",
+      "address": {
+        "house_number": "210號",
+        "road": "榮華街",
+        "neighbourhood": "崇德里",
+        "suburb": "北區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "404",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1663727",
+        "24.1664727",
+        "120.6868976",
+        "120.6869976"
+      ]
+    },
+    {
+      "place_id": 227601610,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 257469353,
+      "lat": "24.1584184",
+      "lon": "120.5449858",
+      "category": "highway",
+      "type": "residential",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "residential",
+      "name": "榮華街",
+      "display_name": "榮華街, 頂街里, 大肚區, 臺中市, 43241, 臺灣",
+      "address": {
+        "road": "榮華街",
+        "neighbourhood": "頂街里",
+        "suburb": "大肚區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "43241",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1545208",
+        "24.1621918",
+        "120.5440592",
+        "120.5450299"
+      ]
+    },
+    {
+      "place_id": 227276192,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 590917501,
+      "lat": "24.1659828",
+      "lon": "120.6867642",
+      "category": "highway",
+      "type": "residential",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "residential",
+      "name": "榮華街",
+      "display_name": "榮華街, 崇德里, 北區, 臺中市, 404, 臺灣",
+      "address": {
+        "road": "榮華街",
+        "neighbourhood": "崇德里",
+        "suburb": "北區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "404",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1650221",
+        "24.1669420",
+        "120.6867317",
+        "120.6868308"
+      ]
+    },
+    {
+      "place_id": 227487946,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 325123412,
+      "lat": "24.1625309",
+      "lon": "120.6866914",
+      "category": "highway",
+      "type": "residential",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "residential",
+      "name": "榮華街",
+      "display_name": "榮華街, 建興里, 北區, 臺中市, 404, 臺灣",
+      "address": {
+        "road": "榮華街",
+        "neighbourhood": "建興里",
+        "suburb": "北區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "404",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1611852",
+        "24.1638767",
+        "120.6866855",
+        "120.6866972"
+      ]
+    },
+    {
+      "place_id": 227790007,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 113004195,
+      "lat": "24.1600452",
+      "lon": "120.6866806",
+      "category": "highway",
+      "type": "residential",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "residential",
+      "name": "榮華街",
+      "display_name": "榮華街, 金龍里, 北區, 臺中市, 404, 臺灣",
+      "address": {
+        "road": "榮華街",
+        "neighbourhood": "金龍里",
+        "suburb": "北區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "404",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1590110",
+        "24.1610794",
+        "120.6866761",
+        "120.6866874"
+      ]
+    }
+  ]
+}

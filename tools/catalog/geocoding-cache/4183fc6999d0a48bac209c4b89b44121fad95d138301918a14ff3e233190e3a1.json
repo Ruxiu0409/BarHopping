@@ -1,0 +1,112 @@
+{
+  "query": {
+    "street": "8 大明路48巷",
+    "city": "臺中市",
+    "format": "jsonv2",
+    "addressdetails": "1",
+    "limit": "5",
+    "countrycodes": "tw"
+  },
+  "url": "https://nominatim.openstreetmap.org/search?street=8+%E5%A4%A7%E6%98%8E%E8%B7%AF48%E5%B7%B7&city=%E8%87%BA%E4%B8%AD%E5%B8%82&format=jsonv2&addressdetails=1&limit=5&countrycodes=tw",
+  "fetchedAt": "2026-11-07T05:23:37.741083+00:00",
+  "results": [
+    {
+      "place_id": 223776337,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8550327158,
+      "lat": "24.1154301",
+      "lon": "120.6888058",
+      "category": "place",
+      "type": "house",
+      "place_rank": 30,
+      "importance": 6.650873578999036e-05,
+      "addresstype": "place",
+      "name": "",
+      "display_name": "8之1號, 大明路48巷, 大明里, 大里區, 田寮, 臺中市, 412014, 臺灣",
+      "address": {
+        "house_number": "8之1號",
+        "road": "大明路48巷",
+        "neighbourhood": "大明里",
+        "suburb": "大里區",
+        "village": "田寮",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "412014",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1153801",
+        "24.1154801",
+        "120.6887558",
+        "120.6888558"
+      ]
+    },
+    {
+      "place_id": 225958430,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8550327159,
+      "lat": "24.1154662",
+      "lon": "120.6888044",
+      "category": "place",
+      "type": "house",
+      "place_rank": 30,
+      "importance": 6.650873578999036e-05,
+      "addresstype": "place",
+      "name": "",
+      "display_name": "8號, 大明路48巷, 大明里, 大里區, 田寮, 臺中市, 412014, 臺灣",
+      "address": {
+        "house_number": "8號",
+        "road": "大明路48巷",
+        "neighbourhood": "大明里",
+        "suburb": "大里區",
+        "village": "田寮",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "412014",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1154162",
+        "24.1155162",
+        "120.6887544",
+        "120.6888544"
+      ]
+    },
+    {
+      "place_id": 223717410,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 292862759,
+      "lat": "24.1155188",
+      "lon": "120.6887943",
+      "category": "highway",
+      "type": "footway",
+      "place_rank": 27,
+      "importance": 0.04006650873579003,
+      "addresstype": "road",
+      "name": "大明路48巷",
+      "display_name": "大明路48巷, 大明里, 大里區, 田寮, 臺中市, 412230, 臺灣",
+      "address": {
+        "road": "大明路48巷",
+        "neighbourhood": "大明里",
+        "suburb": "大里區",
+        "village": "田寮",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "412230",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1153198",
+        "24.1157178",
+        "120.6887840",
+        "120.6888046"
+      ]
+    }
+  ]
+}

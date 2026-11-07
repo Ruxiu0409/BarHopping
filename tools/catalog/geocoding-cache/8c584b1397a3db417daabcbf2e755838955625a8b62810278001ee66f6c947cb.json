@@ -1,0 +1,111 @@
+{
+  "query": {
+    "street": "20 福星北路",
+    "city": "臺中市",
+    "format": "jsonv2",
+    "addressdetails": "1",
+    "limit": "5",
+    "countrycodes": "tw"
+  },
+  "url": "https://nominatim.openstreetmap.org/search?street=20+%E7%A6%8F%E6%98%9F%E5%8C%97%E8%B7%AF&city=%E8%87%BA%E4%B8%AD%E5%B8%82&format=jsonv2&addressdetails=1&limit=5&countrycodes=tw",
+  "fetchedAt": "2026-11-07T05:23:41.285159+00:00",
+  "results": [
+    {
+      "place_id": 227962639,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 271086453,
+      "lat": "24.1862262",
+      "lon": "120.6444154",
+      "category": "highway",
+      "type": "residential",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "residential",
+      "name": "福星北路",
+      "display_name": "福星北路, 西安里, 西屯區, 水湳經貿園區, 臺中市, 407106, 臺灣",
+      "address": {
+        "road": "福星北路",
+        "neighbourhood": "西安里",
+        "suburb": "西屯區",
+        "village": "水湳經貿園區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "407106",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1823160",
+        "24.1872714",
+        "120.6413608",
+        "120.6449615"
+      ]
+    },
+    {
+      "place_id": 227775833,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 1312476742,
+      "lat": "24.1872785",
+      "lon": "120.6409349",
+      "category": "highway",
+      "type": "residential",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "residential",
+      "name": "福星北路",
+      "display_name": "福星北路, 西墩里, 西屯區, 水湳經貿園區, 臺中市, 40760, 臺灣",
+      "address": {
+        "road": "福星北路",
+        "neighbourhood": "西墩里",
+        "suburb": "西屯區",
+        "village": "水湳經貿園區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "40760",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1872714",
+        "24.1872835",
+        "120.6405091",
+        "120.6413608"
+      ]
+    },
+    {
+      "place_id": 226275705,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8529035092,
+      "lat": "24.1219658",
+      "lon": "120.6595855",
+      "category": "place",
+      "type": "house",
+      "place_rank": 30,
+      "importance": 6.650873578999036e-05,
+      "addresstype": "place",
+      "name": "",
+      "display_name": "20號, 復興北路, 和平里, 南區, 樹王, 臺中市, 402, 臺灣",
+      "address": {
+        "house_number": "20號",
+        "road": "復興北路",
+        "neighbourhood": "和平里",
+        "suburb": "南區",
+        "village": "樹王",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "402",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1219158",
+        "24.1220158",
+        "120.6595355",
+        "120.6596355"
+      ]
+    }
+  ]
+}

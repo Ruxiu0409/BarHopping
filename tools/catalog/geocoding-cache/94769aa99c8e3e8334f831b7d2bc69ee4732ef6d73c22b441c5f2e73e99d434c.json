@@ -1,0 +1,79 @@
+{
+  "query": {
+    "street": "130 復興路2段",
+    "city": "臺中市",
+    "format": "jsonv2",
+    "addressdetails": "1",
+    "limit": "5",
+    "countrycodes": "tw"
+  },
+  "url": "https://nominatim.openstreetmap.org/search?street=130+%E5%BE%A9%E8%88%88%E8%B7%AF2%E6%AE%B5&city=%E8%87%BA%E4%B8%AD%E5%B8%82&format=jsonv2&addressdetails=1&limit=5&countrycodes=tw",
+  "fetchedAt": "2026-11-07T05:23:40.588847+00:00",
+  "results": [
+    {
+      "place_id": 226294351,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8529059758,
+      "lat": "24.1249862",
+      "lon": "120.6642973",
+      "category": "place",
+      "type": "house",
+      "place_rank": 30,
+      "importance": 6.650873578999036e-05,
+      "addresstype": "place",
+      "name": "",
+      "display_name": "130號, 復興路二段, 福平里, 南區, 樹王, 臺中市, 402, 臺灣",
+      "address": {
+        "house_number": "130號",
+        "road": "復興路二段",
+        "neighbourhood": "福平里",
+        "suburb": "南區",
+        "village": "樹王",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "402",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1249362",
+        "24.1250362",
+        "120.6642473",
+        "120.6643473"
+      ]
+    },
+    {
+      "place_id": 223949641,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8547797036,
+      "lat": "24.2101472",
+      "lon": "120.7070457",
+      "category": "place",
+      "type": "house",
+      "place_rank": 30,
+      "importance": 6.650873578999036e-05,
+      "addresstype": "place",
+      "name": "",
+      "display_name": "130號, 復興路二段, 潭陽里, 潭子區, 臺中市, 427013, 臺灣",
+      "address": {
+        "house_number": "130號",
+        "road": "復興路二段",
+        "neighbourhood": "潭陽里",
+        "suburb": "潭子區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "427013",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.2100972",
+        "24.2101972",
+        "120.7069957",
+        "120.7070957"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "query": {
+    "street": "79 忠誠街",
+    "city": "臺中市",
+    "format": "jsonv2",
+    "addressdetails": "1",
+    "limit": "5",
+    "countrycodes": "tw"
+  },
+  "url": "https://nominatim.openstreetmap.org/search?street=79+%E5%BF%A0%E8%AA%A0%E8%A1%97&city=%E8%87%BA%E4%B8%AD%E5%B8%82&format=jsonv2&addressdetails=1&limit=5&countrycodes=tw",
+  "fetchedAt": "2026-11-07T05:23:43.397743+00:00",
+  "results": [
+    {
+      "place_id": 227089627,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8535005195,
+      "lat": "24.1524091",
+      "lon": "120.6606528",
+      "category": "place",
+      "type": "house",
+      "place_rank": 30,
+      "importance": 6.650873578999036e-05,
+      "addresstype": "place",
+      "name": "",
+      "display_name": "79號, 忠誠街, 忠明里, 西區, 田心, 臺中市, 403, 臺灣",
+      "address": {
+        "house_number": "79號",
+        "road": "忠誠街",
+        "neighbourhood": "忠明里",
+        "suburb": "西區",
+        "village": "田心",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "403",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1523591",
+        "24.1524591",
+        "120.6606028",
+        "120.6607028"
+      ]
+    },
+    {
+      "place_id": 225255713,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 207706962,
+      "lat": "24.1525328",
+      "lon": "120.6602637",
+      "category": "highway",
+      "type": "residential",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "residential",
+      "name": "忠誠街",
+      "display_name": "忠誠街, 忠明里, 西區, 田心, 臺中市, 403, 臺灣",
+      "address": {
+        "road": "忠誠街",
+        "neighbourhood": "忠明里",
+        "suburb": "西區",
+        "village": "田心",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "403",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1525290",
+        "24.1525399",
+        "120.6588386",
+        "120.6616890"
+      ]
+    },
+    {
+      "place_id": 225246717,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 444782966,
+      "lat": "24.1525434",
+      "lon": "120.6578896",
+      "category": "highway",
+      "type": "residential",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "residential",
+      "name": "忠誠街",
+      "display_name": "忠誠街, 公平里, 西區, 田心, 臺中市, 403, 臺灣",
+      "address": {
+        "road": "忠誠街",
+        "neighbourhood": "公平里",
+        "suburb": "西區",
+        "village": "田心",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "403",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1525289",
+        "24.1525447",
+        "120.6572753",
+        "120.6585038"
+      ]
+    }
+  ]
+}

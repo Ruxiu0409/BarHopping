@@ -1,0 +1,110 @@
+{
+  "query": {
+    "street": "60 中山路",
+    "city": "臺中市",
+    "format": "jsonv2",
+    "addressdetails": "1",
+    "limit": "5",
+    "countrycodes": "tw"
+  },
+  "url": "https://nominatim.openstreetmap.org/search?street=60+%E4%B8%AD%E5%B1%B1%E8%B7%AF&city=%E8%87%BA%E4%B8%AD%E5%B8%82&format=jsonv2&addressdetails=1&limit=5&countrycodes=tw",
+  "fetchedAt": "2026-11-07T05:23:31.662846+00:00",
+  "results": [
+    {
+      "place_id": 226972005,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8550106262,
+      "lat": "24.3293857",
+      "lon": "120.6529724",
+      "category": "place",
+      "type": "house",
+      "place_rank": 30,
+      "importance": 6.650873578999036e-05,
+      "addresstype": "place",
+      "name": "",
+      "display_name": "60號, 中山路, 大同里, 外埔區, 臺中市, 438018, 臺灣",
+      "address": {
+        "house_number": "60號",
+        "road": "中山路",
+        "neighbourhood": "大同里",
+        "suburb": "外埔區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "438018",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.3293357",
+        "24.3294357",
+        "120.6529224",
+        "120.6530224"
+      ]
+    },
+    {
+      "place_id": 226426446,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8529004816,
+      "lat": "24.1387999",
+      "lon": "120.6822545",
+      "category": "place",
+      "type": "house",
+      "place_rank": 30,
+      "importance": 6.650873578999036e-05,
+      "addresstype": "place",
+      "name": "",
+      "display_name": "60號, 中山路, 繼光里, 中區, 臺中市, 40042, 臺灣",
+      "address": {
+        "house_number": "60號",
+        "road": "中山路",
+        "neighbourhood": "繼光里",
+        "suburb": "中區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "40042",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1387499",
+        "24.1388499",
+        "120.6822045",
+        "120.6823045"
+      ]
+    },
+    {
+      "place_id": 227211151,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8547732202,
+      "lat": "24.3047472",
+      "lon": "120.7118061",
+      "category": "place",
+      "type": "house",
+      "place_rank": 30,
+      "importance": 6.650873578999036e-05,
+      "addresstype": "place",
+      "name": "",
+      "display_name": "60號, 中山路, 墩西里, 后里區, 臺中市, 421010, 臺灣",
+      "address": {
+        "house_number": "60號",
+        "road": "中山路",
+        "neighbourhood": "墩西里",
+        "suburb": "后里區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "421010",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.3046972",
+        "24.3047972",
+        "120.7117561",
+        "120.7118561"
+      ]
+    }
+  ]
+}

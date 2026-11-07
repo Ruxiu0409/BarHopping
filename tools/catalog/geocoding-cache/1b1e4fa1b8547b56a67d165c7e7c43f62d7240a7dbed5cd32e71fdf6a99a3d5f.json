@@ -1,0 +1,139 @@
+{
+  "query": {
+    "street": "65 北平路四段",
+    "city": "臺中市",
+    "format": "jsonv2",
+    "addressdetails": "1",
+    "limit": "5",
+    "countrycodes": "tw"
+  },
+  "url": "https://nominatim.openstreetmap.org/search?street=65+%E5%8C%97%E5%B9%B3%E8%B7%AF%E5%9B%9B%E6%AE%B5&city=%E8%87%BA%E4%B8%AD%E5%B8%82&format=jsonv2&addressdetails=1&limit=5&countrycodes=tw",
+  "fetchedAt": "2026-11-07T05:23:33.410012+00:00",
+  "results": [
+    {
+      "place_id": 227553065,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8535396774,
+      "lat": "24.1708041",
+      "lon": "120.6874002",
+      "category": "place",
+      "type": "house",
+      "place_rank": 30,
+      "importance": 6.650873578999036e-05,
+      "addresstype": "place",
+      "name": "",
+      "display_name": "65號, 北平路四段, 平安里, 北屯區, 臺中市, 406017, 臺灣",
+      "address": {
+        "house_number": "65號",
+        "road": "北平路四段",
+        "neighbourhood": "平安里",
+        "suburb": "北屯區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "406017",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1707541",
+        "24.1708541",
+        "120.6873502",
+        "120.6874502"
+      ]
+    },
+    {
+      "place_id": 227208488,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 208979889,
+      "lat": "24.1702941",
+      "lon": "120.6938237",
+      "category": "highway",
+      "type": "residential",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "residential",
+      "name": "北平路四段",
+      "display_name": "北平路四段, 平昌里, 北屯區, 臺中市, 406, 臺灣",
+      "address": {
+        "road": "北平路四段",
+        "neighbourhood": "平昌里",
+        "suburb": "北屯區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "406",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1694299",
+        "24.1705478",
+        "120.6903306",
+        "120.6971773"
+      ]
+    },
+    {
+      "place_id": 227423302,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 331959535,
+      "lat": "24.1706485",
+      "lon": "120.6877761",
+      "category": "highway",
+      "type": "residential",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "residential",
+      "name": "北平路四段",
+      "display_name": "北平路四段, 平安里, 北屯區, 臺中市, 406, 臺灣",
+      "address": {
+        "road": "北平路四段",
+        "neighbourhood": "平安里",
+        "suburb": "北屯區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "406",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1703076",
+        "24.1708562",
+        "120.6853072",
+        "120.6902298"
+      ]
+    },
+    {
+      "place_id": 227511189,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 331959536,
+      "lat": "24.1703050",
+      "lon": "120.6902802",
+      "category": "highway",
+      "type": "residential",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "residential",
+      "name": "東光第三柳橋",
+      "display_name": "東光第三柳橋, 平安里, 北屯區, 臺中市, 406, 臺灣",
+      "address": {
+        "road": "東光第三柳橋",
+        "neighbourhood": "平安里",
+        "suburb": "北屯區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "406",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1703024",
+        "24.1703076",
+        "120.6902298",
+        "120.6903306"
+      ]
+    }
+  ]
+}

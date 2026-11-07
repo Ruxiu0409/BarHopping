@@ -1,0 +1,172 @@
+{
+  "query": {
+    "street": "541 中清路1段",
+    "city": "臺中市",
+    "format": "jsonv2",
+    "addressdetails": "1",
+    "limit": "5",
+    "countrycodes": "tw"
+  },
+  "url": "https://nominatim.openstreetmap.org/search?street=541+%E4%B8%AD%E6%B8%85%E8%B7%AF1%E6%AE%B5&city=%E8%87%BA%E4%B8%AD%E5%B8%82&format=jsonv2&addressdetails=1&limit=5&countrycodes=tw",
+  "fetchedAt": "2026-11-07T05:23:50.121909+00:00",
+  "results": [
+    {
+      "place_id": 227571611,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8535068191,
+      "lat": "24.1680740",
+      "lon": "120.6726541",
+      "category": "place",
+      "type": "house",
+      "place_rank": 30,
+      "importance": 6.650873578999036e-05,
+      "addresstype": "place",
+      "name": "",
+      "display_name": "541號, 中清路一段, 長青里, 北區, 水湳經貿園區, 臺中市, 404, 臺灣",
+      "address": {
+        "house_number": "541號",
+        "road": "中清路一段",
+        "neighbourhood": "長青里",
+        "suburb": "北區",
+        "village": "水湳經貿園區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "404",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1680240",
+        "24.1681240",
+        "120.6726041",
+        "120.6727041"
+      ]
+    },
+    {
+      "place_id": 227635669,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 34942509,
+      "lat": "24.1701003",
+      "lon": "120.6722071",
+      "category": "highway",
+      "type": "primary",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "primary",
+      "name": "中清路一段",
+      "display_name": "中清路一段, 立人里, 北區, 水湳經貿園區, 臺中市, 404, 臺灣",
+      "address": {
+        "road": "中清路一段",
+        "neighbourhood": "立人里",
+        "suburb": "北區",
+        "village": "水湳經貿園區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "404",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1669213",
+        "24.1733446",
+        "120.6714114",
+        "120.6732327"
+      ]
+    },
+    {
+      "place_id": 227625963,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 1308630637,
+      "lat": "24.1649414",
+      "lon": "120.6738639",
+      "category": "highway",
+      "type": "primary",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "primary",
+      "name": "中清路一段",
+      "display_name": "中清路一段, 明新里, 北區, 臺中市, 404, 臺灣",
+      "address": {
+        "road": "中清路一段",
+        "neighbourhood": "明新里",
+        "suburb": "北區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "404",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1629654",
+        "24.1669213",
+        "120.6732327",
+        "120.6745058"
+      ]
+    },
+    {
+      "place_id": 227560738,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 980655690,
+      "lat": "24.1610345",
+      "lon": "120.6752764",
+      "category": "highway",
+      "type": "primary",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "primary",
+      "name": "中清路一段",
+      "display_name": "中清路一段, 賴村里, 北區, 臺中市, 404, 臺灣",
+      "address": {
+        "road": "中清路一段",
+        "neighbourhood": "賴村里",
+        "suburb": "北區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "404",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1591966",
+        "24.1628803",
+        "120.6746901",
+        "120.6758868"
+      ]
+    },
+    {
+      "place_id": 227518821,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 1047442343,
+      "lat": "24.1610162",
+      "lon": "120.6751321",
+      "category": "highway",
+      "type": "primary",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "primary",
+      "name": "中清路一段",
+      "display_name": "中清路一段, 健行里, 北區, 臺中市, 404, 臺灣",
+      "address": {
+        "road": "中清路一段",
+        "neighbourhood": "健行里",
+        "suburb": "北區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "404",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.1591980",
+        "24.1628437",
+        "120.6745524",
+        "120.6757434"
+      ]
+    }
+  ]
+}

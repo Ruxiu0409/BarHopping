@@ -1,0 +1,5 @@
+{
+  "fetchedAt": "2026-11-07T04:27:40.062374+00:00",
+  "endpoint": "https://overpass-api.de/api/interpreter",
+  "query": "[out:json][timeout:180];area[\"name\"=\"臺中市\"][\"boundary\"=\"administrative\"]->.city;rel(pivot.city)[admin_level=4];out geom;"
+}

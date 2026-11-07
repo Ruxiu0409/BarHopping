@@ -1,0 +1,76 @@
+{
+  "query": {
+    "street": "455-2 三豐路二段",
+    "city": "臺中市",
+    "format": "jsonv2",
+    "addressdetails": "1",
+    "limit": "5",
+    "countrycodes": "tw"
+  },
+  "url": "https://nominatim.openstreetmap.org/search?street=455-2+%E4%B8%89%E8%B1%90%E8%B7%AF%E4%BA%8C%E6%AE%B5&city=%E8%87%BA%E4%B8%AD%E5%B8%82&format=jsonv2&addressdetails=1&limit=5&countrycodes=tw",
+  "fetchedAt": "2026-11-07T05:23:46.905721+00:00",
+  "results": [
+    {
+      "place_id": 227148922,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 221005692,
+      "lat": "24.2685841",
+      "lon": "120.7209151",
+      "category": "highway",
+      "type": "primary",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "primary",
+      "name": "三豐路二段",
+      "display_name": "三豐路二段, 東湳里, 豐原區, 臺中市, 42079, 臺灣",
+      "address": {
+        "road": "三豐路二段",
+        "neighbourhood": "東湳里",
+        "suburb": "豐原區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "42079",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.2641675",
+        "24.2729402",
+        "120.7202570",
+        "120.7218289"
+      ]
+    },
+    {
+      "place_id": 234831642,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 1133143820,
+      "lat": "24.2752109",
+      "lon": "120.7219784",
+      "category": "highway",
+      "type": "primary",
+      "place_rank": 26,
+      "importance": 0.053399842069123335,
+      "addresstype": "primary",
+      "name": "三豐路二段",
+      "display_name": "三豐路二段, 西湳里, 豐原區, 臺中市, 42079, 臺灣",
+      "address": {
+        "road": "三豐路二段",
+        "neighbourhood": "西湳里",
+        "suburb": "豐原區",
+        "city": "臺中市",
+        "ISO3166-2-lvl4": "TW-TXG",
+        "postcode": "42079",
+        "country": "臺灣",
+        "country_code": "tw"
+      },
+      "boundingbox": [
+        "24.2729402",
+        "24.2774752",
+        "120.7217962",
+        "120.7222595"
+      ]
+    }
+  ]
+}

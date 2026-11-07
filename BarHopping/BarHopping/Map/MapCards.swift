@@ -243,7 +243,6 @@ struct PlaceResultsPanel: View {
     var state: MapScreenState
     var planner: PlannerStore
     var onRetry: () -> Void
-    var onLoadMore: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -270,7 +269,7 @@ struct PlaceResultsPanel: View {
     private var header: String {
         switch state.searchStatus {
         case .loaded: "找到 \(state.visiblePlaces.count) 間"
-        case .loading: "搜尋中…"
+        case .loading: "正在載入酒吧…"
         default: "搜尋結果"
         }
     }
@@ -278,7 +277,7 @@ struct PlaceResultsPanel: View {
     @ViewBuilder private var content: some View {
         switch state.searchStatus {
         case .idle:
-            message("輸入店名或移動地圖後按「搜尋這個區域」。", icon: "magnifyingglass")
+            message("酒吧資料尚未載入。", icon: "magnifyingglass")
         case .loading:
             HStack { Spacer(); ProgressView(); Spacer() }.padding(.vertical, 16)
         case .failed(let text):
@@ -288,8 +287,8 @@ struct PlaceResultsPanel: View {
             }
             .frame(maxWidth: .infinity)
         case .loaded:
-            if state.visiblePlaces.isEmpty && state.nextCursor == nil {
-                message(state.places.isEmpty ? "這個範圍找不到酒吧。試著移動或縮小地圖，再搜尋一次。" : "沒有符合篩選的店家。", icon: "wineglass")
+            if state.visiblePlaces.isEmpty {
+                message(state.places.isEmpty ? "目前沒有酒吧資料。" : "沒有符合篩選的店家。", icon: "wineglass")
             } else {
                 ScrollView {
                     LazyVStack(alignment: .leading, spacing: 0) {
@@ -297,29 +296,10 @@ struct PlaceResultsPanel: View {
                             row(place)
                             Divider()
                         }
-                        footer
                     }
                 }
                 .scrollBounceBehavior(.basedOnSize)
             }
-        }
-    }
-
-    @ViewBuilder private var footer: some View {
-        if state.isLoadingMore {
-            HStack { Spacer(); ProgressView(); Spacer() }.padding(.vertical, 10)
-        } else if let err = state.loadMoreError {
-            VStack(spacing: 4) {
-                Text(err).font(.footnote).foregroundStyle(.red)
-                Button("重試載入更多", action: onLoadMore).font(.footnote.weight(.semibold))
-            }
-            .frame(maxWidth: .infinity).padding(.vertical, 8)
-        } else if state.nextCursor != nil {
-            Button(action: onLoadMore) {
-                Text("載入更多").font(.subheadline.weight(.semibold)).frame(maxWidth: .infinity)
-            }
-            .tint(MapTheme.accent)
-            .padding(.vertical, 10)
         }
     }
 

@@ -45,6 +45,7 @@ struct MapTabView: View {
         .toolbarBackground(.visible, for: .tabBar)
         .onAppear {
             screen.loadConfigIfNeeded(api: planner.api)
+            screen.loadPlacesIfNeeded(api: planner.api)
             handleRouterFocus()
             consumeNotice()
             screen.refreshConvenienceStores()
@@ -77,7 +78,6 @@ struct MapTabView: View {
         }
         .animation(.snappy(duration: 0.25), value: screen.selection)
         .animation(.snappy(duration: 0.25), value: screen.listExpanded)
-        .animation(.snappy(duration: 0.25), value: screen.userMovedMap)
     }
 
     // MARK: - 上方：搜尋列、篩選、提示
@@ -86,29 +86,14 @@ struct MapTabView: View {
         VStack(spacing: 8) {
             searchBar
             chips
-            if screen.showsPopularRoutes {
-                Text(screen.popularRoutesError ?? "熱門路線 · 示範資料")
-                    .font(.caption)
-                    .foregroundStyle(MapTheme.textSecondary)
-                    .padding(.horizontal, 10).padding(.vertical, 5)
-                    .background(MapTheme.surface, in: Capsule())
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
+            Text("熱門路線 · 示範資料")
+                .font(.caption)
+                .foregroundStyle(MapTheme.textSecondary)
+                .padding(.horizontal, 10).padding(.vertical, 5)
+                .background(MapTheme.surface, in: Capsule())
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .allowsHitTesting(false)
             if screen.showsConvenienceStores { convenienceControls }
-            if screen.userMovedMap && screen.searchStatus != .loading {
-                Button {
-                    searchFocused = false
-                    screen.searchCurrentArea(api: planner.api)
-                } label: {
-                    Label("搜尋這個區域", systemImage: "arrow.clockwise")
-                        .font(.subheadline.weight(.bold))
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, 18).padding(.vertical, 10)
-                        .background(MapTheme.accent, in: Capsule())
-                        .shadow(color: .black.opacity(0.2), radius: 4, y: 2)
-                }
-                .transition(.scale.combined(with: .opacity))
-            }
             banners
             HStack {
                 Spacer()
@@ -127,7 +112,7 @@ struct MapTabView: View {
             TextField("搜尋酒吧名稱", text: $screen.queryText)
                 .focused($searchFocused)
                 .submitLabel(.search)
-                .onSubmit { screen.searchCurrentArea(api: planner.api) }
+                .onSubmit { screen.submitSearch() }
                 .autocorrectionDisabled()
             if screen.searchStatus == .loading {
                 ProgressView().controlSize(.small)
@@ -141,7 +126,7 @@ struct MapTabView: View {
             }
             Button {
                 searchFocused = false
-                screen.searchCurrentArea(api: planner.api)
+                screen.submitSearch()
             } label: {
                 Image(systemName: "magnifyingglass")
                     .font(.body.weight(.semibold))
@@ -149,7 +134,7 @@ struct MapTabView: View {
                     .frame(width: 36, height: 36)
                     .background(MapTheme.accent, in: Circle())
             }
-            .accessibilityLabel("在這個區域搜尋")
+            .accessibilityLabel("搜尋全部酒吧")
         }
         .padding(.leading, 12).padding(.trailing, 5)
         .frame(height: 48)
@@ -165,9 +150,6 @@ struct MapTabView: View {
                 chip("Pub", selected: screen.categoryFilter == .pub) { screen.categoryFilter = .pub }
                 chip("超商", systemImage: "storefront", selected: screen.showsConvenienceStores) {
                     screen.toggleConvenienceStores()
-                }
-                chip("熱門", systemImage: "flame", selected: screen.showsPopularRoutes) {
-                    screen.showsPopularRoutes.toggle()
                 }
             }
             .padding(.horizontal, 2).padding(.vertical, 3)
@@ -220,6 +202,15 @@ struct MapTabView: View {
     }
 
     @ViewBuilder private var banners: some View {
+        if case .failed(let message) = screen.searchStatus {
+            banner(icon: "wineglass", text: message, tint: .red) {
+                Button("重試") { screen.loadPlacesIfNeeded(api: planner.api) }
+                    .font(.subheadline.weight(.bold))
+            }
+        }
+        if let error = screen.popularRoutesError {
+            banner(icon: "flame", text: error, tint: .secondary)
+        }
         if let toast = screen.toast {
             banner(icon: "info.circle.fill", text: toast, tint: MapTheme.accentOnDark)
                 .transition(.move(edge: .top).combined(with: .opacity))
@@ -308,14 +299,13 @@ struct MapTabView: View {
 
     private var bottomStack: some View {
         VStack(alignment: .leading, spacing: 8) {
-            AttributionBar(attributions: screen.attributions + (screen.showsPopularRoutes ? [MapScreenState.popularRouteAttribution] : []))
+            AttributionBar(attributions: screen.attributions + [MapScreenState.popularRouteAttribution])
                 .frame(maxWidth: .infinity, alignment: .leading)
             if let card = selectionCard {
                 card.transition(.move(edge: .bottom).combined(with: .opacity))
             } else if screen.listExpanded {
                 PlaceResultsPanel(state: screen, planner: planner,
-                                  onRetry: { screen.retrySearch(api: planner.api) },
-                                  onLoadMore: { screen.loadMore(api: planner.api) })
+                                  onRetry: { screen.loadPlacesIfNeeded(api: planner.api) })
                     .frame(maxHeight: 280)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
             }
@@ -477,7 +467,7 @@ struct MapTabView: View {
 
     private var renderModel: MapRenderModel {
         var m = MapRenderModel()
-        m.popularSegments = screen.showsPopularRoutes ? screen.popularSegments : []
+        m.popularSegments = screen.popularSegments
         m.convenienceStores = screen.showsConvenienceStores ? screen.convenienceStores : []
         let plan = planner.plan
         let problems = problemIds

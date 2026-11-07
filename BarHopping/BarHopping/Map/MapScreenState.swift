@@ -20,9 +20,6 @@ final class MapScreenState {
     /// 上方與下方浮動元件的高度，框選路線時避開。
     @ObservationIgnored var overlayInsets = EdgeInsets(top: 140, leading: 40, bottom: 240, trailing: 40)
 
-    /// 使用者手勢移動地圖後才顯示「搜尋這個區域」。
-    var userMovedMap = false
-
     /// 交給地圖執行一次的鏡頭指令。
     struct CameraCommand: Equatable {
         enum Kind: Equatable {
@@ -101,7 +98,6 @@ final class MapScreenState {
 
     // MARK: 熱門路線
 
-    var showsPopularRoutes = true
     private(set) var popularSegments: [PopularRouteSegment] = []
     private(set) var popularRoutesError: String?
     @ObservationIgnored private var popularRoutesTask: Task<Void, Never>?
@@ -137,94 +133,70 @@ final class MapScreenState {
     var listExpanded = false
 
     private(set) var places: [Place] = []
-    private(set) var nextCursor: String?
     private(set) var searchStatus: SearchStatus = .idle
-    private(set) var isLoadingMore = false
-    private(set) var loadMoreError: String?
-    /// 最近一次搜尋使用的條件（載入更多時沿用）。
-    private(set) var lastSearch: (bbox: BoundingBox, query: String?)?
-    private var searchTask: Task<Void, Never>?
-    private var searchToken = 0
+    @ObservationIgnored private var placesTask: Task<Void, Never>?
 
     static let pageSize = 50
 
     var visiblePlaces: [Place] {
-        guard let categoryFilter else { return places }
-        return places.filter { $0.category == categoryFilter }
+        let query = queryText.trimmingCharacters(in: .whitespacesAndNewlines)
+        return places.filter { place in
+            (categoryFilter == nil || place.category == categoryFilter)
+                && (query.isEmpty || place.name.range(of: query, options: [
+                    .caseInsensitive, .diacriticInsensitive, .widthInsensitive,
+                ]) != nil)
+        }
     }
 
-    /// 以目前可視範圍與搜尋列文字搜尋（只在使用者按下時呼叫）。
-    func searchCurrentArea(api: BarHoppingAPI) {
-        let bbox = visibleBounds ?? Self.approximateBounds(around: camera)
-        let q = queryText.trimmingCharacters(in: .whitespacesAndNewlines)
-        userMovedMap = false
+    func submitSearch() {
         selection = nil
         listExpanded = true
-        startSearch(api: api, bbox: bbox, query: q.isEmpty ? nil : q, cursor: nil)
     }
 
-    func loadMore(api: BarHoppingAPI) {
-        guard let lastSearch, let nextCursor, !isLoadingMore, searchStatus == .loaded else { return }
-        startSearch(api: api, bbox: lastSearch.bbox, query: lastSearch.query, cursor: nextCursor)
-    }
-
-    func retrySearch(api: BarHoppingAPI) {
-        if let lastSearch {
-            startSearch(api: api, bbox: lastSearch.bbox, query: lastSearch.query, cursor: nil)
-        } else {
-            searchCurrentArea(api: api)
-        }
-    }
-
-    func clearResults() {
-        searchTask?.cancel()
-        searchToken += 1
-        places = []; nextCursor = nil; lastSearch = nil
-        searchStatus = .idle; isLoadingMore = false; loadMoreError = nil
-        if case .place = selection { selection = nil }
-    }
-
-    private func startSearch(api: BarHoppingAPI, bbox: BoundingBox, query: String?, cursor: String?) {
-        searchTask?.cancel()
-        searchToken += 1
-        let token = searchToken
-        let isMore = cursor != nil
-        if isMore {
-            isLoadingMore = true; loadMoreError = nil
-        } else {
-            searchStatus = .loading; isLoadingMore = false; loadMoreError = nil
-            places = []; nextCursor = nil
-            lastSearch = (bbox, query)
-        }
-        searchTask = Task { [weak self] in
-            let outcome: Result<PlacesPage, Error>
+    /// 首次進入載入整個服務範圍；之後搜尋與分類都只篩選記憶體中的完整目錄。
+    func loadPlacesIfNeeded(api: BarHoppingAPI) {
+        guard searchStatus != .loaded, placesTask == nil else { return }
+        searchStatus = .loading
+        placesTask = Task { [weak self] in
+            guard let self else { return }
+            defer { self.placesTask = nil }
             do {
-                outcome = .success(try await api.places(in: bbox, query: query, limit: Self.pageSize, cursor: cursor))
+                let area: GeoJSONPolygon
+                if let config = self.config {
+                    area = config.serviceArea
+                } else {
+                    area = try await api.config().serviceArea
+                }
+                let coordinates = area.coordinates.flatMap { $0 }
+                guard let west = coordinates.map({ $0[0] }).min(),
+                      let east = coordinates.map({ $0[0] }).max(),
+                      let south = coordinates.map({ $0[1] }).min(),
+                      let north = coordinates.map({ $0[1] }).max() else {
+                    throw ServiceError(clientRequestId: nil, code: .upstreamUnavailable,
+                                       message: "無法讀取台中服務範圍", retryable: true, waypointIds: [])
+                }
+                let bounds = BoundingBox(west: west, south: south, east: east, north: north)
+                var allPlaces: [Place] = []
+                var knownIDs: Set<String> = []
+                var cursor: String?
+                var seenCursors: Set<String> = []
+                repeat {
+                    let page = try await api.places(in: bounds, query: nil,
+                                                    limit: Self.pageSize, cursor: cursor)
+                    try Task.checkCancellation()
+                    allPlaces += page.items.filter { knownIDs.insert($0.id).inserted }
+                    cursor = page.nextCursor
+                    if let cursor, !seenCursors.insert(cursor).inserted {
+                        throw ServiceError(clientRequestId: nil, code: .upstreamUnavailable,
+                                           message: "酒吧資料載入不完整，請重試", retryable: true, waypointIds: [])
+                    }
+                } while cursor != nil
+                self.places = allPlaces
+                self.searchStatus = .loaded
             } catch is CancellationError {
-                return
+                self.searchStatus = .idle
             } catch {
-                outcome = .failure(error)
-            }
-            guard let self, self.searchToken == token else { return }
-            switch outcome {
-            case .success(let page):
-                if isMore {
-                    let known = Set(self.places.map(\.id))
-                    self.places += page.items.filter { !known.contains($0.id) }
-                    self.isLoadingMore = false
-                } else {
-                    self.places = page.items
-                    self.searchStatus = .loaded
-                }
-                self.nextCursor = page.nextCursor
-            case .failure(let error):
-                let message = Self.message(for: error)
-                if isMore {
-                    self.isLoadingMore = false
-                    self.loadMoreError = message
-                } else {
-                    self.searchStatus = .failed(message)
-                }
+                self.searchStatus = .failed(Self.message(for: error))
             }
         }
     }
@@ -238,13 +210,6 @@ final class MapScreenState {
         case .outsideServiceArea: return "這個範圍不在服務區域內"
         default: return e.message.isEmpty ? "搜尋失敗，請稍後再試" : e.message
         }
-    }
-
-    /// 地圖尚未回報範圍時，以視角估算範圍。
-    static func approximateBounds(around camera: Camera) -> BoundingBox {
-        let span = 360 / pow(2, camera.zoom)   // 約略一個 256pt 圖磚的經度寬
-        let lat = camera.center.latitude, lon = camera.center.longitude
-        return BoundingBox(west: lon - span, south: lat - span * 0.8, east: lon + span, north: lat + span * 0.8)
     }
 
     // MARK: 超商圖層
@@ -372,7 +337,7 @@ final class MapScreenState {
             guard case .success(let coordinate) = outcome else { return }
             let plan = planner.plan
             guard canCenter, self.isMapVisible, self.permitsInitialLocationCamera,
-                  !self.hasInteractedWithMap, !self.userMovedMap,
+                  !self.hasInteractedWithMap,
                   self.handledRouterFocus == 0, self.nextCommandId == commandId,
                   plan.origin == nil, plan.stops.isEmpty, plan.destination == nil,
                   planner.result == nil, self.selection == nil, self.pendingCoordinate == nil else { return }

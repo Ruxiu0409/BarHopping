@@ -438,10 +438,6 @@ extension MapLibreMapView.Coordinator: @preconcurrency MLNMapViewDelegate {
         let b = mapView.visibleCoordinateBounds
         state.visibleBounds = BoundingBox(west: b.sw.longitude, south: b.sw.latitude, east: b.ne.longitude, north: b.ne.latitude)
         state.refreshConvenienceStores()
-        let gestures: MLNCameraChangeReason = [.gesturePan, .gesturePinch, .gestureZoomIn, .gestureZoomOut, .gestureOneFingerZoom]
-        if !reason.intersection(gestures).isEmpty, !state.userMovedMap {
-            state.userMovedMap = true
-        }
     }
 }
 

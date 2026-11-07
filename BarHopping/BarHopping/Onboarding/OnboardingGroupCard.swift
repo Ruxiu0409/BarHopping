@@ -7,7 +7,13 @@ struct OnboardingGroupCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
             VStack(alignment: .leading, spacing: 10) {
-                Text(group.name).font(.title3.bold())
+                HStack(alignment: .top, spacing: 12) {
+                    Image(systemName: group.symbol)
+                        .font(.title3)
+                        .foregroundStyle(AppTheme.accentOnDark)
+                        .accessibilityHidden(true)
+                    Text(group.name).font(.headline)
+                }
                 Label(group.drinkLevel.title, systemImage: group.drinkLevel.symbol)
                     .font(.subheadline.weight(.semibold))
                     .foregroundStyle(AppTheme.accentOnDark)
@@ -28,7 +34,7 @@ struct OnboardingGroupCard: View {
             }
             .accessibilityElement(children: .combine)
             Button(group.isJoined ? "已加入" : "加入", systemImage: group.isJoined ? "checkmark.circle.fill" : "person.badge.plus", action: join)
-                .buttonStyle(.borderedProminent)
+                .modifier(OnboardingActionStyle())
                 .tint(AppTheme.accent)
                 .controlSize(.large)
                 .frame(minHeight: 44)
@@ -38,7 +44,7 @@ struct OnboardingGroupCard: View {
         .fixedSize(horizontal: false, vertical: true)
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(20)
-        .appGlassCard()
+        .appGlassCard(cornerRadius: 28)
         .sensoryFeedback(.success, trigger: group.isJoined) { _, joined in joined }
     }
 }

@@ -12,7 +12,7 @@ struct OnboardingDrinkLevelCard: View {
                     .font(.title2)
                     .foregroundStyle(AppTheme.accentOnDark)
                     .accessibilityHidden(true)
-                VStack(alignment: .leading, spacing: 8) {
+                VStack(alignment: .leading, spacing: 4) {
                     Text(level.title).font(.headline)
                     Text(level.description).font(.subheadline).foregroundStyle(AppTheme.textSecondary)
                     if let reminder = level.reminder {
@@ -27,10 +27,17 @@ struct OnboardingDrinkLevelCard: View {
             .fixedSize(horizontal: false, vertical: true)
             .padding(20)
             .frame(maxWidth: .infinity, minHeight: 88, alignment: .leading)
-            .appGlassCard()
+            .appGlassCard(cornerRadius: 28)
             .overlay {
-                RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius)
-                    .strokeBorder(isSelected ? AppTheme.accentOnDark : AppTheme.separator, lineWidth: isSelected ? 2 : 1)
+                if isSelected {
+                    RoundedRectangle(cornerRadius: 28, style: .continuous)
+                        .fill(AppTheme.accentSoft)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 28, style: .continuous)
+                                .strokeBorder(AppTheme.accentOnDark, lineWidth: 1.5)
+                        }
+                        .allowsHitTesting(false)
+                }
             }
         }
         .buttonStyle(.plain)

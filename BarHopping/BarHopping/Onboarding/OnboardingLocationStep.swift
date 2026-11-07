@@ -19,10 +19,6 @@ struct OnboardingLocationStep: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Image(systemName: isAuthorized ? "location.circle.fill" : "location.circle")
-                .font(.largeTitle)
-                .foregroundStyle(AppTheme.accentOnDark)
-                .accessibilityHidden(true)
             Label("附近酒吧，一眼找到", systemImage: "mappin.and.ellipse")
             Label("抵達店家，完成「買酒」打卡", systemImage: "checkmark.seal")
             Text("只需允許「使用 App 期間」定位。稍後也能到設定開啟。")
@@ -36,13 +32,13 @@ struct OnboardingLocationStep: View {
                 Button("前往設定", systemImage: "gearshape") {
                     if let url = URL(string: UIApplication.openSettingsURLString) { openURL(url) }
                 }
-                .buttonStyle(.bordered).controlSize(.large)
+                .buttonStyle(.bordered).buttonBorderShape(.capsule).controlSize(.large)
             } else {
                 Button(isRequesting ? "正在確認定位…" : "開啟定位", systemImage: "location.fill") {
                     isRequesting = true
                     problem = nil
                 }
-                .buttonStyle(.borderedProminent).tint(AppTheme.accent).controlSize(.large)
+                .modifier(OnboardingActionStyle()).tint(AppTheme.accent).controlSize(.large)
                 .disabled(isRequesting)
             }
             if let problem, !isAuthorized, !isDenied {
@@ -52,7 +48,7 @@ struct OnboardingLocationStep: View {
         .fixedSize(horizontal: false, vertical: true)
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(20)
-        .appGlassCard()
+        .appGlassCard(cornerRadius: 28)
         .task(id: isRequesting) {
             guard isRequesting else { return }
             let result = await provider.requestLocation()

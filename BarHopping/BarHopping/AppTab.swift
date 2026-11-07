@@ -24,7 +24,7 @@ enum AppTab: String, CaseIterable, Identifiable {
         case .home: "house.fill"
         case .map: "map.fill"
         case .run: "figure.run"
-        case .groups: "person.3.fill"
+        case .groups: "person.2"
         case .profile: "person.circle"
         }
     }

@@ -19,6 +19,8 @@ struct ForumPostRow: View {
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
 
+            if !post.visiblePhotos.isEmpty { ForumPhotoThumbnails(photos: post.visiblePhotos) }
+
             if let recipe = post.recipe { ForumRecipeBadges(recipe: recipe) }
 
             ForumTagLine(tags: post.tags)
@@ -41,6 +43,9 @@ struct ForumPostRow: View {
     private var accessibilityText: String {
         var parts = ["\(post.category.title)", post.title, "\(post.author.name)，\(HomeTheme.relative(post.createdAt))"]
         if let r = post.recipe { parts.append("附酒譜，\(r.ingredients.count) 種材料，\(r.estimatedCost)，難度\(r.difficulty.title)\(r.containsAlcohol ? "" : "，無酒精")") }
+        if !post.visiblePhotos.isEmpty {
+            parts.append("附 \(post.visiblePhotos.count) 張情境參考照片：" + post.visiblePhotos.map(\.description).joined(separator: "、"))
+        }
         parts.append("\(post.likeCount) 個讚\(post.isLiked ? "，已按讚" : "")，\(post.commentCount) 則留言")
         return parts.joined(separator: "，")
     }

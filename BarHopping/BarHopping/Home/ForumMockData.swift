@@ -26,7 +26,7 @@ enum ForumMockData {
             ForumComment(author: a(author), body: body, createdAt: ago(minutes: minutesAgo))
         }
 
-        return [
+        let posts: [ForumPost] = [
             ForumPost(
                 id: "mock-1", author: a(5), createdAt: ago(minutes: 35), category: .convenience,
                 title: "宿舍十分鐘：檸檬紅茶＋伏特加",
@@ -201,6 +201,11 @@ enum ForumMockData {
                     c(4, "還有一杯酒配一杯水，慢慢喝，不要比誰喝得快", 5600),
                 ]),
             ForumPost(
+                id: "mock-16", author: a(7), createdAt: ago(minutes: 60 * 6), category: .classic,
+                title: "週末串酒吧：兩站之間留一段散步時間",
+                body: "這次只排兩間酒吧，第一站聊聊天，第二站慢慢喝一杯。比起趕場，我更喜歡在兩站之間走走，看看夜裡的街道。\n\n挑店時先看座位和吧檯氛圍，點酒前也會跟店員說自己喜歡偏酸還是偏甜。回程就搭車，不開車。",
+                tags: ["#串酒吧", "#週末散步", "#酒吧氛圍"], likeCount: 87),
+            ForumPost(
                 id: "mock-15", author: a(0), createdAt: ago(minutes: 60 * 120), category: .newbie,
                 title: "不太會喝酒，有推薦入門的超商組合嗎？",
                 body: "朋友都在玩超商調酒，我酒量很差，喝一點就會臉紅。有沒有酒精少一點、好入口的組合？",
@@ -211,5 +216,25 @@ enum ForumMockData {
                     c(7, "臉紅就是身體在提醒你了，喝水休息最重要", 6850),
                 ]),
         ]
+        let images: [String: [ForumPhoto]] = [
+            "mock-1": [ForumPhotoLibrary.citrusGlass, ForumPhotoLibrary.citrusPrep],
+            "mock-2": [ForumPhotoLibrary.gardenGlass],
+            "mock-3": [ForumPhotoLibrary.citrusGlass, ForumPhotoLibrary.citrusPrep],
+            "mock-5": [ForumPhotoLibrary.whiskyAmber, ForumPhotoLibrary.whiskyBar, ForumPhotoLibrary.citrusPrep],
+            "mock-6": [ForumPhotoLibrary.orangeCocktail, ForumPhotoLibrary.citrusPrep],
+            "mock-7": [ForumPhotoLibrary.beerTall, ForumPhotoLibrary.beerMug],
+            "mock-8": [ForumPhotoLibrary.gardenGlass, ForumPhotoLibrary.citrusPrep],
+            "mock-9": [ForumPhotoLibrary.mintLime, ForumPhotoLibrary.gardenGlass, ForumPhotoLibrary.citrusPrep],
+            "mock-10": [ForumPhotoLibrary.whiskyBar, ForumPhotoLibrary.citrusPrep],
+            "mock-11": [ForumPhotoLibrary.mintLime, ForumPhotoLibrary.citrusPrep],
+            "mock-12": [ForumPhotoLibrary.orangeLayers, ForumPhotoLibrary.orangeCocktail],
+            "mock-13": [ForumPhotoLibrary.citrusPrep],
+            "mock-16": [ForumPhotoLibrary.barBrick, ForumPhotoLibrary.barStools, ForumPhotoLibrary.whiskyBar, ForumPhotoLibrary.orangeCocktail],
+        ]
+        return posts.map { post in
+            var illustrated = post
+            illustrated.photos = images[post.id] ?? []
+            return illustrated
+        }
     }
 }

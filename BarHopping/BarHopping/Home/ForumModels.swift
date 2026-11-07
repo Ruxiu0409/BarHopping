@@ -90,5 +90,9 @@ struct ForumPost: Identifiable, Hashable, Sendable {
     var comments: [ForumComment] = []
     var recipe: ForumRecipe?
 
+    var photos: [ForumPhoto] = []
+
+    /// 論壇每篇最多顯示四張照片。
+    var visiblePhotos: [ForumPhoto] { Array(photos.prefix(4)) }
     var commentCount: Int { comments.count }
 }

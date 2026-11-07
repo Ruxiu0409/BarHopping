@@ -31,6 +31,9 @@ struct ForumPostDetailView: View {
                     ForumAuthorLine(author: post.author, date: post.createdAt, category: post.category)
                     Text(post.title).font(.title3.bold())
                     Text(post.body).font(.body)
+                    if !post.visiblePhotos.isEmpty {
+                        ForumPhotoGallery(photos: post.visiblePhotos)
+                    }
                     ForumTagLine(tags: post.tags)
                     Divider()
                     HStack(spacing: 20) {

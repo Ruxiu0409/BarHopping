@@ -2,49 +2,70 @@ import SwiftUI
 
 struct OnboardingGroupCard: View {
     let group: SocialGroup
+    var compact = false
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     let join: () -> Void
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 14) {
-            VStack(alignment: .leading, spacing: 10) {
-                HStack(alignment: .top, spacing: 12) {
-                    Image(systemName: group.symbol)
-                        .font(.title3)
-                        .foregroundStyle(AppTheme.accentOnDark)
-                        .accessibilityHidden(true)
-                    Text(group.name).font(.headline)
-                }
-                Label(group.drinkLevel.title, systemImage: group.drinkLevel.symbol)
-                    .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(AppTheme.accentOnDark)
-                if let reminder = group.drinkLevel.reminder {
-                    Text(reminder).font(.caption).foregroundStyle(AppTheme.textSecondary)
-                }
-                Label("\(group.members.count) 位成員", systemImage: "person.2")
-                    .font(.subheadline).foregroundStyle(AppTheme.textSecondary)
-                if let event = group.nextEvent {
-                    VStack(alignment: .leading, spacing: 5) {
-                        Label("下一場・\(event.title)", systemImage: "calendar")
-                        Text(GroupsStyle.date(event.date))
+        Group {
+            if dynamicTypeSize.isAccessibilitySize {
+                ViewThatFits(in: .horizontal) {
+                    HStack(spacing: 12) {
+                        details
+                        joinButton
                     }
-                    .font(.subheadline).foregroundStyle(AppTheme.textSecondary)
-                } else {
-                    Text("還沒有下一場活動").font(.subheadline).foregroundStyle(AppTheme.textSecondary)
+                    VStack(alignment: .leading, spacing: 8) {
+                        details
+                        joinButton
+                    }
+                }
+            } else {
+                HStack(spacing: 12) {
+                    details
+                    joinButton
                 }
             }
-            .accessibilityElement(children: .combine)
-            Button(group.isJoined ? "已加入" : "加入", systemImage: group.isJoined ? "checkmark.circle.fill" : "person.badge.plus", action: join)
-                .modifier(OnboardingActionStyle())
-                .tint(AppTheme.accent)
-                .controlSize(.large)
-                .frame(minHeight: 44)
-                .disabled(group.isJoined)
-                .accessibilityLabel("\(group.isJoined ? "已加入" : "加入")\(group.name)")
         }
         .fixedSize(horizontal: false, vertical: true)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(20)
+        .padding(compact ? 10 : 16)
         .appGradientCard(cornerRadius: 28)
         .sensoryFeedback(.success, trigger: group.isJoined) { _, joined in joined }
+    }
+
+    private var details: some View {
+        VStack(alignment: .leading, spacing: compact ? 3 : 6) {
+            Label(group.name, systemImage: group.symbol)
+                .font(compact ? .subheadline.weight(.semibold) : .headline)
+            Text("\(group.drinkLevel.title)・\(group.members.count) 位成員")
+                .font(compact ? .caption : .subheadline)
+                .foregroundStyle(AppTheme.accentOnDark)
+            if let reminder = group.drinkLevel.reminder {
+                Text(reminder).font(.caption2).foregroundStyle(AppTheme.textSecondary)
+            }
+            if let event = group.nextEvent {
+                Text(compact ? "下一場・\(event.date.formatted(.dateTime.month().day()))" : "下一場・\(event.title)　\(GroupsStyle.date(event.date))")
+                    .font(compact ? .caption2 : .caption)
+                    .foregroundStyle(AppTheme.textSecondary)
+                    .accessibilityLabel("下一場・\(event.title)，\(GroupsStyle.date(event.date))")
+            } else {
+                Text("還沒有下一場活動")
+                    .font(compact ? .caption2 : .caption)
+                    .foregroundStyle(AppTheme.textSecondary)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .accessibilityElement(children: .combine)
+    }
+
+    private var joinButton: some View {
+        Button(group.isJoined ? "已加入" : "加入", systemImage: group.isJoined ? "checkmark.circle.fill" : "person.badge.plus", action: join)
+            .font(.subheadline.weight(.semibold))
+            .modifier(OnboardingActionStyle())
+            .tint(AppTheme.accent)
+            .frame(minHeight: 44)
+            .fixedSize(horizontal: !dynamicTypeSize.isAccessibilitySize, vertical: true)
+            .disabled(group.isJoined)
+            .accessibilityLabel("\(group.isJoined ? "已加入" : "加入")\(group.name)")
     }
 }

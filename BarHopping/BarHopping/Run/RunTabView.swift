@@ -1,511 +1,64 @@
 import SwiftUI
 
-/// 路跑分頁：編輯目前路線、調整站序、計算路線與管理已儲存的路線。
-/// 所有編輯都透過共用的 PlannerStore，與地圖分頁同步。
 struct RunTabView: View {
-    @Environment(PlannerStore.self) private var planner
-    @Environment(AppRouter.self) private var router
-
-    @State private var titleText = ""
-    @FocusState private var titleFocused: Bool
-
-
-    @State private var toast: Toast?
-    @State private var toastTask: Task<Void, Never>?
-    @State private var isSaving = false
-    @State private var showDrafts = false
-    @State private var confirmNewPlan = false
-    @State private var showPlanRequired = false
+    @State private var showRun = false
+    @State private var demoMode = false
+    @State private var latestRun: FreeRunSession?
     @State private var showDrinkPass = false
     @State private var drinkPassPurchases: [DrinkPassPurchase] = []
 
-    private var plan: RoutePlan { planner.plan }
-
     var body: some View {
         NavigationStack {
-            List {
-                Section {
-                    RunStartButton(hasStops: !plan.stops.isEmpty, action: startRun)
+            ScrollView {
+                VStack(spacing: 28) {
+                    RunStartButton { showRun = true }
                         .frame(maxWidth: .infinity)
-                        .padding(.vertical, 20)
-                        .listRowBackground(AppTheme.background)
-                        .listRowSeparator(.hidden)
-                        .alert("請先規劃路線", isPresented: $showPlanRequired) {
-                            Button("前往地圖規劃") { router.selectedTab = .map }
-                            Button("取消", role: .cancel) { }
-                        } message: {
-                            Text("目前還沒有站點。請先到地圖加入想去的酒吧，再回來按「開始」。")
-                        }
-                }
-                Group {
-                    statusSection
-                    planSection
-                    stopsSection
-                    computeSection
-                    if let result = planner.result {
-                        RunResultSection(result: result, plan: plan, isDimmed: planner.resultStatus == .stale)
+                        .padding(.top, 20)
+                    introduction
+                    if let latestRun {
+                        FreeRunLatestCard(session: latestRun)
                     }
-                }
-                .listRowBackground(AppTheme.surface)
-                .listRowSeparatorTint(AppTheme.separator)
-
-                Section {
                     DrinkPassBanner(event: DrinkPassMockData.event) { showDrinkPass = true }
-                        .listRowInsets(EdgeInsets())
-                        .listRowBackground(AppTheme.background)
-                        .listRowSeparator(.hidden)
                 }
+                .padding(.horizontal, 20)
+                .padding(.bottom, 24)
             }
-            .listStyle(.insetGrouped)
-            .scrollContentBackground(.hidden)
             .background(AppTheme.background)
             .foregroundStyle(AppTheme.textPrimary)
+            .navigationTitle("路跑")
             .toolbarBackground(AppTheme.background, for: .navigationBar)
             .toolbarBackgroundVisibility(.visible, for: .navigationBar)
-            .navigationTitle("路跑")
-            .toolbar { toolbar }
             .navigationDestination(isPresented: $showDrinkPass) {
                 DrinkPassDetailView(event: DrinkPassMockData.event, purchases: $drinkPassPurchases)
             }
-            .overlay(alignment: .top) { toastView }
-            .sheet(isPresented: $showDrafts) {
-                SavedDraftsView(drafts: planner.drafts,
-                                currentPlanId: plan.id,
-                                hasUnsavedChanges: planner.hasUnsavedChanges) { draft in
-                    planner.load(draft)
-                    titleText = planner.plan.title
-                    showToast("已載入「\(draft.plan.title)」")
+            .fullScreenCover(isPresented: $showRun) {
+                FreeRunView(isDemo: demoMode) { session in
+                    latestRun = session
+                    showRun = false
                 }
-                .presentationBackground(AppTheme.background)
-            }
-            .confirmationDialog("開始新路線？", isPresented: $confirmNewPlan, titleVisibility: .visible) {
-                Button("開始新路線", role: .destructive) {
-                    planner.startNewPlan()
-                    titleText = planner.plan.title
-                }
-                Button("取消", role: .cancel) {}
-            } message: {
-                Text(planner.hasUnsavedChanges ? "目前的規劃有未儲存的變更，開始新路線後會消失。" : "目前的規劃會被清空。")
             }
         }
-        .tint(RunTheme.accent)
+        .tint(AppTheme.accent)
         .preferredColorScheme(.dark)
-        .onAppear {
-            titleText = plan.title
-            consumeNotice()
-        }
-        .onChange(of: plan.title) { _, new in
-            if !titleFocused { titleText = new }
-        }
-        .onChange(of: planner.notice) { _, _ in consumeNotice() }
     }
 
-    private func startRun() {
-        commitTitle()
-        titleFocused = false
-        guard !plan.stops.isEmpty else {
-            showPlanRequired = true
-            return
-        }
-        router.showRouteOnMap()
-    }
-
-    // MARK: - 狀態（過期、錯誤、已儲存估算）
-
-    @ViewBuilder
-    private var statusSection: some View {
-        if planner.result != nil && planner.resultStatus == .stale && planner.routingState != .computing {
-            Section {
-                VStack(alignment: .leading, spacing: 8) {
-                    Label("路線需重新計算", systemImage: "arrow.triangle.2.circlepath")
-                        .font(.headline)
-                        .foregroundStyle(RunTheme.accentOnDark)
-                    Text("規劃已修改，下方結果是修改前的估算。")
-                        .font(.footnote)
-                        .foregroundStyle(AppTheme.textSecondary)
-                    Button("重新計算") { planner.computeRoute() }
-                        .buttonStyle(.borderedProminent)
-                        .disabled(!planner.canCompute)
-                }
-                .padding(.vertical, 4)
-                .listRowBackground(AppTheme.accentSoft)
-            }
-        }
-        if let error = routingError {
-            errorSection(error)
+    private var introduction: some View {
+        VStack(spacing: 12) {
+            Text("想走到哪，就走到哪").font(.title3.bold())
+            Text("按下開始，自由步行。靠近酒吧時按「買酒」，留下停留紀錄。")
+                .font(.subheadline)
+                .foregroundStyle(AppTheme.textSecondary)
+                .multilineTextAlignment(.center)
+            Toggle("示範模式", isOn: $demoMode)
+                .padding(16)
+                .background(AppTheme.surface, in: RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius))
+            Text(demoMode ? "不用出門，以審計新村假定位體驗路跑。" : "使用真實定位，僅在 App 前景時更新。")
+                .font(.footnote).foregroundStyle(AppTheme.textSecondary)
         }
     }
 
-    private var routingError: ServiceError? {
-        if case .failed(let e) = planner.routingState { return e }
-        return nil
-    }
-
-    /// NO_WALKABLE_ROUTE 指出、且仍在目前規劃中的站點 id。
-    private var problemIds: Set<String> {
-        guard let e = routingError, e.code == .noWalkableRoute else { return [] }
-        return Set(e.waypointIds)
-    }
-
-    private func errorSection(_ error: ServiceError) -> some View {
-        Section {
-            VStack(alignment: .leading, spacing: 8) {
-                Label(error.runTitle, systemImage: "exclamationmark.octagon.fill")
-                    .font(.headline)
-                    .foregroundStyle(AppTheme.danger)
-                Text(error.runExplanation)
-                    .font(.subheadline)
-                if !error.message.isEmpty {
-                    Text("服務訊息：\(error.message)")
-                        .font(.footnote)
-                        .foregroundStyle(AppTheme.textSecondary)
-                }
-            }
-            .padding(.vertical, 4)
-            .accessibilityElement(children: .combine)
-            .listRowBackground(AppTheme.danger.opacity(0.1))
-
-            if error.code == .noWalkableRoute {
-                ForEach(problemWaypoints, id: \.waypoint.id) { item in
-                    VStack(alignment: .leading, spacing: 8) {
-                        Label(item.label, systemImage: "mappin.slash")
-                            .foregroundStyle(AppTheme.danger)
-                        HStack {
-                            Button("在地圖上移動") { router.showRouteOnMap() }
-                                .tint(RunTheme.accentOnDark)
-                                .accessibilityLabel("在地圖上移動 \(item.waypoint.name)")
-                            if item.isStop {
-                                Button("刪除這站", role: .destructive) { planner.removeStop(id: item.waypoint.id) }
-                                    .tint(AppTheme.danger)
-                                    .accessibilityLabel("刪除 \(item.waypoint.name)")
-                            }
-                        }
-                        .buttonStyle(.bordered)
-                        .controlSize(.small)
-                    }
-                    .padding(.vertical, 2)
-                }
-            }
-
-            if error.runShowsRetry {
-                Button {
-                    planner.computeRoute()
-                } label: {
-                    Label("重試", systemImage: "arrow.clockwise")
-                }
-                .disabled(!planner.canCompute)
-            }
-        }
-    }
-
-    private struct ProblemWaypoint {
-        let waypoint: Waypoint
-        let label: String
-        let isStop: Bool
-    }
-
-    private var problemWaypoints: [ProblemWaypoint] {
-        let ids = problemIds
-        var out: [ProblemWaypoint] = []
-        if let o = plan.origin, ids.contains(o.id) { out.append(.init(waypoint: o, label: "起點：\(o.name)", isStop: false)) }
-        for (i, s) in plan.stops.enumerated() where ids.contains(s.id) {
-            out.append(.init(waypoint: s.waypoint, label: "第 \(i + 1) 站：\(s.waypoint.name)", isStop: true))
-        }
-        if let d = plan.destination, ids.contains(d.id) { out.append(.init(waypoint: d, label: "終點：\(d.name)", isStop: false)) }
-        return out
-    }
-
-    // MARK: - 標題、起點、終點
-
-    private var planSection: some View {
-        Section {
-            TextField("路線名稱", text: $titleText)
-                .font(.title3.bold())
-                .focused($titleFocused)
-                .submitLabel(.done)
-                .onSubmit(commitTitle)
-                .onChange(of: titleFocused) { _, focused in if !focused { commitTitle() } }
-                .accessibilityLabel("路線名稱")
-
-            endpointRow(title: "起點", waypoint: plan.origin, icon: "figure.walk.circle.fill",
-                        missingText: "到地圖使用目前位置或長按地圖設定起點")
-
-            Picker("終點", selection: Binding(get: { plan.endMode }, set: { planner.setEndMode($0) })) {
-                Text("回到起點").tag(EndMode.returnToOrigin)
-                Text("自訂終點").tag(EndMode.custom)
-            }
-            .pickerStyle(.segmented)
-            .accessibilityLabel("終點模式")
-
-            if plan.endMode == .custom {
-                endpointRow(title: "終點", waypoint: plan.destination, icon: "flag.checkered.circle.fill",
-                            missingText: "長按地圖設定終點")
-            } else {
-                Label("走完最後一站後回到起點", systemImage: "arrow.uturn.backward.circle")
-                    .font(.subheadline)
-                    .foregroundStyle(AppTheme.textSecondary)
-            }
-        } header: {
-            Text("路線")
-        }
-    }
-
-    @ViewBuilder
-    private func endpointRow(title: String, waypoint: Waypoint?, icon: String, missingText: String) -> some View {
-        if let waypoint {
-            let isProblem = problemIds.contains(waypoint.id)
-            Label {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(title).font(.caption).foregroundStyle(AppTheme.textSecondary)
-                    Text(waypoint.name).foregroundStyle(isProblem ? AppTheme.danger : AppTheme.textPrimary)
-                }
-            } icon: {
-                Image(systemName: icon).foregroundStyle(isProblem ? AppTheme.danger : RunTheme.accentOnDark)
-            }
-            .accessibilityElement(children: .combine)
-            .accessibilityLabel("\(title)：\(waypoint.name)\(isProblem ? "，找不到可步行的道路" : "")")
-        } else {
-            VStack(alignment: .leading, spacing: 8) {
-                Label {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("尚未設定\(title)").font(.subheadline.bold())
-                        Text(missingText).font(.footnote).foregroundStyle(AppTheme.textSecondary)
-                    }
-                } icon: {
-                    Image(systemName: icon).foregroundStyle(AppTheme.textSecondary)
-                }
-                Button("到地圖設定") { router.selectedTab = .map }
-                    .buttonStyle(.bordered)
-                    .tint(RunTheme.accentOnDark)
-                    .controlSize(.small)
-                    .accessibilityLabel("到地圖設定\(title)")
-            }
-            .padding(.vertical, 2)
-        }
-    }
-
-    private func commitTitle() {
-        let trimmed = titleText.trimmingCharacters(in: .whitespacesAndNewlines)
-        if trimmed.isEmpty {
-            titleText = plan.title
-        } else if trimmed != plan.title {
-            planner.setTitle(trimmed)
-        }
-    }
-
-    // MARK: - 站點
-
-    private var stopsSection: some View {
-        Section {
-            if plan.stops.isEmpty {
-                VStack(spacing: 10) {
-                    Image(systemName: "wineglass")
-                        .font(.largeTitle)
-                        .foregroundStyle(RunTheme.accentOnDark)
-                        .accessibilityHidden(true)
-                    Text("還沒有酒吧").font(.headline)
-                    Text("到地圖搜尋或瀏覽酒吧，加入路線後會出現在這裡。")
-                        .font(.subheadline)
-                        .foregroundStyle(AppTheme.textSecondary)
-                        .multilineTextAlignment(.center)
-                    Button("到地圖找酒吧") { router.selectedTab = .map }
-                        .buttonStyle(.borderedProminent)
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 12)
-            } else {
-                ForEach(Array(plan.stops.enumerated()), id: \.element.id) { i, stop in
-                    RunStopRow(stop: stop, index: i, count: plan.stops.count,
-                               isProblem: problemIds.contains(stop.id),
-                               onDwell: { planner.setDwell(id: stop.id, minutes: $0) },
-                               onMove: { planner.moveStop(id: stop.id, by: $0) },
-                               onDelete: { planner.removeStop(id: stop.id) })
-                }
-                .onMove { planner.moveStops(from: $0, to: $1) }
-                .onDelete { offsets in
-                    let ids = offsets.map { plan.stops[$0].id }
-                    ids.forEach { planner.removeStop(id: $0) }
-                }
-            }
-        } header: {
-            HStack {
-                Text("站點")
-                Spacer()
-                Text("\(plan.stops.count) / \(RoutePlan.maxStops)")
-                    .monospacedDigit()
-                    .accessibilityLabel("已加入 \(plan.stops.count) 間，最多 \(RoutePlan.maxStops) 間")
-            }
-        } footer: {
-            if plan.stops.count > 1 {
-                Text("長按並拖曳可調整順序，或使用上移／下移按鈕。")
-            }
-        }
-    }
-
-    // MARK: - 計算
-
-    private var computeSection: some View {
-        Section {
-            if planner.routingState == .computing {
-                HStack(spacing: 12) {
-                    ProgressView()
-                    Text("計算路線中…")
-                    Spacer()
-                    Button("取消") { planner.cancelRouting() }
-                        .buttonStyle(.bordered)
-                        .tint(AppTheme.textSecondary)
-                }
-                .accessibilityElement(children: .contain)
-            } else {
-                Button {
-                    planner.computeRoute()
-                } label: {
-                    Label(planner.result == nil ? "計算路線" : "重新計算路線", systemImage: "point.bottomleft.forward.to.point.topright.scurvepath")
-                        .font(.headline)
-                        .frame(maxWidth: .infinity)
-                }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
-                .disabled(!planner.canCompute)
-                .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-            }
-
-            if !plan.missingRequirements.isEmpty {
-                Text("還缺：\(plan.missingRequirements.joined(separator: "、"))")
-                    .font(.footnote)
-                    .foregroundStyle(AppTheme.textSecondary)
-            }
-
-            if planner.resultStatus == .savedEstimate {
-                Label("已儲存的估算", systemImage: "bookmark.fill")
-                    .font(.subheadline)
-                    .foregroundStyle(RunTheme.accentOnDark)
-                    .accessibilityHint("這是儲存時的結果，可以重新計算取得最新路線")
-            }
-
-            if planner.result != nil || !plan.stops.isEmpty {
-                Button {
-                    router.showRouteOnMap()
-                } label: {
-                    Label("在地圖查看", systemImage: "map")
-                }
-                .tint(RunTheme.accentOnDark)
-            }
-        }
-    }
-
-    // MARK: - 工具列與草稿
-
-    @ToolbarContentBuilder
-    private var toolbar: some ToolbarContent {
-        ToolbarItem(placement: .topBarLeading) {
-            Menu {
-                Button {
-                    showDrafts = true
-                } label: {
-                    Label("已儲存的路線", systemImage: "bookmark")
-                }
-                Button {
-                    confirmNewPlan = true
-                } label: {
-                    Label("新路線", systemImage: "plus")
-                }
-            } label: {
-                Label("更多", systemImage: "ellipsis.circle")
-            }
-            .accessibilityLabel("路線選項")
-            .tint(RunTheme.accentOnDark)
-        }
-        ToolbarItem(placement: .topBarTrailing) {
-            Button {
-                Task { await save() }
-            } label: {
-                if isSaving {
-                    ProgressView()
-                } else {
-                    Text("儲存")
-                }
-            }
-            .disabled(isSaving)
-            .accessibilityLabel("儲存路線")
-            .tint(RunTheme.accentOnDark)
-        }
-    }
-
-
-    private func save() async {
-        commitTitle()
-        isSaving = true
-        defer { isSaving = false }
-        do {
-            try await planner.saveDraft()
-            showToast("已儲存「\(plan.title)」")
-        } catch {
-            let message = (error as? ServiceError)?.message ?? error.localizedDescription
-            showToast("儲存失敗：\(message)", isError: true)
-        }
-    }
-
-    // MARK: - 提示
-
-    private struct Toast: Equatable {
-        let id = UUID()
-        let text: String
-        let isError: Bool
-    }
-
-    private func consumeNotice() {
-        guard let n = planner.notice else { return }
-        planner.notice = nil
-        showToast(n, isError: true)
-    }
-
-    private func showToast(_ text: String, isError: Bool = false) {
-        toastTask?.cancel()
-        toast = Toast(text: text, isError: isError)
-        AccessibilityNotification.Announcement(text).post()
-        toastTask = Task {
-            try? await Task.sleep(for: .seconds(3))
-            guard !Task.isCancelled else { return }
-            withAnimation { toast = nil }
-        }
-    }
-
-    @ViewBuilder
-    private var toastView: some View {
-        if let toast {
-            Label(toast.text, systemImage: toast.isError ? "exclamationmark.circle.fill" : "checkmark.circle.fill")
-                .font(.subheadline.weight(.semibold))
-                .foregroundStyle(toast.isError ? AppTheme.danger : AppTheme.success)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 10)
-                .background(AppTheme.elevated, in: .capsule)
-                .overlay {
-                    Capsule().strokeBorder(toast.isError ? AppTheme.danger.opacity(0.4) : AppTheme.success.opacity(0.4))
-                }
-                .padding(.horizontal)
-                .padding(.top, 8)
-                .transition(.move(edge: .top).combined(with: .opacity))
-                .onTapGesture { withAnimation { self.toast = nil } }
-                .id(toast.id)
-                .accessibilityAddTraits(.isStaticText)
-        }
-    }
 }
 
-#Preview("有站點") {
-    let planner = PlannerStore(api: MockBarHoppingAPI(), drafts: InMemoryDraftStore())
-    planner.setOrigin(.custom(name: "草悟道", at: Coordinate(latitude: 24.1513, longitude: 120.6631)))
-    planner.addStop(.custom(name: "勤美微醺小酒館", at: Coordinate(latitude: 24.1508, longitude: 120.6640)))
-    planner.addStop(.custom(name: "一中街啤酒屋", at: Coordinate(latitude: 24.1495, longitude: 120.6853)))
-    planner.addStop(.custom(name: "七期威士忌吧", at: Coordinate(latitude: 24.1625, longitude: 120.6400)))
-    return RunTabView()
-        .environment(planner)
-        .environment(AppRouter())
-}
-
-#Preview("空白") {
+#Preview {
     RunTabView()
-        .environment(PlannerStore(api: MockBarHoppingAPI(), drafts: InMemoryDraftStore()))
-        .environment(AppRouter())
 }

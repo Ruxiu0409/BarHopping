@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct RunStartButton: View {
-    let hasStops: Bool
     let action: () -> Void
 
     @ScaledMetric(relativeTo: .largeTitle) private var diameter: CGFloat = 160
@@ -29,6 +28,6 @@ struct RunStartButton: View {
         .buttonStyle(.plain)
         .sensoryFeedback(.impact(weight: .medium), trigger: feedbackTrigger)
         .accessibilityLabel("開始路跑")
-        .accessibilityHint(hasStops ? "前往地圖並顯示目前路線" : "查看規劃路線提示")
+        .accessibilityHint("直接開始自由路跑，不需要規劃路線")
     }
 }

@@ -27,8 +27,6 @@ struct DrinkPassBanner: View {
                     .background(AppTheme.accent, in: Capsule())
                 Text("示範資料，非真實活動")
                     .font(.footnote.weight(.semibold))
-                Divider().overlay(AppTheme.separator)
-                DrinkPassSafetyNotice()
             }
             .foregroundStyle(AppTheme.textPrimary)
             .frame(maxWidth: .infinity, alignment: .leading)

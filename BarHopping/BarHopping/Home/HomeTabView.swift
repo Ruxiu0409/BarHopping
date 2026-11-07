@@ -163,11 +163,11 @@ struct HomeTabView: View {
     }
 
     private func requestStartNew() {
-        if planner.plan.stops.isEmpty { startNew() } else { pendingAction = .startNew }
+        if planner.hasUnsavedChanges { pendingAction = .startNew } else { startNew() }
     }
 
     private func requestLoad(_ draft: SavedDraft) {
-        if planner.plan.stops.isEmpty || planner.plan.id == draft.plan.id {
+        if !planner.hasUnsavedChanges || planner.plan.id == draft.plan.id {
             open(draft)
         } else {
             pendingAction = .load(draft)

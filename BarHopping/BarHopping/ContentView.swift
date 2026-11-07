@@ -19,6 +19,7 @@ struct ContentView: View {
         }
         .tint(AppTheme.accent)
         .preferredColorScheme(.dark)
+        .dismissesKeyboardOnOutsideTap()
         .environment(router)
         .environment(planner)
         .environment(userProfile)

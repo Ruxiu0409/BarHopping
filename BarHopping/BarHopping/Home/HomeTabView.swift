@@ -112,6 +112,11 @@ struct HomeTabView: View {
                 .accessibilityLabel("發新文章")
             }
 
+            Text("未滿 18 歲請勿飲酒｜喝酒不開車")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .padding(.horizontal)
+
             ScrollView(.horizontal) {
                 HStack(spacing: 8) {
                     HomeChip(title: "全部", isSelected: category == nil) { category = nil }

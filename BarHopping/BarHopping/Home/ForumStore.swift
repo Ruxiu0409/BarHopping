@@ -73,11 +73,11 @@ final class ForumStore {
         posts[i].comments.append(ForumComment(author: currentUser, body: body, createdAt: .now))
     }
 
-    func addPost(title: String, body: String, category: ForumCategory, tags: [String]) {
+    func addPost(title: String, body: String, category: ForumCategory, tags: [String], recipe: ForumRecipe? = nil) {
         let post = ForumPost(author: currentUser, createdAt: .now, category: category,
                              title: title.trimmingCharacters(in: .whitespacesAndNewlines),
                              body: body.trimmingCharacters(in: .whitespacesAndNewlines),
-                             tags: tags, likeCount: 0)
+                             tags: tags, likeCount: 0, recipe: recipe)
         posts.insert(post, at: 0)
     }
 }

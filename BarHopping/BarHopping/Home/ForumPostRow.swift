@@ -19,7 +19,7 @@ struct ForumPostRow: View {
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
 
-            if let route = post.route { ForumRouteBadge(route: route) }
+            if let recipe = post.recipe { ForumRecipeBadges(recipe: recipe) }
 
             ForumTagLine(tags: post.tags)
 
@@ -40,7 +40,7 @@ struct ForumPostRow: View {
 
     private var accessibilityText: String {
         var parts = ["\(post.category.title)", post.title, "\(post.author.name)，\(HomeTheme.relative(post.createdAt))"]
-        if let r = post.route { parts.append("附路線 \(r.stopCount) 站，\(Fmt.distance(r.distanceMeters))") }
+        if let r = post.recipe { parts.append("附酒譜，\(r.ingredients.count) 種材料，\(r.estimatedCost)，難度\(r.difficulty.title)\(r.containsAlcohol ? "" : "，無酒精")") }
         parts.append("\(post.likeCount) 個讚\(post.isLiked ? "，已按讚" : "")，\(post.commentCount) 則留言")
         return parts.joined(separator: "，")
     }
@@ -70,19 +70,37 @@ struct ForumAuthorLine: View {
     }
 }
 
-struct ForumRouteBadge: View {
-    let route: ForumRouteSummary
+/// 酒譜小標籤：材料數、花費、難度。
+struct ForumRecipeBadges: View {
+    let recipe: ForumRecipe
 
     var body: some View {
-        HStack(spacing: 6) {
-            Image(systemName: "point.topleft.down.to.point.bottomright.curvepath")
-                .foregroundStyle(HomeTheme.accent)
-            Text("\(route.stopCount) 站 · \(Fmt.distance(route.distanceMeters)) · 步行 \(Fmt.duration(route.walkingSeconds))")
+        ViewThatFits(in: .horizontal) {
+            HStack(spacing: 6) { badges }
+            VStack(alignment: .leading, spacing: 6) { badges }
         }
-        .font(.footnote)
-        .padding(.horizontal, 10).padding(.vertical, 6)
-        .background(Color(.tertiarySystemFill), in: .rect(cornerRadius: 8))
         .accessibilityElement(children: .combine)
+    }
+
+    @ViewBuilder private var badges: some View {
+        badge("\(recipe.ingredients.count) 種材料", systemImage: "list.bullet")
+        badge(recipe.estimatedCost, systemImage: "dollarsign.circle")
+        badge(recipe.difficulty.title, systemImage: "chart.bar")
+        if !recipe.containsAlcohol {
+            badge("無酒精", systemImage: "leaf", tint: .green)
+        }
+    }
+
+    private func badge(_ text: String, systemImage: String, tint: Color = HomeTheme.accent) -> some View {
+        Label {
+            Text(text).foregroundStyle(.primary)
+        } icon: {
+            Image(systemName: systemImage).foregroundStyle(tint)
+        }
+        .font(.caption)
+        .lineLimit(1)
+        .padding(.horizontal, 8).padding(.vertical, 5)
+        .background(Color(.tertiarySystemFill), in: .capsule)
     }
 }
 

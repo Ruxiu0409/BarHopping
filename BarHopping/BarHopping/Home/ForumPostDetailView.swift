@@ -27,7 +27,6 @@ struct ForumPostDetailView: View {
                     ForumAuthorLine(author: post.author, date: post.createdAt, category: post.category)
                     Text(post.title).font(.title3.bold())
                     Text(post.body).font(.body)
-                    if let route = post.route { ForumRouteBadge(route: route) }
                     ForumTagLine(tags: post.tags)
                     Divider()
                     HStack(spacing: 20) {
@@ -48,6 +47,10 @@ struct ForumPostDetailView: View {
                     .font(.subheadline)
                 }
                 .homeCard()
+
+                if let recipe = post.recipe {
+                    ForumRecipeCard(recipe: recipe)
+                }
 
                 Text("留言 \(post.commentCount)")
                     .font(.headline)
@@ -112,5 +115,106 @@ struct ForumPostDetailView: View {
         }
         .padding(.horizontal).padding(.vertical, 8)
         .background(.bar)
+    }
+}
+
+/// 詳細頁的酒譜：摘要、材料清單、編號步驟。
+struct ForumRecipeCard: View {
+    let recipe: ForumRecipe
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            HStack {
+                Label("酒譜", systemImage: "wineglass")
+                    .font(.headline)
+                    .foregroundStyle(HomeTheme.accent)
+                    .accessibilityAddTraits(.isHeader)
+                Spacer()
+                if !recipe.containsAlcohol {
+                    Text("無酒精")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.green)
+                        .padding(.horizontal, 8).padding(.vertical, 4)
+                        .background(Color.green.opacity(0.12), in: .capsule)
+                }
+            }
+
+            summary
+
+            VStack(alignment: .leading, spacing: 8) {
+                Text("材料").font(.subheadline.weight(.semibold)).accessibilityAddTraits(.isHeader)
+                ForEach(recipe.ingredients) { item in
+                    HStack(alignment: .firstTextBaseline) {
+                        Circle().fill(HomeTheme.accent).frame(width: 6, height: 6)
+                            .alignmentGuide(.firstTextBaseline) { $0[.bottom] }
+                            .accessibilityHidden(true)
+                        Text(item.name)
+                        Spacer(minLength: 12)
+                        Text(item.amount)
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.trailing)
+                    }
+                    .font(.subheadline)
+                    .accessibilityElement(children: .combine)
+                }
+            }
+
+            Divider()
+
+            VStack(alignment: .leading, spacing: 12) {
+                Text("步驟").font(.subheadline.weight(.semibold)).accessibilityAddTraits(.isHeader)
+                ForEach(Array(recipe.steps.enumerated()), id: \.offset) { index, step in
+                    HStack(alignment: .top, spacing: 10) {
+                        Text("\(index + 1)")
+                            .font(.caption.bold())
+                            .foregroundStyle(.white)
+                            .frame(minWidth: 22, minHeight: 22)
+                            .background(HomeTheme.accent, in: .circle)
+                            .accessibilityHidden(true)
+                        Text(step)
+                            .font(.subheadline)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel("第 \(index + 1) 步，\(step)")
+                }
+            }
+
+            if recipe.containsAlcohol {
+                Text("未滿 18 歲請勿飲酒｜喝酒不開車｜慢慢喝、多喝水")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .homeCard()
+    }
+
+    private var summary: some View {
+        let items: [(String, String, String)] = [
+            ("chart.bar", "難度", recipe.difficulty.title),
+            ("dollarsign.circle", "花費", recipe.estimatedCost),
+            ("cart", "哪裡買", recipe.sources.map(\.title).joined(separator: "、")),
+        ]
+        return ViewThatFits(in: .horizontal) {
+            HStack(spacing: 8) { summaryItems(items) }
+            VStack(alignment: .leading, spacing: 8) { summaryItems(items) }
+        }
+    }
+
+    private func summaryItems(_ items: [(String, String, String)]) -> some View {
+        ForEach(items, id: \.1) { icon, label, value in
+            VStack(alignment: .leading, spacing: 2) {
+                Label(label, systemImage: icon)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Text(value)
+                    .font(.subheadline.weight(.semibold))
+                    .fixedSize()
+            }
+            .padding(10)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color(.tertiarySystemFill), in: .rect(cornerRadius: 10))
+            .accessibilityElement(children: .combine)
+        }
     }
 }

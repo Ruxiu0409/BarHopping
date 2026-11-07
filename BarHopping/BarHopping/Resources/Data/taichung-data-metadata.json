@@ -1,4 +1,54 @@
 {
-  "placeDataUpdatedAt": "2026-11-07T04:25:06Z",
-  "fetchedAt": "2026-11-07T04:26:57.112726+00:00"
+  "placeDataUpdatedAt": "2026-11-07T05:22:29.076028+00:00",
+  "osmPlaceDataUpdatedAt": "2026-11-07T04:25:06Z",
+  "fetchedAt": "2026-11-07T05:22:29.076028+00:00",
+  "sources": {
+    "tax": {
+      "datasetUrl": "https://data.gov.tw/dataset/9400",
+      "downloadUrl": "https://eip.fia.gov.tw/data/BGMOPEN1.zip",
+      "license": "政府資料開放授權條款第1版",
+      "licenseUrl": "https://data.gov.tw/license",
+      "fetchedAt": "2026-11-07T05:18:42.627344+00:00",
+      "sha256": "933226cd54cc34d71fb76a70dbc410eb7558abaca06b427ea917e6326356f769"
+    },
+    "coolmap": {
+      "datasetUrl": "https://data.gov.tw/dataset/177893",
+      "downloadUrl": "https://data.moenv.gov.tw/api/frontstage/datastore.search",
+      "license": "政府資料開放授權條款第1版",
+      "licenseUrl": "https://data.gov.tw/license",
+      "fetchedAt": "2026-11-07T05:20:10.797616+00:00",
+      "requestBody": {
+        "resource_id": "8e0bda24-9d41-4e83-a54e-a19ecc2cb9c3",
+        "limit": 20000,
+        "offset": 0
+      },
+      "sha256": "07a9f5f64b395cc927158f3955e06fa24406ec41576745c1b59c6d73858bfe31"
+    },
+    "tourism": {
+      "datasetUrl": "https://data.gov.tw/dataset/7779",
+      "downloadUrl": "https://media.taiwan.net.tw/XMLReleaseAll_public/v2.0/Zh_tw/Restaurant-json.zip",
+      "license": "政府資料開放授權條款第1版",
+      "licenseUrl": "https://data.gov.tw/license",
+      "fetchedAt": "2026-11-07T05:19:50.059849+00:00",
+      "sha256": "55bc1760041e9d4496681c370a6f7ef4bfe250c3d005dda8cb8a57670a7ac404"
+    },
+    "osmExpansion": {
+      "fetchedAt": "2026-11-07T05:22:29.076028+00:00",
+      "query": "[out:json][timeout:180];area[\"name\"=\"臺中市\"][\"boundary\"=\"administrative\"]->.city;nwr(area.city)[name~\"酒吧|酒館|居酒屋|酒場|精釀|調酒|[Bb][Ii][Ss][Tt][Rr][Oo]|[Bb][Aa][Rr]|[Pp][Uu][Bb]|[Ll][Oo][Uu][Nn][Gg][Ee]\"];out center tags;",
+      "endpoint": "https://overpass-api.de/api/interpreter",
+      "license": "ODbL-1.0",
+      "timestamp": "2026-11-07T05:20:51Z"
+    }
+  },
+  "counts": {
+    "bars": 65,
+    "7-ELEVEN": 916,
+    "全家": 643
+  },
+  "requiredAppAttributions": [
+    "環境部氣候變遷署（2026）Cool map涼適點點位，政府資料開放授權條款第1版 https://data.gov.tw/license",
+    "財政部財政資訊中心（2026）全國營業(稅籍)登記資料集，政府資料開放授權條款第1版 https://data.gov.tw/license",
+    "© OpenStreetMap contributors，ODbL-1.0 https://www.openstreetmap.org/copyright"
+  ],
+  "appAttributionPending": true
 }

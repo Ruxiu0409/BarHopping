@@ -1,5 +1,145 @@
 [
   {
+    "id": "mof-tax-13750510",
+    "name": "獅子王國飲酒店",
+    "category": "bar",
+    "coordinate": {
+      "latitude": 24.146073,
+      "longitude": 120.6422099
+    },
+    "address": "臺中市南屯區惠中里大川街38號1至2樓",
+    "openingHoursText": null,
+    "source": "mof-tax",
+    "sourceId": "9400/13750510",
+    "updatedAt": "2026-11-07T05:18:42.627344+00:00"
+  },
+  {
+    "id": "mof-tax-26992618",
+    "name": "英倫風情飲酒店",
+    "category": "bar",
+    "coordinate": {
+      "latitude": 24.1387999,
+      "longitude": 120.6822545
+    },
+    "address": "臺中市中區繼光里中山路60號5樓-1",
+    "openingHoursText": null,
+    "source": "mof-tax",
+    "sourceId": "9400/26992618",
+    "updatedAt": "2026-11-07T05:18:42.627344+00:00"
+  },
+  {
+    "id": "mof-tax-38846078",
+    "name": "參餐餐酒館",
+    "category": "bar",
+    "coordinate": {
+      "latitude": 24.1708041,
+      "longitude": 120.6874002
+    },
+    "address": "臺中市北屯區平安里北平路四段65號1樓",
+    "openingHoursText": null,
+    "source": "mof-tax",
+    "sourceId": "9400/38846078",
+    "updatedAt": "2026-11-07T05:18:42.627344+00:00"
+  },
+  {
+    "id": "mof-tax-39801514",
+    "name": "陸樓飲酒店",
+    "category": "bar",
+    "coordinate": {
+      "latitude": 24.1387999,
+      "longitude": 120.6822545
+    },
+    "address": "臺中市中區繼光里中山路60號6樓-1",
+    "openingHoursText": null,
+    "source": "mof-tax",
+    "sourceId": "9400/39801514",
+    "updatedAt": "2026-11-07T05:18:42.627344+00:00"
+  },
+  {
+    "id": "mof-tax-39840853",
+    "name": "動感飲酒店",
+    "category": "bar",
+    "coordinate": {
+      "latitude": 24.1470078,
+      "longitude": 120.6732573
+    },
+    "address": "臺中市西區後龍里五權路96號2樓",
+    "openingHoursText": null,
+    "source": "mof-tax",
+    "sourceId": "9400/39840853",
+    "updatedAt": "2026-11-07T05:18:42.627344+00:00"
+  },
+  {
+    "id": "mof-tax-39841776",
+    "name": "鑫盛飲酒店",
+    "category": "bar",
+    "coordinate": {
+      "latitude": 24.1470078,
+      "longitude": 120.6732573
+    },
+    "address": "臺中市西區後龍里五權路96號3樓",
+    "openingHoursText": null,
+    "source": "mof-tax",
+    "sourceId": "9400/39841776",
+    "updatedAt": "2026-11-07T05:18:42.627344+00:00"
+  },
+  {
+    "id": "mof-tax-47511931",
+    "name": "織田信長串燒居酒屋",
+    "category": "bar",
+    "coordinate": {
+      "latitude": 24.1625002,
+      "longitude": 120.6641002
+    },
+    "address": "臺中市北區明德里西屯路一段498號1樓",
+    "openingHoursText": null,
+    "source": "mof-tax",
+    "sourceId": "9400/47511931",
+    "updatedAt": "2026-11-07T05:18:42.627344+00:00"
+  },
+  {
+    "id": "mof-tax-60970173",
+    "name": "金茗茗茶酒館",
+    "category": "bar",
+    "coordinate": {
+      "latitude": 24.1715448,
+      "longitude": 120.6480822
+    },
+    "address": "臺中市西屯區逢甲里寶慶街30巷22號1樓",
+    "openingHoursText": null,
+    "source": "mof-tax",
+    "sourceId": "9400/60970173",
+    "updatedAt": "2026-11-07T05:18:42.627344+00:00"
+  },
+  {
+    "id": "mof-tax-61046799",
+    "name": "放醉城巿餐酒館",
+    "category": "bar",
+    "coordinate": {
+      "latitude": 24.1524091,
+      "longitude": 120.6606528
+    },
+    "address": "臺中市西區忠明里忠誠街79號1樓",
+    "openingHoursText": null,
+    "source": "mof-tax",
+    "sourceId": "9400/61046799",
+    "updatedAt": "2026-11-07T05:18:42.627344+00:00"
+  },
+  {
+    "id": "mof-tax-95343701",
+    "name": "宇樂串燒居酒屋",
+    "category": "bar",
+    "coordinate": {
+      "latitude": 24.1664227,
+      "longitude": 120.6869476
+    },
+    "address": "臺中市北區崇德里榮華街210號1樓",
+    "openingHoursText": null,
+    "source": "mof-tax",
+    "sourceId": "9400/95343701",
+    "updatedAt": "2026-11-07T05:18:42.627344+00:00"
+  },
+  {
     "id": "osm-node-10029125584",
     "coordinate": {
       "latitude": 24.1575143,

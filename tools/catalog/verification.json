@@ -1,0 +1,101 @@
+{
+  "verifiedAt": "2026-11-07T05:29:08.444016+00:00",
+  "artifactChecks": {
+    "status": "passed",
+    "counts": {
+      "bars": 65,
+      "7-ELEVEN": 916,
+      "全家": 643
+    },
+    "candidates": {
+      "bars": 221,
+      "7-ELEVEN": 606,
+      "全家": 515
+    },
+    "checks": [
+      "offline rebuild byte-identical",
+      "all OSM records preserved",
+      "all coordinates inside service area",
+      "stable unique IDs",
+      "unchanged record schemas",
+      "only two permitted brands",
+      "candidate counts reconciled",
+      "geocoding caches present",
+      "source SHA-256 verified"
+    ],
+    "sha256": {
+      "BarHopping/BarHopping/Resources/Data/taichung-bars.json": "4a23a607cd98933910d49ad790d3e86dca4b2b10639f60bee96f438ab2e417b1",
+      "BarHopping/BarHopping/Resources/Data/taichung-convenience-stores.json": "094e5dc6f59d876d7582da4d7bdaa4f27b7890cb5e0f045144866c8128b975ca",
+      "BarHopping/BarHopping/Resources/Data/taichung-data-metadata.json": "dfb94a992d1b16c9e446ae69c30f2d2495e4c8e429d211a5694ccac296f7ae85",
+      "tools/catalog/report.json": "7307c7b188d461b79544cd2a2934860fe674d907150dc26dbad07208e4cad3f9",
+      "tools/osm/report.json": "e03b49be7f635f6df1b0ed0f91849bd521477bc190ec4f59b6dbb39add004c28"
+    }
+  },
+  "swiftDecoding": {
+    "status": "passed",
+    "models": [
+      "Place",
+      "ConvenienceStore",
+      "BundledPlaceMetadata"
+    ],
+    "decoder": "JSONCoding.makeDecoder()",
+    "counts": {
+      "bars": 65,
+      "convenienceStores": 1559
+    },
+    "compiledFromActualProjectFiles": true
+  },
+  "build": {
+    "status": "BUILD SUCCEEDED",
+    "destination": "id=00008150-001075642287801C",
+    "command": "cd BarHopping && xcodebuild -project BarHopping.xcodeproj -scheme BarHopping -destination 'id=00008150-001075642287801C' -allowProvisioningUpdates -derivedDataPath /tmp/bh-dd-data build",
+    "initialFailure": "平行地圖修改進行中，MapRenderModel.popularSegments 尚未補齊；未修改 Swift，欄位出現後重新建置成功",
+    "installed": false,
+    "simulatorUsed": false,
+    "derivedDataRemoved": true
+  },
+  "builtBundleData": {
+    "taichung-bars.json": {
+      "matchesSource": true,
+      "sha256": "4a23a607cd98933910d49ad790d3e86dca4b2b10639f60bee96f438ab2e417b1"
+    },
+    "taichung-convenience-stores.json": {
+      "matchesSource": true,
+      "sha256": "094e5dc6f59d876d7582da4d7bdaa4f27b7890cb5e0f045144866c8128b975ca"
+    },
+    "taichung-data-metadata.json": {
+      "matchesSource": true,
+      "sha256": "dfb94a992d1b16c9e446ae69c30f2d2495e4c8e429d211a5694ccac296f7ae85"
+    }
+  },
+  "scope": {
+    "swiftFilesChangedByThisTask": false,
+    "projectSigningChangedByThisTask": false,
+    "committed": false,
+    "pushed": false
+  },
+  "limitations": [
+    "政府來源 App 顯名待主代理補齊；appAttributionPending=true",
+    "地理編碼為門牌精度，未確認店面入口、招牌名、營業狀態",
+    "未新增萊爾富／OK 品牌"
+  ],
+  "unusedSources": [
+    {
+      "url": "https://data.gov.tw/dataset/7779",
+      "license": "政府資料開放授權條款第1版",
+      "reason": "下載臺中226筆，名稱符合酒吧規則0筆"
+    },
+    {
+      "url": "https://data.gov.tw/dataset/177990",
+      "reason": "PDF清單，未實作匯入"
+    },
+    {
+      "url": "https://www.tgos.tw/",
+      "reason": "尚未確認服務申請與成果再散布條款，未使用"
+    },
+    {
+      "source": "7-ELEVEN／全家官方門市查詢",
+      "reason": "再散布授權未確認，未爬取"
+    }
+  ]
+}

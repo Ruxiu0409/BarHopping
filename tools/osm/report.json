@@ -449,5 +449,18 @@
     "vertices": 162,
     "toleranceMeters": 312.5,
     "outerRings": 1
+  },
+  "mergedCatalog": {
+    "report": "../catalog/report.json",
+    "counts": {
+      "bars": 65,
+      "7-ELEVEN": 916,
+      "全家": 643
+    },
+    "baseline": {
+      "bars": 55,
+      "7-ELEVEN": 747,
+      "全家": 507
+    }
   }
 }

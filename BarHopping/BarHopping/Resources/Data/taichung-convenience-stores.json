@@ -1,5 +1,3970 @@
 [
   {
+    "id": "moenv-coolmap-FamilyMart1652",
+    "brand": "全家",
+    "name": "全家 豐原育仁店",
+    "coordinate": {
+      "latitude": 24.242596,
+      "longitude": 120.716159
+    },
+    "address": "臺中市豐原區育英路61號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1652"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1655",
+    "brand": "全家",
+    "name": "全家 豐原金站店",
+    "coordinate": {
+      "latitude": 24.253694,
+      "longitude": 120.724207
+    },
+    "address": "臺中市豐原區豐陽路147號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1655"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1656",
+    "brand": "全家",
+    "name": "全家 豐原圓環東店",
+    "coordinate": {
+      "latitude": 24.24475,
+      "longitude": 120.723979
+    },
+    "address": "臺中市豐原區圓環東路360號1樓至2樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1656"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1657",
+    "brand": "全家",
+    "name": "全家 新社糖部店",
+    "coordinate": {
+      "latitude": 24.246261,
+      "longitude": 120.808159
+    },
+    "address": "臺中市新社區中和街四段342號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1657"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1659",
+    "brand": "全家",
+    "name": "全家 豐原富翁店",
+    "coordinate": {
+      "latitude": 24.262523,
+      "longitude": 120.745916
+    },
+    "address": "臺中市豐原區富陽路101號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1659"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1662",
+    "brand": "全家",
+    "name": "全家 麗寶摩天輪店",
+    "coordinate": {
+      "latitude": 24.325181,
+      "longitude": 120.700677
+    },
+    "address": "臺中市后里區福容路237號2樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1662"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1664",
+    "brand": "全家",
+    "name": "全家 豐原金大明店",
+    "coordinate": {
+      "latitude": 24.240552,
+      "longitude": 120.709671
+    },
+    "address": "臺中市豐原區大明路68號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1664"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1665",
+    "brand": "全家",
+    "name": "全家 豐原榮豐店",
+    "coordinate": {
+      "latitude": 24.255993,
+      "longitude": 120.722505
+    },
+    "address": "臺中市豐原區豐中路79號1F",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1665"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1666",
+    "brand": "全家",
+    "name": "全家 豐原角潭店",
+    "coordinate": {
+      "latitude": 24.260554,
+      "longitude": 120.724821
+    },
+    "address": "臺中市豐原區圓環北路二段219號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1666"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1674",
+    "brand": "全家",
+    "name": "全家 東勢東蘭店",
+    "coordinate": {
+      "latitude": 24.265257,
+      "longitude": 120.826013
+    },
+    "address": "臺中市東勢區東蘭路41-1號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1674"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1677",
+    "brand": "全家",
+    "name": "全家 麗寶樂園店",
+    "coordinate": {
+      "latitude": 24.322422,
+      "longitude": 120.694352
+    },
+    "address": "臺中市后里區安眉路115-31號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1677"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1691",
+    "brand": "全家",
+    "name": "全家 后里英特盛店",
+    "coordinate": {
+      "latitude": 24.317734,
+      "longitude": 120.735247
+    },
+    "address": "臺中市后里區后科南路2號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1691"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1693",
+    "brand": "全家",
+    "name": "全家 后里金義里店",
+    "coordinate": {
+      "latitude": 24.309592,
+      "longitude": 120.731988
+    },
+    "address": "臺中市后里區甲后路一段48號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1693"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1694",
+    "brand": "全家",
+    "name": "全家 神岡大洲店",
+    "coordinate": {
+      "latitude": 24.251498,
+      "longitude": 120.696181
+    },
+    "address": "臺中市神岡區大洲路367號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1694"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1695",
+    "brand": "全家",
+    "name": "全家 外埔國王店",
+    "coordinate": {
+      "latitude": 24.341525,
+      "longitude": 120.640345
+    },
+    "address": "臺中市外埔區大東里甲后路757-1號一樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1695"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1698",
+    "brand": "全家",
+    "name": "全家 神岡新工業店",
+    "coordinate": {
+      "latitude": 24.254649,
+      "longitude": 120.672796
+    },
+    "address": "臺中市神岡區中山路1058號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1698"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1700",
+    "brand": "全家",
+    "name": "全家 豐原大牛埔店",
+    "coordinate": {
+      "latitude": 24.259396,
+      "longitude": 120.714041
+    },
+    "address": "臺中市豐原區豐北街342號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1700"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1707",
+    "brand": "全家",
+    "name": "全家 后里甲后店",
+    "coordinate": {
+      "latitude": 24.310958,
+      "longitude": 120.709166
+    },
+    "address": "臺中市后里區甲后路1段999號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1707"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1708",
+    "brand": "全家",
+    "name": "全家 神岡和睦店",
+    "coordinate": {
+      "latitude": 24.28273,
+      "longitude": 120.648099
+    },
+    "address": "臺中市神岡區和睦路1段721號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1708"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1710",
+    "brand": "全家",
+    "name": "全家 大甲好運店",
+    "coordinate": {
+      "latitude": 24.349134,
+      "longitude": 120.624947
+    },
+    "address": "臺中市大甲區新政路76號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1710"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1711",
+    "brand": "全家",
+    "name": "全家 神岡大漢店",
+    "coordinate": {
+      "latitude": 24.252853,
+      "longitude": 120.69839
+    },
+    "address": "臺中市神岡區大漢街72號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1711"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1714",
+    "brand": "全家",
+    "name": "全家 神岡神岡店",
+    "coordinate": {
+      "latitude": 24.257392,
+      "longitude": 120.658307
+    },
+    "address": "臺中市神岡區中正路16號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1714"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1715",
+    "brand": "全家",
+    "name": "全家 后里文明店",
+    "coordinate": {
+      "latitude": 24.306945,
+      "longitude": 120.719094
+    },
+    "address": "臺中市后里區文明路106號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1715"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1716",
+    "brand": "全家",
+    "name": "全家 神岡大社店",
+    "coordinate": {
+      "latitude": 24.251422,
+      "longitude": 120.701193
+    },
+    "address": "臺中市神岡區豐社路12號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1716"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1719",
+    "brand": "全家",
+    "name": "全家 大甲通天店",
+    "coordinate": {
+      "latitude": 24.382213,
+      "longitude": 120.654392
+    },
+    "address": "臺中市大甲區慈德路125號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1719"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1722",
+    "brand": "全家",
+    "name": "全家 清水海風店",
+    "coordinate": {
+      "latitude": 24.289972,
+      "longitude": 120.63316
+    },
+    "address": "臺中市清水區海風里神清路86-21號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1722"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1723",
+    "brand": "全家",
+    "name": "全家 大甲安港店",
+    "coordinate": {
+      "latitude": 24.352191,
+      "longitude": 120.613245
+    },
+    "address": "臺中市大甲區大安港路161號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1723"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1725",
+    "brand": "全家",
+    "name": "全家 清水金橫濱店",
+    "coordinate": {
+      "latitude": 24.267176,
+      "longitude": 120.543334
+    },
+    "address": "臺中市清水區港埠路3段209號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1725"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1734",
+    "brand": "全家",
+    "name": "全家 潭子佳能二店",
+    "coordinate": {
+      "latitude": 24.219001,
+      "longitude": 120.702276
+    },
+    "address": "臺中市潭子區建國路18號A棟5樓.N棟4樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1734"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1735",
+    "brand": "全家",
+    "name": "全家 潭子潭富店",
+    "coordinate": {
+      "latitude": 24.219846,
+      "longitude": 120.704131
+    },
+    "address": "臺中市潭子區潭秀里3鄰潭富路一段37號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1735"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1737",
+    "brand": "全家",
+    "name": "全家 大雅大雅店",
+    "coordinate": {
+      "latitude": 24.229331,
+      "longitude": 120.645982
+    },
+    "address": "臺中市大雅區雅環路3段28號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1737"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1739",
+    "brand": "全家",
+    "name": "全家 大雅金雅店",
+    "coordinate": {
+      "latitude": 24.227382,
+      "longitude": 120.651989
+    },
+    "address": "臺中市大雅區雅環路二段137號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1739"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1744",
+    "brand": "全家",
+    "name": "全家 大雅金雅環店",
+    "coordinate": {
+      "latitude": 24.219206,
+      "longitude": 120.653228
+    },
+    "address": "臺中市大雅區雅環路1段191號1樓(配送用)",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1744"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1751",
+    "brand": "全家",
+    "name": "全家 梧棲四維中店",
+    "coordinate": {
+      "latitude": 24.260968,
+      "longitude": 120.535107
+    },
+    "address": "臺中市梧棲區四維中路227號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1751"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1756",
+    "brand": "全家",
+    "name": "全家 潭子興華店",
+    "coordinate": {
+      "latitude": 24.212585,
+      "longitude": 120.703446
+    },
+    "address": "臺中市潭子區興華一路369號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1756"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1761",
+    "brand": "全家",
+    "name": "全家 大雅金學府店",
+    "coordinate": {
+      "latitude": 24.220904,
+      "longitude": 120.650221
+    },
+    "address": "臺中市大雅區學府路176-3號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1761"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1768",
+    "brand": "全家",
+    "name": "全家 潭子新大茂店",
+    "coordinate": {
+      "latitude": 24.193879,
+      "longitude": 120.69656
+    },
+    "address": "臺中市潭子區雅豐街85號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1768"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1771",
+    "brand": "全家",
+    "name": "全家 潭子新大富店",
+    "coordinate": {
+      "latitude": 24.223826,
+      "longitude": 120.706938
+    },
+    "address": "臺中市潭子區中山路三段145號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1771"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1777",
+    "brand": "全家",
+    "name": "全家 臺中詠成店",
+    "coordinate": {
+      "latitude": 24.15786,
+      "longitude": 120.729522
+    },
+    "address": "臺中市北屯區環太東路469號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1777"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1778",
+    "brand": "全家",
+    "name": "全家 臺中太和店",
+    "coordinate": {
+      "latitude": 24.161293,
+      "longitude": 120.725123
+    },
+    "address": "臺中市北屯區太原路三段1190號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1778"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1781",
+    "brand": "全家",
+    "name": "全家 臺中國展店",
+    "coordinate": {
+      "latitude": 24.193316,
+      "longitude": 120.650491
+    },
+    "address": "臺中市西屯區黎明路三段1000號1樓(展覽館)",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1781"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1783",
+    "brand": "全家",
+    "name": "全家 臺中金順店",
+    "coordinate": {
+      "latitude": 24.172364,
+      "longitude": 120.722644
+    },
+    "address": "臺中市北屯區軍福十三路303號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1783"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1789",
+    "brand": "全家",
+    "name": "全家 臺中偉如店",
+    "coordinate": {
+      "latitude": 24.169553,
+      "longitude": 120.681415
+    },
+    "address": "臺中市北屯區天津路3段72號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1789"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1795",
+    "brand": "全家",
+    "name": "全家 臺中景賢店",
+    "coordinate": {
+      "latitude": 24.171816,
+      "longitude": 120.715702
+    },
+    "address": "臺中市北屯區東山路1段220巷158號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1795"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1802",
+    "brand": "全家",
+    "name": "全家 臺中經貿店",
+    "coordinate": {
+      "latitude": 24.191052,
+      "longitude": 120.659046
+    },
+    "address": "臺中市北屯區中平路1151號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1802"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1803",
+    "brand": "全家",
+    "name": "全家 臺中洲際店",
+    "coordinate": {
+      "latitude": 24.19733,
+      "longitude": 120.683598
+    },
+    "address": "臺中市北屯區四平路572號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1803"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1807",
+    "brand": "全家",
+    "name": "全家 臺中金福廣店",
+    "coordinate": {
+      "latitude": 24.202955,
+      "longitude": 120.643971
+    },
+    "address": "臺中市西屯區廣福路318號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1807"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1808",
+    "brand": "全家",
+    "name": "全家 臺中花見店",
+    "coordinate": {
+      "latitude": 24.165952,
+      "longitude": 120.723865
+    },
+    "address": "臺中市北屯區建和路一段420號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1808"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1814",
+    "brand": "全家",
+    "name": "全家 臺中祥順店",
+    "coordinate": {
+      "latitude": 24.164299,
+      "longitude": 120.733082
+    },
+    "address": "臺中市北屯區部子路309號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1814"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1815",
+    "brand": "全家",
+    "name": "全家 臺中新興安店",
+    "coordinate": {
+      "latitude": 24.175366,
+      "longitude": 120.694517
+    },
+    "address": "臺中市北屯區興安路二段31號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1815"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1822",
+    "brand": "全家",
+    "name": "全家 臺中學友店",
+    "coordinate": {
+      "latitude": 24.15382,
+      "longitude": 120.685587
+    },
+    "address": "臺中市北區三民路三段215號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1822"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1823",
+    "brand": "全家",
+    "name": "全家 臺中嘉農店",
+    "coordinate": {
+      "latitude": 24.171627,
+      "longitude": 120.672427
+    },
+    "address": "臺中市北區賴旺里北平路二段8號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1823"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1828",
+    "brand": "全家",
+    "name": "全家 臺中長青店",
+    "coordinate": {
+      "latitude": 24.168682,
+      "longitude": 120.670902
+    },
+    "address": "臺中市北區武昌路152號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1828"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1834",
+    "brand": "全家",
+    "name": "全家 臺中一中讚店",
+    "coordinate": {
+      "latitude": 24.153697,
+      "longitude": 120.686744
+    },
+    "address": "臺中市北區一中街253號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1834"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1842",
+    "brand": "全家",
+    "name": "全家 臺中中清一店",
+    "coordinate": {
+      "latitude": 24.161594,
+      "longitude": 120.675318
+    },
+    "address": "臺中市北區中清路一段370號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1842"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1845",
+    "brand": "全家",
+    "name": "全家 臺中金中清店",
+    "coordinate": {
+      "latitude": 24.154743,
+      "longitude": 120.67704
+    },
+    "address": "臺中市北區中清路一段83號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1845"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1848",
+    "brand": "全家",
+    "name": "全家 臺中喜樂店",
+    "coordinate": {
+      "latitude": 24.155917,
+      "longitude": 120.671901
+    },
+    "address": "臺中市北區英才路266號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1848"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1850",
+    "brand": "全家",
+    "name": "全家 臺中下石碑店",
+    "coordinate": {
+      "latitude": 24.171994,
+      "longitude": 120.655919
+    },
+    "address": "臺中市西屯區甘肅路2段68號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1850"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1851",
+    "brand": "全家",
+    "name": "全家 臺中國強店",
+    "coordinate": {
+      "latitude": 24.161615,
+      "longitude": 120.697332
+    },
+    "address": "臺中市北屯區國強街163號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1851"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1860",
+    "brand": "全家",
+    "name": "全家 臺中十八街店",
+    "coordinate": {
+      "latitude": 24.157916,
+      "longitude": 120.647601
+    },
+    "address": "臺中市西屯區大墩十八街193號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1860"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1863",
+    "brand": "全家",
+    "name": "全家 臺中榮玉店",
+    "coordinate": {
+      "latitude": 24.159166,
+      "longitude": 120.653049
+    },
+    "address": "臺中市西屯區大墩二十街99號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1863"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1881",
+    "brand": "全家",
+    "name": "全家 臺中新福美店",
+    "coordinate": {
+      "latitude": 24.181354,
+      "longitude": 120.642101
+    },
+    "address": "臺中市西屯區西安街68號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1881"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1887",
+    "brand": "全家",
+    "name": "全家 臺中柳川美店",
+    "coordinate": {
+      "latitude": 24.136384,
+      "longitude": 120.666813
+    },
+    "address": "臺中市西區柳川西路二段67號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1887"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1897",
+    "brand": "全家",
+    "name": "全家 臺中鼎盛店",
+    "coordinate": {
+      "latitude": 24.163512,
+      "longitude": 120.637756
+    },
+    "address": "臺中市西屯區政北二路232號2樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1897"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1900",
+    "brand": "全家",
+    "name": "全家 臺中白金店",
+    "coordinate": {
+      "latitude": 24.177396,
+      "longitude": 120.614198
+    },
+    "address": "臺中市西屯區工業區一路70號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1900"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1910",
+    "brand": "全家",
+    "name": "全家 大肚大洋店",
+    "coordinate": {
+      "latitude": 24.174283,
+      "longitude": 120.578878
+    },
+    "address": "臺中市大肚區中沙路164巷3弄103號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1910"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1918",
+    "brand": "全家",
+    "name": "全家 臺中樂活店",
+    "coordinate": {
+      "latitude": 24.156674,
+      "longitude": 120.655106
+    },
+    "address": "臺中市西屯區大墩19街18號、20號、22號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1918"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1927",
+    "brand": "全家",
+    "name": "全家 沙鹿陽光店",
+    "coordinate": {
+      "latitude": 24.249553,
+      "longitude": 120.558898
+    },
+    "address": "臺中市沙鹿區民族路130號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1927"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1931",
+    "brand": "全家",
+    "name": "全家 東海大學二店",
+    "coordinate": {
+      "latitude": 24.182324,
+      "longitude": 120.607816
+    },
+    "address": "臺中市西屯區臺灣大道4段1727號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1931"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1935",
+    "brand": "全家",
+    "name": "全家 臺中機場店",
+    "coordinate": {
+      "latitude": 24.254275,
+      "longitude": 120.599701
+    },
+    "address": "臺中市沙鹿區中航路1段168號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1935"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1940",
+    "brand": "全家",
+    "name": "全家 沙鹿金罈店",
+    "coordinate": {
+      "latitude": 24.227928,
+      "longitude": 120.555933
+    },
+    "address": "臺中市沙鹿區斗潭路308號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1940"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1941",
+    "brand": "全家",
+    "name": "全家 臺中工一店",
+    "coordinate": {
+      "latitude": 24.18226,
+      "longitude": 120.614884
+    },
+    "address": "臺中市西屯區工業區一路6號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1941"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1943",
+    "brand": "全家",
+    "name": "全家 沙鹿金站店",
+    "coordinate": {
+      "latitude": 24.2336,
+      "longitude": 120.557393
+    },
+    "address": "臺中市沙鹿區大同街14-2號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1943"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1947",
+    "brand": "全家",
+    "name": "全家 沙鹿車頭店",
+    "coordinate": {
+      "latitude": 24.23659,
+      "longitude": 120.558543
+    },
+    "address": "臺中市沙鹿區中正街77號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1947"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1948",
+    "brand": "全家",
+    "name": "全家 龍井大火力店",
+    "coordinate": {
+      "latitude": 24.210419,
+      "longitude": 120.505417
+    },
+    "address": "臺中市龍井區龍昌路10號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1948"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1953",
+    "brand": "全家",
+    "name": "全家 龍井向美店",
+    "coordinate": {
+      "latitude": 24.192672,
+      "longitude": 120.547489
+    },
+    "address": "臺中市龍井區沙田路4段670巷17號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1953"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1962",
+    "brand": "全家",
+    "name": "全家 龍井望高店",
+    "coordinate": {
+      "latitude": 24.180744,
+      "longitude": 120.575446
+    },
+    "address": "臺中市龍井區中沙路新庄仔巷1-58號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1962"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1969",
+    "brand": "全家",
+    "name": "全家 臺中汝川店",
+    "coordinate": {
+      "latitude": 24.121754,
+      "longitude": 120.6499
+    },
+    "address": "臺中市南區建國北路一段110號(汝川醫療大樓B1)",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1969"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1971",
+    "brand": "全家",
+    "name": "全家 臺中新大進店",
+    "coordinate": {
+      "latitude": 24.151091,
+      "longitude": 120.652332
+    },
+    "address": "臺中市南屯區公益路二段8號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1971"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1972",
+    "brand": "全家",
+    "name": "全家 臺中新大鼎店",
+    "coordinate": {
+      "latitude": 24.130592,
+      "longitude": 120.649777
+    },
+    "address": "臺中市南屯區大墩南路199號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1972"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1976",
+    "brand": "全家",
+    "name": "全家 臺中益豐店",
+    "coordinate": {
+      "latitude": 24.144771,
+      "longitude": 120.628278
+    },
+    "address": "臺中市南屯區向上路3段335號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1976"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1989",
+    "brand": "全家",
+    "name": "全家 臺中向德店",
+    "coordinate": {
+      "latitude": 24.139262,
+      "longitude": 120.644601
+    },
+    "address": "臺中市南屯區向心路32號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1989"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1996",
+    "brand": "全家",
+    "name": "全家 臺中寶成店",
+    "coordinate": {
+      "latitude": 24.149856,
+      "longitude": 120.609372
+    },
+    "address": "臺中市南屯區文山六街189號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1996"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1997",
+    "brand": "全家",
+    "name": "全家 臺中得億店",
+    "coordinate": {
+      "latitude": 24.142691,
+      "longitude": 120.630916
+    },
+    "address": "臺中市南屯區龍富十五路115號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1997"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart1998",
+    "brand": "全家",
+    "name": "全家 臺中保安店",
+    "coordinate": {
+      "latitude": 24.148598,
+      "longitude": 120.608874
+    },
+    "address": "臺中市南屯區保安十街166號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart1998"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2006",
+    "brand": "全家",
+    "name": "全家 臺中建國市店",
+    "coordinate": {
+      "latitude": 24.135037,
+      "longitude": 120.694833
+    },
+    "address": "臺中市東區樂業二路60號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2006"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2012",
+    "brand": "全家",
+    "name": "全家 臺中火車頭店",
+    "coordinate": {
+      "latitude": 24.136927,
+      "longitude": 120.685163
+    },
+    "address": "臺中市中區臺灣大道1段1號1樓A03櫃位",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2012"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2016",
+    "brand": "全家",
+    "name": "全家 臺中德國店",
+    "coordinate": {
+      "latitude": 24.12951,
+      "longitude": 120.687222
+    },
+    "address": "臺中市東區建德街71號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2016"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2019",
+    "brand": "全家",
+    "name": "全家 臺中東南店",
+    "coordinate": {
+      "latitude": 24.146176,
+      "longitude": 120.696915
+    },
+    "address": "臺中市東區南京東路一段327號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2019"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2025",
+    "brand": "全家",
+    "name": "全家 臺中旱溪東店",
+    "coordinate": {
+      "latitude": 24.132147,
+      "longitude": 120.700228
+    },
+    "address": "臺中市東區振興路250號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2025"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2026",
+    "brand": "全家",
+    "name": "全家 臺中國泰金店",
+    "coordinate": {
+      "latitude": 24.149975,
+      "longitude": 120.665025
+    },
+    "address": "臺中市西區英才路530號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2026"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2027",
+    "brand": "全家",
+    "name": "全家 臺中長福店",
+    "coordinate": {
+      "latitude": 24.141461,
+      "longitude": 120.703195
+    },
+    "address": "臺中市東區長福路357號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2027"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2033",
+    "brand": "全家",
+    "name": "全家 臺中甲福店",
+    "coordinate": {
+      "latitude": 24.146263,
+      "longitude": 120.704156
+    },
+    "address": "臺中市東區東英十五街300號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2033"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2034",
+    "brand": "全家",
+    "name": "全家 臺中武聖店",
+    "coordinate": {
+      "latitude": 24.142902,
+      "longitude": 120.699576
+    },
+    "address": "臺中市東區自由路四段165號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2034"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2035",
+    "brand": "全家",
+    "name": "全家 臺中擎天店",
+    "coordinate": {
+      "latitude": 24.141059,
+      "longitude": 120.676584
+    },
+    "address": "臺中市中區民權路162號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2035"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2036",
+    "brand": "全家",
+    "name": "全家 臺中展欣店",
+    "coordinate": {
+      "latitude": 24.134834,
+      "longitude": 120.705915
+    },
+    "address": "臺中市東區十甲東路378號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2036"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2042",
+    "brand": "全家",
+    "name": "全家 烏日三榮店",
+    "coordinate": {
+      "latitude": 24.10659,
+      "longitude": 120.605142
+    },
+    "address": "臺中市烏日區三榮路一段456號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2042"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2043",
+    "brand": "全家",
+    "name": "全家 烏日大展店",
+    "coordinate": {
+      "latitude": 24.074476,
+      "longitude": 120.643093
+    },
+    "address": "臺中市烏日區溪南路一段599號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2043"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2045",
+    "brand": "全家",
+    "name": "全家 臺中豐年店",
+    "coordinate": {
+      "latitude": 24.112811,
+      "longitude": 120.625818
+    },
+    "address": "臺中市南屯區黎明路一段30號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2045"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2052",
+    "brand": "全家",
+    "name": "全家 臺中樹德里店",
+    "coordinate": {
+      "latitude": 24.117963,
+      "longitude": 120.649189
+    },
+    "address": "臺中市南區大慶街2段49號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2052"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2056",
+    "brand": "全家",
+    "name": "全家 臺中大雄店",
+    "coordinate": {
+      "latitude": 24.122712,
+      "longitude": 120.659505
+    },
+    "address": "臺中市南區復興路二段71巷34號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2056"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2058",
+    "brand": "全家",
+    "name": "全家 臺中樹仔腳店",
+    "coordinate": {
+      "latitude": 24.110564,
+      "longitude": 120.645992
+    },
+    "address": "臺中市南區復興路一段33號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2058"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2059",
+    "brand": "全家",
+    "name": "全家 臺中福田店",
+    "coordinate": {
+      "latitude": 24.110779,
+      "longitude": 120.657662
+    },
+    "address": "臺中市南區福田路15號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2059"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2060",
+    "brand": "全家",
+    "name": "全家 烏日林新店",
+    "coordinate": {
+      "latitude": 24.109784,
+      "longitude": 120.598697
+    },
+    "address": "臺中市烏日區健行路177號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2060"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2061",
+    "brand": "全家",
+    "name": "全家 臺中忠孝夜店",
+    "coordinate": {
+      "latitude": 24.128702,
+      "longitude": 120.680329
+    },
+    "address": "臺中市南區忠孝路102號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2061"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2062",
+    "brand": "全家",
+    "name": "全家 臺中上和苑店",
+    "coordinate": {
+      "latitude": 24.125726,
+      "longitude": 120.668284
+    },
+    "address": "臺中市南區南平路340號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2062"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2064",
+    "brand": "全家",
+    "name": "全家 臺中中興二店",
+    "coordinate": {
+      "latitude": 24.119514,
+      "longitude": 120.678885
+    },
+    "address": "臺中市南區國光路250號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2064"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2066",
+    "brand": "全家",
+    "name": "全家 烏日火車頭店",
+    "coordinate": {
+      "latitude": 24.109877,
+      "longitude": 120.613722
+    },
+    "address": "臺中市烏日區高鐵東一路26號2樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2066"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2076",
+    "brand": "全家",
+    "name": "全家 臺中新高橋店",
+    "coordinate": {
+      "latitude": 24.125463,
+      "longitude": 120.657864
+    },
+    "address": "臺中市南區建國北路一段250號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2076"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2078",
+    "brand": "全家",
+    "name": "全家 太平熊幸福店",
+    "coordinate": {
+      "latitude": 24.159222,
+      "longitude": 120.711194
+    },
+    "address": "臺中市太平區新興路78號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2078"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2080",
+    "brand": "全家",
+    "name": "全家 太平宜佳店",
+    "coordinate": {
+      "latitude": 24.141133,
+      "longitude": 120.711609
+    },
+    "address": "臺中市太平區溪洲西路142號(配送用)",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2080"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2082",
+    "brand": "全家",
+    "name": "全家 太平洋洋店",
+    "coordinate": {
+      "latitude": 24.155973,
+      "longitude": 120.711386
+    },
+    "address": "臺中市太平區振福路660號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2082"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2083",
+    "brand": "全家",
+    "name": "全家 太平新興中店",
+    "coordinate": {
+      "latitude": 24.130316,
+      "longitude": 120.720858
+    },
+    "address": "臺中市太平區永平南路1號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2083"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2089",
+    "brand": "全家",
+    "name": "全家 太平金永億店",
+    "coordinate": {
+      "latitude": 24.115986,
+      "longitude": 120.716711
+    },
+    "address": "臺中市太平區長億路172號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2089"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2093",
+    "brand": "全家",
+    "name": "全家 太平一江橋店",
+    "coordinate": {
+      "latitude": 24.13353,
+      "longitude": 120.735929
+    },
+    "address": "臺中市太平區東河里東平路6號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2093"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2102",
+    "brand": "全家",
+    "name": "全家 太平東村店",
+    "coordinate": {
+      "latitude": 24.134118,
+      "longitude": 120.723792
+    },
+    "address": "臺中市太平區東平里13鄰東村3街6號、8號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2102"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2103",
+    "brand": "全家",
+    "name": "全家 勤益科大店",
+    "coordinate": {
+      "latitude": 24.146798,
+      "longitude": 120.733551
+    },
+    "address": "臺中市太平區中山路二段57號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2103"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2109",
+    "brand": "全家",
+    "name": "全家 太平義成店",
+    "coordinate": {
+      "latitude": 24.118718,
+      "longitude": 120.715944
+    },
+    "address": "臺中市太平區永成北路205-1號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2109"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2113",
+    "brand": "全家",
+    "name": "全家 太平好順店",
+    "coordinate": {
+      "latitude": 24.160061,
+      "longitude": 120.715762
+    },
+    "address": "臺中市太平區太順路409號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2113"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2117",
+    "brand": "全家",
+    "name": "全家 太平新凱悅店",
+    "coordinate": {
+      "latitude": 24.123809,
+      "longitude": 120.720219
+    },
+    "address": "臺中市太平區中平九街117號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2117"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2125",
+    "brand": "全家",
+    "name": "全家 大里內新店",
+    "coordinate": {
+      "latitude": 24.114088,
+      "longitude": 120.691397
+    },
+    "address": "臺中市大里區內新街54,56號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2125"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2127",
+    "brand": "全家",
+    "name": "全家 大里大福店",
+    "coordinate": {
+      "latitude": 24.121138,
+      "longitude": 120.692725
+    },
+    "address": "臺中市大里區日新路688號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2127"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2128",
+    "brand": "全家",
+    "name": "全家 大里大發店",
+    "coordinate": {
+      "latitude": 24.08287,
+      "longitude": 120.697365
+    },
+    "address": "臺中市大里區中興路一段109-5號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2128"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2134",
+    "brand": "全家",
+    "name": "全家 大里新日新店",
+    "coordinate": {
+      "latitude": 24.118706,
+      "longitude": 120.692556
+    },
+    "address": "臺中市大里區日新路586號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2134"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2135",
+    "brand": "全家",
+    "name": "全家 大里金城店",
+    "coordinate": {
+      "latitude": 24.0876,
+      "longitude": 120.705339
+    },
+    "address": "臺中市大里區塗城路537號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2135"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2137",
+    "brand": "全家",
+    "name": "全家 大里軟科店",
+    "coordinate": {
+      "latitude": 24.085774,
+      "longitude": 120.693018
+    },
+    "address": "臺中市大里區公園街423-1號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2137"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2139",
+    "brand": "全家",
+    "name": "全家 霧峰金花園店",
+    "coordinate": {
+      "latitude": 24.062062,
+      "longitude": 120.700756
+    },
+    "address": "臺中市霧峰區本堂里民生路12號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2139"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2141",
+    "brand": "全家",
+    "name": "全家 大里東芳店",
+    "coordinate": {
+      "latitude": 24.079553,
+      "longitude": 120.694574
+    },
+    "address": "臺中市大里區東湖里東南路142-6號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2141"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2148",
+    "brand": "全家",
+    "name": "全家 大里立新店",
+    "coordinate": {
+      "latitude": 24.105714,
+      "longitude": 120.699824
+    },
+    "address": "臺中市大里區立新街321號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2148"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2149",
+    "brand": "全家",
+    "name": "全家 大里善化店",
+    "coordinate": {
+      "latitude": 24.098489,
+      "longitude": 120.702631
+    },
+    "address": "臺中市大里區善化路146號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2149"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2151",
+    "brand": "全家",
+    "name": "全家 大里金瑞店",
+    "coordinate": {
+      "latitude": 24.082551,
+      "longitude": 120.699554
+    },
+    "address": "臺中市大里區中興路1段26巷11-6號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2151"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2152",
+    "brand": "全家",
+    "name": "全家 青年高中店",
+    "coordinate": {
+      "latitude": 24.087472,
+      "longitude": 120.693824
+    },
+    "address": "臺中市大里區中湖路100號B1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2152"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2153",
+    "brand": "全家",
+    "name": "全家 太平產業園店",
+    "coordinate": {
+      "latitude": 24.100817,
+      "longitude": 120.728783
+    },
+    "address": "臺中市太平區光興路313號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2153"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2156",
+    "brand": "全家",
+    "name": "全家 霧峰金丁臺店",
+    "coordinate": {
+      "latitude": 24.064895,
+      "longitude": 120.67835
+    },
+    "address": "臺中市霧峰區四德路392號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2156"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2161",
+    "brand": "全家",
+    "name": "全家 霧峰民主店",
+    "coordinate": {
+      "latitude": 24.06684,
+      "longitude": 120.701176
+    },
+    "address": "臺中市霧峰區民生路82號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2161"
+  },
+  {
+    "id": "moenv-coolmap-FamilyMart2165",
+    "brand": "全家",
+    "name": "全家 大里國際店",
+    "coordinate": {
+      "latitude": 24.095862,
+      "longitude": 120.715096
+    },
+    "address": "臺中市大里區工業二路86號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/FamilyMart2165"
+  },
+  {
+    "id": "moenv-coolmap-pcsc113595",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 神洲",
+    "coordinate": {
+      "latitude": 24.273912,
+      "longitude": 120.703535
+    },
+    "address": "臺中市神岡區國豐路一段88號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc113595"
+  },
+  {
+    "id": "moenv-coolmap-pcsc131397",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 瀋陽",
+    "coordinate": {
+      "latitude": 24.174007,
+      "longitude": 120.6786595
+    },
+    "address": "臺中市北屯區瀋陽路一段104號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc131397"
+  },
+  {
+    "id": "moenv-coolmap-pcsc141316",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 豐王",
+    "coordinate": {
+      "latitude": 24.2745331,
+      "longitude": 120.7221255
+    },
+    "address": "臺中市豐原區三豐路二段496號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc141316"
+  },
+  {
+    "id": "moenv-coolmap-pcsc148351",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 篤行",
+    "coordinate": {
+      "latitude": 24.148075,
+      "longitude": 120.676242
+    },
+    "address": "臺中市北區篤行路120號122號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc148351"
+  },
+  {
+    "id": "moenv-coolmap-pcsc174408",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 平興",
+    "coordinate": {
+      "latitude": 24.1743979,
+      "longitude": 120.6971072
+    },
+    "address": "臺中市北屯區遼寧路一段120號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc174408"
+  },
+  {
+    "id": "moenv-coolmap-pcsc174604",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 長德",
+    "coordinate": {
+      "latitude": 24.1175303,
+      "longitude": 120.7143269
+    },
+    "address": "臺中市太平區長億里永成北路125號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc174604"
+  },
+  {
+    "id": "moenv-coolmap-pcsc181565",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 世界",
+    "coordinate": {
+      "latitude": 24.1444124,
+      "longitude": 120.7027887
+    },
+    "address": "臺中市東區十甲路202號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc181565"
+  },
+  {
+    "id": "moenv-coolmap-pcsc182328",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 康勢",
+    "coordinate": {
+      "latitude": 24.0368954,
+      "longitude": 120.6658547
+    },
+    "address": "臺中市霧峰區豐正路648號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc182328"
+  },
+  {
+    "id": "moenv-coolmap-pcsc182410",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 惠馨",
+    "coordinate": {
+      "latitude": 24.13076,
+      "longitude": 120.6499626
+    },
+    "address": "臺中市南屯區大墩南路332.336號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc182410"
+  },
+  {
+    "id": "moenv-coolmap-pcsc182867",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 曾厝",
+    "coordinate": {
+      "latitude": 24.066324,
+      "longitude": 120.697277
+    },
+    "address": "臺中市霧峰區振興街32.36.38號",
+    "openingHoursText": "06:00~23:59",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc182867"
+  },
+  {
+    "id": "moenv-coolmap-pcsc183479",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 鏵智",
+    "coordinate": {
+      "latitude": 24.2512363,
+      "longitude": 120.5557956
+    },
+    "address": "臺中市梧棲區中華路二段351號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc183479"
+  },
+  {
+    "id": "moenv-coolmap-pcsc184243",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 浤雅",
+    "coordinate": {
+      "latitude": 24.2376621,
+      "longitude": 120.6332788
+    },
+    "address": "臺中市大雅區中清路四段737號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc184243"
+  },
+  {
+    "id": "moenv-coolmap-pcsc184335",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 幼勝",
+    "coordinate": {
+      "latitude": 24.4014162,
+      "longitude": 120.6423914
+    },
+    "address": "臺中市大甲區中山路二段920-21號-22號-23號-25號-26號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc184335"
+  },
+  {
+    "id": "moenv-coolmap-pcsc193155",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 順太",
+    "coordinate": {
+      "latitude": 24.1585715,
+      "longitude": 120.7243086
+    },
+    "address": "臺中市北屯區太順路112號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc193155"
+  },
+  {
+    "id": "moenv-coolmap-pcsc193993",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 和平",
+    "coordinate": {
+      "latitude": 24.174602,
+      "longitude": 120.8833014
+    },
+    "address": "臺中市和平區東關路三段161-2號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc193993"
+  },
+  {
+    "id": "moenv-coolmap-pcsc194446",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 禾康",
+    "coordinate": {
+      "latitude": 24.2729563,
+      "longitude": 120.6599181
+    },
+    "address": "臺中市神岡區三民路630號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc194446"
+  },
+  {
+    "id": "moenv-coolmap-pcsc194561",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 晞寶",
+    "coordinate": {
+      "latitude": 24.2287188,
+      "longitude": 120.6721824
+    },
+    "address": "臺中市大雅區昌平路四段556號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc194561"
+  },
+  {
+    "id": "moenv-coolmap-pcsc195184",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 漢展",
+    "coordinate": {
+      "latitude": 24.1426268,
+      "longitude": 120.7087646
+    },
+    "address": "臺中市東區自由路四段436號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc195184"
+  },
+  {
+    "id": "moenv-coolmap-pcsc195368",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 豐年",
+    "coordinate": {
+      "latitude": 24.1538507,
+      "longitude": 120.7269712
+    },
+    "address": "臺中市太平區環太東路345號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc195368"
+  },
+  {
+    "id": "moenv-coolmap-pcsc197456",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 港安",
+    "coordinate": {
+      "latitude": 24.1943013,
+      "longitude": 120.5924319
+    },
+    "address": "臺中市西屯區西屯路三段179-9號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc197456"
+  },
+  {
+    "id": "moenv-coolmap-pcsc198633",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 新清水",
+    "coordinate": {
+      "latitude": 24.2761787,
+      "longitude": 120.5706647
+    },
+    "address": "臺中市清水區五權路16號1樓、民有路1號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc198633"
+  },
+  {
+    "id": "moenv-coolmap-pcsc200022",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 軟體",
+    "coordinate": {
+      "latitude": 24.0824749,
+      "longitude": 120.694197
+    },
+    "address": "臺中市大里區東湖里中山路131號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc200022"
+  },
+  {
+    "id": "moenv-coolmap-pcsc206927",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 浤淶",
+    "coordinate": {
+      "latitude": 24.2324524,
+      "longitude": 120.6392667
+    },
+    "address": "臺中市大雅區中清路四段408號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc206927"
+  },
+  {
+    "id": "moenv-coolmap-pcsc207388",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 景大和",
+    "coordinate": {
+      "latitude": 24.1666225,
+      "longitude": 120.7224591
+    },
+    "address": "臺中市北屯區景賢路191號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc207388"
+  },
+  {
+    "id": "moenv-coolmap-pcsc208037",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 環禹",
+    "coordinate": {
+      "latitude": 24.2271661,
+      "longitude": 120.652413
+    },
+    "address": "臺中市大雅區雅環路二段126號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc208037"
+  },
+  {
+    "id": "moenv-coolmap-pcsc208107",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 弘大",
+    "coordinate": {
+      "latitude": 24.2220938,
+      "longitude": 120.5802868
+    },
+    "address": "臺中市沙鹿區晉武路9號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc208107"
+  },
+  {
+    "id": "moenv-coolmap-pcsc209096",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 泉富",
+    "coordinate": {
+      "latitude": 24.1922464,
+      "longitude": 120.7023434
+    },
+    "address": "臺中市潭子區中山路一段57號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc209096"
+  },
+  {
+    "id": "moenv-coolmap-pcsc209225",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 月湖",
+    "coordinate": {
+      "latitude": 24.3064991,
+      "longitude": 120.7065582
+    },
+    "address": "臺中市后里區公安路147-15號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc209225"
+  },
+  {
+    "id": "moenv-coolmap-pcsc209764",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 文銧",
+    "coordinate": {
+      "latitude": 24.2258482,
+      "longitude": 120.5547205
+    },
+    "address": "臺中市沙鹿區斗潭路230號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc209764"
+  },
+  {
+    "id": "moenv-coolmap-pcsc209878",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 軍榮",
+    "coordinate": {
+      "latitude": 24.1799494,
+      "longitude": 120.7206744
+    },
+    "address": "臺中市北屯區軍榮一街90號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc209878"
+  },
+  {
+    "id": "moenv-coolmap-pcsc210395",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 東苑",
+    "coordinate": {
+      "latitude": 24.1825861,
+      "longitude": 120.5898832
+    },
+    "address": "臺中市龍井區臺灣大道五段3巷62弄81號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc210395"
+  },
+  {
+    "id": "moenv-coolmap-pcsc210627",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 大里杙",
+    "coordinate": {
+      "latitude": 24.096868,
+      "longitude": 120.6661414
+    },
+    "address": "臺中市大里區大里路510號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc210627"
+  },
+  {
+    "id": "moenv-coolmap-pcsc210937",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 富亦",
+    "coordinate": {
+      "latitude": 24.1514974,
+      "longitude": 120.6267672
+    },
+    "address": "臺中市南屯區公益路二段939號1樓和龍富路四段552號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc210937"
+  },
+  {
+    "id": "moenv-coolmap-pcsc210971",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 中蔗",
+    "coordinate": {
+      "latitude": 24.1683234,
+      "longitude": 120.5804135
+    },
+    "address": "臺中市大肚區中蔗路39號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc210971"
+  },
+  {
+    "id": "moenv-coolmap-pcsc211125",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 三社",
+    "coordinate": {
+      "latitude": 24.2402988,
+      "longitude": 120.6880822
+    },
+    "address": "臺中市神岡區三社路256號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc211125"
+  },
+  {
+    "id": "moenv-coolmap-pcsc211527",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 吉泰來",
+    "coordinate": {
+      "latitude": 24.0543322,
+      "longitude": 120.6958504
+    },
+    "address": "臺中市霧峰區中正路583號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc211527"
+  },
+  {
+    "id": "moenv-coolmap-pcsc212209",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 文豐",
+    "coordinate": {
+      "latitude": 24.1403027,
+      "longitude": 120.6419562
+    },
+    "address": "臺中市南屯區文心南五路ㄧ段319號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc212209"
+  },
+  {
+    "id": "moenv-coolmap-pcsc227924",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 神全",
+    "coordinate": {
+      "latitude": 24.2670083,
+      "longitude": 120.6805907
+    },
+    "address": "臺中市神岡區豐洲路1556號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc227924"
+  },
+  {
+    "id": "moenv-coolmap-pcsc227979",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 巨龍",
+    "coordinate": {
+      "latitude": 24.2105571,
+      "longitude": 120.5242492
+    },
+    "address": "臺中市龍井區中央路二段273號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc227979"
+  },
+  {
+    "id": "moenv-coolmap-pcsc227980",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 飛翔",
+    "coordinate": {
+      "latitude": 24.2705642,
+      "longitude": 120.6079459
+    },
+    "address": "臺中市清水區和睦路三段238號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc227980"
+  },
+  {
+    "id": "moenv-coolmap-pcsc228134",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 榮春",
+    "coordinate": {
+      "latitude": 24.2531034,
+      "longitude": 120.7094919
+    },
+    "address": "臺中市豐原區圓環西路92號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc228134"
+  },
+  {
+    "id": "moenv-coolmap-pcsc228341",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 茂華",
+    "coordinate": {
+      "latitude": 24.3465448,
+      "longitude": 120.6215888
+    },
+    "address": "臺中市大甲區蔣公路170號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc228341"
+  },
+  {
+    "id": "moenv-coolmap-pcsc228754",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 靜大",
+    "coordinate": {
+      "latitude": 24.2215824,
+      "longitude": 120.5825718
+    },
+    "address": "臺中市沙鹿區晉文路45.47號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc228754"
+  },
+  {
+    "id": "moenv-coolmap-pcsc228798",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 豐嶟",
+    "coordinate": {
+      "latitude": 24.265351,
+      "longitude": 120.7228499
+    },
+    "address": "臺中市豐原區豐科路53號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc228798"
+  },
+  {
+    "id": "moenv-coolmap-pcsc228813",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 阿罩霧",
+    "coordinate": {
+      "latitude": 24.062386,
+      "longitude": 120.698253
+    },
+    "address": "臺中市霧峰區中正路815號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc228813"
+  },
+  {
+    "id": "moenv-coolmap-pcsc229045",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 豐洲路",
+    "coordinate": {
+      "latitude": 24.2639487,
+      "longitude": 120.6998455
+    },
+    "address": "臺中市神岡區豐洲路656號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc229045"
+  },
+  {
+    "id": "moenv-coolmap-pcsc229089",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 雅合",
+    "coordinate": {
+      "latitude": 24.183889,
+      "longitude": 120.6983486
+    },
+    "address": "臺中市北屯區松義街132、136號1樓及夾層",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc229089"
+  },
+  {
+    "id": "moenv-coolmap-pcsc229090",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 樹義",
+    "coordinate": {
+      "latitude": 24.1109784,
+      "longitude": 120.65633
+    },
+    "address": "臺中市南區福田三街156號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc229090"
+  },
+  {
+    "id": "moenv-coolmap-pcsc229126",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 園臻",
+    "coordinate": {
+      "latitude": 24.1056613,
+      "longitude": 120.6092936
+    },
+    "address": "臺中市烏日區三榮路一段111號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc229126"
+  },
+  {
+    "id": "moenv-coolmap-pcsc229539",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 育見",
+    "coordinate": {
+      "latitude": 24.158203,
+      "longitude": 120.7188822
+    },
+    "address": "臺中市太平區育賢路321.323號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc229539"
+  },
+  {
+    "id": "moenv-coolmap-pcsc229779",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 北屯幸福讚",
+    "coordinate": {
+      "latitude": 24.1952231,
+      "longitude": 120.6878154
+    },
+    "address": "臺中市北屯區崇德十六路218號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc229779"
+  },
+  {
+    "id": "moenv-coolmap-pcsc229850",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 鑫建德",
+    "coordinate": {
+      "latitude": 24.1294806,
+      "longitude": 120.69207
+    },
+    "address": "臺中市東區建德街174.176.178.180號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc229850"
+  },
+  {
+    "id": "moenv-coolmap-pcsc229872",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 大排",
+    "coordinate": {
+      "latitude": 24.239438,
+      "longitude": 120.5500414
+    },
+    "address": "臺中市梧棲區中華路一段982號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc229872"
+  },
+  {
+    "id": "moenv-coolmap-pcsc230078",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 成功嶺",
+    "coordinate": {
+      "latitude": 24.1108828,
+      "longitude": 120.5982878
+    },
+    "address": "臺中市烏日區榮和路230號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc230078"
+  },
+  {
+    "id": "moenv-coolmap-pcsc230193",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 松賀",
+    "coordinate": {
+      "latitude": 24.1866937,
+      "longitude": 120.6982801
+    },
+    "address": "臺中市北屯區松茂里松山街148號1樓和地下層",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc230193"
+  },
+  {
+    "id": "moenv-coolmap-pcsc230492",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 亞旺",
+    "coordinate": {
+      "latitude": 24.2250452,
+      "longitude": 120.6467123
+    },
+    "address": "臺中市大雅區中清東路240號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc230492"
+  },
+  {
+    "id": "moenv-coolmap-pcsc230850",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 花樂",
+    "coordinate": {
+      "latitude": 24.2763856,
+      "longitude": 120.7767889
+    },
+    "address": "臺中市石岡區豐勢路1111號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc230850"
+  },
+  {
+    "id": "moenv-coolmap-pcsc231037",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 立功",
+    "coordinate": {
+      "latitude": 24.1571845,
+      "longitude": 120.7156321
+    },
+    "address": "臺中市太平區育才路446.448.450號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc231037"
+  },
+  {
+    "id": "moenv-coolmap-pcsc231107",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 永春",
+    "coordinate": {
+      "latitude": 24.1412779,
+      "longitude": 120.6333319
+    },
+    "address": "臺中市南屯區永春東七路629號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc231107"
+  },
+  {
+    "id": "moenv-coolmap-pcsc231624",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 郡寶",
+    "coordinate": {
+      "latitude": 24.2053858,
+      "longitude": 120.6792565
+    },
+    "address": "臺中市潭子區大富路一段7號1、2樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc231624"
+  },
+  {
+    "id": "moenv-coolmap-pcsc231668",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 湧順",
+    "coordinate": {
+      "latitude": 24.1600924,
+      "longitude": 120.7216967
+    },
+    "address": "臺中市北屯區樹孝路666號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc231668"
+  },
+  {
+    "id": "moenv-coolmap-pcsc231727",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 耘晨",
+    "coordinate": {
+      "latitude": 24.2254263,
+      "longitude": 120.8379348
+    },
+    "address": "臺中市東勢區東關路六段432號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc231727"
+  },
+  {
+    "id": "moenv-coolmap-pcsc232247",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 瑞井",
+    "coordinate": {
+      "latitude": 24.161303,
+      "longitude": 120.5754143
+    },
+    "address": "臺中市大肚區遊園路一段90-1號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc232247"
+  },
+  {
+    "id": "moenv-coolmap-pcsc232476",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 湖日",
+    "coordinate": {
+      "latitude": 24.1020134,
+      "longitude": 120.625253
+    },
+    "address": "臺中市烏日區公園路269號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc232476"
+  },
+  {
+    "id": "moenv-coolmap-pcsc232775",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 祥順",
+    "coordinate": {
+      "latitude": 24.1714723,
+      "longitude": 120.7285659
+    },
+    "address": "臺中市北屯區祥順路二段93.95號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc232775"
+  },
+  {
+    "id": "moenv-coolmap-pcsc233055",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 宇順",
+    "coordinate": {
+      "latitude": 24.1812359,
+      "longitude": 120.6224608
+    },
+    "address": "臺中市西屯區福安路51號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc233055"
+  },
+  {
+    "id": "moenv-coolmap-pcsc233435",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 東峰",
+    "coordinate": {
+      "latitude": 24.0856336,
+      "longitude": 120.6874391
+    },
+    "address": "臺中市大里區大峰路429號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc233435"
+  },
+  {
+    "id": "moenv-coolmap-pcsc233734",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 小滿",
+    "coordinate": {
+      "latitude": 24.1751453,
+      "longitude": 120.6173623
+    },
+    "address": "臺中市西屯區中工三路220-20號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc233734"
+  },
+  {
+    "id": "moenv-coolmap-pcsc233860",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 神尚",
+    "coordinate": {
+      "latitude": 24.2591949,
+      "longitude": 120.6831146
+    },
+    "address": "臺中市神岡區大圳路41-105號",
+    "openingHoursText": "06:00~23:59",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc233860"
+  },
+  {
+    "id": "moenv-coolmap-pcsc234047",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 清春",
+    "coordinate": {
+      "latitude": 24.2560577,
+      "longitude": 120.5619028
+    },
+    "address": "臺中市梧棲區長春路10號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc234047"
+  },
+  {
+    "id": "moenv-coolmap-pcsc234106",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 保運",
+    "coordinate": {
+      "latitude": 24.1126858,
+      "longitude": 120.6467272
+    },
+    "address": "臺中市南區復興北路783號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc234106"
+  },
+  {
+    "id": "moenv-coolmap-pcsc234265",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 勇維",
+    "coordinate": {
+      "latitude": 24.2654779,
+      "longitude": 120.5411225
+    },
+    "address": "臺中市清水區大勇路36號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc234265"
+  },
+  {
+    "id": "moenv-coolmap-pcsc234704",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 崧雅",
+    "coordinate": {
+      "latitude": 24.3611455,
+      "longitude": 120.6031159
+    },
+    "address": "臺中市大安區大安港路589號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc234704"
+  },
+  {
+    "id": "moenv-coolmap-pcsc234874",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 旅順路",
+    "coordinate": {
+      "latitude": 24.1737545,
+      "longitude": 120.695727
+    },
+    "address": "臺中市北屯區旅順路二段357、359號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc234874"
+  },
+  {
+    "id": "moenv-coolmap-pcsc234896",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 鵬儀",
+    "coordinate": {
+      "latitude": 24.124393,
+      "longitude": 120.7267262
+    },
+    "address": "臺中市太平區鵬儀路137.137-1.139.139-1號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc234896"
+  },
+  {
+    "id": "moenv-coolmap-pcsc235006",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 禾立",
+    "coordinate": {
+      "latitude": 24.2574777,
+      "longitude": 120.6608657
+    },
+    "address": "臺中市神岡區神岡路53號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc235006"
+  },
+  {
+    "id": "moenv-coolmap-pcsc235280",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 豐勢",
+    "coordinate": {
+      "latitude": 24.2570854,
+      "longitude": 120.7287178
+    },
+    "address": "臺中市豐原區圓環北路二段410號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc235280"
+  },
+  {
+    "id": "moenv-coolmap-pcsc235420",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 清水巧鄰",
+    "coordinate": {
+      "latitude": 24.2799134,
+      "longitude": 120.5412231
+    },
+    "address": "臺中市清水區中清路九段1178號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc235420"
+  },
+  {
+    "id": "moenv-coolmap-pcsc235486",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 鑫楷",
+    "coordinate": {
+      "latitude": 24.1807078,
+      "longitude": 120.6632511
+    },
+    "address": "臺中市西屯區順平路218號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc235486"
+  },
+  {
+    "id": "moenv-coolmap-pcsc235833",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 霧峰五福",
+    "coordinate": {
+      "latitude": 24.071461,
+      "longitude": 120.666313
+    },
+    "address": "臺中市霧峰區五福路240號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc235833"
+  },
+  {
+    "id": "moenv-coolmap-pcsc235992",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 富雅",
+    "coordinate": {
+      "latitude": 24.2211158,
+      "longitude": 120.6943085
+    },
+    "address": "臺中市潭子區雅豐街220號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc235992"
+  },
+  {
+    "id": "moenv-coolmap-pcsc236179",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 景賢八",
+    "coordinate": {
+      "latitude": 24.1652683,
+      "longitude": 120.709942
+    },
+    "address": "臺中市北屯區景賢八路228號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc236179"
+  },
+  {
+    "id": "moenv-coolmap-pcsc236353",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 精福",
+    "coordinate": {
+      "latitude": 24.143307,
+      "longitude": 120.6548369
+    },
+    "address": "臺中市南屯區精誠路500號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc236353"
+  },
+  {
+    "id": "moenv-coolmap-pcsc240891",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 黎明東",
+    "coordinate": {
+      "latitude": 24.1428002,
+      "longitude": 120.6389167
+    },
+    "address": "臺中市南屯區黎明東街22號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc240891"
+  },
+  {
+    "id": "moenv-coolmap-pcsc241182",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 大鋒",
+    "coordinate": {
+      "latitude": 24.2075234,
+      "longitude": 120.6812244
+    },
+    "address": "臺中市潭子區大豐一路439號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc241182"
+  },
+  {
+    "id": "moenv-coolmap-pcsc241687",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 東園",
+    "coordinate": {
+      "latitude": 24.0784785,
+      "longitude": 120.6434459
+    },
+    "address": "臺中市烏日區溪埧里溪南路一段413號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc241687"
+  },
+  {
+    "id": "moenv-coolmap-pcsc242037",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 清水又菁",
+    "coordinate": {
+      "latitude": 24.2696246,
+      "longitude": 120.5377808
+    },
+    "address": "臺中市清水區港新五路266號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc242037"
+  },
+  {
+    "id": "moenv-coolmap-pcsc242783",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 紘遠",
+    "coordinate": {
+      "latitude": 24.1901084,
+      "longitude": 120.5910936
+    },
+    "address": "臺中市龍井區遠東街60號.60-1號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc242783"
+  },
+  {
+    "id": "moenv-coolmap-pcsc242808",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 總太",
+    "coordinate": {
+      "latitude": 24.1589566,
+      "longitude": 120.7304962
+    },
+    "address": "臺中市北屯區環太東路500、501號1樓",
+    "openingHoursText": "07:00~01:00",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc242808"
+  },
+  {
+    "id": "moenv-coolmap-pcsc242923",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 德勝路",
+    "coordinate": {
+      "latitude": 24.2308378,
+      "longitude": 120.6585152
+    },
+    "address": "臺中市大雅區民生路三段86號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc242923"
+  },
+  {
+    "id": "moenv-coolmap-pcsc242956",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 築林",
+    "coordinate": {
+      "latitude": 24.267054,
+      "longitude": 120.574913
+    },
+    "address": "臺中市沙鹿區中山路98號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc242956"
+  },
+  {
+    "id": "moenv-coolmap-pcsc243638",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 兆泓",
+    "coordinate": {
+      "latitude": 24.1201677,
+      "longitude": 120.6078889
+    },
+    "address": "臺中市烏日區學田路446號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc243638"
+  },
+  {
+    "id": "moenv-coolmap-pcsc243797",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 大於",
+    "coordinate": {
+      "latitude": 24.154644,
+      "longitude": 120.717303
+    },
+    "address": "臺中市太平區環中東路三段311號313號1F",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc243797"
+  },
+  {
+    "id": "moenv-coolmap-pcsc243889",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 大果",
+    "coordinate": {
+      "latitude": 24.1895285,
+      "longitude": 120.6887502
+    },
+    "address": "臺中市北屯區崇德十一路50號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc243889"
+  },
+  {
+    "id": "moenv-coolmap-pcsc249278",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 欣東勢",
+    "coordinate": {
+      "latitude": 24.2516385,
+      "longitude": 120.8309338
+    },
+    "address": "臺中市東勢區上新里第一橫街153、155號1樓和三民街2號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc249278"
+  },
+  {
+    "id": "moenv-coolmap-pcsc250902",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 元保",
+    "coordinate": {
+      "latitude": 24.1629983,
+      "longitude": 120.6769322
+    },
+    "address": "臺中市北區進化北路413號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc250902"
+  },
+  {
+    "id": "moenv-coolmap-pcsc252768",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 鑫德",
+    "coordinate": {
+      "latitude": 24.1589697,
+      "longitude": 120.710471
+    },
+    "address": "臺中市太平區新興路85-1號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc252768"
+  },
+  {
+    "id": "moenv-coolmap-pcsc253107",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 佳茂",
+    "coordinate": {
+      "latitude": 24.1876161,
+      "longitude": 120.7022767
+    },
+    "address": "臺中市潭子區中山路一段17號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc253107"
+  },
+  {
+    "id": "moenv-coolmap-pcsc253428",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 旭日",
+    "coordinate": {
+      "latitude": 24.151289,
+      "longitude": 120.678114
+    },
+    "address": "臺中市北區五權路272.274.276號與太平路221號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc253428"
+  },
+  {
+    "id": "moenv-coolmap-pcsc254052",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 北陽",
+    "coordinate": {
+      "latitude": 24.250908,
+      "longitude": 120.737014
+    },
+    "address": "臺中市豐原區北陽路288號",
+    "openingHoursText": "06:00~23:59",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc254052"
+  },
+  {
+    "id": "moenv-coolmap-pcsc254410",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 僑隆興",
+    "coordinate": {
+      "latitude": 24.1082385,
+      "longitude": 120.6086149
+    },
+    "address": "臺中市烏日區中山路三段180號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc254410"
+  },
+  {
+    "id": "moenv-coolmap-pcsc254661",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 鹿鼎",
+    "coordinate": {
+      "latitude": 24.2386172,
+      "longitude": 120.5680454
+    },
+    "address": "臺中市沙鹿區臺灣大道七段812號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc254661"
+  },
+  {
+    "id": "moenv-coolmap-pcsc255871",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 豐原誠恭",
+    "coordinate": {
+      "latitude": 24.2526153,
+      "longitude": 120.705629
+    },
+    "address": "臺中市豐原區成功路505號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc255871"
+  },
+  {
+    "id": "moenv-coolmap-pcsc256173",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 泉淼",
+    "coordinate": {
+      "latitude": 24.148371,
+      "longitude": 120.658676
+    },
+    "address": "臺中市西區華美街237號1樓",
+    "openingHoursText": "06:00~23:59",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc256173"
+  },
+  {
+    "id": "moenv-coolmap-pcsc256209",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 學園",
+    "coordinate": {
+      "latitude": 24.1827871,
+      "longitude": 120.5914955
+    },
+    "address": "臺中市龍井區臺灣大道五段3巷30弄40號1樓部份",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc256209"
+  },
+  {
+    "id": "moenv-coolmap-pcsc256221",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 榮盛",
+    "coordinate": {
+      "latitude": 24.156534,
+      "longitude": 120.545114
+    },
+    "address": "臺中市大肚區榮華街48號",
+    "openingHoursText": "06:00~23:59",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc256221"
+  },
+  {
+    "id": "moenv-coolmap-pcsc256265",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 鑫康",
+    "coordinate": {
+      "latitude": 24.1956717,
+      "longitude": 120.6592957
+    },
+    "address": "臺中市西屯區中康街46號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc256265"
+  },
+  {
+    "id": "moenv-coolmap-pcsc256346",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 正德",
+    "coordinate": {
+      "latitude": 24.204192,
+      "longitude": 120.570517
+    },
+    "address": "臺中市沙鹿區正德路120巷90號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc256346"
+  },
+  {
+    "id": "moenv-coolmap-pcsc256508",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 光隆",
+    "coordinate": {
+      "latitude": 24.1100578,
+      "longitude": 120.7299808
+    },
+    "address": "臺中市太平區光興路735號737號739號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc256508"
+  },
+  {
+    "id": "moenv-coolmap-pcsc256564",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 黎安",
+    "coordinate": {
+      "latitude": 24.1736925,
+      "longitude": 120.6367174
+    },
+    "address": "臺中市西屯區上安路218號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc256564"
+  },
+  {
+    "id": "moenv-coolmap-pcsc257305",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 菩提",
+    "coordinate": {
+      "latitude": 24.1154501,
+      "longitude": 120.6882435
+    },
+    "address": "臺中市大里區大明路66號.66-1號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc257305"
+  },
+  {
+    "id": "moenv-coolmap-pcsc257316",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 鑫明",
+    "coordinate": {
+      "latitude": 24.1089308,
+      "longitude": 120.6909167
+    },
+    "address": "臺中市大里區新明路14.16號1.2樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc257316"
+  },
+  {
+    "id": "moenv-coolmap-pcsc257486",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 巨福",
+    "coordinate": {
+      "latitude": 24.1057729,
+      "longitude": 120.6385801
+    },
+    "address": "臺中市烏日區興祥街21號23號25號27號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc257486"
+  },
+  {
+    "id": "moenv-coolmap-pcsc257741",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 雅楓",
+    "coordinate": {
+      "latitude": 24.2349502,
+      "longitude": 120.6664198
+    },
+    "address": "臺中市大雅區民生路三段472號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc257741"
+  },
+  {
+    "id": "moenv-coolmap-pcsc257763",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 勤學",
+    "coordinate": {
+      "latitude": 24.143958,
+      "longitude": 120.734296
+    },
+    "address": "臺中市太平區中山路一段350號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc257763"
+  },
+  {
+    "id": "moenv-coolmap-pcsc258010",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 戰車",
+    "coordinate": {
+      "latitude": 24.1054389,
+      "longitude": 120.6168133
+    },
+    "address": "臺中市烏日區新興路461號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc258010"
+  },
+  {
+    "id": "moenv-coolmap-pcsc258205",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 民銨",
+    "coordinate": {
+      "latitude": 24.2586924,
+      "longitude": 120.5471249
+    },
+    "address": "臺中市梧棲區大仁路一段299號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc258205"
+  },
+  {
+    "id": "moenv-coolmap-pcsc258272",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 永丰富",
+    "coordinate": {
+      "latitude": 24.1170508,
+      "longitude": 120.7057733
+    },
+    "address": "臺中市太平區永豐路268-6號1樓",
+    "openingHoursText": "06:00~23:59",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc258272"
+  },
+  {
+    "id": "moenv-coolmap-pcsc258548",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 樂誠",
+    "coordinate": {
+      "latitude": 24.1133261,
+      "longitude": 120.6105341
+    },
+    "address": "臺中市烏日區高鐵二路267、269號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc258548"
+  },
+  {
+    "id": "moenv-coolmap-pcsc259253",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 塗城",
+    "coordinate": {
+      "latitude": 24.0872428,
+      "longitude": 120.707127
+    },
+    "address": "臺中市大里區塗城路270、272、274號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc259253"
+  },
+  {
+    "id": "moenv-coolmap-pcsc259312",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 四維",
+    "coordinate": {
+      "latitude": 24.2679979,
+      "longitude": 120.5400998
+    },
+    "address": "臺中市清水區四維路二段100號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc259312"
+  },
+  {
+    "id": "moenv-coolmap-pcsc259703",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 恩太",
+    "coordinate": {
+      "latitude": 24.1597471,
+      "longitude": 120.7320659
+    },
+    "address": "臺中市北屯區環太東路556號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc259703"
+  },
+  {
+    "id": "moenv-coolmap-pcsc260150",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 雅點",
+    "coordinate": {
+      "latitude": 24.2359238,
+      "longitude": 120.655426
+    },
+    "address": "臺中市大雅區神林路一段202-1號202-2號202-3號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc260150"
+  },
+  {
+    "id": "moenv-coolmap-pcsc260596",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 兆華",
+    "coordinate": {
+      "latitude": 24.112153,
+      "longitude": 120.589773
+    },
+    "address": "臺中市烏日區健行路750號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc260596"
+  },
+  {
+    "id": "moenv-coolmap-pcsc261186",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 關連",
+    "coordinate": {
+      "latitude": 24.2405536,
+      "longitude": 120.5190606
+    },
+    "address": "臺中市梧棲區臨港路三段70.72號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc261186"
+  },
+  {
+    "id": "moenv-coolmap-pcsc263436",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 月眉",
+    "coordinate": {
+      "latitude": 24.3099707,
+      "longitude": 120.7053689
+    },
+    "address": "臺中市后里區民生路226.228號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc263436"
+  },
+  {
+    "id": "moenv-coolmap-pcsc265708",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 智宇",
+    "coordinate": {
+      "latitude": 24.270256,
+      "longitude": 120.533956
+    },
+    "address": "臺中市清水區港都路332號",
+    "openingHoursText": "06:00~23:00",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc265708"
+  },
+  {
+    "id": "moenv-coolmap-pcsc265878",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 慶順",
+    "coordinate": {
+      "latitude": 24.1754449,
+      "longitude": 120.5759273
+    },
+    "address": "臺中市大肚區中沙路168號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc265878"
+  },
+  {
+    "id": "moenv-coolmap-pcsc266435",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 欣聖",
+    "coordinate": {
+      "latitude": 24.2449391,
+      "longitude": 120.831492
+    },
+    "address": "臺中市東勢區新盛街290號一樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc266435"
+  },
+  {
+    "id": "moenv-coolmap-pcsc267140",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 峰州",
+    "coordinate": {
+      "latitude": 24.0778166,
+      "longitude": 120.7085167
+    },
+    "address": "臺中市霧峰區錦州路399號一樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc267140"
+  },
+  {
+    "id": "moenv-coolmap-pcsc267162",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 聖麗",
+    "coordinate": {
+      "latitude": 24.111693,
+      "longitude": 120.67487
+    },
+    "address": "臺中市大里區爽文路998號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc267162"
+  },
+  {
+    "id": "moenv-coolmap-pcsc268017",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 櫳昇",
+    "coordinate": {
+      "latitude": 24.1427819,
+      "longitude": 120.6256569
+    },
+    "address": "臺中市南屯區龍富路四段101號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc268017"
+  },
+  {
+    "id": "moenv-coolmap-pcsc268028",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 鑫豐喜",
+    "coordinate": {
+      "latitude": 24.242473,
+      "longitude": 120.731025
+    },
+    "address": "臺中市豐原區南陽路120號1號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc268028"
+  },
+  {
+    "id": "moenv-coolmap-pcsc268165",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 馬路",
+    "coordinate": {
+      "latitude": 24.340876,
+      "longitude": 120.64349
+    },
+    "address": "臺中市外埔區大馬路430號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc268165"
+  },
+  {
+    "id": "moenv-coolmap-pcsc268176",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 明青",
+    "coordinate": {
+      "latitude": 24.168526,
+      "longitude": 120.675396
+    },
+    "address": "臺中市北區青島路二段16號18號一樓及夾層",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc268176"
+  },
+  {
+    "id": "moenv-coolmap-pcsc268545",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 弘富",
+    "coordinate": {
+      "latitude": 24.227356,
+      "longitude": 120.706067
+    },
+    "address": "臺中市潭子區弘福街63號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc268545"
+  },
+  {
+    "id": "moenv-coolmap-pcsc268730",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 六寶",
+    "coordinate": {
+      "latitude": 24.236441,
+      "longitude": 120.635434
+    },
+    "address": "臺中市大雅區中清路四段656-1號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc268730"
+  },
+  {
+    "id": "moenv-coolmap-pcsc269032",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 三塊厝",
+    "coordinate": {
+      "latitude": 24.141018,
+      "longitude": 120.636778
+    },
+    "address": "臺中市南屯區南屯路二段856號858號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc269032"
+  },
+  {
+    "id": "moenv-coolmap-pcsc269168",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 水湳",
+    "coordinate": {
+      "latitude": 24.175698,
+      "longitude": 120.664871
+    },
+    "address": "臺中市西屯區中清西二街139-1號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc269168"
+  },
+  {
+    "id": "moenv-coolmap-pcsc269674",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 湖濱城",
+    "coordinate": {
+      "latitude": 24.1417,
+      "longitude": 120.692131
+    },
+    "address": "臺中市東區進德路367號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc269674"
+  },
+  {
+    "id": "moenv-coolmap-pcsc269766",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 東晉",
+    "coordinate": {
+      "latitude": 24.221469,
+      "longitude": 120.578659
+    },
+    "address": "臺中市沙鹿區北勢東路440號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc269766"
+  },
+  {
+    "id": "moenv-coolmap-pcsc274182",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 鑫中華",
+    "coordinate": {
+      "latitude": 24.1444126,
+      "longitude": 120.6758976
+    },
+    "address": "臺中市中區中華路一段153.155號一樓157號一二樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc274182"
+  },
+  {
+    "id": "moenv-coolmap-pcsc274975",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 碩豐",
+    "coordinate": {
+      "latitude": 24.133755,
+      "longitude": 120.637443
+    },
+    "address": "臺中市南屯區萬和路一段30號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc274975"
+  },
+  {
+    "id": "moenv-coolmap-pcsc275875",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 豐社",
+    "coordinate": {
+      "latitude": 24.2455442,
+      "longitude": 120.7009462
+    },
+    "address": "臺中市豐原區社皮里社皮路78號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc275875"
+  },
+  {
+    "id": "moenv-coolmap-pcsc275967",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 萬峰",
+    "coordinate": {
+      "latitude": 24.0234308,
+      "longitude": 120.6966071
+    },
+    "address": "臺中市霧峰區中正路146-20號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc275967"
+  },
+  {
+    "id": "moenv-coolmap-pcsc275990",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 蘋果",
+    "coordinate": {
+      "latitude": 24.0990122,
+      "longitude": 120.7020265
+    },
+    "address": "臺中市大里區善化路155號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc275990"
+  },
+  {
+    "id": "moenv-coolmap-pcsc276557",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 社和",
+    "coordinate": {
+      "latitude": 24.256031,
+      "longitude": 120.806693
+    },
+    "address": "臺中市新社區中和街五段115號1樓",
+    "openingHoursText": "06:00~23:59",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc276557"
+  },
+  {
+    "id": "moenv-coolmap-pcsc278597",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 鑫大富",
+    "coordinate": {
+      "latitude": 24.2475793,
+      "longitude": 120.6953196
+    },
+    "address": "臺中市神岡區大富路20巷1號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc278597"
+  },
+  {
+    "id": "moenv-coolmap-pcsc279741",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 文慶",
+    "coordinate": {
+      "latitude": 24.1139775,
+      "longitude": 120.6573646
+    },
+    "address": "臺中市南區大慶街一段243.245號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc279741"
+  },
+  {
+    "id": "moenv-coolmap-pcsc280693",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 潭子勝利",
+    "coordinate": {
+      "latitude": 24.2111684,
+      "longitude": 120.7004849
+    },
+    "address": "臺中市潭子區勝利路185號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc280693"
+  },
+  {
+    "id": "moenv-coolmap-pcsc281102",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 康鑫",
+    "coordinate": {
+      "latitude": 24.0773458,
+      "longitude": 120.7142262
+    },
+    "address": "臺中市霧峰區吉峰路153號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc281102"
+  },
+  {
+    "id": "moenv-coolmap-pcsc282806",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 大聖",
+    "coordinate": {
+      "latitude": 24.239323,
+      "longitude": 120.517869
+    },
+    "address": "臺中市梧棲區草湳里臨港路三段351號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc282806"
+  },
+  {
+    "id": "moenv-coolmap-pcsc283142",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 藏富",
+    "coordinate": {
+      "latitude": 24.184221,
+      "longitude": 120.678117
+    },
+    "address": "臺中市北屯區山西路二段639號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc283142"
+  },
+  {
+    "id": "moenv-coolmap-pcsc284640",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 樂樂",
+    "coordinate": {
+      "latitude": 24.134109,
+      "longitude": 120.72546
+    },
+    "address": "臺中市太平區東平路422、430號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc284640"
+  },
+  {
+    "id": "moenv-coolmap-pcsc284743",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 軍建",
+    "coordinate": {
+      "latitude": 24.172338,
+      "longitude": 120.724404
+    },
+    "address": "臺中市北屯區軍福十三路198號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc284743"
+  },
+  {
+    "id": "moenv-coolmap-pcsc284994",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 太隆",
+    "coordinate": {
+      "latitude": 24.102787,
+      "longitude": 120.717704
+    },
+    "address": "臺中市太平區德隆里工業路148號150號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc284994"
+  },
+  {
+    "id": "moenv-coolmap-pcsc285311",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 維樂",
+    "coordinate": {
+      "latitude": 24.141231,
+      "longitude": 120.712732
+    },
+    "address": "臺中市太平區溪州西路98號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc285311"
+  },
+  {
+    "id": "moenv-coolmap-pcsc285780",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 陽旭",
+    "coordinate": {
+      "latitude": 24.166757,
+      "longitude": 120.695757
+    },
+    "address": "臺中市北屯區北屯路200巷1號及北屯路200-1號一樓、地下一層",
+    "openingHoursText": "06:00~23:59",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc285780"
+  },
+  {
+    "id": "moenv-coolmap-pcsc286738",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 向美",
+    "coordinate": {
+      "latitude": 24.155219,
+      "longitude": 120.662495
+    },
+    "address": "臺中市西區美村路一段302-1號302-7號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc286738"
+  },
+  {
+    "id": "moenv-coolmap-pcsc286945",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 祥平",
+    "coordinate": {
+      "latitude": 24.179624,
+      "longitude": 120.722801
+    },
+    "address": "臺中市北屯區和順路552號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc286945"
+  },
+  {
+    "id": "moenv-coolmap-pcsc287915",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 東興一",
+    "coordinate": {
+      "latitude": 24.172986,
+      "longitude": 120.703422
+    },
+    "address": "臺中市北屯區南興一路136號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc287915"
+  },
+  {
+    "id": "moenv-coolmap-pcsc288653",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 光民",
+    "coordinate": {
+      "latitude": 24.134146,
+      "longitude": 120.671269
+    },
+    "address": "臺中市西區三民路一段126號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc288653"
+  },
+  {
+    "id": "moenv-coolmap-pcsc891132",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 丹聯",
+    "coordinate": {
+      "latitude": 24.2504533,
+      "longitude": 120.5662533
+    },
+    "address": "臺中市沙鹿區中山路田尾巷3號4號5號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc891132"
+  },
+  {
+    "id": "moenv-coolmap-pcsc921770",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 昌興",
+    "coordinate": {
+      "latitude": 24.2697579,
+      "longitude": 120.5773674
+    },
+    "address": "臺中市清水區新興路238號文昌街12-1號",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc921770"
+  },
+  {
+    "id": "moenv-coolmap-pcsc958831",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 墩南",
+    "coordinate": {
+      "latitude": 24.1367406,
+      "longitude": 120.6502145
+    },
+    "address": "臺中市南屯區南屯路二段210、212號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc958831"
+  },
+  {
+    "id": "moenv-coolmap-pcsc972929",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 新豐寶",
+    "coordinate": {
+      "latitude": 24.2395929,
+      "longitude": 120.7112061
+    },
+    "address": "臺中市豐原區中山路143-2號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc972929"
+  },
+  {
+    "id": "moenv-coolmap-pcsc978374",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 新庄",
+    "coordinate": {
+      "latitude": 24.1855763,
+      "longitude": 120.5875806
+    },
+    "address": "臺中市龍井區臺灣大道五段232號236號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc978374"
+  },
+  {
+    "id": "moenv-coolmap-pcsc991159",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 天星",
+    "coordinate": {
+      "latitude": 24.1927121,
+      "longitude": 120.746573
+    },
+    "address": "臺中市北屯區東山路二段77-8、77-9、77-10號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc991159"
+  },
+  {
+    "id": "moenv-coolmap-pcsc992222",
+    "brand": "7-ELEVEN",
+    "name": "7-ELEVEN 豐勇",
+    "coordinate": {
+      "latitude": 24.2583959,
+      "longitude": 120.7208446
+    },
+    "address": "臺中市豐原區三豐路一段155.157.159號1樓",
+    "openingHoursText": "24小時營業",
+    "source": "moenv-coolmap",
+    "sourceId": "GIS_P_82/pcsc992222"
+  },
+  {
     "id": "osm-node-10015907501",
     "coordinate": {
       "latitude": 24.2222936,

@@ -3,6 +3,10 @@ import Observation
 
 @MainActor @Observable
 final class FreeRunStore {
+    private(set) var hasEnded = false
+    private(set) var hasArrived = false
+    private(set) var feedbackID: UUID?
+    private(set) var feedbackShowsTicket = false
     private(set) var session: FreeRunSession
     private(set) var status: FreeRunLocationStatus = .waiting
     private(set) var dataError: String?
@@ -11,7 +15,7 @@ final class FreeRunStore {
     private(set) var feedbackCount = 0
     private(set) var friends: [FriendLocation] = []
     private(set) var heading: Double?
-    private(set) var heatSegments: [PopularRouteSegment] = []
+    private(set) var heatmap: FreeRunHeatmapContent?
     private(set) var heatmapError: String?
     private(set) var mapAttributions: [String] = []
     private(set) var drinkFeedback: FreeRunDrinkFeedback?
@@ -28,6 +32,7 @@ final class FreeRunStore {
     private let friendProvider: any FriendLocationProviding
     private var isRunning = false
     private var friendsRunning = false
+    private var heatmapTask: Task<Void, Never>?
     private var clockTask: Task<Void, Never>?
 
     init(isDemo: Bool, friendProvider: (any FriendLocationProviding)? = nil) {
@@ -44,11 +49,13 @@ final class FreeRunStore {
                 if let metadata: FreeRunMapAttributions = try? BundledJSON.load("taichung-data-metadata") {
                     mapAttributions = metadata.requiredAppAttributions
                 }
-                do {
-                    let routes: [PopularRoute] = try BundledJSON.load("taichung-demo-popular-routes")
-                    heatSegments = PopularRouteHeatmap.segments(from: routes)
-                } catch {
-                    heatmapError = "暫時無法載入熱門路線示範資料。"
+                heatmapTask = Task { [weak self] in
+                    do {
+                        let segments = try await FreeRunHeatmapCache.segments.value
+                        self?.heatmap = FreeRunHeatmapContent(segments: segments)
+                    } catch {
+                        self?.heatmapError = "暫時無法載入熱門路線示範資料。"
+                    }
                 }
                 if session.isDemo {
                     let routes: [PopularRoute] = try BundledJSON.load("taichung-demo-popular-routes")
@@ -77,9 +84,10 @@ final class FreeRunStore {
         }
         source?.start { [weak self] sample in
             guard let self else { return }
-            now = .now
             lastSampleAt = sample.timestamp
-            session.receive(sample, places: places, now: now)
+            if session.isDemo, sample.coordinate == session.currentCoordinate, session.hasAccurateLocation { return }
+            session.receive(sample, places: places, now: .now)
+            syncArrival()
             updateDemoTarget()
             if let coordinate = session.currentCoordinate {
                 if !friendsRunning {
@@ -92,9 +100,10 @@ final class FreeRunStore {
             }
         } onStatus: { [weak self] status in
             guard let self else { return }
-            self.status = status
+            if self.status != status { self.status = status }
             if status == .denied || status == .unavailable {
                 session.breakTracking()
+                syncArrival()
                 stopFriends()
                 isRunning = false
             }
@@ -106,6 +115,7 @@ final class FreeRunStore {
         now = .now
         if let lastSampleAt, now.timeIntervalSince(lastSampleAt) > 15 {
             session.breakTracking()
+            syncArrival()
             stopFriends()
         }
     }
@@ -119,6 +129,7 @@ final class FreeRunStore {
         stopFriends()
         lastSampleAt = nil
         session.breakTracking()
+        syncArrival()
     }
 
     func record(using passes: DrinkPassStore) {
@@ -128,6 +139,9 @@ final class FreeRunStore {
         guard let visit = session.record(at: now) else { return }
         drinkTask?.cancel()
         drinkFeedback = FreeRunDrinkFeedback(id: visit.id, showsTicket: showsTicket)
+        feedbackID = visit.id
+        feedbackShowsTicket = showsTicket
+        syncArrival()
         didRedeemCup = false
         if showsTicket {
             let purchased = passes.purchases.first { $0.remainingCups > 0 } ?? passes.purchases.first
@@ -140,7 +154,7 @@ final class FreeRunStore {
         drinkTask = Task { [weak self] in
             var previous = Date.now
             while !Task.isCancelled {
-                do { try await Task.sleep(for: .seconds(FreeRunDemoScript.sampleSeconds)) } catch { return }
+                do { try await Task.sleep(for: .seconds(FreeRunDemoScript.feedbackSampleSeconds)) } catch { return }
                 guard let self, var feedback = drinkFeedback else { return }
                 let now = Date.now
                 let oldPhase = feedback.phase
@@ -170,18 +184,22 @@ final class FreeRunStore {
         drinkTask?.cancel()
         drinkTask = nil
         drinkFeedback = nil
+        feedbackID = nil
+        feedbackShowsTicket = false
         scanTicket = nil
         updateDemoTarget()
     }
 
     func selectBar(_ id: String) {
         session.selectBar(id)
+        syncArrival()
         updateDemoTarget()
     }
 
     func togglePause() {
         now = .now
         if session.isPaused { session.resume(at: now) } else { session.pause(at: now) }
+        syncArrival()
         (source as? FreeRunDemoLocationSource)?.isPaused = session.isPaused
     }
 
@@ -196,9 +214,16 @@ final class FreeRunStore {
         drinkTask?.cancel()
         drinkTask = nil
         drinkFeedback = nil
+        feedbackID = nil
+        feedbackShowsTicket = false
         suspend()
         now = .now
         session.finish(at: now)
+        hasEnded = true
+    }
+
+    private func syncArrival() {
+        if hasArrived != session.hasArrived { hasArrived = session.hasArrived }
     }
 
     private func stopFriends() {

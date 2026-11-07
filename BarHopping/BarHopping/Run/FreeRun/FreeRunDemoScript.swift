@@ -6,7 +6,8 @@ nonisolated enum FreeRunDemoScript {
     static let scanSeconds = 3.0
     static let successSeconds = 1.0
     static let confettiSeconds = 1.8
-    static let sampleSeconds = 0.1
+    static let sampleSeconds = 0.25
+    static let feedbackSampleSeconds = 0.1
     static let minimumStartDistanceMeters = 80.0
     static let arrivalDistanceMeters = FreeRunRules.arrivalMeters - 1
 

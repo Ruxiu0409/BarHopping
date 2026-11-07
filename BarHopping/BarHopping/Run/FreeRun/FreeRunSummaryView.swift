@@ -14,7 +14,7 @@ struct FreeRunSummaryView: View {
                 }
                 FreeRunMetricsView(session: session, now: session.endedAt ?? .now)
                 if !session.samples.isEmpty || !session.visits.isEmpty {
-                    FreeRunMapView(session: session, friends: [], now: session.endedAt ?? .now, isSummary: true)
+                    FreeRunMapView(session: session, friends: [], isSummary: true)
                         .frame(height: 240)
                         .clipShape(RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius))
                         .accessibilityLabel("這次路跑的完整軌跡與喝酒紀錄地圖")

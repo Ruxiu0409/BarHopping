@@ -57,6 +57,12 @@ struct FreeRunLogicChecks {
         let decoder = JSONCoding.makeDecoder()
         let bundledBars = try decoder.decode([Place].self, from: Data(contentsOf: dataDirectory.appendingPathComponent("taichung-bars.json")))
         let routes = try decoder.decode([PopularRoute].self, from: Data(contentsOf: dataDirectory.appendingPathComponent("taichung-demo-popular-routes.json")))
+        let allHeatSegments = PopularRouteHeatmap.segments(from: routes)
+        let displayHeatSegments = FreeRunHeatmapCache.displaySegments(from: routes)
+        precondition(displayHeatSegments.count == 160)
+        precondition(displayHeatSegments.first?.runCount == allHeatSegments.map(\.runCount).max())
+        precondition(zip(displayHeatSegments, displayHeatSegments.dropFirst()).allSatisfy { $0.runCount >= $1.runCount })
+        print("熱力圖：\(routes.count) 條路線、\(allHeatSegments.count) 個路段，路跑顯示 \(displayHeatSegments.count) 條單層線")
         let route = routes.first { $0.path.count >= 2 }!
         var run = FreeRunSession(startedAt: start, isDemo: true)
         let demoOrigin = FreeRunDemoScript.startCoordinate(on: route.path, places: bundledBars)!
@@ -75,9 +81,9 @@ struct FreeRunLogicChecks {
         for round in 0..<3 {
             let target = run.activeBar!.place.coordinate
             let duration = round == 0 ? FreeRunDemoScript.firstLegSeconds : FreeRunDemoScript.nextLegSeconds
-            for _ in 0..<Int(duration * 10) {
-                let coordinate = journey.advance(toward: target, seconds: 0.1, completedVisits: round, isPaused: false)
-                seconds += 0.1
+            for _ in 0..<Int(duration / FreeRunDemoScript.sampleSeconds) {
+                let coordinate = journey.advance(toward: target, seconds: FreeRunDemoScript.sampleSeconds, completedVisits: round, isPaused: false)
+                seconds += FreeRunDemoScript.sampleSeconds
                 send(coordinate)
             }
             precondition(FreeRunRules.distance(journey.coordinate, target) < FreeRunRules.arrivalMeters)
@@ -98,7 +104,7 @@ struct FreeRunLogicChecks {
             precondition(feedback.phase == .success)
             precondition(passes.redeemCup(purchaseID: ticket.id, visitID: visit.id))
             precondition(!passes.redeemCup(purchaseID: ticket.id, visitID: visit.id), "相同喝酒紀錄不能重複扣杯")
-            precondition(passes.purchases[0].remainingCups == 2 - round)
+            precondition(passes.purchases.first(where: { $0.id == ticket.id })?.remainingCups == 2 - round)
             feedback.advance(seconds: FreeRunDemoScript.successSeconds)
             precondition(feedback.phase == .complete)
             seconds += feedback.elapsed

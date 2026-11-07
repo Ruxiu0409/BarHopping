@@ -2,7 +2,6 @@ import SwiftUI
 
 struct FreeRunLiveMetricsCard: View {
     let session: FreeRunSession
-    let now: Date
     let status: String
     var isExpanded = false
     let expand: () -> Void
@@ -29,7 +28,9 @@ struct FreeRunLiveMetricsCard: View {
     }
 
     @ViewBuilder private var metrics: some View {
-        metric(FreeRunMetricsView.clock(session.elapsed(at: now)), label: "時間", prominent: false)
+        TimelineView(.periodic(from: .now, by: 1)) { context in
+            metric(FreeRunMetricsView.clock(session.elapsed(at: context.date)), label: "時間", prominent: false)
+        }
         metric(String(format: "%.2f", session.distanceMeters / 1_000), label: "距離（公里）", prominent: true)
         metric("\(session.uniqueBarCount) 家", label: "已喝", prominent: false)
             .accessibilityLabel("已喝 \(session.uniqueBarCount) 家")

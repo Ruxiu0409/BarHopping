@@ -50,6 +50,7 @@ nonisolated struct FreeRunSession {
     private(set) var hasAccurateLocation = false
     private(set) var currentCoordinate: Coordinate?
     private(set) var trackSegments: [[Coordinate]] = []
+    private var nearbyOrigin: Coordinate?
     private var previous: FreeRunSample?
 
     var activeBar: FreeRunNearbyBar? { nearby.first { $0.id == activeBarID } }
@@ -100,8 +101,11 @@ nonisolated struct FreeRunSession {
         if let last = samples.last, sample.timestamp <= last.timestamp { return }
         hasAccurateLocation = true
         currentCoordinate = sample.coordinate
-        nearby = places.map { FreeRunNearbyBar(place: $0, distance: FreeRunRules.distance(sample.coordinate, $0.coordinate)) }
-            .sorted { $0.distance == $1.distance ? $0.id < $1.id : $0.distance < $1.distance }
+        if nearbyOrigin.map({ FreeRunRules.distance($0, sample.coordinate) >= 5 }) ?? true {
+            nearby = places.map { FreeRunNearbyBar(place: $0, distance: FreeRunRules.distance(sample.coordinate, $0.coordinate)) }
+                .sorted { $0.distance == $1.distance ? $0.id < $1.id : $0.distance < $1.distance }
+            nearbyOrigin = sample.coordinate
+        }
         if activeBarID == nil {
             activeBarID = NextBarRecommender.recommend(near: sample.coordinate, places: places,
                                                        excluding: Set(visits.map(\.barID)))?.id
@@ -148,8 +152,12 @@ nonisolated struct FreeRunSession {
     }
 
     private mutating func updateArrival() {
-        guard hasAccurateLocation, let bar = activeBar else { hasArrived = false; return }
-        hasArrived = bar.distance <= (hasArrived ? FreeRunRules.departureMeters : FreeRunRules.arrivalMeters)
+        guard hasAccurateLocation, let coordinate = currentCoordinate,
+              let index = nearby.firstIndex(where: { $0.id == activeBarID }) else { hasArrived = false; return }
+        let place = nearby[index].place
+        let distance = FreeRunRules.distance(coordinate, place.coordinate)
+        nearby[index] = FreeRunNearbyBar(place: place, distance: distance)
+        hasArrived = distance <= (hasArrived ? FreeRunRules.departureMeters : FreeRunRules.arrivalMeters)
     }
 
     mutating func finish(at date: Date) {

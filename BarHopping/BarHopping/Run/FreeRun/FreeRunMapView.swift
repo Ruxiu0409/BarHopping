@@ -4,9 +4,8 @@ import SwiftUI
 struct FreeRunMapView: View {
     let session: FreeRunSession
     let friends: [FriendLocation]
-    let now: Date
     var isSummary = false
-    var heatSegments: [PopularRouteSegment] = []
+    var heatmap: FreeRunHeatmapContent?
     var heading: Double?
     var attributions: [String] = []
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -25,15 +24,8 @@ struct FreeRunMapView: View {
 
     var body: some View {
         Map(position: $camera, interactionModes: isSummary ? [] : .all) {
-            if !isSummary, showsHeatmap {
-                ForEach(Array(heatSegments.enumerated()), id: \.offset) { _, segment in
-                    MapPolyline(coordinates: segment.path.map(\.mapCoordinate))
-                        .stroke(FreeRunHeatStyle.color(segment.heat).opacity(0.12 + segment.heat * 0.28),
-                                style: StrokeStyle(lineWidth: 15, lineCap: .round, lineJoin: .round))
-                    MapPolyline(coordinates: segment.path.map(\.mapCoordinate))
-                        .stroke(FreeRunHeatStyle.color(segment.heat).opacity(0.35 + segment.heat * 0.6),
-                                style: StrokeStyle(lineWidth: 3 + segment.heat * 3, lineCap: .round, lineJoin: .round))
-                }
+            if !isSummary, showsHeatmap, let heatmap {
+                heatmap
             }
             if !isSummary, let user = session.currentCoordinate, let target = session.activeBar {
                 MapPolyline(coordinates: [user.mapCoordinate, target.place.coordinate.mapCoordinate])
@@ -102,7 +94,8 @@ struct FreeRunMapView: View {
         .mapControlVisibility(.hidden)
         .preferredColorScheme(.dark)
         .onMapCameraChange { context in lastCamera = context.camera }
-        .animation(AppMotion.resolved(.linear(duration: 1.5), reduceMotion: reduceMotion || appReduceMotion), value: friends)
+        .animation(AppMotion.resolved(.linear(duration: FreeRunDemoScript.sampleSeconds),
+                                      reduceMotion: reduceMotion || appReduceMotion), value: session.currentCoordinate)
         .onChange(of: camera.positionedByUser) { _, positionedByUser in
             if positionedByUser { followsUser = false }
         }
@@ -192,7 +185,9 @@ struct FreeRunMapView: View {
                     } else {
                         Text("等待你的位置，暫時無法計算距離。")
                     }
-                    Text("最後更新 \(friend.age(at: now)) 秒前")
+                    TimelineView(.periodic(from: .now, by: 1)) { context in
+                        Text("最後更新 \(friend.age(at: context.date)) 秒前")
+                    }
                 } else {
                     Text("等待位置更新…")
                 }

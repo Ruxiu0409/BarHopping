@@ -7,6 +7,9 @@ trap 'rm -rf -- "$verification_temp"' EXIT
 swiftc -D FREE_RUN_LOGIC_CHECKS -module-cache-path "$verification_temp/cache" \
   "$app_source_dir/Core/Models.swift" \
   "$app_source_dir/Core/PopularRoute.swift" \
+  "$app_source_dir/Core/PopularRouteHeatmap.swift" \
+  "$app_source_dir/Services/BundledJSON.swift" \
+  "$app_source_dir/Run/FreeRun/FreeRunHeatmapCache.swift" \
   "$app_source_dir/Services/JSONCoding.swift" \
   "$app_source_dir/Run/FreeRun/FreeRunSession.swift" \
   "$app_source_dir/Run/FreeRun/NextBarRecommender.swift" \

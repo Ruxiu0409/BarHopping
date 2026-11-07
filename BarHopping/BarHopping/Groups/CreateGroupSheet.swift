@@ -58,6 +58,6 @@ struct CreateGroupSheet: View {
                 }
             }
         }
-        .tint(GroupsStyle.ink)
+        .tint(AppTheme.accentOnDark)
     }
 }

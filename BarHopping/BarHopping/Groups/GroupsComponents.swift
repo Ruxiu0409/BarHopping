@@ -1,10 +1,9 @@
 import Foundation
 import SwiftUI
 
-// 橘色用於主要操作，文字採深橘以維持淺底上的可讀性。
+// 主色 #6B2D91 與柔和底色均引用共用深色主題。
 enum GroupsStyle {
-    static let orange = Color(red: 252 / 255, green: 82 / 255, blue: 0)
-    static let ink = Color(red: 0.67, green: 0.20, blue: 0)
+    static let accent = AppTheme.accent
     static let canvas = Color(.systemGroupedBackground)
 
     static func date(_ date: Date) -> String {
@@ -31,8 +30,8 @@ struct GroupTags: View {
                     Text("#\(tag)")
                         .font(.caption.weight(.medium))
                         .padding(.horizontal, 12).padding(.vertical, 7)
-                        .background(GroupsStyle.orange.opacity(0.08), in: Capsule())
-                        .foregroundStyle(GroupsStyle.ink)
+                        .background(AppTheme.accentSoft, in: Capsule())
+                        .foregroundStyle(AppTheme.accentOnDark)
                 }
             }
         }
@@ -45,9 +44,9 @@ struct GroupAvatar: View {
     var body: some View {
         Image(systemName: symbol)
             .font(.title2)
-            .foregroundStyle(GroupsStyle.ink)
+            .foregroundStyle(AppTheme.accentOnDark)
             .frame(width: 52, height: 52)
-            .background(GroupsStyle.orange.opacity(0.1), in: RoundedRectangle(cornerRadius: 17))
+            .background(AppTheme.accentSoft, in: RoundedRectangle(cornerRadius: 17))
             .accessibilityHidden(true)
     }
 }
@@ -69,7 +68,7 @@ struct GroupSummary: View {
             GroupTags(tags: group.tags)
             if let next = group.nextEvent {
                 Label("下次揪團 \(GroupsStyle.date(next.date))", systemImage: "calendar")
-                    .font(.subheadline).foregroundStyle(GroupsStyle.ink)
+                    .font(.subheadline).foregroundStyle(AppTheme.accentOnDark)
             } else {
                 Label("還沒有下一次揪團", systemImage: "calendar").font(.subheadline).foregroundStyle(.secondary)
             }
@@ -108,6 +107,6 @@ struct GroupSafetyNote: View {
         .font(.subheadline)
         .foregroundStyle(.secondary)
         .padding(16)
-        .background(GroupsStyle.orange.opacity(0.07), in: RoundedRectangle(cornerRadius: 18))
+        .background(AppTheme.accentSoft, in: RoundedRectangle(cornerRadius: 18))
     }
 }

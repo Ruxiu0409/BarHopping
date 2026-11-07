@@ -43,7 +43,7 @@ struct JoinGroupSheet: View {
                 ToolbarItem(placement: .cancellationAction) { Button("取消") { dismiss() } }
             }
         }
-        .tint(GroupsStyle.ink)
+        .tint(AppTheme.accentOnDark)
     }
 
     private func join() {

@@ -53,13 +53,13 @@ struct GroupsTabView: View {
         }
         .environment(store)
         .environment(\.locale, Locale(identifier: "zh_TW"))
-        .tint(GroupsStyle.ink)
+        .tint(AppTheme.accentOnDark)
     }
 
     private var introduction: some View {
         VStack(alignment: .leading, spacing: 12) {
             Label("台中・一起走走", systemImage: "location.fill")
-                .font(.subheadline.weight(.semibold)).foregroundStyle(GroupsStyle.ink)
+                .font(.subheadline.weight(.semibold)).foregroundStyle(AppTheme.accentOnDark)
             Text("找個伴，\n走進下一條巷弄。")
                 .font(.largeTitle.bold()).fixedSize(horizontal: false, vertical: true)
             Text("分享喜歡的路線，約好時間輕鬆出發。")
@@ -73,7 +73,7 @@ struct GroupsTabView: View {
 
     @ViewBuilder private var actionButtons: some View {
         Button("建立團體", systemImage: "plus") { sheet = .create }
-            .buttonStyle(.borderedProminent).tint(GroupsStyle.orange).foregroundStyle(.black)
+            .buttonStyle(.borderedProminent).tint(AppTheme.accent).foregroundStyle(AppTheme.textPrimary)
             .controlSize(.large).buttonBorderShape(.capsule)
         Button("邀請碼加入", systemImage: "key") { sheet = .invite }
             .buttonStyle(.bordered).controlSize(.large).buttonBorderShape(.capsule)
@@ -87,7 +87,7 @@ struct GroupsTabView: View {
                 } description: {
                     Text("找找台中同好，或建立自己的散步小隊。")
                 } actions: {
-                    Button("去探索團體") { section = .explore }.buttonStyle(.borderedProminent)
+                    Button("去探索團體") { section = .explore }.buttonStyle(.borderedProminent).tint(AppTheme.accent)
                     Button("建立我的團體") { sheet = .create }.buttonStyle(.bordered)
                 }
             }
@@ -120,7 +120,7 @@ struct GroupsTabView: View {
                         .buttonStyle(.plain)
                     Text(group.introduction).font(.subheadline).foregroundStyle(.secondary)
                     if group.isJoined {
-                        Label("已加入", systemImage: "checkmark.circle.fill").font(.subheadline.weight(.semibold)).foregroundStyle(GroupsStyle.ink)
+                        Label("已加入", systemImage: "checkmark.circle.fill").font(.subheadline.weight(.semibold)).foregroundStyle(AppTheme.accentOnDark)
                     } else {
                         Button("加入團體", systemImage: "person.badge.plus") { store.join(group.id) }
                             .buttonStyle(.bordered).buttonBorderShape(.capsule)
@@ -145,7 +145,7 @@ struct GroupsTabView: View {
             }
             .font(.subheadline.weight(.medium))
             .padding(.horizontal, 14).padding(.vertical, 12)
-            .background(selectedTag == tag ? GroupsStyle.ink : Color(.secondarySystemGroupedBackground), in: Capsule())
+            .background(selectedTag == tag ? GroupsStyle.accent : Color(.secondarySystemGroupedBackground), in: Capsule())
             .foregroundStyle(selectedTag == tag ? Color.white : Color.primary)
         }
         .accessibilityAddTraits(selectedTag == tag ? .isSelected : [])

@@ -46,7 +46,7 @@ struct HomeStatsRow: View {
         layout {
             ForEach(items, id: \.2) { icon, value, label in
                 VStack(alignment: .leading, spacing: 4) {
-                    Image(systemName: icon).foregroundStyle(HomeTheme.accent)
+                    Image(systemName: icon).foregroundStyle(HomeTheme.accentOnDark)
                     Text(value).font(.headline).lineLimit(1).minimumScaleFactor(0.7)
                     Text(label).font(.caption).foregroundStyle(AppTheme.textSecondary)
                 }
@@ -57,105 +57,6 @@ struct HomeStatsRow: View {
             }
         }
         .fixedSize(horizontal: false, vertical: true)
-    }
-}
-
-/// 單一任務卡。
-struct HomeQuestCard: View {
-    let quest: HomeQuest
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack(alignment: .top) {
-                Image(systemName: quest.systemImage)
-                    .font(.title3)
-                    .foregroundStyle(HomeTheme.accent)
-                    .frame(width: 40, height: 40)
-                    .background(AppTheme.accentSoft, in: .circle)
-                Spacer()
-                Text(quest.kind.title)
-                    .font(.caption2.weight(.medium))
-                    .foregroundStyle(AppTheme.textSecondary)
-            }
-            Text(quest.title).font(.headline)
-            Text(quest.detail)
-                .font(.footnote)
-                .foregroundStyle(AppTheme.textSecondary)
-                .fixedSize(horizontal: false, vertical: true)
-            Spacer(minLength: 0)
-            ProgressView(value: quest.fraction)
-                .tint(HomeTheme.accent)
-            HStack {
-                Text(quest.progressText)
-                    .font(.caption.monospacedDigit())
-                    .foregroundStyle(AppTheme.textSecondary)
-                Spacer()
-                Label(quest.isCompleted ? "已獲得「\(quest.reward)」" : quest.reward,
-                      systemImage: quest.isCompleted ? "checkmark.seal.fill" : "rosette")
-                    .font(.caption.weight(.semibold))
-                    .foregroundStyle(quest.isCompleted ? .white : HomeTheme.accent)
-                    .padding(.horizontal, 8).padding(.vertical, 4)
-                    .background(quest.isCompleted ? HomeTheme.accent : AppTheme.accentSoft, in: .capsule)
-            }
-        }
-        .homeCard(padding: 14)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel("\(quest.kind.title)：\(quest.title)，\(quest.detail)")
-        .accessibilityValue(quest.isCompleted ? "已完成，獲得徽章\(quest.reward)" : "進度 \(quest.progressText)，完成可獲得徽章\(quest.reward)")
-    }
-}
-
-/// 任務區：一般字級水平捲動，輔助使用字級改直排。
-struct HomeQuestSection: View {
-    let quests: [HomeQuest]
-    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-
-    var body: some View {
-        if dynamicTypeSize.isAccessibilitySize {
-            VStack(spacing: 10) {
-                ForEach(quests) { HomeQuestCard(quest: $0) }
-            }
-            .padding(.horizontal)
-        } else {
-            ScrollView(.horizontal) {
-                HStack(alignment: .top, spacing: 12) {
-                    ForEach(quests) { quest in
-                        HomeQuestCard(quest: quest)
-                            .frame(width: 240)
-                            .frame(maxHeight: .infinity)
-                    }
-                }
-                .padding(.horizontal)
-                .fixedSize(horizontal: false, vertical: true)
-            }
-            .scrollIndicators(.hidden)
-        }
-    }
-}
-
-/// 喝水、安全回家的溫和提醒。
-struct HomeSafetyTip: View {
-    let text: String
-
-    var body: some View {
-        HStack(alignment: .top, spacing: 12) {
-            Image(systemName: "drop.fill")
-                .foregroundStyle(AppTheme.info)
-                .font(.title3)
-                .accessibilityHidden(true)
-            VStack(alignment: .leading, spacing: 4) {
-                Text("小提醒").font(.subheadline.weight(.semibold))
-                Text(text).font(.footnote).foregroundStyle(AppTheme.textSecondary)
-            }
-        }
-        .padding(14)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(AppTheme.info.opacity(0.1), in: .rect(cornerRadius: HomeTheme.cornerRadius))
-        .overlay {
-            RoundedRectangle(cornerRadius: HomeTheme.cornerRadius)
-                .strokeBorder(AppTheme.info.opacity(0.2))
-        }
-        .accessibilityElement(children: .combine)
     }
 }
 

@@ -1,26 +1,15 @@
 import SwiftUI
 
-/// 「開始規劃」與「繼續編輯」入口。
+/// 目前路線與最近草稿的繼續編輯入口。
 struct HomePlanSection: View {
     let plan: RoutePlan
     let drafts: [SavedDraft]
     let draftError: String?
-    let onStartNew: () -> Void
     let onContinueCurrent: () -> Void
     let onOpenDraft: (SavedDraft) -> Void
 
     var body: some View {
         VStack(spacing: 12) {
-            Button(action: onStartNew) {
-                Label("開始規劃新路線", systemImage: "plus")
-                    .font(.headline)
-                    .frame(maxWidth: .infinity, minHeight: 50)
-                    .foregroundStyle(AppTheme.textPrimary)
-                    .background(HomeTheme.accent, in: .capsule)
-            }
-            .buttonStyle(.plain)
-            .accessibilityHint("清空目前規劃並前往地圖")
-
             if !plan.stops.isEmpty {
                 Button(action: onContinueCurrent) {
                     planRow(icon: "pencil.and.list.clipboard", eyebrow: "繼續編輯目前路線",
@@ -68,13 +57,13 @@ struct HomePlanSection: View {
     private func planRow(icon: String, eyebrow: String?, title: String, detail: String) -> some View {
         HStack(spacing: 12) {
             Image(systemName: icon)
-                .foregroundStyle(HomeTheme.accent)
+                .foregroundStyle(HomeTheme.accentOnDark)
                 .frame(width: 36, height: 36)
                 .background(AppTheme.accentSoft, in: .rect(cornerRadius: 10))
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 2) {
                 if let eyebrow {
-                    Text(eyebrow).font(.caption.weight(.semibold)).foregroundStyle(HomeTheme.accent)
+                    Text(eyebrow).font(.caption.weight(.semibold)).foregroundStyle(HomeTheme.accentOnDark)
                 }
                 Text(title).font(.headline).foregroundStyle(AppTheme.textPrimary).lineLimit(2)
                 Text(detail).font(.footnote).foregroundStyle(AppTheme.textSecondary)

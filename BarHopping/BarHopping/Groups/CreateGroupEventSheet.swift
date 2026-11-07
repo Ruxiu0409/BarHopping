@@ -59,6 +59,6 @@ struct CreateGroupEventSheet: View {
                 Text("請確認你仍是團體成員，已填寫名稱與集合說明，並選擇未來的時間。")
             }
         }
-        .tint(GroupsStyle.ink)
+        .tint(AppTheme.accentOnDark)
     }
 }

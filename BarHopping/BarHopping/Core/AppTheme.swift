@@ -3,9 +3,11 @@ import SwiftUI
 /// 全 App 共用的深色系配色。App 一律以深色模式呈現（ContentView 設定 preferredColorScheme(.dark)）。
 /// 各分頁的 *Theme 檔請引用這裡的顏色，不要各自定義另一套底色。
 enum AppTheme {
-    /// 主色：橘色 #FC5200
-    static let accent = Color(red: 252 / 255, green: 82 / 255, blue: 0)
-    /// 主色上的柔和底（chips 選取、標籤底色）
+    /// 暗葡萄紫 #6B2D91：實心按鈕、選中填色與分頁列 tint；白字對比 8.72:1。
+    static let accent = Color(red: 107 / 255, green: 45 / 255, blue: 145 / 255)
+    /// 同色相柔紫 #B783D6：深色背景上的文字連結、小圖示與細線；頁面底對比 6.64:1。
+    static let accentOnDark = Color(red: 183 / 255, green: 131 / 255, blue: 214 / 255)
+    /// 柔和底：#6B2D91，18% 不透明度；疊在 background 為 #1F1428、surface 為 #291D34
     static let accentSoft = accent.opacity(0.18)
 
     /// 頁面底色 #0E0E11

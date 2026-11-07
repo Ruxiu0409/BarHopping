@@ -66,7 +66,7 @@ struct GroupDetailView: View {
                 .font(.body)
             if group.isJoined {
                 Label("你已是團體成員", systemImage: "checkmark.circle.fill")
-                    .font(.subheadline.weight(.semibold)).foregroundStyle(GroupsStyle.ink)
+                    .font(.subheadline.weight(.semibold)).foregroundStyle(AppTheme.accentOnDark)
                 if !group.isPublic {
                     VStack(alignment: .leading, spacing: 6) {
                         Text("團體邀請碼").font(.caption).foregroundStyle(.secondary)
@@ -81,7 +81,7 @@ struct GroupDetailView: View {
                 }
             } else if group.isPublic {
                 Button("加入團體", systemImage: "person.badge.plus") { store.join(groupID) }
-                    .buttonStyle(.borderedProminent)
+                    .buttonStyle(.borderedProminent).tint(AppTheme.accent)
             }
         }
     }
@@ -121,7 +121,7 @@ struct GroupDetailView: View {
                             Label(event.meetingPoint, systemImage: "mappin.and.ellipse")
                             GroupRouteSummary(event: event)
                             Label("\(event.participantIDs.count) 人參加・\(event.isParticipating ? "你已參加" : "你尚未參加")", systemImage: event.isParticipating ? "checkmark.circle.fill" : "person.2")
-                                .foregroundStyle(GroupsStyle.ink)
+                                .foregroundStyle(AppTheme.accentOnDark)
                         }
                         .font(.subheadline).foregroundStyle(.primary)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -162,7 +162,7 @@ struct GroupDetailView: View {
                     HStack(alignment: .firstTextBaseline) {
                         Text(entry.author).font(.subheadline.bold())
                         if entry.isAnnouncement {
-                            Label("公告", systemImage: "megaphone.fill").font(.caption).foregroundStyle(GroupsStyle.ink)
+                            Label("公告", systemImage: "megaphone.fill").font(.caption).foregroundStyle(AppTheme.accentOnDark)
                         }
                         Spacer(minLength: 0)
                     }

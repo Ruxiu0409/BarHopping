@@ -25,7 +25,7 @@ struct ForumPostRow: View {
 
             HStack(spacing: 16) {
                 Label("\(post.likeCount)", systemImage: post.isLiked ? "heart.fill" : "heart")
-                    .foregroundStyle(post.isLiked ? HomeTheme.accent : AppTheme.textSecondary)
+                    .foregroundStyle(post.isLiked ? HomeTheme.accentOnDark : AppTheme.textSecondary)
                 Label("\(post.commentCount)", systemImage: "bubble.right")
                     .foregroundStyle(AppTheme.textSecondary)
             }
@@ -62,7 +62,7 @@ struct ForumAuthorLine: View {
             if let category {
                 Text(category.title)
                     .font(.caption.weight(.medium))
-                    .foregroundStyle(HomeTheme.accent)
+                    .foregroundStyle(HomeTheme.accentOnDark)
                     .padding(.horizontal, 8).padding(.vertical, 4)
                     .background(AppTheme.accentSoft, in: .capsule)
             }
@@ -91,7 +91,7 @@ struct ForumRecipeBadges: View {
         }
     }
 
-    private func badge(_ text: String, systemImage: String, tint: Color = HomeTheme.accent) -> some View {
+    private func badge(_ text: String, systemImage: String, tint: Color = HomeTheme.accentOnDark) -> some View {
         Label {
             Text(text).foregroundStyle(AppTheme.textPrimary)
         } icon: {
@@ -111,7 +111,7 @@ struct ForumTagLine: View {
         if !tags.isEmpty {
             Text(tags.joined(separator: "  "))
                 .font(.footnote)
-                .foregroundStyle(HomeTheme.accent)
+                .foregroundStyle(HomeTheme.accentOnDark)
                 .lineLimit(2)
         }
     }

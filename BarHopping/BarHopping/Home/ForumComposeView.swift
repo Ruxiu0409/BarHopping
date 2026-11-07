@@ -58,7 +58,7 @@ struct ForumComposeView: View {
 
                     Section {
                         Toggle("附上酒譜", isOn: $includesRecipe.animation())
-                            .tint(HomeTheme.accent)
+                            .tint(HomeTheme.accentOnDark)
                     } footer: {
                         if includesRecipe && !recipeIsValid {
                             Text("至少填一項材料和一個步驟才能發佈。")
@@ -96,7 +96,7 @@ struct ForumComposeView: View {
                 }
             }
         }
-        .tint(AppTheme.accent)
+        .tint(AppTheme.accentOnDark)
         .preferredColorScheme(.dark)
     }
 
@@ -122,7 +122,7 @@ struct ForumComposeView: View {
             } label: {
                 Label("新增材料", systemImage: "plus.circle.fill")
             }
-            .tint(HomeTheme.accent)
+            .tint(HomeTheme.accentOnDark)
         }
 
         Section("步驟") {
@@ -147,7 +147,7 @@ struct ForumComposeView: View {
             } label: {
                 Label("新增步驟", systemImage: "plus.circle.fill")
             }
-            .tint(HomeTheme.accent)
+            .tint(HomeTheme.accentOnDark)
         }
 
         Section("其他資訊") {
@@ -173,7 +173,7 @@ struct ForumComposeView: View {
             }
             .padding(.vertical, 4)
             Toggle("含酒精", isOn: $containsAlcohol)
-                .tint(HomeTheme.accent)
+                .tint(HomeTheme.accentOnDark)
         }
     }
 

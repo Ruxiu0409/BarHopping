@@ -1,29 +1,20 @@
 import SwiftUI
 
-/// 首頁分頁根畫面：上半部個人化（任務、規劃入口、統計），下半部論壇。
+/// 首頁分頁根畫面：上半部個人化（草稿、統計），下半部論壇。
 struct HomeTabView: View {
     @Environment(PlannerStore.self) private var planner
     @Environment(AppRouter.self) private var router
 
     @State private var forum = ForumStore()
+    @State private var notifications = NotificationsStore()
     @State private var category: ForumCategory?
     @State private var drafts: [SavedDraft] = []
     @State private var draftError: String?
-    @State private var pendingAction: PendingPlanAction?
+    @State private var pendingDraft: SavedDraft?
     @State private var isComposing = false
 
-    private enum PendingPlanAction: Identifiable {
-        case startNew
-        case load(SavedDraft)
-        var id: String {
-            switch self {
-            case .startNew: "new"
-            case .load(let d): "load-\(d.id)"
-            }
-        }
-    }
-
     private struct PostRoute: Hashable { let id: ForumPost.ID }
+    private enum HomeRoute: Hashable { case notifications }
 
     private static let recentDraftLimit = 3
 
@@ -34,19 +25,11 @@ struct HomeTabView: View {
                     HomeGreetingHeader(user: HomeMockProfile.user)
                         .padding(.horizontal)
 
-                    HomePlanSection(
-                        plan: planner.plan, drafts: drafts, draftError: draftError,
-                        onStartNew: requestStartNew,
-                        onContinueCurrent: { router.selectedTab = .run },
-                        onOpenDraft: requestLoad)
-
-                    VStack(alignment: .leading, spacing: 10) {
-                        HomeSectionHeader("我的任務") {
-                            Text("本週").font(.subheadline).foregroundStyle(AppTheme.textSecondary)
-                        }
-                        HomeQuestSection(quests: HomeMockProfile.quests)
-                        HomeSafetyTip(text: HomeMockProfile.safetyTip)
-                            .padding(.horizontal)
+                    if !planner.plan.stops.isEmpty || !drafts.isEmpty || draftError != nil {
+                        HomePlanSection(
+                            plan: planner.plan, drafts: drafts, draftError: draftError,
+                            onContinueCurrent: { router.selectedTab = .run },
+                            onOpenDraft: requestLoad)
                     }
 
                     VStack(alignment: .leading, spacing: 10) {
@@ -75,8 +58,28 @@ struct HomeTabView: View {
                 Color.clear.frame(height: 0)
                     .background(AppTheme.background.ignoresSafeArea(edges: .top))
             }
-            .toolbar(.hidden, for: .navigationBar)
+            .toolbar(.visible, for: .navigationBar)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(AppTheme.background, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("新增貼文", systemImage: "plus") { isComposing = true }
+                        .labelStyle(.iconOnly)
+                        .accessibilityLabel("新增貼文")
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink(value: HomeRoute.notifications) {
+                        Label("通知", systemImage: notifications.unreadCount > 0 ? "bell.badge" : "bell")
+                            .labelStyle(.iconOnly)
+                    }
+                    .accessibilityLabel(notifications.unreadCount > 0 ? "通知，\(notifications.unreadCount) 則未讀" : "通知，沒有未讀")
+                }
+            }
             .navigationTitle("首頁")
+            .navigationDestination(for: HomeRoute.self) { _ in
+                NotificationsView(store: notifications)
+            }
             .navigationDestination(for: PostRoute.self) { route in
                 ForumPostDetailView(postID: route.id, store: forum)
             }
@@ -84,21 +87,16 @@ struct HomeTabView: View {
                 ForumComposeView(store: forum)
                     .presentationBackground(AppTheme.background)
             }
-            .confirmationDialog(confirmTitle, isPresented: isConfirming, titleVisibility: .visible,
-                                presenting: pendingAction) { action in
-                switch action {
-                case .startNew:
-                    Button("開始新規劃", role: .destructive) { startNew() }
-                case .load(let draft):
-                    Button("載入草稿", role: .destructive) { open(draft) }
-                }
+            .confirmationDialog("要載入這份草稿嗎？", isPresented: isConfirming, titleVisibility: .visible,
+                                presenting: pendingDraft) { draft in
+                Button("載入草稿", role: .destructive) { open(draft) }
                 Button("取消", role: .cancel) {}
             } message: { _ in
                 Text("目前路線「\(planner.plan.title)」還沒儲存的修改會消失。")
             }
         }
         .foregroundStyle(AppTheme.textPrimary)
-        .tint(AppTheme.accent)
+        .tint(AppTheme.accentOnDark)
         .preferredColorScheme(.dark)
     }
 
@@ -112,7 +110,7 @@ struct HomeTabView: View {
                 } label: {
                     Label("發文", systemImage: "square.and.pencil")
                         .font(.subheadline.weight(.semibold))
-                        .foregroundStyle(HomeTheme.accent)
+                        .foregroundStyle(HomeTheme.accentOnDark)
                 }
                 .accessibilityLabel("發新文章")
             }
@@ -161,32 +159,16 @@ struct HomeTabView: View {
 
     // MARK: - 規劃入口
 
-    private var confirmTitle: String {
-        switch pendingAction {
-        case .load: "要載入這份草稿嗎？"
-        default: "要開始新的規劃嗎？"
-        }
-    }
-
     private var isConfirming: Binding<Bool> {
-        Binding(get: { pendingAction != nil }, set: { if !$0 { pendingAction = nil } })
-    }
-
-    private func requestStartNew() {
-        if planner.hasUnsavedChanges { pendingAction = .startNew } else { startNew() }
+        Binding(get: { pendingDraft != nil }, set: { if !$0 { pendingDraft = nil } })
     }
 
     private func requestLoad(_ draft: SavedDraft) {
         if !planner.hasUnsavedChanges || planner.plan.id == draft.plan.id {
             open(draft)
         } else {
-            pendingAction = .load(draft)
+            pendingDraft = draft
         }
-    }
-
-    private func startNew() {
-        planner.startNewPlan()
-        router.selectedTab = .map
     }
 
     private func open(_ draft: SavedDraft) {

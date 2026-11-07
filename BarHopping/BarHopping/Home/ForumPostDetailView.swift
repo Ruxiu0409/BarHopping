@@ -38,7 +38,7 @@ struct ForumPostDetailView: View {
                             store.toggleLike(id: post.id)
                         } label: {
                             Label("\(post.likeCount)", systemImage: post.isLiked ? "heart.fill" : "heart")
-                                .foregroundStyle(post.isLiked ? HomeTheme.accent : AppTheme.textPrimary)
+                                .foregroundStyle(post.isLiked ? HomeTheme.accentOnDark : AppTheme.textPrimary)
                         }
                         .buttonStyle(.plain)
                         .sensoryFeedback(.selection, trigger: post.isLiked)
@@ -112,7 +112,7 @@ struct ForumPostDetailView: View {
             } label: {
                 Image(systemName: "arrow.up.circle.fill")
                     .font(.title)
-                    .foregroundStyle(trimmed.isEmpty ? AppTheme.textSecondary : HomeTheme.accent)
+                    .foregroundStyle(trimmed.isEmpty ? AppTheme.textSecondary : HomeTheme.accentOnDark)
             }
             .disabled(trimmed.isEmpty)
             .accessibilityLabel("送出留言")
@@ -131,7 +131,7 @@ struct ForumRecipeCard: View {
             HStack {
                 Label("酒譜", systemImage: "wineglass")
                     .font(.headline)
-                    .foregroundStyle(HomeTheme.accent)
+                    .foregroundStyle(HomeTheme.accentOnDark)
                     .accessibilityAddTraits(.isHeader)
                 Spacer()
                 if !recipe.containsAlcohol {
@@ -149,7 +149,7 @@ struct ForumRecipeCard: View {
                 Text("材料").font(.subheadline.weight(.semibold)).accessibilityAddTraits(.isHeader)
                 ForEach(recipe.ingredients) { item in
                     HStack(alignment: .firstTextBaseline) {
-                        Circle().fill(HomeTheme.accent).frame(width: 6, height: 6)
+                        Circle().fill(HomeTheme.accentOnDark).frame(width: 6, height: 6)
                             .alignmentGuide(.firstTextBaseline) { $0[.bottom] }
                             .accessibilityHidden(true)
                         Text(item.name)

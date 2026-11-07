@@ -56,7 +56,7 @@ struct SafeRideSheet: View {
             }
         }
         .foregroundStyle(AppTheme.textPrimary)
-        .tint(AppTheme.accent)
+        .tint(AppTheme.accentOnDark)
         .preferredColorScheme(.dark)
         .task(id: locationRefresh) { await location.request() }
         .onChange(of: scenePhase) { _, phase in
@@ -104,7 +104,7 @@ struct SafeRideSheet: View {
                     HStack(alignment: .top, spacing: 12) {
                         Image(systemName: provider.symbol)
                             .font(.title3)
-                            .foregroundStyle(AppTheme.accent)
+                            .foregroundStyle(AppTheme.accentOnDark)
                             .frame(width: 40, height: 40)
                             .background(AppTheme.accentSoft, in: Circle())
                             .accessibilityHidden(true)
@@ -115,7 +115,7 @@ struct SafeRideSheet: View {
                                 .foregroundStyle(AppTheme.textSecondary)
                             Text(provider.openingMethod.label)
                                 .font(.caption.weight(.semibold))
-                                .foregroundStyle(AppTheme.accent)
+                                .foregroundStyle(AppTheme.accentOnDark)
                         }
                         Spacer(minLength: 0)
                         Image(systemName: "arrow.up.forward")
@@ -138,7 +138,7 @@ struct SafeRideSheet: View {
         VStack(alignment: .leading, spacing: 10) {
             Button("App 內示範叫代駕", systemImage: "play.circle.fill") { showingDemo = true }
                 .font(.headline)
-                .buttonStyle(.borderedProminent)
+                .buttonStyle(.borderedProminent).tint(AppTheme.accent)
                 .controlSize(.large)
                 .frame(maxWidth: .infinity)
             Text("示範模式，未實際叫車。體驗估價與司機配對流程。")
@@ -152,7 +152,7 @@ struct SafeRideSheet: View {
         switch location.status {
         case .locating:
             ProgressView("正在取得你的位置…")
-                .tint(AppTheme.accent)
+                .tint(AppTheme.accentOnDark)
         case .located(let coordinate):
             Label("目前位置", systemImage: "location.fill").font(.headline)
             Text(String(format: "%.5f, %.5f", coordinate.latitude, coordinate.longitude))

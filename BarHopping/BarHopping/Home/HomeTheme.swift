@@ -2,8 +2,9 @@ import SwiftUI
 
 /// 首頁配色與共用格式。
 enum HomeTheme {
-    /// 主色 #FC5200
+    /// 主色 #6B2D91，引用共用主題
     static let accent = AppTheme.accent
+    static let accentOnDark = AppTheme.accentOnDark
     static let cardBackground = AppTheme.surface
     static let pageBackground = AppTheme.background
     static let cornerRadius = AppTheme.cardCornerRadius
@@ -72,12 +73,12 @@ struct HomeChip: View {
                 .font(.subheadline.weight(isSelected ? .semibold : .regular))
                 .padding(.horizontal, 14)
                 .padding(.vertical, 8)
-                .foregroundStyle(isSelected ? HomeTheme.accent : AppTheme.textPrimary)
+                .foregroundStyle(isSelected ? HomeTheme.accentOnDark : AppTheme.textPrimary)
                 .background(
                     Capsule().fill(isSelected ? AppTheme.accentSoft : AppTheme.elevated)
                 )
                 .overlay(
-                    Capsule().strokeBorder(isSelected ? HomeTheme.accent : AppTheme.separator, lineWidth: isSelected ? 1.5 : 1)
+                    Capsule().strokeBorder(isSelected ? HomeTheme.accentOnDark : AppTheme.separator, lineWidth: isSelected ? 1.5 : 1)
                 )
         }
         .buttonStyle(.plain)

@@ -20,7 +20,7 @@ struct GroupEventDetailView: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 20) {
                         GroupCard {
-                            Label("揪團活動", systemImage: "calendar").font(.subheadline).foregroundStyle(GroupsStyle.ink)
+                            Label("揪團活動", systemImage: "calendar").font(.subheadline).foregroundStyle(AppTheme.accentOnDark)
                             Text(event.title).font(.title.bold())
                             Label(GroupsStyle.date(event.date), systemImage: "clock")
                             Label(event.meetingPoint, systemImage: "mappin.and.ellipse")
@@ -30,7 +30,7 @@ struct GroupEventDetailView: View {
                                 Button(event.isParticipating ? "不參加這次活動" : "參加這次活動", systemImage: event.isParticipating ? "checkmark.circle.fill" : "plus.circle") {
                                     store.toggleParticipation(groupID: groupID, eventID: eventID)
                                 }
-                                .buttonStyle(.borderedProminent).controlSize(.large)
+                                .buttonStyle(.borderedProminent).tint(AppTheme.accent).controlSize(.large)
                                 .disabled(event.date <= .now)
                                 if event.date <= .now { Text("活動已結束").font(.caption).foregroundStyle(.secondary) }
                             } else {
@@ -71,7 +71,7 @@ struct GroupEventDetailView: View {
             }
             ForEach(Array(event.plan.stops.enumerated()), id: \.element.id) { index, stop in
                 HStack(alignment: .firstTextBaseline, spacing: 12) {
-                    Text("\(index + 1)").font(.subheadline.monospacedDigit().bold()).foregroundStyle(GroupsStyle.ink)
+                    Text("\(index + 1)").font(.subheadline.monospacedDigit().bold()).foregroundStyle(AppTheme.accentOnDark)
                     VStack(alignment: .leading, spacing: 4) {
                         Text(stop.waypoint.name).font(.headline)
                         Text("停留 \(Fmt.minutes(stop.dwellMinutes))")
@@ -82,7 +82,7 @@ struct GroupEventDetailView: View {
             Label(event.plan.endMode == .returnToOrigin ? "回到起點" : "終點・\(event.plan.destination?.name ?? "待設定")", systemImage: "flag.checkered")
                 .font(.subheadline)
             Button("用這條路線", systemImage: "figure.walk") { loadTarget = .run; showLoadConfirmation = true }
-                .buttonStyle(.borderedProminent).controlSize(.large)
+                .buttonStyle(.borderedProminent).tint(AppTheme.accent).controlSize(.large)
                 .accessibilityHint("確認取代目前規劃後，前往路跑分頁")
             Button("在地圖查看", systemImage: "map") { loadTarget = .map; showLoadConfirmation = true }
                 .buttonStyle(.bordered).controlSize(.large)

@@ -29,7 +29,7 @@ struct SafeRideDemoView: View {
             VStack(alignment: .leading, spacing: 20) {
                 Label("示範模式，未實際叫車", systemImage: "info.circle.fill")
                     .font(.headline)
-                    .foregroundStyle(AppTheme.accent)
+                    .foregroundStyle(AppTheme.accentOnDark)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(16)
                     .background(AppTheme.accentSoft, in: RoundedRectangle(cornerRadius: 14))
@@ -126,7 +126,7 @@ struct SafeRideDemoView: View {
             }
             Text("示範估價，非實際報價")
                 .font(.headline)
-                .foregroundStyle(AppTheme.accent)
+                .foregroundStyle(AppTheme.accentOnDark)
             Text("直線距離不是行車路線；未計入路況、等候或其他費用。")
                 .font(.caption)
                 .foregroundStyle(AppTheme.textSecondary)
@@ -140,7 +140,7 @@ struct SafeRideDemoView: View {
         VStack(alignment: .leading, spacing: 20) {
             ProgressView("配對司機中…")
                 .font(.title3.bold())
-                .tint(AppTheme.accent)
+                .tint(AppTheme.accentOnDark)
                 .accessibilityFocused($statusFocused)
             Text("約 2–3 秒後顯示虛構司機，未送出任何真實訂單。")
                 .foregroundStyle(AppTheme.textSecondary)

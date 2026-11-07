@@ -30,7 +30,7 @@ struct ProfileAccentButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.subheadline.weight(.bold))
-            .foregroundStyle(AppTheme.background)
+            .foregroundStyle(AppTheme.textPrimary)
             .padding(.horizontal, 12)
             .frame(minHeight: 42)
             .background(AppTheme.accent.opacity(configuration.isPressed ? 0.78 : 1), in: RoundedRectangle(cornerRadius: 12))

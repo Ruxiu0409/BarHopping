@@ -43,8 +43,16 @@ struct ProfileTabView: View {
             }
             .background(AppTheme.background)
             .navigationTitle("你")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(AppTheme.background, for: .navigationBar)
             .toolbarBackgroundVisibility(.visible, for: .navigationBar)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("你")
+                        .font(.headline.bold())
+                        .foregroundStyle(AppTheme.textPrimary)
+                }
+            }
             .sheet(isPresented: $showingAvatarPicker) {
                 avatarPickerSheet
             }
@@ -103,7 +111,7 @@ struct ProfileTabView: View {
 
                     Text(userProfile.levelTitle)
                         .font(.caption.weight(.semibold))
-                        .foregroundStyle(AppTheme.accent)
+                        .foregroundStyle(AppTheme.accentOnDark)
 
                     Text(userProfile.profileHandle)
                         .font(.caption)
@@ -250,13 +258,6 @@ struct ProfileTabView: View {
 
     private func avatarView(size: CGFloat) -> some View {
         ZStack(alignment: .bottomTrailing) {
-            Circle()
-                .stroke(
-                    LinearGradient(colors: [AppTheme.accent, Color.pink.opacity(0.8), AppTheme.accent.opacity(0.35)], startPoint: .topLeading, endPoint: .bottomTrailing),
-                    lineWidth: 3
-                )
-                .frame(width: size + 8, height: size + 8)
-
             Group {
                 if let avatarData = userProfile.customAvatarData, let image = UIImage(data: avatarData) {
                     Image(uiImage: image)
@@ -267,7 +268,7 @@ struct ProfileTabView: View {
                         .resizable()
                         .scaledToFit()
                         .padding(size * 0.25)
-                        .foregroundStyle(AppTheme.accent)
+                        .foregroundStyle(AppTheme.accentOnDark)
                         .background(AppTheme.accentSoft)
                 } else {
                     Image(UserAvatarIcon.assetName)
@@ -277,7 +278,16 @@ struct ProfileTabView: View {
             }
             .frame(width: size, height: size)
             .clipShape(Circle())
-            .overlay(Circle().strokeBorder(AppTheme.background, lineWidth: 3))
+            .overlay {
+                Circle().strokeBorder(
+                    LinearGradient(
+                        colors: [AppTheme.accentOnDark, AppTheme.accent, AppTheme.accentOnDark.opacity(0.8)],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    ),
+                    lineWidth: 3
+                )
+            }
             .accessibilityLabel("大頭貼")
 
             Button {
@@ -285,7 +295,7 @@ struct ProfileTabView: View {
             } label: {
                 Image(systemName: "camera.fill")
                     .font(.system(size: 12, weight: .bold))
-                    .foregroundStyle(AppTheme.background)
+                    .foregroundStyle(AppTheme.textPrimary)
                     .frame(width: 28, height: 28)
                     .background(AppTheme.accent, in: Circle())
                     .overlay(Circle().strokeBorder(AppTheme.background, lineWidth: 2))
@@ -293,7 +303,7 @@ struct ProfileTabView: View {
             .buttonStyle(.plain)
             .accessibilityLabel("更換大頭貼")
         }
-        .frame(width: size + 8, height: size + 8)
+        .frame(width: size, height: size)
     }
 
     private var barHoppingPassCard: some View {
@@ -301,7 +311,7 @@ struct ProfileTabView: View {
             HStack {
                 Label("我的跑吧通票", systemImage: "ticket.fill")
                     .font(.headline)
-                    .foregroundStyle(AppTheme.accent)
+                    .foregroundStyle(AppTheme.accentOnDark)
 
                 Spacer()
 
@@ -335,7 +345,7 @@ struct ProfileTabView: View {
                     Spacer()
                     Text("還可換 \(userProfile.remainingDrinks) 杯")
                         .font(.caption.bold())
-                        .foregroundStyle(userProfile.remainingDrinks > 0 ? AppTheme.accent : AppTheme.textSecondary)
+                        .foregroundStyle(userProfile.remainingDrinks > 0 ? AppTheme.accentOnDark : AppTheme.textSecondary)
                 }
             }
 
@@ -363,7 +373,7 @@ struct ProfileTabView: View {
 
     private var statsOverviewSection: some View {
         HStack(spacing: 12) {
-            statItem(title: "已踩點酒吧", value: "\(userProfile.visitedBarsCount) 間", icon: "wineglass.fill", color: AppTheme.accent)
+            statItem(title: "已踩點酒吧", value: "\(userProfile.visitedBarsCount) 間", icon: "wineglass.fill", color: AppTheme.accentOnDark)
             statItem(title: "累積步行", value: String(format: "%.1f km", userProfile.totalWalkingKm), icon: "figure.walk", color: AppTheme.info)
             statItem(title: "目前狀態", value: userProfile.soberScore, icon: "heart.fill", color: AppTheme.success)
         }
@@ -413,7 +423,7 @@ struct ProfileTabView: View {
 
                 Image(systemName: icon)
                     .font(.system(size: 22))
-                    .foregroundStyle(unlocked ? AppTheme.accent : AppTheme.textTertiary)
+                    .foregroundStyle(unlocked ? AppTheme.accentOnDark : AppTheme.textTertiary)
             }
 
             Text(title)
@@ -511,7 +521,7 @@ struct ProfileTabView: View {
                                 VStack(spacing: 10) {
                                     Image(systemName: preset.systemImage)
                                         .font(.system(size: 36))
-                                        .foregroundStyle(AppTheme.accent)
+                                        .foregroundStyle(AppTheme.accentOnDark)
                                         .frame(width: 64, height: 64)
                                         .background(AppTheme.accentSoft)
                                         .clipShape(Circle())
@@ -526,7 +536,7 @@ struct ProfileTabView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 14))
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 14)
-                                        .stroke(userProfile.selectedPresetId == preset.id ? AppTheme.accent : Color.clear, lineWidth: 2)
+                                        .stroke(userProfile.selectedPresetId == preset.id ? AppTheme.accentOnDark : Color.clear, lineWidth: 2)
                                 )
                             }
                         }
@@ -597,7 +607,7 @@ struct ProfileTabView: View {
                             .font(.subheadline.bold())
                         Text("剩餘兌換額度：\(userProfile.remainingDrinks) / \(userProfile.passTotalDrinks) 杯")
                             .font(.caption)
-                            .foregroundStyle(AppTheme.accent)
+                            .foregroundStyle(AppTheme.accentOnDark)
                     }
 
                     // 供 Demo 使用的模擬店員按鈕

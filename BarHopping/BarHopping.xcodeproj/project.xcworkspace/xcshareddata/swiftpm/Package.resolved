@@ -1,6 +1,15 @@
 {
-  "originHash" : "e70d3525c8e2819a8b34f22909815dab5c700c25a06c32388f3930f7b3627768",
+  "originHash" : "ecd97c8cf6c1dcef76b0fdbb9c673cceda8f7c89b230dee8d6fe37bb273381c1",
   "pins" : [
+    {
+      "identity" : "glassintrokit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Jiaxu-Li/GlassIntroKit",
+      "state" : {
+        "revision" : "c09e0682601b7adc68af217d4e12fb7a8702b344",
+        "version" : "0.2.0"
+      }
+    },
     {
       "identity" : "maplibre-gl-native-distribution",
       "kind" : "remoteSourceControl",

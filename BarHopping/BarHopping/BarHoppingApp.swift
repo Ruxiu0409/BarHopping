@@ -11,7 +11,7 @@ import SwiftUI
 struct BarHoppingApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppLaunchView()
         }
     }
 }

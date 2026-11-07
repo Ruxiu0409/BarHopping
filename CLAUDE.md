@@ -14,3 +14,20 @@
 4. 有 subagent 平行工作時，由主 agent 統一做 commit 和 pull，subagent 不自行 commit。
 
 開始新工作前也先 fetch 一次，確認自己在最新版本上。
+
+## Build 與測試（必須遵守）
+
+這台電腦磁碟空間很小，**不要在電腦上跑模擬器**。
+
+- 要 build 就直接 build 到使用者的手機「瑞瑞的 iPhone」（device id `00008150-001075642287801C`）：
+  ```bash
+  cd BarHopping && xcodebuild -project BarHopping.xcodeproj -scheme BarHopping \
+    -destination 'id=00008150-001075642287801C' -allowProvisioningUpdates \
+    -derivedDataPath /tmp/bh-dd-<你的名稱> build
+  xcrun devicectl device install app --device 00008150-001075642287801C \
+    /tmp/bh-dd-<你的名稱>/Build/Products/Debug-iphoneos/BarHopping.app
+  xcrun devicectl device process launch --device 00008150-001075642287801C com.ruxiu0409.BarHopping
+  ```
+- 不要建立、複製或開機任何模擬器；也不要用 `generic/platform=iOS Simulator` 編譯。
+- 做完就刪掉自己的 `/tmp/bh-dd-*` 建置資料夾。
+- 多個 agent 同時工作時，只確認能編譯就好；安裝到手機由主 agent 統一做，避免互相覆蓋。

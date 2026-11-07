@@ -23,6 +23,8 @@ final class PlannerStore {
     private(set) var result: RouteResult?
     private(set) var resultStatus: ResultStatus = .none
     private(set) var routingState: RoutingState = .idle
+    /// 最近一次儲存或載入時的規劃版本；nil 代表這份規劃從未儲存。
+    private(set) var lastSavedVersion: Int?
     /// 給畫面顯示的一次性提示（超過八站、重複加入等）。
     var notice: String?
 
@@ -44,6 +46,14 @@ final class PlannerStore {
         planVersion += 1
         if result != nil { resultStatus = .stale }
         cancelRouting()
+        // 舊的錯誤（例如標紅的站點）屬於修改前的規劃，修改後就不再適用。
+        if case .failed = routingState { routingState = .idle }
+    }
+
+    /// 目前規劃是否有尚未儲存的修改。空白的新規劃不算。
+    var hasUnsavedChanges: Bool {
+        if let lastSavedVersion { return lastSavedVersion != planVersion }
+        return !plan.stops.isEmpty || plan.origin != nil
     }
 
     func setOrigin(_ waypoint: Waypoint?) { edit { $0.origin = waypoint } }
@@ -51,6 +61,15 @@ final class PlannerStore {
     func setReturnToOrigin() { edit { $0.endMode = .returnToOrigin; $0.destination = nil } }
 
     func setDestination(_ waypoint: Waypoint) { edit { $0.endMode = .custom; $0.destination = waypoint } }
+
+    /// 切換終點模式。切到 custom 時可以暫時沒有終點，`missingRequirements` 會列出「終點」並禁止計算。
+    func setEndMode(_ mode: EndMode) {
+        guard mode != plan.endMode else { return }
+        edit { p in
+            p.endMode = mode
+            if mode == .returnToOrigin { p.destination = nil }
+        }
+    }
 
     func setTitle(_ title: String) { edit { $0.title = title } }
 
@@ -102,6 +121,7 @@ final class PlannerStore {
         cancelRouting()
         plan = .empty(); planVersion += 1
         result = nil; resultStatus = .none; routingState = .idle
+        lastSavedVersion = nil
     }
 
     // MARK: - 計算路線
@@ -155,8 +175,10 @@ final class PlannerStore {
     // MARK: - 草稿
 
     func saveDraft() async throws {
+        let version = planVersion
         let attached = resultStatus == .current || resultStatus == .savedEstimate ? result : nil
         try await drafts.save(SavedDraft(plan: plan, result: attached, savedAt: .now))
+        lastSavedVersion = version
     }
 
     func load(_ draft: SavedDraft) {
@@ -165,5 +187,6 @@ final class PlannerStore {
         result = draft.result
         resultStatus = draft.result == nil ? .none : .savedEstimate
         routingState = .idle
+        lastSavedVersion = planVersion
     }
 }

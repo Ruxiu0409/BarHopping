@@ -24,6 +24,11 @@ struct SavedDraftsView: View {
     var body: some View {
         NavigationStack {
             content
+                .scrollContentBackground(.hidden)
+                .background(AppTheme.background)
+                .foregroundStyle(AppTheme.textPrimary)
+                .toolbarBackground(AppTheme.background, for: .navigationBar)
+                .toolbarBackgroundVisibility(.visible, for: .navigationBar)
                 .navigationTitle("已儲存的路線")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -56,6 +61,7 @@ struct SavedDraftsView: View {
                 }
         }
         .tint(RunTheme.accent)
+        .preferredColorScheme(.dark)
     }
 
     @ViewBuilder
@@ -78,29 +84,33 @@ struct SavedDraftsView: View {
                                    description: Text("在路跑頁按「儲存」就會出現在這裡。"))
         case .loaded(let items, let failures):
             List {
-                if !failures.isEmpty {
-                    Section {
-                        ForEach(failures, id: \.self) { message in
-                            Label(message, systemImage: "exclamationmark.triangle.fill")
-                                .font(.footnote)
-                                .foregroundStyle(.red)
-                        }
-                    } header: {
-                        Text("載入失敗")
-                    } footer: {
-                        Text("這些檔案無法讀取，原始資料沒有被刪除或覆寫。")
-                    }
-                }
-                if items.isEmpty {
-                    Text("沒有可載入的路線")
-                        .foregroundStyle(.secondary)
-                } else {
-                    Section {
-                        ForEach(items) { draft in
-                            row(draft)
+                Group {
+                    if !failures.isEmpty {
+                        Section {
+                            ForEach(failures, id: \.self) { message in
+                                Label(message, systemImage: "exclamationmark.triangle.fill")
+                                    .font(.footnote)
+                                    .foregroundStyle(AppTheme.danger)
+                            }
+                        } header: {
+                            Text("載入失敗")
+                        } footer: {
+                            Text("這些檔案無法讀取，原始資料沒有被刪除或覆寫。")
                         }
                     }
+                    if items.isEmpty {
+                        Text("沒有可載入的路線")
+                            .foregroundStyle(AppTheme.textSecondary)
+                    } else {
+                        Section {
+                            ForEach(items) { draft in
+                                row(draft)
+                            }
+                        }
+                    }
                 }
+                .listRowBackground(AppTheme.surface)
+                .listRowSeparatorTint(AppTheme.separator)
             }
         }
     }
@@ -119,10 +129,10 @@ struct SavedDraftsView: View {
                     }
                     Text(summary(draft))
                         .font(.footnote)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.textSecondary)
                     Text("儲存於 \(draft.savedAt.formatted(date: .abbreviated, time: .shortened))")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.textSecondary)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .contentShape(Rectangle())
@@ -137,7 +147,7 @@ struct SavedDraftsView: View {
                 Image(systemName: "trash")
             }
             .buttonStyle(.borderless)
-            .tint(.red)
+            .tint(AppTheme.danger)
             .accessibilityLabel("刪除 \(draft.plan.title)")
         }
         .swipeActions {

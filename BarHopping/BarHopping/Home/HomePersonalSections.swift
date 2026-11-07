@@ -20,7 +20,7 @@ struct HomeGreetingHeader: View {
                     .font(.title2.bold())
                 Text(user.level)
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.textSecondary)
             }
             Spacer(minLength: 0)
         }
@@ -48,7 +48,7 @@ struct HomeStatsRow: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Image(systemName: icon).foregroundStyle(HomeTheme.accent)
                     Text(value).font(.headline).lineLimit(1).minimumScaleFactor(0.7)
-                    Text(label).font(.caption).foregroundStyle(.secondary)
+                    Text(label).font(.caption).foregroundStyle(AppTheme.textSecondary)
                 }
                 .frame(maxHeight: .infinity, alignment: .topLeading)
                 .homeCard(padding: 12)
@@ -71,16 +71,16 @@ struct HomeQuestCard: View {
                     .font(.title3)
                     .foregroundStyle(HomeTheme.accent)
                     .frame(width: 40, height: 40)
-                    .background(HomeTheme.accent.opacity(0.12), in: .circle)
+                    .background(AppTheme.accentSoft, in: .circle)
                 Spacer()
                 Text(quest.kind.title)
                     .font(.caption2.weight(.medium))
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.textSecondary)
             }
             Text(quest.title).font(.headline)
             Text(quest.detail)
                 .font(.footnote)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
             Spacer(minLength: 0)
             ProgressView(value: quest.fraction)
@@ -88,14 +88,14 @@ struct HomeQuestCard: View {
             HStack {
                 Text(quest.progressText)
                     .font(.caption.monospacedDigit())
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.textSecondary)
                 Spacer()
                 Label(quest.isCompleted ? "已獲得「\(quest.reward)」" : quest.reward,
                       systemImage: quest.isCompleted ? "checkmark.seal.fill" : "rosette")
                     .font(.caption.weight(.semibold))
                     .foregroundStyle(quest.isCompleted ? .white : HomeTheme.accent)
                     .padding(.horizontal, 8).padding(.vertical, 4)
-                    .background(quest.isCompleted ? HomeTheme.accent : HomeTheme.accent.opacity(0.1), in: .capsule)
+                    .background(quest.isCompleted ? HomeTheme.accent : AppTheme.accentSoft, in: .capsule)
             }
         }
         .homeCard(padding: 14)
@@ -140,17 +140,21 @@ struct HomeSafetyTip: View {
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
             Image(systemName: "drop.fill")
-                .foregroundStyle(.teal)
+                .foregroundStyle(AppTheme.info)
                 .font(.title3)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 4) {
                 Text("小提醒").font(.subheadline.weight(.semibold))
-                Text(text).font(.footnote).foregroundStyle(.secondary)
+                Text(text).font(.footnote).foregroundStyle(AppTheme.textSecondary)
             }
         }
         .padding(14)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color.teal.opacity(0.1), in: .rect(cornerRadius: HomeTheme.cornerRadius))
+        .background(AppTheme.info.opacity(0.1), in: .rect(cornerRadius: HomeTheme.cornerRadius))
+        .overlay {
+            RoundedRectangle(cornerRadius: HomeTheme.cornerRadius)
+                .strokeBorder(AppTheme.info.opacity(0.2))
+        }
         .accessibilityElement(children: .combine)
     }
 }

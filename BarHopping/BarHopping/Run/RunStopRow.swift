@@ -19,16 +19,16 @@ struct RunStopRow: View {
             HStack(alignment: .firstTextBaseline, spacing: 10) {
                 Text("\(index + 1)")
                     .font(.subheadline.bold().monospacedDigit())
-                    .foregroundStyle(.white)
+                    .foregroundStyle(AppTheme.textPrimary)
                     .frame(minWidth: 28, minHeight: 28)
-                    .background(Circle().fill(isProblem ? Color.red : RunTheme.accent))
+                    .background(Circle().fill(isProblem ? AppTheme.danger : RunTheme.accent))
                     .accessibilityHidden(true)
 
                 VStack(alignment: .leading, spacing: 4) {
                     HStack(spacing: 6) {
                         Text(stop.waypoint.name)
                             .font(.headline)
-                            .foregroundStyle(isProblem ? .red : .primary)
+                            .foregroundStyle(isProblem ? AppTheme.danger : AppTheme.textPrimary)
                         if stop.waypoint.placeId == nil {
                             Text("自訂")
                                 .font(.caption.bold())
@@ -41,7 +41,7 @@ struct RunStopRow: View {
                     if isProblem {
                         Label("找不到可步行的道路", systemImage: "exclamationmark.triangle.fill")
                             .font(.caption)
-                            .foregroundStyle(.red)
+                            .foregroundStyle(AppTheme.danger)
                     }
                 }
                 Spacer(minLength: 0)
@@ -77,7 +77,7 @@ struct RunStopRow: View {
                 Button(role: .destructive, action: onDelete) {
                     Label("刪除", systemImage: "trash")
                 }
-                .tint(.red)
+                .tint(AppTheme.danger)
                 .accessibilityLabel("刪除 \(stop.waypoint.name)")
             }
             .font(.subheadline)

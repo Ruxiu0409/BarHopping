@@ -42,7 +42,7 @@ struct HomeTabView: View {
 
                     VStack(alignment: .leading, spacing: 10) {
                         HomeSectionHeader("我的任務") {
-                            Text("本週").font(.subheadline).foregroundStyle(.secondary)
+                            Text("本週").font(.subheadline).foregroundStyle(AppTheme.textSecondary)
                         }
                         HomeQuestSection(quests: HomeMockProfile.quests)
                         HomeSafetyTip(text: HomeMockProfile.safetyTip)
@@ -71,8 +71,9 @@ struct HomeTabView: View {
                 _ = await (f, d)
             }
             .safeAreaInset(edge: .top, spacing: 0) {
-                // 導覽列隱藏時，讓狀態列底下有模糊背景，內容不會直接疊在時間和電量上。
-                Color.clear.frame(height: 0).background(.bar)
+                // 狀態列使用固定深色底，避免捲動內容降低時間和電量的對比。
+                Color.clear.frame(height: 0)
+                    .background(AppTheme.background.ignoresSafeArea(edges: .top))
             }
             .toolbar(.hidden, for: .navigationBar)
             .navigationTitle("首頁")
@@ -81,6 +82,7 @@ struct HomeTabView: View {
             }
             .sheet(isPresented: $isComposing) {
                 ForumComposeView(store: forum)
+                    .presentationBackground(AppTheme.background)
             }
             .confirmationDialog(confirmTitle, isPresented: isConfirming, titleVisibility: .visible,
                                 presenting: pendingAction) { action in
@@ -95,6 +97,9 @@ struct HomeTabView: View {
                 Text("目前路線「\(planner.plan.title)」還沒儲存的修改會消失。")
             }
         }
+        .foregroundStyle(AppTheme.textPrimary)
+        .tint(AppTheme.accent)
+        .preferredColorScheme(.dark)
     }
 
     // MARK: - 論壇
@@ -114,7 +119,7 @@ struct HomeTabView: View {
 
             Text("未滿 18 歲請勿飲酒｜喝酒不開車")
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.textSecondary)
                 .padding(.horizontal)
 
             ScrollView(.horizontal) {
@@ -133,13 +138,13 @@ struct HomeTabView: View {
             Group {
                 if let error = forum.errorMessage, forum.posts.isEmpty {
                     Label(error, systemImage: "wifi.exclamationmark")
-                        .font(.subheadline).foregroundStyle(.secondary)
+                        .font(.subheadline).foregroundStyle(AppTheme.textSecondary)
                         .homeCard()
                 } else if forum.posts.isEmpty, forum.isLoading {
                     ProgressView("載入中…").frame(maxWidth: .infinity).padding()
                 } else if posts.isEmpty {
                     Text("這個分類還沒有文章，來發第一篇吧")
-                        .font(.subheadline).foregroundStyle(.secondary)
+                        .font(.subheadline).foregroundStyle(AppTheme.textSecondary)
                         .homeCard()
                 } else {
                     ForEach(posts) { post in

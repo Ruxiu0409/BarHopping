@@ -41,40 +41,49 @@ struct ForumComposeView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("分類") {
-                    Picker("分類", selection: $category) {
-                        ForEach(ForumCategory.allCases) { Text($0.title).tag($0) }
+                Group {
+                    Section("分類") {
+                        Picker("分類", selection: $category) {
+                            ForEach(ForumCategory.allCases) { Text($0.title).tag($0) }
+                        }
+                        .pickerStyle(.menu)
                     }
-                    .pickerStyle(.menu)
-                }
-                Section("標題") {
-                    TextField("例如：檸檬紅茶＋伏特加十分鐘上手", text: $title)
-                }
-                Section("內文") {
-                    TextField("分享你的調法、心得或問題…", text: $bodyText, axis: .vertical)
-                        .lineLimit(4...10)
-                }
+                    Section("標題") {
+                        TextField("例如：檸檬紅茶＋伏特加十分鐘上手", text: $title)
+                    }
+                    Section("內文") {
+                        TextField("分享你的調法、心得或問題…", text: $bodyText, axis: .vertical)
+                            .lineLimit(4...10)
+                    }
 
-                Section {
-                    Toggle("附上酒譜", isOn: $includesRecipe.animation())
-                        .tint(HomeTheme.accent)
-                } footer: {
-                    if includesRecipe && !recipeIsValid {
-                        Text("至少填一項材料和一個步驟才能發佈。")
+                    Section {
+                        Toggle("附上酒譜", isOn: $includesRecipe.animation())
+                            .tint(HomeTheme.accent)
+                    } footer: {
+                        if includesRecipe && !recipeIsValid {
+                            Text("至少填一項材料和一個步驟才能發佈。")
+                        }
+                    }
+
+                    if includesRecipe { recipeSections }
+
+                    Section {
+                        TextField("#超商調酒 #十分鐘上手", text: $tagsText)
+                            .textInputAutocapitalization(.never)
+                    } header: {
+                        Text("標籤（選填）")
+                    } footer: {
+                        Text("用空白分隔。未滿 18 歲請勿飲酒，喝酒不開車；份量適中，不鼓勵拚酒。")
                     }
                 }
-
-                if includesRecipe { recipeSections }
-
-                Section {
-                    TextField("#超商調酒 #十分鐘上手", text: $tagsText)
-                        .textInputAutocapitalization(.never)
-                } header: {
-                    Text("標籤（選填）")
-                } footer: {
-                    Text("用空白分隔。未滿 18 歲請勿飲酒，喝酒不開車；份量適中，不鼓勵拚酒。")
-                }
+                .listRowBackground(AppTheme.surface)
+                .listRowSeparatorTint(AppTheme.separator)
             }
+            .scrollContentBackground(.hidden)
+            .background(AppTheme.background)
+            .foregroundStyle(AppTheme.textPrimary)
+            .toolbarBackground(AppTheme.background, for: .navigationBar)
+            .toolbarBackgroundVisibility(.visible, for: .navigationBar)
             .navigationTitle("發新文章")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -87,6 +96,8 @@ struct ForumComposeView: View {
                 }
             }
         }
+        .tint(AppTheme.accent)
+        .preferredColorScheme(.dark)
     }
 
     @ViewBuilder private var recipeSections: some View {
@@ -119,7 +130,7 @@ struct ForumComposeView: View {
                 HStack(alignment: .firstTextBaseline) {
                     Text("\(index + 1).")
                         .font(.body.monospacedDigit())
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.textSecondary)
                         .accessibilityHidden(true)
                     TextField("第 \(index + 1) 步", text: $step.text, axis: .vertical)
                     removeButton(label: "刪除第 \(index + 1) 步", disabled: steps.count <= 1) {
@@ -169,7 +180,7 @@ struct ForumComposeView: View {
     private func removeButton(label: String, disabled: Bool, action: @escaping () -> Void) -> some View {
         Button(action: action) {
             Image(systemName: "minus.circle.fill")
-                .foregroundStyle(disabled ? Color.secondary : Color.red)
+                .foregroundStyle(disabled ? AppTheme.textSecondary : AppTheme.danger)
         }
         .buttonStyle(.borderless)
         .disabled(disabled)

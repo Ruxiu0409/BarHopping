@@ -3,10 +3,10 @@ import SwiftUI
 /// 首頁配色與共用格式。
 enum HomeTheme {
     /// 主色 #FC5200
-    static let accent = Color(red: 252 / 255, green: 82 / 255, blue: 0)
-    static let cardBackground = Color(.secondarySystemGroupedBackground)
-    static let pageBackground = Color(.systemGroupedBackground)
-    static let cornerRadius: CGFloat = 16
+    static let accent = AppTheme.accent
+    static let cardBackground = AppTheme.surface
+    static let pageBackground = AppTheme.background
+    static let cornerRadius = AppTheme.cardCornerRadius
 
     /// 頭像底色（依作者索引輪替）。
     static let avatarColors: [Color] = [
@@ -23,7 +23,7 @@ enum HomeTheme {
     }
 }
 
-/// 白底圓角卡片。
+/// 深色圓角卡片。
 struct HomeCard: ViewModifier {
     var padding: CGFloat = 16
 
@@ -32,6 +32,10 @@ struct HomeCard: ViewModifier {
             .padding(padding)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(HomeTheme.cardBackground, in: .rect(cornerRadius: HomeTheme.cornerRadius))
+            .overlay {
+                RoundedRectangle(cornerRadius: HomeTheme.cornerRadius)
+                    .strokeBorder(AppTheme.separator)
+            }
     }
 }
 
@@ -48,9 +52,10 @@ struct InitialsAvatar: View {
     var body: some View {
         Text(initials)
             .font(.system(size: size * 0.42, weight: .semibold))
-            .foregroundStyle(.white)
+            .foregroundStyle(AppTheme.textPrimary)
             .frame(width: size, height: size)
-            .background(HomeTheme.avatarColors[colorIndex % HomeTheme.avatarColors.count], in: .circle)
+            .background(HomeTheme.avatarColors[colorIndex % HomeTheme.avatarColors.count].opacity(0.7), in: .circle)
+            .overlay { Circle().strokeBorder(AppTheme.separator) }
             .accessibilityHidden(true)
     }
 }
@@ -67,12 +72,12 @@ struct HomeChip: View {
                 .font(.subheadline.weight(isSelected ? .semibold : .regular))
                 .padding(.horizontal, 14)
                 .padding(.vertical, 8)
-                .foregroundStyle(isSelected ? HomeTheme.accent : Color.primary)
+                .foregroundStyle(isSelected ? HomeTheme.accent : AppTheme.textPrimary)
                 .background(
-                    Capsule().fill(isSelected ? HomeTheme.accent.opacity(0.1) : HomeTheme.cardBackground)
+                    Capsule().fill(isSelected ? AppTheme.accentSoft : AppTheme.elevated)
                 )
                 .overlay(
-                    Capsule().strokeBorder(isSelected ? HomeTheme.accent : Color(.separator), lineWidth: isSelected ? 1.5 : 1)
+                    Capsule().strokeBorder(isSelected ? HomeTheme.accent : AppTheme.separator, lineWidth: isSelected ? 1.5 : 1)
                 )
         }
         .buttonStyle(.plain)

@@ -15,7 +15,7 @@ struct HomePlanSection: View {
                 Label("開始規劃新路線", systemImage: "plus")
                     .font(.headline)
                     .frame(maxWidth: .infinity, minHeight: 50)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(AppTheme.textPrimary)
                     .background(HomeTheme.accent, in: .capsule)
             }
             .buttonStyle(.plain)
@@ -33,7 +33,7 @@ struct HomePlanSection: View {
             if let draftError {
                 Label(draftError, systemImage: "exclamationmark.triangle")
                     .font(.footnote)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.textSecondary)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, 4)
             }
@@ -41,7 +41,7 @@ struct HomePlanSection: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("最近的草稿")
                         .font(.subheadline.weight(.semibold))
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.textSecondary)
                         .padding(.horizontal, 4)
                         .accessibilityAddTraits(.isHeader)
                     ForEach(drafts) { draft in
@@ -70,19 +70,19 @@ struct HomePlanSection: View {
             Image(systemName: icon)
                 .foregroundStyle(HomeTheme.accent)
                 .frame(width: 36, height: 36)
-                .background(HomeTheme.accent.opacity(0.12), in: .rect(cornerRadius: 10))
+                .background(AppTheme.accentSoft, in: .rect(cornerRadius: 10))
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 2) {
                 if let eyebrow {
                     Text(eyebrow).font(.caption.weight(.semibold)).foregroundStyle(HomeTheme.accent)
                 }
-                Text(title).font(.headline).foregroundStyle(.primary).lineLimit(2)
-                Text(detail).font(.footnote).foregroundStyle(.secondary)
+                Text(title).font(.headline).foregroundStyle(AppTheme.textPrimary).lineLimit(2)
+                Text(detail).font(.footnote).foregroundStyle(AppTheme.textSecondary)
             }
             Spacer(minLength: 0)
             Image(systemName: "chevron.right")
                 .font(.footnote.weight(.semibold))
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(AppTheme.textTertiary)
                 .accessibilityHidden(true)
         }
         .homeCard(padding: 12)

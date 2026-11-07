@@ -10,12 +10,15 @@ struct ContentView: View {
             ForEach(AppTab.allCases) { tab in
                 Tab(value: tab) {
                     tabContent(for: tab)
+                        .toolbarBackground(AppTheme.background, for: .tabBar)
+                        .toolbarBackgroundVisibility(.visible, for: .tabBar)
                 } label: {
                     tabLabel(for: tab)
                 }
             }
         }
-        .tint(Color(red: 252 / 255, green: 82 / 255, blue: 0))
+        .tint(AppTheme.accent)
+        .preferredColorScheme(.dark)
         .environment(router)
         .environment(planner)
         .environment(userProfile)
@@ -38,6 +41,7 @@ struct ContentView: View {
             userAvatar
             Text(tab.title)
         } else if tab == .profile {
+            // 沒選預設圖示時，用使用者大頭貼當作「你」分頁的圖示。
             Image(uiImage: UserAvatarIcon.tabImage())
             Text(tab.title)
         } else {

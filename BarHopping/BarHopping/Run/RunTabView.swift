@@ -21,15 +21,24 @@ struct RunTabView: View {
     var body: some View {
         NavigationStack {
             List {
-                statusSection
-                planSection
-                stopsSection
-                computeSection
-                if let result = planner.result {
-                    RunResultSection(result: result, plan: plan, isDimmed: planner.resultStatus == .stale)
+                Group {
+                    statusSection
+                    planSection
+                    stopsSection
+                    computeSection
+                    if let result = planner.result {
+                        RunResultSection(result: result, plan: plan, isDimmed: planner.resultStatus == .stale)
+                    }
                 }
+                .listRowBackground(AppTheme.surface)
+                .listRowSeparatorTint(AppTheme.separator)
             }
             .listStyle(.insetGrouped)
+            .scrollContentBackground(.hidden)
+            .background(AppTheme.background)
+            .foregroundStyle(AppTheme.textPrimary)
+            .toolbarBackground(AppTheme.background, for: .navigationBar)
+            .toolbarBackgroundVisibility(.visible, for: .navigationBar)
             .navigationTitle("路跑")
             .toolbar { toolbar }
             .overlay(alignment: .top) { toastView }
@@ -41,6 +50,7 @@ struct RunTabView: View {
                     titleText = planner.plan.title
                     showToast("已載入「\(draft.plan.title)」")
                 }
+                .presentationBackground(AppTheme.background)
             }
             .confirmationDialog("開始新路線？", isPresented: $confirmNewPlan, titleVisibility: .visible) {
                 Button("開始新路線", role: .destructive) {
@@ -53,6 +63,7 @@ struct RunTabView: View {
             }
         }
         .tint(RunTheme.accent)
+        .preferredColorScheme(.dark)
         .onAppear {
             titleText = plan.title
             consumeNotice()
@@ -75,12 +86,13 @@ struct RunTabView: View {
                         .foregroundStyle(RunTheme.accent)
                     Text("規劃已修改，下方結果是修改前的估算。")
                         .font(.footnote)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.textSecondary)
                     Button("重新計算") { planner.computeRoute() }
                         .buttonStyle(.borderedProminent)
                         .disabled(!planner.canCompute)
                 }
                 .padding(.vertical, 4)
+                .listRowBackground(AppTheme.accentSoft)
             }
         }
         if let error = routingError {
@@ -104,29 +116,30 @@ struct RunTabView: View {
             VStack(alignment: .leading, spacing: 8) {
                 Label(error.runTitle, systemImage: "exclamationmark.octagon.fill")
                     .font(.headline)
-                    .foregroundStyle(.red)
+                    .foregroundStyle(AppTheme.danger)
                 Text(error.runExplanation)
                     .font(.subheadline)
                 if !error.message.isEmpty {
                     Text("服務訊息：\(error.message)")
                         .font(.footnote)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.textSecondary)
                 }
             }
             .padding(.vertical, 4)
             .accessibilityElement(children: .combine)
+            .listRowBackground(AppTheme.danger.opacity(0.1))
 
             if error.code == .noWalkableRoute {
                 ForEach(problemWaypoints, id: \.waypoint.id) { item in
                     VStack(alignment: .leading, spacing: 8) {
                         Label(item.label, systemImage: "mappin.slash")
-                            .foregroundStyle(.red)
+                            .foregroundStyle(AppTheme.danger)
                         HStack {
                             Button("在地圖上移動") { router.showRouteOnMap() }
                                 .accessibilityLabel("在地圖上移動 \(item.waypoint.name)")
                             if item.isStop {
                                 Button("刪除這站", role: .destructive) { planner.removeStop(id: item.waypoint.id) }
-                                    .tint(.red)
+                                    .tint(AppTheme.danger)
                                     .accessibilityLabel("刪除 \(item.waypoint.name)")
                             }
                         }
@@ -193,7 +206,7 @@ struct RunTabView: View {
             } else {
                 Label("走完最後一站後回到起點", systemImage: "arrow.uturn.backward.circle")
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.textSecondary)
             }
         } header: {
             Text("路線")
@@ -206,11 +219,11 @@ struct RunTabView: View {
             let isProblem = problemIds.contains(waypoint.id)
             Label {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(title).font(.caption).foregroundStyle(.secondary)
-                    Text(waypoint.name).foregroundStyle(isProblem ? .red : .primary)
+                    Text(title).font(.caption).foregroundStyle(AppTheme.textSecondary)
+                    Text(waypoint.name).foregroundStyle(isProblem ? AppTheme.danger : AppTheme.textPrimary)
                 }
             } icon: {
-                Image(systemName: icon).foregroundStyle(isProblem ? .red : RunTheme.accent)
+                Image(systemName: icon).foregroundStyle(isProblem ? AppTheme.danger : RunTheme.accent)
             }
             .accessibilityElement(children: .combine)
             .accessibilityLabel("\(title)：\(waypoint.name)\(isProblem ? "，找不到可步行的道路" : "")")
@@ -219,10 +232,10 @@ struct RunTabView: View {
                 Label {
                     VStack(alignment: .leading, spacing: 2) {
                         Text("尚未設定\(title)").font(.subheadline.bold())
-                        Text(missingText).font(.footnote).foregroundStyle(.secondary)
+                        Text(missingText).font(.footnote).foregroundStyle(AppTheme.textSecondary)
                     }
                 } icon: {
-                    Image(systemName: icon).foregroundStyle(.secondary)
+                    Image(systemName: icon).foregroundStyle(AppTheme.textSecondary)
                 }
                 Button("到地圖設定") { router.selectedTab = .map }
                     .buttonStyle(.bordered)
@@ -255,7 +268,7 @@ struct RunTabView: View {
                     Text("還沒有酒吧").font(.headline)
                     Text("到地圖搜尋或瀏覽酒吧，加入路線後會出現在這裡。")
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.textSecondary)
                         .multilineTextAlignment(.center)
                     Button("到地圖找酒吧") { router.selectedTab = .map }
                         .buttonStyle(.borderedProminent)
@@ -302,7 +315,7 @@ struct RunTabView: View {
                     Spacer()
                     Button("取消") { planner.cancelRouting() }
                         .buttonStyle(.bordered)
-                        .tint(.secondary)
+                        .tint(AppTheme.textSecondary)
                 }
                 .accessibilityElement(children: .contain)
             } else {
@@ -322,7 +335,7 @@ struct RunTabView: View {
             if !plan.missingRequirements.isEmpty {
                 Text("還缺：\(plan.missingRequirements.joined(separator: "、"))")
                     .font(.footnote)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.textSecondary)
             }
 
             if planner.resultStatus == .savedEstimate {
@@ -422,11 +435,13 @@ struct RunTabView: View {
         if let toast {
             Label(toast.text, systemImage: toast.isError ? "exclamationmark.circle.fill" : "checkmark.circle.fill")
                 .font(.subheadline.weight(.semibold))
-                .foregroundStyle(.white)
+                .foregroundStyle(toast.isError ? AppTheme.danger : AppTheme.success)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 10)
-                .background(Capsule().fill(toast.isError ? Color.red.opacity(0.92) : RunTheme.accent))
-                .shadow(radius: 6, y: 2)
+                .background(AppTheme.elevated, in: .capsule)
+                .overlay {
+                    Capsule().strokeBorder(toast.isError ? AppTheme.danger.opacity(0.4) : AppTheme.success.opacity(0.4))
+                }
                 .padding(.horizontal)
                 .padding(.top, 8)
                 .transition(.move(edge: .top).combined(with: .opacity))

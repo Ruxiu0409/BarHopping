@@ -29,7 +29,7 @@ struct RunResultSection: View {
                 ForEach(result.warnings, id: \.self) { w in
                     Label(w, systemImage: "info.circle")
                         .font(.footnote)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.textSecondary)
                 }
             }
         }
@@ -47,7 +47,7 @@ struct RunResultSection: View {
                 Label(Fmt.duration(leg.walkingDurationSeconds), systemImage: "figure.walk")
             }
             .font(.footnote)
-            .foregroundStyle(.secondary)
+            .foregroundStyle(AppTheme.textSecondary)
             if let dwell {
                 Label("在 \(to) 停留 \(Fmt.minutes(dwell))", systemImage: "wineglass")
                     .font(.footnote)
@@ -65,7 +65,7 @@ struct RunResultSection: View {
         LabeledContent {
             Text(value)
                 .font(emphasized ? .headline : .body)
-                .foregroundStyle(emphasized ? RunTheme.accent : .primary)
+                .foregroundStyle(emphasized ? RunTheme.accent : AppTheme.textPrimary)
         } label: {
             Label(title, systemImage: icon)
         }

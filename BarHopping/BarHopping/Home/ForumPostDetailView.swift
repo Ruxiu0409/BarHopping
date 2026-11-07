@@ -18,6 +18,10 @@ struct ForumPostDetailView: View {
         .navigationTitle("文章")
         .navigationBarTitleDisplayMode(.inline)
         .background(HomeTheme.pageBackground)
+        .foregroundStyle(AppTheme.textPrimary)
+        .toolbar(.visible, for: .navigationBar)
+        .toolbarBackground(AppTheme.background, for: .navigationBar)
+        .toolbarBackgroundVisibility(.visible, for: .navigationBar)
     }
 
     private func content(_ post: ForumPost) -> some View {
@@ -34,7 +38,7 @@ struct ForumPostDetailView: View {
                             store.toggleLike(id: post.id)
                         } label: {
                             Label("\(post.likeCount)", systemImage: post.isLiked ? "heart.fill" : "heart")
-                                .foregroundStyle(post.isLiked ? HomeTheme.accent : .primary)
+                                .foregroundStyle(post.isLiked ? HomeTheme.accent : AppTheme.textPrimary)
                         }
                         .buttonStyle(.plain)
                         .sensoryFeedback(.selection, trigger: post.isLiked)
@@ -42,7 +46,7 @@ struct ForumPostDetailView: View {
                         .accessibilityValue("\(post.likeCount) 個讚")
 
                         Label("\(post.commentCount) 則留言", systemImage: "bubble.right")
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(AppTheme.textSecondary)
                     }
                     .font(.subheadline)
                 }
@@ -59,7 +63,7 @@ struct ForumPostDetailView: View {
 
                 if post.comments.isEmpty {
                     Text("還沒有留言，來當第一個吧")
-                        .font(.subheadline).foregroundStyle(.secondary)
+                        .font(.subheadline).foregroundStyle(AppTheme.textSecondary)
                         .homeCard()
                 } else {
                     VStack(alignment: .leading, spacing: 0) {
@@ -83,7 +87,7 @@ struct ForumPostDetailView: View {
             VStack(alignment: .leading, spacing: 4) {
                 HStack {
                     Text(comment.author.name).font(.subheadline.weight(.semibold))
-                    Text(HomeTheme.relative(comment.createdAt)).font(.caption).foregroundStyle(.secondary)
+                    Text(HomeTheme.relative(comment.createdAt)).font(.caption).foregroundStyle(AppTheme.textSecondary)
                 }
                 Text(comment.body).font(.subheadline)
             }
@@ -99,7 +103,7 @@ struct ForumPostDetailView: View {
                 .lineLimit(1...4)
                 .focused($isComposing)
                 .padding(.horizontal, 12).padding(.vertical, 8)
-                .background(Color(.tertiarySystemFill), in: .rect(cornerRadius: 18))
+                .background(AppTheme.elevated, in: .rect(cornerRadius: 18))
                 .accessibilityLabel("輸入留言")
             Button {
                 store.addComment(draft, to: post.id)
@@ -108,13 +112,13 @@ struct ForumPostDetailView: View {
             } label: {
                 Image(systemName: "arrow.up.circle.fill")
                     .font(.title)
-                    .foregroundStyle(trimmed.isEmpty ? Color.secondary : HomeTheme.accent)
+                    .foregroundStyle(trimmed.isEmpty ? AppTheme.textSecondary : HomeTheme.accent)
             }
             .disabled(trimmed.isEmpty)
             .accessibilityLabel("送出留言")
         }
         .padding(.horizontal).padding(.vertical, 8)
-        .background(.bar)
+        .background(AppTheme.surface)
     }
 }
 
@@ -133,9 +137,9 @@ struct ForumRecipeCard: View {
                 if !recipe.containsAlcohol {
                     Text("無酒精")
                         .font(.caption.weight(.semibold))
-                        .foregroundStyle(.green)
+                        .foregroundStyle(AppTheme.success)
                         .padding(.horizontal, 8).padding(.vertical, 4)
-                        .background(Color.green.opacity(0.12), in: .capsule)
+                        .background(AppTheme.success.opacity(0.12), in: .capsule)
                 }
             }
 
@@ -151,7 +155,7 @@ struct ForumRecipeCard: View {
                         Text(item.name)
                         Spacer(minLength: 12)
                         Text(item.amount)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(AppTheme.textSecondary)
                             .multilineTextAlignment(.trailing)
                     }
                     .font(.subheadline)
@@ -167,7 +171,7 @@ struct ForumRecipeCard: View {
                     HStack(alignment: .top, spacing: 10) {
                         Text("\(index + 1)")
                             .font(.caption.bold())
-                            .foregroundStyle(.white)
+                            .foregroundStyle(AppTheme.textPrimary)
                             .frame(minWidth: 22, minHeight: 22)
                             .background(HomeTheme.accent, in: .circle)
                             .accessibilityHidden(true)
@@ -183,7 +187,7 @@ struct ForumRecipeCard: View {
             if recipe.containsAlcohol {
                 Text("未滿 18 歲請勿飲酒｜喝酒不開車｜慢慢喝、多喝水")
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.textSecondary)
             }
         }
         .homeCard()
@@ -206,14 +210,14 @@ struct ForumRecipeCard: View {
             VStack(alignment: .leading, spacing: 2) {
                 Label(label, systemImage: icon)
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.textSecondary)
                 Text(value)
                     .font(.subheadline.weight(.semibold))
                     .fixedSize()
             }
             .padding(10)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color(.tertiarySystemFill), in: .rect(cornerRadius: 10))
+            .background(AppTheme.elevated, in: .rect(cornerRadius: 10))
             .accessibilityElement(children: .combine)
         }
     }

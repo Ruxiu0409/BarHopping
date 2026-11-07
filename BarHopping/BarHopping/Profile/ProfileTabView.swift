@@ -33,8 +33,10 @@ struct ProfileTabView: View {
                 .padding(.horizontal, 16)
                 .padding(.vertical, 12)
             }
-            .background(Color(.systemGroupedBackground))
+            .background(AppTheme.background)
             .navigationTitle("你")
+            .toolbarBackground(AppTheme.background, for: .navigationBar)
+            .toolbarBackgroundVisibility(.visible, for: .navigationBar)
             .sheet(isPresented: $showingAvatarPicker) {
                 avatarPickerSheet
             }
@@ -52,6 +54,9 @@ struct ProfileTabView: View {
                 Text("已成功兌換一杯特調飲品！通票剩餘額度已更新。")
             }
         }
+        .foregroundStyle(AppTheme.textPrimary)
+        .tint(AppTheme.accent)
+        .preferredColorScheme(.dark)
     }
 
     // MARK: - 視圖元件
@@ -65,17 +70,17 @@ struct ProfileTabView: View {
                         .scaledToFit()
                         .padding(14)
                         .frame(width: 74, height: 74)
-                        .background(Color.pink.opacity(0.15))
-                        .foregroundStyle(.pink)
+                        .background(AppTheme.accentSoft)
+                        .foregroundStyle(AppTheme.accent)
                         .clipShape(Circle())
-                        .overlay(Circle().stroke(Color.pink.opacity(0.3), lineWidth: 2))
+                        .overlay(Circle().stroke(AppTheme.accent.opacity(0.4), lineWidth: 2))
                 } else {
                     Image(UserAvatarIcon.assetName)
                         .resizable()
                         .scaledToFill()
                         .frame(width: 74, height: 74)
                         .clipShape(Circle())
-                        .overlay(Circle().stroke(Color.pink.opacity(0.3), lineWidth: 2))
+                        .overlay(Circle().stroke(AppTheme.accent.opacity(0.4), lineWidth: 2))
                         .accessibilityLabel("大頭貼")
                 }
 
@@ -83,9 +88,10 @@ struct ProfileTabView: View {
                     showingAvatarPicker = true
                 } label: {
                     Image(systemName: "pencil.circle.fill")
-                        .symbolRenderingMode(.multicolor)
+                        .symbolRenderingMode(.hierarchical)
+                        .foregroundStyle(AppTheme.accent)
                         .font(.system(size: 24))
-                        .background(Circle().fill(Color(.systemBackground)))
+                        .background(Circle().fill(AppTheme.elevated))
                 }
             }
 
@@ -98,21 +104,21 @@ struct ProfileTabView: View {
                         .font(.caption.bold())
                         .padding(.horizontal, 8)
                         .padding(.vertical, 3)
-                        .background(Color.purple.opacity(0.15))
-                        .foregroundStyle(.purple)
+                        .background(AppTheme.accentSoft)
+                        .foregroundStyle(AppTheme.accent)
                         .clipShape(Capsule())
                 }
 
                 Text("西屯逢甲商圈 • 活躍跑吧者")
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.textSecondary)
             }
 
             Spacer()
         }
         .padding(16)
-        .background(Color(.secondarySystemGroupedBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .background(AppTheme.surface)
+        .clipShape(RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius))
     }
 
     private var barHoppingPassCard: some View {
@@ -120,7 +126,7 @@ struct ProfileTabView: View {
             HStack {
                 Label("我的跑吧通票", systemImage: "ticket.fill")
                     .font(.headline)
-                    .foregroundStyle(.orange)
+                    .foregroundStyle(AppTheme.accent)
 
                 Spacer()
 
@@ -128,8 +134,8 @@ struct ProfileTabView: View {
                     .font(.caption.bold())
                     .padding(.horizontal, 8)
                     .padding(.vertical, 3)
-                    .background(Color.green.opacity(0.15))
-                    .foregroundStyle(.green)
+                    .background(AppTheme.success.opacity(0.15))
+                    .foregroundStyle(AppTheme.success)
                     .clipShape(Capsule())
             }
 
@@ -139,22 +145,22 @@ struct ProfileTabView: View {
 
                 Text("每間合作酒吧限換 1 杯迎賓特調 • 逢甲商圈專用")
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.textSecondary)
             }
 
             // 進度條
             VStack(spacing: 6) {
                 ProgressView(value: Double(userProfile.passRedeemedDrinks), total: Double(userProfile.passTotalDrinks))
-                    .tint(.orange)
+                    .tint(AppTheme.accent)
 
                 HStack {
                     Text("已兌換 \(userProfile.passRedeemedDrinks) 杯")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.textSecondary)
                     Spacer()
                     Text("還可換 \(userProfile.remainingDrinks) 杯")
                         .font(.caption.bold())
-                        .foregroundStyle(userProfile.remainingDrinks > 0 ? .orange : .secondary)
+                        .foregroundStyle(userProfile.remainingDrinks > 0 ? AppTheme.accent : AppTheme.textSecondary)
                 }
             }
 
@@ -169,22 +175,22 @@ struct ProfileTabView: View {
                     .font(.subheadline.bold())
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 10)
-                    .background(Color.orange)
-                    .foregroundStyle(.white)
+                    .background(AppTheme.accent)
+                    .foregroundStyle(AppTheme.textPrimary)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
             }
         }
         .padding(16)
-        .background(Color(.secondarySystemGroupedBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .background(AppTheme.surface)
+        .clipShape(RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius))
     }
 
     private var statsOverviewSection: some View {
         HStack(spacing: 12) {
-            statItem(title: "已踩點酒吧", value: "\(userProfile.visitedBarsCount) 間", icon: "wineglass.fill", color: .purple)
-            statItem(title: "累積步行", value: String(format: "%.1f km", userProfile.totalWalkingKm), icon: "figure.walk", color: .blue)
-            statItem(title: "目前狀態", value: userProfile.soberScore, icon: "heart.fill", color: .pink)
+            statItem(title: "已踩點酒吧", value: "\(userProfile.visitedBarsCount) 間", icon: "wineglass.fill", color: AppTheme.accent)
+            statItem(title: "累積步行", value: String(format: "%.1f km", userProfile.totalWalkingKm), icon: "figure.walk", color: AppTheme.info)
+            statItem(title: "目前狀態", value: userProfile.soberScore, icon: "heart.fill", color: AppTheme.success)
         }
     }
 
@@ -199,11 +205,11 @@ struct ProfileTabView: View {
 
             Text(title)
                 .font(.caption2)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.textSecondary)
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 14)
-        .background(Color(.secondarySystemGroupedBackground))
+        .background(AppTheme.surface)
         .clipShape(RoundedRectangle(cornerRadius: 14))
     }
 
@@ -227,25 +233,25 @@ struct ProfileTabView: View {
         VStack(spacing: 6) {
             ZStack {
                 Circle()
-                    .fill(unlocked ? Color.orange.opacity(0.15) : Color.gray.opacity(0.1))
+                    .fill(unlocked ? AppTheme.accentSoft : AppTheme.elevated)
                     .frame(width: 50, height: 50)
 
                 Image(systemName: icon)
                     .font(.system(size: 22))
-                    .foregroundStyle(unlocked ? Color.orange : Color.gray)
+                    .foregroundStyle(unlocked ? AppTheme.accent : AppTheme.textTertiary)
             }
 
             Text(title)
                 .font(.caption.bold())
-                .foregroundStyle(unlocked ? .primary : .secondary)
+                .foregroundStyle(unlocked ? AppTheme.textPrimary : AppTheme.textSecondary)
 
             Text(subtitle)
                 .font(.system(size: 10))
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.textSecondary)
         }
         .frame(width: 80)
         .padding(.vertical, 10)
-        .background(Color(.secondarySystemGroupedBackground))
+        .background(AppTheme.surface)
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
@@ -253,9 +259,9 @@ struct ProfileTabView: View {
         HStack(spacing: 14) {
             Image(systemName: "car.side.fill")
                 .font(.title)
-                .foregroundStyle(.green)
+                .foregroundStyle(AppTheme.success)
                 .frame(width: 44, height: 44)
-                .background(Color.green.opacity(0.15))
+                .background(AppTheme.success.opacity(0.15))
                 .clipShape(Circle())
 
             VStack(alignment: .leading, spacing: 4) {
@@ -263,7 +269,7 @@ struct ProfileTabView: View {
                     .font(.subheadline.bold())
                 Text("開車不喝酒，隨時為您一鍵呼叫代駕或計程車。")
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.textSecondary)
             }
 
             Spacer()
@@ -272,12 +278,12 @@ struct ProfileTabView: View {
                 showingRideAlert = true
             }
             .buttonStyle(.borderedProminent)
-            .tint(.green)
+            .tint(AppTheme.success)
             .font(.caption.bold())
         }
         .padding(14)
-        .background(Color(.secondarySystemGroupedBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .background(AppTheme.surface)
+        .clipShape(RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius))
     }
 
     private var legalAttributionSection: some View {
@@ -285,11 +291,11 @@ struct ProfileTabView: View {
             Text("地圖與路網技術由 OpenStreetMap contributors、MapLibre 及 Valhalla 提供。")
                 .font(.caption2)
                 .multilineTextAlignment(.center)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.textSecondary)
 
             Text("BarHopping v1.0 • 專為台中夜生活打造")
                 .font(.caption2)
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(AppTheme.textTertiary)
         }
         .frame(maxWidth: .infinity)
         .padding(.top, 8)
@@ -299,134 +305,146 @@ struct ProfileTabView: View {
 
     private var avatarPickerSheet: some View {
         NavigationStack {
-            VStack(spacing: 20) {
-                Text("選擇你喜歡的微醺頭像")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
+            ScrollView {
+                VStack(spacing: 20) {
+                    Text("選擇你喜歡的微醺頭像")
+                        .font(.subheadline)
+                        .foregroundStyle(AppTheme.textSecondary)
 
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 120))], spacing: 16) {
-                    ForEach(UserProfileStore.presets) { preset in
-                        Button {
-                            userProfile.selectPreset(preset)
-                            showingAvatarPicker = false
-                        } label: {
-                            VStack(spacing: 10) {
-                                Image(systemName: preset.systemImage)
-                                    .font(.system(size: 36))
-                                    .foregroundStyle(preset.color)
-                                    .frame(width: 64, height: 64)
-                                    .background(preset.color.opacity(0.15))
-                                    .clipShape(Circle())
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 120))], spacing: 16) {
+                        ForEach(UserProfileStore.presets) { preset in
+                            Button {
+                                userProfile.selectPreset(preset)
+                                showingAvatarPicker = false
+                            } label: {
+                                VStack(spacing: 10) {
+                                    Image(systemName: preset.systemImage)
+                                        .font(.system(size: 36))
+                                        .foregroundStyle(AppTheme.accent)
+                                        .frame(width: 64, height: 64)
+                                        .background(AppTheme.accentSoft)
+                                        .clipShape(Circle())
 
-                                Text(preset.name)
-                                    .font(.caption.bold())
-                                    .foregroundStyle(.primary)
+                                    Text(preset.name)
+                                        .font(.caption.bold())
+                                        .foregroundStyle(AppTheme.textPrimary)
+                                }
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(AppTheme.surface)
+                                .clipShape(RoundedRectangle(cornerRadius: 14))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 14)
+                                        .stroke(userProfile.selectedPresetId == preset.id ? AppTheme.accent : Color.clear, lineWidth: 2)
+                                )
                             }
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color(.secondarySystemGroupedBackground))
-                            .clipShape(RoundedRectangle(cornerRadius: 14))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 14)
-                                    .stroke(userProfile.selectedPresetId == preset.id ? Color.pink : Color.clear, lineWidth: 2)
-                            )
                         }
                     }
+                    .padding()
+
+                    Button("還原預設圖示", role: .destructive) {
+                        userProfile.resetDefaultAvatar()
+                        showingAvatarPicker = false
+                    }
+                    .font(.caption)
+
+                    Spacer()
                 }
                 .padding()
-
-                Button("還原預設圖示", role: .destructive) {
-                    userProfile.resetDefaultAvatar()
-                    showingAvatarPicker = false
-                }
-                .font(.caption)
-
-                Spacer()
             }
-            .padding()
-            .background(Color(.systemGroupedBackground))
+            .background(AppTheme.background)
             .navigationTitle("更換頭像")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(AppTheme.background, for: .navigationBar)
+            .toolbarBackgroundVisibility(.visible, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("完成") { showingAvatarPicker = false }
                 }
             }
         }
+        .preferredColorScheme(.dark)
+        .presentationBackground(AppTheme.background)
         .presentationDetents([.medium])
     }
 
     private var passRedemptionSheet: some View {
         NavigationStack {
-            VStack(spacing: 24) {
-                VStack(spacing: 8) {
-                    Text("到店出示此畫面")
-                        .font(.headline)
-                    Text("提供給酒吧店員核銷即可領取專屬特調")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-
-                // QR 碼視覺模擬
-                ZStack {
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(Color.white)
-                        .frame(width: 200, height: 200)
-                        .shadow(color: .black.opacity(0.1), radius: 8)
-
-                    VStack(spacing: 12) {
-                        Image(systemName: "qrcode")
-                            .resizable()
-                            .interpolation(.none)
-                            .scaledToFit()
-                            .frame(width: 130, height: 130)
-                            .foregroundStyle(.black)
-
-                        Text(userProfile.passCode)
-                            .font(.system(.title3, design: .monospaced, weight: .bold))
-                            .foregroundStyle(.black)
+            ScrollView {
+                VStack(spacing: 24) {
+                    VStack(spacing: 8) {
+                        Text("到店出示此畫面")
+                            .font(.headline)
+                        Text("提供給酒吧店員核銷即可領取專屬特調")
+                            .font(.caption)
+                            .foregroundStyle(AppTheme.textSecondary)
                     }
-                }
 
-                VStack(spacing: 6) {
-                    Text(userProfile.passName)
+                    // QR 碼視覺模擬
+                    ZStack {
+                        RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius)
+                            .fill(Color.white)
+                            .frame(width: 200, height: 200)
+                            .shadow(color: .black.opacity(0.1), radius: 8)
+
+                        VStack(spacing: 12) {
+                            Image(systemName: "qrcode")
+                                .resizable()
+                                .interpolation(.none)
+                                .scaledToFit()
+                                .frame(width: 130, height: 130)
+                                .foregroundStyle(.black)
+
+                            Text(userProfile.passCode)
+                                .font(.system(.title3, design: .monospaced, weight: .bold))
+                                .foregroundStyle(.black)
+                        }
+                    }
+
+                    VStack(spacing: 6) {
+                        Text(userProfile.passName)
+                            .font(.subheadline.bold())
+                        Text("剩餘兌換額度：\(userProfile.remainingDrinks) / \(userProfile.passTotalDrinks) 杯")
+                            .font(.caption)
+                            .foregroundStyle(AppTheme.accent)
+                    }
+
+                    // 供 Demo 使用的模擬店員按鈕
+                    Button {
+                        userProfile.redeemDrink()
+                        showingPassRedemption = false
+                        showingSuccessRedeemAlert = true
+                    } label: {
+                        HStack {
+                            Image(systemName: "checkmark.seal.fill")
+                            Text("模擬店家核銷（Demo 演示用）")
+                        }
                         .font(.subheadline.bold())
-                    Text("剩餘兌換額度：\(userProfile.remainingDrinks) / \(userProfile.passTotalDrinks) 杯")
-                        .font(.caption)
-                        .foregroundStyle(.orange)
-                }
-
-                // 供 Demo 使用的模擬店員按鈕
-                Button {
-                    userProfile.redeemDrink()
-                    showingPassRedemption = false
-                    showingSuccessRedeemAlert = true
-                } label: {
-                    HStack {
-                        Image(systemName: "checkmark.seal.fill")
-                        Text("模擬店家核銷（Demo 演示用）")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(userProfile.remainingDrinks > 0 ? AppTheme.success : AppTheme.textTertiary)
+                        .foregroundStyle(AppTheme.textPrimary)
+                        .clipShape(RoundedRectangle(cornerRadius: 14))
                     }
-                    .font(.subheadline.bold())
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(userProfile.remainingDrinks > 0 ? Color.green : Color.gray)
-                    .foregroundStyle(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 14))
-                }
-                .disabled(userProfile.remainingDrinks == 0)
+                    .disabled(userProfile.remainingDrinks == 0)
 
-                Spacer()
+                    Spacer()
+                }
+                .padding()
             }
-            .padding()
-            .background(Color(.systemGroupedBackground))
+            .background(AppTheme.background)
             .navigationTitle("核銷跑吧券")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(AppTheme.background, for: .navigationBar)
+            .toolbarBackgroundVisibility(.visible, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("關閉") { showingPassRedemption = false }
                 }
             }
         }
+        .preferredColorScheme(.dark)
+        .presentationBackground(AppTheme.background)
         .presentationDetents([.medium, .large])
     }
 }

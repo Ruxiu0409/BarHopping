@@ -10,12 +10,12 @@ struct ForumPostRow: View {
 
             Text(post.title)
                 .font(.headline)
-                .foregroundStyle(.primary)
+                .foregroundStyle(AppTheme.textPrimary)
                 .multilineTextAlignment(.leading)
 
             Text(post.body)
                 .font(.subheadline)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.textSecondary)
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
 
@@ -25,9 +25,9 @@ struct ForumPostRow: View {
 
             HStack(spacing: 16) {
                 Label("\(post.likeCount)", systemImage: post.isLiked ? "heart.fill" : "heart")
-                    .foregroundStyle(post.isLiked ? HomeTheme.accent : .secondary)
+                    .foregroundStyle(post.isLiked ? HomeTheme.accent : AppTheme.textSecondary)
                 Label("\(post.commentCount)", systemImage: "bubble.right")
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.textSecondary)
             }
             .font(.footnote)
         }
@@ -56,7 +56,7 @@ struct ForumAuthorLine: View {
             InitialsAvatar(initials: author.initials, colorIndex: author.colorIndex, size: 36)
             VStack(alignment: .leading, spacing: 2) {
                 Text(author.name).font(.subheadline.weight(.semibold))
-                Text(HomeTheme.relative(date)).font(.caption).foregroundStyle(.secondary)
+                Text(HomeTheme.relative(date)).font(.caption).foregroundStyle(AppTheme.textSecondary)
             }
             Spacer(minLength: 8)
             if let category {
@@ -64,7 +64,7 @@ struct ForumAuthorLine: View {
                     .font(.caption.weight(.medium))
                     .foregroundStyle(HomeTheme.accent)
                     .padding(.horizontal, 8).padding(.vertical, 4)
-                    .background(HomeTheme.accent.opacity(0.1), in: .capsule)
+                    .background(AppTheme.accentSoft, in: .capsule)
             }
         }
     }
@@ -87,20 +87,20 @@ struct ForumRecipeBadges: View {
         badge(recipe.estimatedCost, systemImage: "dollarsign.circle")
         badge(recipe.difficulty.title, systemImage: "chart.bar")
         if !recipe.containsAlcohol {
-            badge("無酒精", systemImage: "leaf", tint: .green)
+            badge("無酒精", systemImage: "leaf", tint: AppTheme.success)
         }
     }
 
     private func badge(_ text: String, systemImage: String, tint: Color = HomeTheme.accent) -> some View {
         Label {
-            Text(text).foregroundStyle(.primary)
+            Text(text).foregroundStyle(AppTheme.textPrimary)
         } icon: {
             Image(systemName: systemImage).foregroundStyle(tint)
         }
         .font(.caption)
         .lineLimit(1)
         .padding(.horizontal, 8).padding(.vertical, 5)
-        .background(Color(.tertiarySystemFill), in: .capsule)
+        .background(AppTheme.elevated, in: .capsule)
     }
 }
 

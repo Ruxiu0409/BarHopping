@@ -3,7 +3,7 @@ import SwiftUI
 /// 路跑分頁的配色與錯誤說明。
 enum RunTheme {
     /// 主色 #FC5200
-    static let accent = Color(red: 252 / 255, green: 82 / 255, blue: 0)
+    static let accent = AppTheme.accent
 }
 
 extension ServiceError {

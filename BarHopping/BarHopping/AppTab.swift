@@ -21,11 +21,11 @@ enum AppTab: String, CaseIterable, Identifiable {
 
     var systemImage: String {
         switch self {
-        case .home: "house"
-        case .map: "map"
+        case .home: "house.fill"
+        case .map: "map.fill"
         case .run: "figure.run"
-        case .groups: "person.3"
-        case .profile: "person.crop.circle"
+        case .groups: "person.3.fill"
+        case .profile: "person.circle"
         }
     }
 

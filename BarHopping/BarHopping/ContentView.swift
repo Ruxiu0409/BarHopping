@@ -27,6 +27,7 @@ struct ContentView: View {
                 }
             }
         }
+        .tint(Color(red: 252 / 255, green: 82 / 255, blue: 0))
         .environment(router)
         .environment(planner)
     }

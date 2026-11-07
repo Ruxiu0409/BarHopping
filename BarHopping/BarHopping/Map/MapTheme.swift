@@ -33,14 +33,13 @@ enum MapTheme {
 /// 深色圓形浮動按鈕。
 struct MapRoundButtonLabel: View {
     var systemImage: String
-    var active = false
 
     var body: some View {
         Image(systemName: systemImage)
             .font(.system(size: 18, weight: .semibold))
             .foregroundStyle(MapTheme.textPrimary)
             .frame(width: 46, height: 46)
-            .background(active ? MapTheme.accent : MapTheme.elevated, in: Circle())
+            .background(MapTheme.elevated, in: Circle())
             .shadow(color: .black.opacity(0.18), radius: 4, y: 2)
     }
 }

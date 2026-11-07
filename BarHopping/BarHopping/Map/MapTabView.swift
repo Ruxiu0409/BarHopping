@@ -257,13 +257,6 @@ struct MapTabView: View {
 
     private var rightButtons: some View {
         VStack(spacing: 10) {
-            Button {
-                screen.showPlacePins.toggle()
-            } label: {
-                MapRoundButtonLabel(systemImage: "square.3.layers.3d", active: screen.showPlacePins)
-            }
-            .accessibilityLabel(screen.showPlacePins ? "隱藏酒吧圖釘" : "顯示酒吧圖釘")
-
             if !routeFitCoordinates.isEmpty {
                 Button {
                     focusRoute()
@@ -474,19 +467,15 @@ struct MapTabView: View {
         let selectedWaypoint: String? = if case .waypoint(let id) = screen.selection { id } else { nil }
         let selectedPlace: String? = if case .place(let p) = screen.selection { p.id } else { nil }
 
-        if screen.showPlacePins {
-            var pins = screen.visiblePlaces.map { p in
-                MapRenderModel.PlacePin(id: p.id, name: p.name, coordinate: p.coordinate,
-                                        state: p.id == selectedPlace ? .selected : (planner.contains(placeId: p.id) ? .inRoute : .normal))
-            }
-            // 從清單選到但不在目前結果中的店家也要顯示
-            if case .place(let p) = screen.selection, !pins.contains(where: { $0.id == p.id }) {
-                pins.append(.init(id: p.id, name: p.name, coordinate: p.coordinate, state: .selected))
-            }
-            m.places = pins
-        } else if case .place(let p) = screen.selection {
-            m.places = [.init(id: p.id, name: p.name, coordinate: p.coordinate, state: .selected)]
+        var pins = screen.visiblePlaces.map { p in
+            MapRenderModel.PlacePin(id: p.id, name: p.name, coordinate: p.coordinate,
+                                    state: p.id == selectedPlace ? .selected : (planner.contains(placeId: p.id) ? .inRoute : .normal))
         }
+        // 從清單選到但不在目前結果中的店家也要顯示
+        if case .place(let p) = screen.selection, !pins.contains(where: { $0.id == p.id }) {
+            pins.append(.init(id: p.id, name: p.name, coordinate: p.coordinate, state: .selected))
+        }
+        m.places = pins
 
         func pin(_ w: Waypoint, _ label: String, _ kind: MapRenderModel.WaypointPin.Kind) -> MapRenderModel.WaypointPin {
             .init(id: w.id, coordinate: w.coordinate, label: label,

@@ -129,7 +129,6 @@ final class MapScreenState {
 
     var queryText = ""
     var categoryFilter: PlaceCategory?
-    var showPlacePins = true
     var listExpanded = false
 
     private(set) var places: [Place] = []

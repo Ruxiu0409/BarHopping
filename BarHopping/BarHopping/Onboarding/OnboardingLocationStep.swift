@@ -48,7 +48,7 @@ struct OnboardingLocationStep: View {
         .fixedSize(horizontal: false, vertical: true)
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(20)
-        .appGlassCard(cornerRadius: 28)
+        .appGradientCard(cornerRadius: 28)
         .task(id: isRequesting) {
             guard isRequesting else { return }
             let result = await provider.requestLocation()

@@ -236,7 +236,7 @@ struct FreeRunView: View {
             }
         }
         .padding(16)
-        .appGlassCard()
+        .appGradientCard()
         .overlay(RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius, style: .continuous)
             .strokeBorder(AppTheme.accentOnDark.opacity(canRecord ? 0.9 : 0.4), lineWidth: canRecord ? 2 : 1)
             .allowsHitTesting(false))

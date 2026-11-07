@@ -27,7 +27,7 @@ struct OnboardingDrinkLevelCard: View {
             .fixedSize(horizontal: false, vertical: true)
             .padding(20)
             .frame(maxWidth: .infinity, minHeight: 88, alignment: .leading)
-            .appGlassCard(cornerRadius: 28)
+            .appGradientCard(cornerRadius: 28)
             .overlay {
                 if isSelected {
                     RoundedRectangle(cornerRadius: 28, style: .continuous)

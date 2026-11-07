@@ -32,7 +32,7 @@ struct HomeCard: ViewModifier {
         content
             .padding(padding)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .appGlassCard(cornerRadius: HomeTheme.cornerRadius)
+            .appGradientCard(cornerRadius: HomeTheme.cornerRadius)
     }
 }
 

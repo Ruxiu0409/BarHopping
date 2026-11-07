@@ -86,7 +86,7 @@ struct SafeRideSheet: View {
             }
         }
         .padding(16)
-        .appGlassCard()
+        .appGradientCard()
     }
 
     private func providerSection(_ kind: SafeRideProvider.Kind) -> some View {
@@ -124,7 +124,7 @@ struct SafeRideSheet: View {
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(14)
-                    .appGlassCard()
+                    .appGradientCard()
                 }
                 .buttonStyle(.plain)
                 .accessibilityElement(children: .ignore)

@@ -24,7 +24,7 @@ struct SafeRideSafetyFooter: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 16)
         .padding(.vertical, 10)
-        .appGlassCard()
+        .appGradientCard()
         .alert("確認撥打電話", isPresented: $launcher.showingPhoneConfirmation,
                presenting: launcher.pendingCall) { call in
             Button("撥打 \(call.number)") { launcher.confirmPhoneCall(using: openURL) }

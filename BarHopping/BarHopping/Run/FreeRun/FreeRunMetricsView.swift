@@ -13,7 +13,7 @@ struct FreeRunMetricsView: View {
             metric("已停留酒吧", "\(session.uniqueBarCount) 間")
         }
         .padding(20)
-        .appGlassCard()
+        .appGradientCard()
     }
 
     private func metric(_ title: String, _ value: String) -> some View {

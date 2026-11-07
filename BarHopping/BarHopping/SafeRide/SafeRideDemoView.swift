@@ -106,7 +106,7 @@ struct SafeRideDemoView: View {
         .font(.subheadline)
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(16)
-        .appGlassCard()
+        .appGradientCard()
     }
 
     private var quoteCard: some View {
@@ -133,7 +133,7 @@ struct SafeRideDemoView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(16)
-        .appGlassCard()
+        .appGradientCard()
     }
 
     private var matchingContent: some View {
@@ -148,7 +148,7 @@ struct SafeRideDemoView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(20)
-        .appGlassCard()
+        .appGradientCard()
     }
 
     private var driverContent: some View {
@@ -168,7 +168,7 @@ struct SafeRideDemoView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(16)
-        .appGlassCard()
+        .appGradientCard()
     }
 
     private var cancelledContent: some View {

@@ -1,9 +1,9 @@
 import SwiftUI
 
-/// 引導專用的展示卡片，沿用全 App 的玻璃材質。
+/// 引導專用的展示卡片，沿用全 App 的深色微漸層卡片樣式。
 struct OnboardingSurface: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .appGlassCard(cornerRadius: 28)
+            .appGradientCard(cornerRadius: 28)
     }
 }

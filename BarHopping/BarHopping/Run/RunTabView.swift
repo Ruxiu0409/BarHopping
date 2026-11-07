@@ -50,7 +50,7 @@ struct RunTabView: View {
                             Spacer()
                             Text("返回路跑").font(.subheadline)
                         }
-                        .padding(14).background(AppTheme.surface, in: RoundedRectangle(cornerRadius: 16))
+                        .padding(14).appGradientCard(cornerRadius: 16)
                     }
                     .padding(.horizontal, 16).padding(.bottom, 8)
                     .foregroundStyle(AppTheme.textPrimary)
@@ -85,7 +85,7 @@ struct RunTabView: View {
                 .multilineTextAlignment(.center)
             Toggle("示範模式", isOn: $demoMode)
                 .padding(16)
-                .appGlassCard()
+                .appGradientCard()
             Text(demoMode ? "不用出門，以審計新村假定位體驗路跑。" : "使用真實定位，僅在 App 前景時更新。")
                 .font(.footnote).foregroundStyle(AppTheme.textSecondary)
         }

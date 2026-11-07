@@ -17,7 +17,7 @@ struct GroupCard<Content: View>: View {
         VStack(alignment: .leading, spacing: 16) { content }
             .padding(18)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .appGlassCard(cornerRadius: 22)
+            .appGradientCard(cornerRadius: 22)
     }
 }
 
@@ -115,6 +115,6 @@ struct GroupSafetyNote: View {
         .font(.subheadline)
         .foregroundStyle(.secondary)
         .padding(16)
-        .background(AppTheme.accentSoft, in: RoundedRectangle(cornerRadius: 18))
+        .appGradientCard(cornerRadius: 18)
     }
 }

@@ -21,8 +21,7 @@ struct FreeRunLiveMetricsCard: View {
             }
         }
         .padding(16)
-        .background(AppTheme.surface.opacity(0.96), in: RoundedRectangle(cornerRadius: 20))
-        .overlay(RoundedRectangle(cornerRadius: 20).strokeBorder(AppTheme.separator))
+        .appGradientCard(cornerRadius: 20)
     }
 
     @ViewBuilder private var metrics: some View {

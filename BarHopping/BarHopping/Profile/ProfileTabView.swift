@@ -2,15 +2,13 @@ import SwiftUI
 import PhotosUI
 import UIKit
 
-/// 「你」個人分頁：個人檔案、通票狀態、跑吧統計、安全代駕與圖資授權
+/// 「你」個人分頁：個人檔案、跑吧統計、安全代駕與圖資授權
 struct ProfileTabView: View {
     @Environment(UserProfileStore.self) private var userProfile
     @State private var showingAvatarPicker = false
     @State private var showingCamera = false
     @State private var showingProfileEditor = false
-    @State private var showingPassRedemption = false
     @State private var showingRideAlert = false
-    @State private var showingSuccessRedeemAlert = false
     @State private var showingAvatarError = false
     @State private var avatarErrorMessage = ""
     @State private var selectedPhoto: PhotosPickerItem?
@@ -22,9 +20,6 @@ struct ProfileTabView: View {
                 VStack(spacing: 20) {
                     // MARK: - 個人檔案與社群資訊
                     profileHeaderCard
-
-                    // MARK: - 跑吧通票
-                    barHoppingPassCard
 
                     // MARK: - 跑吧統計
                     statsOverviewSection
@@ -42,28 +37,15 @@ struct ProfileTabView: View {
                 .padding(.vertical, 12)
             }
             .background(AppTheme.background)
-            .navigationTitle("你")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbarBackground(AppTheme.background, for: .navigationBar)
-            .toolbarBackgroundVisibility(.visible, for: .navigationBar)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("你")
-                        .font(.headline.bold())
-                        .foregroundStyle(AppTheme.textPrimary)
-                }
-            }
+            .toolbar(.hidden, for: .navigationBar)
             .sheet(isPresented: $showingAvatarPicker) {
                 avatarPickerSheet
             }
-            .sheet(isPresented: $showingProfileEditor) {
+            .fullScreenCover(isPresented: $showingProfileEditor) {
                 ProfileEditorSheet()
             }
             .sheet(item: $selectedConnections) { kind in
                 ProfileConnectionsSheet(kind: kind)
-            }
-            .sheet(isPresented: $showingPassRedemption) {
-                passRedemptionSheet
             }
             .fullScreenCover(isPresented: $showingCamera) {
                 CameraCaptureView(onImageCaptured: saveAvatar, onCancel: { showingCamera = false })
@@ -82,11 +64,6 @@ struct ProfileTabView: View {
                 Button("確定", role: .cancel) { }
             } message: {
                 Text("正在為您開啟合作計程車／代駕平台，微醺愉快，安全回家！")
-            }
-            .alert("核銷成功！", isPresented: $showingSuccessRedeemAlert) {
-                Button("太棒了", role: .cancel) { }
-            } message: {
-                Text("已成功兌換一杯特調飲品！通票剩餘額度已更新。")
             }
         }
         .foregroundStyle(AppTheme.textPrimary)
@@ -166,7 +143,7 @@ struct ProfileTabView: View {
             }
         }
         .padding(18)
-        .appGlassCard(cornerRadius: 22)
+        .appGradientCard(cornerRadius: 22)
     }
 
     @MainActor
@@ -287,70 +264,6 @@ struct ProfileTabView: View {
         .frame(width: size, height: size)
     }
 
-    private var barHoppingPassCard: some View {
-        VStack(alignment: .leading, spacing: 14) {
-            HStack {
-                Label("我的跑吧通票", systemImage: "ticket.fill")
-                    .font(.headline)
-                    .foregroundStyle(AppTheme.accentOnDark)
-
-                Spacer()
-
-                Text("使用中")
-                    .font(.caption.bold())
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 3)
-                    .background(AppTheme.success.opacity(0.15))
-                    .foregroundStyle(AppTheme.success)
-                    .clipShape(Capsule())
-            }
-
-            VStack(alignment: .leading, spacing: 6) {
-                Text(userProfile.passName)
-                    .font(.system(size: 17, weight: .bold))
-
-                Text("每間合作酒吧限換 1 杯迎賓特調 • 逢甲商圈專用")
-                    .font(.caption)
-                    .foregroundStyle(AppTheme.textSecondary)
-            }
-
-            // 進度條
-            VStack(spacing: 6) {
-                ProgressView(value: Double(userProfile.passRedeemedDrinks), total: Double(userProfile.passTotalDrinks))
-                    .tint(AppTheme.accent)
-
-                HStack {
-                    Text("已兌換 \(userProfile.passRedeemedDrinks) 杯")
-                        .font(.caption)
-                        .foregroundStyle(AppTheme.textSecondary)
-                    Spacer()
-                    Text("還可換 \(userProfile.remainingDrinks) 杯")
-                        .font(.caption.bold())
-                        .foregroundStyle(userProfile.remainingDrinks > 0 ? AppTheme.accentOnDark : AppTheme.textSecondary)
-                }
-            }
-
-            HStack(spacing: 12) {
-                Button {
-                    showingPassRedemption = true
-                } label: {
-                    HStack {
-                        Image(systemName: "qrcode")
-                        Text("出示換酒碼")
-                    }
-                    .font(.subheadline.bold())
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 10)
-                    .background(AppTheme.accent)
-                    .foregroundStyle(AppTheme.textPrimary)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                }
-            }
-        }
-        .padding(16)
-        .appGlassCard()
-    }
-
     private var statsOverviewSection: some View {
         HStack(spacing: 12) {
             statItem(title: "已踩點酒吧", value: "\(userProfile.visitedBarsCount) 間", icon: "wineglass.fill", color: AppTheme.accentOnDark)
@@ -374,7 +287,7 @@ struct ProfileTabView: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 14)
-        .appGlassCard(cornerRadius: 14)
+        .appGradientCard(cornerRadius: 14)
     }
 
     private var badgesSection: some View {
@@ -415,7 +328,7 @@ struct ProfileTabView: View {
         }
         .frame(width: 80)
         .padding(.vertical, 10)
-        .appGlassCard(cornerRadius: 12)
+        .appGradientCard(cornerRadius: 12)
     }
 
     private var safetyRideCard: some View {
@@ -445,7 +358,7 @@ struct ProfileTabView: View {
             .font(.caption.bold())
         }
         .padding(14)
-        .appGlassCard()
+        .appGradientCard()
     }
 
     private var legalAttributionSection: some View {
@@ -509,7 +422,7 @@ struct ProfileTabView: View {
                                 }
                                 .frame(maxWidth: .infinity)
                                 .padding()
-                                .appGlassCard(cornerRadius: 14)
+                                .appGradientCard(cornerRadius: 14)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 14)
                                         .stroke(userProfile.selectedPresetId == preset.id ? AppTheme.accentOnDark : Color.clear, lineWidth: 2)
@@ -537,67 +450,6 @@ struct ProfileTabView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("完成") { showingAvatarPicker = false }
-                }
-            }
-        }
-        .preferredColorScheme(.dark)
-        .presentationBackground(AppTheme.background)
-        .presentationDetents([.medium, .large])
-    }
-
-    private var passRedemptionSheet: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(spacing: 24) {
-                    VStack(spacing: 8) {
-                        Text("到店出示此畫面")
-                            .font(.headline)
-                        Text("提供給酒吧店員核銷即可領取專屬特調")
-                            .font(.caption)
-                            .foregroundStyle(AppTheme.textSecondary)
-                    }
-
-                    PassQRCodeView(payload: userProfile.passCode)
-
-                    VStack(spacing: 6) {
-                        Text(userProfile.passName)
-                            .font(.subheadline.bold())
-                        Text("剩餘兌換額度：\(userProfile.remainingDrinks) / \(userProfile.passTotalDrinks) 杯")
-                            .font(.caption)
-                            .foregroundStyle(AppTheme.accentOnDark)
-                    }
-
-                    // 供 Demo 使用的模擬店員按鈕
-                    Button {
-                        userProfile.redeemDrink()
-                        showingPassRedemption = false
-                        showingSuccessRedeemAlert = true
-                    } label: {
-                        HStack {
-                            Image(systemName: "checkmark.seal.fill")
-                            Text("模擬店家核銷（Demo 演示用）")
-                        }
-                        .font(.subheadline.bold())
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(userProfile.remainingDrinks > 0 ? AppTheme.success : AppTheme.textTertiary)
-                        .foregroundStyle(AppTheme.textPrimary)
-                        .clipShape(RoundedRectangle(cornerRadius: 14))
-                    }
-                    .disabled(userProfile.remainingDrinks == 0)
-
-                    Spacer()
-                }
-                .padding()
-            }
-            .background(AppTheme.background)
-            .navigationTitle("核銷跑吧券")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbarBackground(AppTheme.background, for: .navigationBar)
-            .toolbarBackgroundVisibility(.visible, for: .navigationBar)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("關閉") { showingPassRedemption = false }
                 }
             }
         }

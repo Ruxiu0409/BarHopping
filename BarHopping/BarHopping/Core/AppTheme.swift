@@ -31,8 +31,8 @@ enum AppTheme {
     static let cardCornerRadius: CGFloat = 16
 }
 
-/// 全 App 共用的玻璃卡片底層，保留暗紫色的柔和光暈。
-struct AppGlassCard: ViewModifier {
+/// 全 App 共用的深色微漸層卡片，沿用個人檔案卡片的柔紫光感。
+struct AppGradientCard: ViewModifier {
     var cornerRadius: CGFloat = AppTheme.cardCornerRadius
 
     private var shape: RoundedRectangle { RoundedRectangle(cornerRadius: cornerRadius, style: .continuous) }
@@ -40,19 +40,11 @@ struct AppGlassCard: ViewModifier {
     func body(content: Content) -> some View {
         content
             .background {
-                if #available(iOS 26.0, *) {
-                    shape.fill(.clear)
-                        .glassEffect(.regular.tint(AppTheme.accent.opacity(0.12)), in: shape)
-                } else {
-                    shape.fill(.ultraThinMaterial)
-                }
-            }
-            .background {
                 shape.fill(LinearGradient(
                     colors: [
-                        AppTheme.surface.opacity(0.60),
-                        AppTheme.accent.opacity(0.10),
-                        AppTheme.elevated.opacity(0.44),
+                        AppTheme.surface,
+                        AppTheme.surface.opacity(0.84),
+                        AppTheme.elevated.opacity(0.8),
                     ],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
@@ -60,22 +52,15 @@ struct AppGlassCard: ViewModifier {
             }
             .overlay(alignment: .topTrailing) {
                 Circle()
-                    .fill(AppTheme.accentOnDark.opacity(0.10))
+                    .fill(AppTheme.accent.opacity(0.10))
                     .frame(width: 150, height: 150)
-                    .blur(radius: 38)
-                    .offset(x: 52, y: -70)
+                    .blur(radius: 34)
+                    .offset(x: 40, y: -68)
                     .clipShape(shape)
                     .allowsHitTesting(false)
             }
             .overlay {
-                shape.strokeBorder(
-                    LinearGradient(
-                        colors: [Color.white.opacity(0.12), AppTheme.accentOnDark.opacity(0.12), Color.white.opacity(0.06)],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    ),
-                    lineWidth: 1
-                )
+                shape.strokeBorder(AppTheme.separator, lineWidth: 1)
                 .allowsHitTesting(false)
             }
             .clipShape(shape)
@@ -83,7 +68,7 @@ struct AppGlassCard: ViewModifier {
 }
 
 extension View {
-    func appGlassCard(cornerRadius: CGFloat = AppTheme.cardCornerRadius) -> some View {
-        modifier(AppGlassCard(cornerRadius: cornerRadius))
+    func appGradientCard(cornerRadius: CGFloat = AppTheme.cardCornerRadius) -> some View {
+        modifier(AppGradientCard(cornerRadius: cornerRadius))
     }
 }

@@ -104,7 +104,6 @@ struct ProfileEditorSheet: View {
         }
         .preferredColorScheme(.dark)
         .presentationBackground(AppTheme.background)
-        .presentationDetents([.medium, .large])
     }
 
     private func editorField<Content: View>(title: String, hint: String, @ViewBuilder content: () -> Content) -> some View {

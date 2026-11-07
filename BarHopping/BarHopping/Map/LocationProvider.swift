@@ -1,7 +1,7 @@
 import CoreLocation
 import Foundation
 
-/// 前景單次定位。只在使用者按下定位相關按鈕時才請求權限。
+/// 前景單次定位。首次進入地圖或使用者按下定位相關按鈕時請求權限。
 /// 對外只回傳共用的 `Coordinate`。
 @MainActor
 final class LocationProvider: NSObject {
@@ -31,15 +31,14 @@ final class LocationProvider: NSObject {
         manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
     }
 
+    var isAuthorized: Bool {
+        manager.authorizationStatus == .authorizedWhenInUse || manager.authorizationStatus == .authorizedAlways
+    }
+
     func requestLocation() async -> Result<Coordinate, Problem> {
         if continuation != nil { finish(.failure(.unavailable)) }
         return await withCheckedContinuation { c in
             continuation = c
-            timeoutTask = Task { [weak self] in
-                try? await Task.sleep(for: Self.timeout)
-                guard !Task.isCancelled else { return }
-                self?.finish(.failure(.timeout))
-            }
             handleAuthorization()
         }
     }
@@ -52,6 +51,13 @@ final class LocationProvider: NSObject {
         case .denied, .restricted:
             finish(.failure(.denied))
         case .authorizedWhenInUse, .authorizedAlways:
+            if timeoutTask == nil {
+                timeoutTask = Task { [weak self] in
+                    try? await Task.sleep(for: Self.timeout)
+                    guard !Task.isCancelled else { return }
+                    self?.finish(.failure(.timeout))
+                }
+            }
             manager.requestLocation()
         @unknown default:
             finish(.failure(.unavailable))

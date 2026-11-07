@@ -48,8 +48,14 @@ struct MapTabView: View {
             handleRouterFocus()
             consumeNotice()
             screen.refreshConvenienceStores()
+            screen.loadPopularRoutesIfNeeded()
+            screen.locateOnFirstAppearance(planner: planner)
         }
-        .onDisappear { screen.cancelConvenienceQuery() }
+        .onDisappear {
+            screen.isMapVisible = false
+            screen.permitsInitialLocationCamera = false
+            screen.cancelConvenienceQuery()
+        }
         .onChange(of: router.mapFocusRouteRequest) { handleRouterFocus() }
         .onChange(of: planner.notice) { consumeNotice() }
         .task(id: screen.toast) {
@@ -80,6 +86,14 @@ struct MapTabView: View {
         VStack(spacing: 8) {
             searchBar
             chips
+            if screen.showsPopularRoutes {
+                Text(screen.popularRoutesError ?? "熱門路線 · 示範資料")
+                    .font(.caption)
+                    .foregroundStyle(MapTheme.textSecondary)
+                    .padding(.horizontal, 10).padding(.vertical, 5)
+                    .background(MapTheme.surface, in: Capsule())
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
             if screen.showsConvenienceStores { convenienceControls }
             if screen.userMovedMap && screen.searchStatus != .loading {
                 Button {
@@ -106,7 +120,7 @@ struct MapTabView: View {
     private var searchBar: some View {
         HStack(spacing: 8) {
             Image(systemName: "wineglass.fill")
-                .foregroundStyle(MapTheme.accent)
+                .foregroundStyle(MapTheme.accentOnDark)
                 .font(.title3)
                 .padding(.leading, 4)
             Divider().frame(height: 24)
@@ -152,10 +166,8 @@ struct MapTabView: View {
                 chip("超商", systemImage: "storefront", selected: screen.showsConvenienceStores) {
                     screen.toggleConvenienceStores()
                 }
-                chip(listChipTitle, systemImage: screen.listExpanded ? "chevron.down" : "list.bullet",
-                     selected: screen.listExpanded) {
-                    screen.selection = nil
-                    screen.listExpanded.toggle()
+                chip("熱門", systemImage: "flame", selected: screen.showsPopularRoutes) {
+                    screen.showsPopularRoutes.toggle()
                 }
             }
             .padding(.horizontal, 2).padding(.vertical, 3)
@@ -190,10 +202,6 @@ struct MapTabView: View {
             .background(MapTheme.surface, in: Capsule())
     }
 
-    private var listChipTitle: String {
-        screen.searchStatus == .loaded ? "清單 \(screen.visiblePlaces.count)" : "清單"
-    }
-
     private func chip(_ title: String, systemImage: String? = nil, selected: Bool, action: @escaping () -> Void) -> some View {
         Button(action: action) {
             HStack(spacing: 4) {
@@ -201,10 +209,10 @@ struct MapTabView: View {
                 if let systemImage { Image(systemName: systemImage).font(.caption.weight(.bold)) }
             }
             .font(.subheadline.weight(.semibold))
-            .foregroundStyle(selected ? MapTheme.accent : MapTheme.textPrimary)
+            .foregroundStyle(MapTheme.textPrimary)
             .padding(.horizontal, 14).frame(height: 34)
-            .background(MapTheme.elevated, in: Capsule())
-            .overlay(Capsule().strokeBorder(selected ? MapTheme.accent : MapTheme.separator, lineWidth: selected ? 1.5 : 0.5))
+            .background(selected ? MapTheme.accent : MapTheme.elevated, in: Capsule())
+            .overlay(Capsule().strokeBorder(selected ? MapTheme.accentOnDark : MapTheme.separator, lineWidth: selected ? 1.5 : 0.5))
             .shadow(color: .black.opacity(0.1), radius: 2, y: 1)
         }
         .buttonStyle(.plain)
@@ -213,7 +221,7 @@ struct MapTabView: View {
 
     @ViewBuilder private var banners: some View {
         if let toast = screen.toast {
-            banner(icon: "info.circle.fill", text: toast, tint: MapTheme.accent)
+            banner(icon: "info.circle.fill", text: toast, tint: MapTheme.accentOnDark)
                 .transition(.move(edge: .top).combined(with: .opacity))
         }
         if let error = screen.mapLoadError {
@@ -300,7 +308,7 @@ struct MapTabView: View {
 
     private var bottomStack: some View {
         VStack(alignment: .leading, spacing: 8) {
-            AttributionBar(attributions: screen.attributions)
+            AttributionBar(attributions: screen.attributions + (screen.showsPopularRoutes ? [MapScreenState.popularRouteAttribution] : []))
                 .frame(maxWidth: .infinity, alignment: .leading)
             if let card = selectionCard {
                 card.transition(.move(edge: .bottom).combined(with: .opacity))
@@ -469,6 +477,7 @@ struct MapTabView: View {
 
     private var renderModel: MapRenderModel {
         var m = MapRenderModel()
+        m.popularSegments = screen.showsPopularRoutes ? screen.popularSegments : []
         m.convenienceStores = screen.showsConvenienceStores ? screen.convenienceStores : []
         let plan = planner.plan
         let problems = problemIds

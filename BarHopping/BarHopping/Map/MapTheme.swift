@@ -4,6 +4,7 @@ import UIKit
 /// 地圖分頁配色與共用小元件。
 enum MapTheme {
     static let accent = AppTheme.accent
+    static let accentOnDark = AppTheme.accentOnDark
     static let surface = AppTheme.surface
     static let elevated = AppTheme.elevated
     static let textPrimary = AppTheme.textPrimary
@@ -37,9 +38,9 @@ struct MapRoundButtonLabel: View {
     var body: some View {
         Image(systemName: systemImage)
             .font(.system(size: 18, weight: .semibold))
-            .foregroundStyle(active ? MapTheme.accent : MapTheme.textPrimary)
+            .foregroundStyle(MapTheme.textPrimary)
             .frame(width: 46, height: 46)
-            .background(MapTheme.elevated, in: Circle())
+            .background(active ? MapTheme.accent : MapTheme.elevated, in: Circle())
             .shadow(color: .black.opacity(0.18), radius: 4, y: 2)
     }
 }

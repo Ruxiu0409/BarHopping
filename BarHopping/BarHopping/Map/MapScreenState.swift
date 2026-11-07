@@ -45,11 +45,19 @@ final class MapScreenState {
     // MARK: 底圖
 
     static let fallbackStyleURL = URL(string: "https://tiles.openfreemap.org/styles/dark")!
+    static let bundledDataAttributions = [
+        Attribution(text: "財政部稅籍登記資料", url: URL(string: "https://data.gov.tw/dataset/9400")!),
+        Attribution(text: "環境部 Cool Map", url: URL(string: "https://data.gov.tw/dataset/177893")!),
+        Attribution(text: "政府資料開放授權條款第 1 版", url: URL(string: "https://data.gov.tw/license")!),
+    ]
+    static let popularRouteAttribution = Attribution(
+        text: "路徑：FOSSGIS 步行路由", url: URL(string: "https://routing.openstreetmap.de/")!)
+
     static let fallbackAttributions = [
         Attribution(text: "© OpenStreetMap contributors", url: URL(string: "https://www.openstreetmap.org/copyright")!),
         Attribution(text: "OpenFreeMap", url: URL(string: "https://openfreemap.org")!),
         Attribution(text: "© OpenMapTiles", url: URL(string: "https://www.openmaptiles.org/")!),
-    ]
+    ] + bundledDataAttributions
 
     private(set) var config: AppConfig?
     private(set) var styleURL: URL = MapScreenState.fallbackStyleURL
@@ -79,6 +87,9 @@ final class MapScreenState {
             if !list.contains(where: { $0.text.localizedCaseInsensitiveContains("OpenStreetMap") }) {
                 list.insert(Self.fallbackAttributions[0], at: 0)
             }
+            for attribution in Self.bundledDataAttributions where !list.contains(where: { $0.url == attribution.url }) {
+                list.append(attribution)
+            }
             self.attributions = list
         }
     }
@@ -86,6 +97,29 @@ final class MapScreenState {
     func retryMapLoad() {
         mapLoadError = nil
         styleReloadToken += 1
+    }
+
+    // MARK: 熱門路線
+
+    var showsPopularRoutes = true
+    private(set) var popularSegments: [PopularRouteSegment] = []
+    private(set) var popularRoutesError: String?
+    @ObservationIgnored private var popularRoutesTask: Task<Void, Never>?
+    @ObservationIgnored private let popularRouteProvider = AppEnvironment.makePopularRouteProvider()
+
+    func loadPopularRoutesIfNeeded() {
+        guard popularRoutesTask == nil else { return }
+        let provider = popularRouteProvider
+        popularRoutesTask = Task { [weak self] in
+            do {
+                let segments = try await Task.detached(priority: .utility) {
+                    PopularRouteHeatmap.segments(from: try await provider.routes())
+                }.value
+                self?.popularSegments = segments
+            } catch {
+                self?.popularRoutesError = "熱門路線示範資料載入失敗"
+            }
+        }
     }
 
     // MARK: 搜尋
@@ -314,6 +348,40 @@ final class MapScreenState {
     var pendingCoordinate: Coordinate?
 
     // MARK: 定位
+
+    @ObservationIgnored private var attemptedInitialLocation = false
+    @ObservationIgnored var hasInteractedWithMap = false
+    @ObservationIgnored var isMapVisible = false
+    @ObservationIgnored var permitsInitialLocationCamera = true
+
+    func locateOnFirstAppearance(planner: PlannerStore) {
+        isMapVisible = true
+        guard !attemptedInitialLocation else { return }
+        attemptedInitialLocation = true
+        guard !isLocating else { return }
+        let commandId = nextCommandId
+        let initialPlan = planner.plan
+        let canCenter = initialPlan.origin == nil && initialPlan.stops.isEmpty
+            && initialPlan.destination == nil && planner.result == nil
+        isLocating = true
+        Task { [weak self] in
+            guard let self else { return }
+            let outcome = await self.locationProvider.requestLocation()
+            self.isLocating = false
+            self.showsUserLocation = self.locationProvider.isAuthorized
+            guard case .success(let coordinate) = outcome else { return }
+            let plan = planner.plan
+            guard canCenter, self.isMapVisible, self.permitsInitialLocationCamera,
+                  !self.hasInteractedWithMap, !self.userMovedMap,
+                  self.handledRouterFocus == 0, self.nextCommandId == commandId,
+                  plan.origin == nil, plan.stops.isEmpty, plan.destination == nil,
+                  planner.result == nil, self.selection == nil, self.pendingCoordinate == nil else { return }
+            // 服務區之外只顯示藍點，保留台中視角。
+            guard let area = self.config?.serviceArea ?? (try? MockFixtures.serviceArea.get()),
+                  MockBarHoppingAPI.contains(area, coordinate) else { return }
+            self.send(.center(coordinate, zoom: 15))
+        }
+    }
 
     enum LocateIntent { case center, setOrigin }
     @ObservationIgnored let locationProvider = LocationProvider()

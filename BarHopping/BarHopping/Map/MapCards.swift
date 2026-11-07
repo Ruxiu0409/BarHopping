@@ -19,7 +19,7 @@ struct PlaceCard: View {
                         .lineLimit(2)
                     Text(MapTheme.categoryText(place.category))
                         .font(.caption.weight(.semibold))
-                        .foregroundStyle(MapTheme.accent)
+                        .foregroundStyle(MapTheme.accentOnDark)
                 }
                 Spacer(minLength: 8)
                 Button(action: onClose) {
@@ -87,7 +87,7 @@ struct WaypointCard: View {
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(title).font(.headline).lineLimit(2)
-                    Text(role).font(.caption.weight(.semibold)).foregroundStyle(problem ? .red : MapTheme.accent)
+                    Text(role).font(.caption.weight(.semibold)).foregroundStyle(problem ? .red : MapTheme.accentOnDark)
                 }
                 Spacer()
                 Button(action: onClose) {
@@ -179,7 +179,7 @@ struct RouteSummaryCard: View {
 
     @ViewBuilder private var statusTag: some View {
         switch planner.resultStatus {
-        case .stale: tag("路線需重新計算", .orange)
+        case .stale: tag("路線需重新計算", MapTheme.accentOnDark)
         case .savedEstimate: tag("已儲存的估算", .blue)
         default: EmptyView()
         }
@@ -343,7 +343,7 @@ struct PlaceResultsPanel: View {
             } label: {
                 Image(systemName: added ? "checkmark.circle.fill" : "plus.circle.fill")
                     .font(.title2)
-                    .foregroundStyle(added ? MapTheme.textSecondary : MapTheme.accent)
+                    .foregroundStyle(added ? MapTheme.textSecondary : MapTheme.accentOnDark)
             }
             .buttonStyle(.plain)
             .disabled(added)
@@ -368,18 +368,18 @@ struct AttributionBar: View {
     @Environment(\.openURL) private var openURL
 
     var body: some View {
-        HStack(spacing: 6) {
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), alignment: .leading)], alignment: .leading, spacing: 4) {
             ForEach(attributions, id: \.self) { a in
                 Button(a.text) { openURL(a.url) }
                     .buttonStyle(.plain)
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
             }
         }
-        .font(.system(size: 10, weight: .medium))
+        .font(.caption2)
         .foregroundStyle(MapTheme.textSecondary)
-        .lineLimit(1)
-        .minimumScaleFactor(0.7)
         .padding(.horizontal, 8).padding(.vertical, 4)
-        .background(MapTheme.surface, in: Capsule())
+        .background(MapTheme.surface, in: RoundedRectangle(cornerRadius: 10))
         .accessibilityElement(children: .contain)
         .accessibilityLabel("地圖資料來源")
     }

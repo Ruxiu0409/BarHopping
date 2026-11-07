@@ -15,6 +15,8 @@ enum AppEnvironment {
     /// 地圖使用 App 內附的 OSM 超商資料。
     static func makeConvenienceStoreProvider() -> ConvenienceStoreProviding { BundledConvenienceStoreProvider() }
 
+    static func makePopularRouteProvider() -> PopularRouteProviding { BundledPopularRouteProvider() }
+
     /// 環境變數優先於 Info.plist；只接受 http(s) 網址。
     static var apiBaseURL: URL? {
         let candidates = [

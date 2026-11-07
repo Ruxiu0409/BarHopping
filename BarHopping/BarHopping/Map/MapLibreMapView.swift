@@ -22,6 +22,7 @@ struct MapRenderModel: Equatable {
         var selected: Bool
     }
 
+    var popularSegments: [PopularRouteSegment] = []
     var convenienceStores: [ConvenienceStore] = []
     var places: [PlacePin] = []
     var waypoints: [WaypointPin] = []
@@ -106,6 +107,7 @@ struct MapLibreMapView: UIViewRepresentable {
         private var lastModel: MapRenderModel?
         private var model = MapRenderModel()
 
+        private var popularSource: MLNShapeSource?
         private var convenienceSource: MLNShapeSource?
         private var placeSource: MLNShapeSource?
         private var waypointSource: MLNShapeSource?
@@ -123,12 +125,40 @@ struct MapLibreMapView: UIViewRepresentable {
         // MARK: Style 與資料
 
         func styleDidLoad(_ style: MLNStyle) {
+            let popularSource = MLNShapeSource(identifier: "bh-popular", shape: nil)
             let convenienceSource = MLNShapeSource(identifier: "bh-convenience", shape: nil)
             let routeSource = MLNShapeSource(identifier: "bh-route", shape: nil)
             let snappedSource = MLNShapeSource(identifier: "bh-snapped", shape: nil)
             let placeSource = MLNShapeSource(identifier: "bh-places", shape: nil)
             let waypointSource = MLNShapeSource(identifier: "bh-waypoints", shape: nil)
-            [convenienceSource, routeSource, snappedSource, placeSource, waypointSource].forEach { style.addSource($0) }
+            [popularSource, convenienceSource, routeSource, snappedSource, placeSource, waypointSource].forEach { style.addSource($0) }
+
+            // 熱門路段先畫，所有互動點與使用者規劃路線都在其上方。
+            let heatColor = NSExpression(
+                forMLNInterpolating: NSExpression(forKeyPath: "heat"), curveType: .linear, parameters: nil,
+                stops: NSExpression(forConstantValue: [
+                    0: UIColor(red: 0.12, green: 0.10, blue: 0.32, alpha: 1),
+                    0.3: UIColor(red: 0.40, green: 0.10, blue: 0.50, alpha: 1),
+                    0.6: UIColor(red: 0.90, green: 0.12, blue: 0.56, alpha: 1),
+                    0.85: UIColor(red: 1, green: 0.48, blue: 0.75, alpha: 1),
+                    1: UIColor(red: 1, green: 0.92, blue: 0.97, alpha: 1),
+                ]))
+            let glow = MLNLineStyleLayer(identifier: "bh-popular-glow", source: popularSource)
+            glow.lineColor = heatColor
+            glow.lineWidth = Self.heatWidth(glow: true)
+            glow.lineBlur = NSExpression(forConstantValue: 5)
+            glow.lineOpacity = NSExpression(format: "0.12 + heat * 0.28")
+            glow.lineJoin = NSExpression(forConstantValue: "round")
+            glow.lineCap = NSExpression(forConstantValue: "round")
+            style.addLayer(glow)
+
+            let core = MLNLineStyleLayer(identifier: "bh-popular-core", source: popularSource)
+            core.lineColor = heatColor
+            core.lineWidth = Self.heatWidth(glow: false)
+            core.lineOpacity = NSExpression(format: "0.35 + heat * 0.6")
+            core.lineJoin = NSExpression(forConstantValue: "round")
+            core.lineCap = NSExpression(forConstantValue: "round")
+            style.addLayer(core)
 
             // 超商在路線、酒吧與站點下面，並以 style 的縮放門檻避免縮小時顯示。
             let store = MLNCircleStyleLayer(identifier: Self.convenienceLayerId, source: convenienceSource)
@@ -151,8 +181,8 @@ struct MapLibreMapView: UIViewRepresentable {
             style.addLayer(storeLabel)
 
             let casing = MLNLineStyleLayer(identifier: "bh-route-casing", source: routeSource)
-            casing.lineColor = NSExpression(forConstantValue: MapTheme.uiHalo)
-            casing.lineWidth = NSExpression(forConstantValue: 9)
+            casing.lineColor = NSExpression(forConstantValue: MapTheme.uiLabel.withAlphaComponent(0.85))
+            casing.lineWidth = NSExpression(forConstantValue: 7)
             casing.lineJoin = NSExpression(forConstantValue: "round")
             casing.lineCap = NSExpression(forConstantValue: "round")
             style.addLayer(casing)
@@ -212,6 +242,7 @@ struct MapLibreMapView: UIViewRepresentable {
             wpLabel.textIgnoresPlacement = NSExpression(forConstantValue: true)
             style.addLayer(wpLabel)
 
+            self.popularSource = popularSource
             self.convenienceSource = convenienceSource
             self.routeSource = routeSource
             self.snappedSource = snappedSource
@@ -224,12 +255,30 @@ struct MapLibreMapView: UIViewRepresentable {
             render(model)
         }
 
+        private static func heatWidth(glow: Bool) -> NSExpression {
+            NSExpression(forMLNInterpolating: NSExpression(forVariable: "zoomLevel"),
+                         curveType: .linear, parameters: nil,
+                         stops: NSExpression(forConstantValue: [
+                            11: NSExpression(format: glow ? "2 + heat * 3" : "0.6 + heat * 0.8"),
+                            15: NSExpression(format: glow ? "5 + heat * 9" : "1.2 + heat * 2.8"),
+                            18: NSExpression(format: glow ? "9 + heat * 15" : "2 + heat * 5"),
+                         ]))
+        }
+
         func render(_ newModel: MapRenderModel) {
             model = newModel
             guard styleLoaded, newModel != lastModel else { return }
             let old = lastModel
             lastModel = newModel
 
+            if old?.popularSegments != newModel.popularSegments {
+                popularSource?.shape = MLNShapeCollectionFeature(shapes: newModel.popularSegments.map { segment in
+                    let coordinates = segment.path.map(\.cl)
+                    let feature = MLNPolylineFeature(coordinates: coordinates, count: UInt(coordinates.count))
+                    feature.attributes = ["heat": segment.heat, "runCount": segment.runCount]
+                    return feature
+                })
+            }
             if old?.convenienceStores != newModel.convenienceStores {
                 convenienceSource?.shape = MLNShapeCollectionFeature(shapes: newModel.convenienceStores.map { store in
                     let feature = MLNPointFeature()
@@ -318,6 +367,7 @@ struct MapLibreMapView: UIViewRepresentable {
 
         @objc func handleTap(_ gesture: UITapGestureRecognizer) {
             guard let map = mapView, gesture.state == .ended else { return }
+            state.hasInteractedWithMap = true
             let p = gesture.location(in: map)
             let rect = CGRect(x: p.x - 22, y: p.y - 22, width: 44, height: 44)
             let wps = map.visibleFeatures(in: rect, styleLayerIdentifiers: [Self.waypointLayerId])
@@ -353,6 +403,7 @@ struct MapLibreMapView: UIViewRepresentable {
 
         @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
             guard let map = mapView, gesture.state == .began else { return }
+            state.hasInteractedWithMap = true
             let c = map.convert(gesture.location(in: map), toCoordinateFrom: map)
             UIImpactFeedbackGenerator(style: .medium).impactOccurred()
             state.pendingCoordinate = Coordinate(latitude: c.latitude, longitude: c.longitude)
@@ -376,6 +427,8 @@ extension MapLibreMapView.Coordinator: @preconcurrency MLNMapViewDelegate {
     }
 
     func mapView(_ mapView: MLNMapView, regionWillChangeWith reason: MLNCameraChangeReason, animated: Bool) {
+        let gestures: MLNCameraChangeReason = [.gesturePan, .gesturePinch, .gestureZoomIn, .gestureZoomOut, .gestureOneFingerZoom]
+        if !reason.intersection(gestures).isEmpty { state.hasInteractedWithMap = true }
         state.cancelConvenienceQuery()
     }
 

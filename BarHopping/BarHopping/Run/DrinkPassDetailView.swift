@@ -2,16 +2,15 @@ import SwiftUI
 
 struct DrinkPassDetailView: View {
     let event: DrinkPassEvent
-    @Binding var purchases: [DrinkPassPurchase]
+    @Environment(DrinkPassStore.self) private var store
 
     @State private var selectedOptionID: String
     @State private var quantity = 1
     @State private var pendingPurchase: DrinkPassPurchase?
     @State private var showPurchaseConfirmation = false
 
-    init(event: DrinkPassEvent, purchases: Binding<[DrinkPassPurchase]>) {
+    init(event: DrinkPassEvent) {
         self.event = event
-        _purchases = purchases
         _selectedOptionID = State(initialValue: event.options.first?.id ?? "")
     }
 
@@ -22,6 +21,12 @@ struct DrinkPassDetailView: View {
     var body: some View {
         List {
             Group {
+                Section {
+                    DrinkPassKeyVisual(isDecorative: false)
+                        .clipShape(RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius))
+                }
+                .listRowInsets(EdgeInsets())
+
                 Section {
                     Text("示範資料，非真實活動")
                         .font(.headline)
@@ -82,9 +87,9 @@ struct DrinkPassDetailView: View {
                     Text("此流程只在記憶體產生示範紀錄，不收費、不連線、不建立真實訂單。")
                 }
 
-                if !purchases.isEmpty {
+                if !store.purchases.isEmpty {
                     Section("我的示範酒票") {
-                        ForEach(purchases.reversed()) { purchase in
+                        ForEach(store.purchases.reversed()) { purchase in
                             DrinkPassTicketView(purchase: purchase)
                         }
                     }
@@ -141,13 +146,13 @@ struct DrinkPassDetailView: View {
 
     private func requestPurchase() {
         guard let option = selectedOption else { return }
-        pendingPurchase = DrinkPassPurchase(option: option, quantity: quantity)
+        pendingPurchase = DrinkPassPurchase(eventName: event.name, option: option, quantity: quantity)
         showPurchaseConfirmation = true
     }
 
     private func completePurchase(_ purchase: DrinkPassPurchase) {
-        purchases.append(purchase)
+        store.record(purchase)
         pendingPurchase = nil
-        AccessibilityNotification.Announcement("示範購買成功，未收取款項。請在我的示範酒票查看票券。").post()
+        AccessibilityNotification.Announcement("示範購買成功，未收取款項。可到路跑頁的我的酒票查看票券。").post()
     }
 }

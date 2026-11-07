@@ -1,6 +1,6 @@
 enum DrinkPassMockData {
     static let event = DrinkPassEvent(
-        name: "龍蛇酒雜 LONG SER 9 ZA 酒精路跑",
+        name: "龍蛇酒雜 LONG SER 9 ZA",
         tagline: "慢慢走、聊一杯，串起城市裡的微醺夜晚。",
         dateTime: "2027 年 1 月 16 日（六）18:00–22:00（示範）",
         meetingPoint: "台中市西區・虛構星光廣場（示範，無實際集合點）",

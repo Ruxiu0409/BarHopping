@@ -12,6 +12,7 @@ struct HomeTabView: View {
     @State private var draftError: String?
     @State private var pendingDraft: SavedDraft?
     @State private var isComposing = false
+    @State private var showsDrinkPass = false
 
     private struct PostRoute: Hashable { let id: ForumPost.ID }
     private enum HomeRoute: Hashable { case notifications }
@@ -37,6 +38,9 @@ struct HomeTabView: View {
                         HomeStatsRow()
                             .padding(.horizontal)
                     }
+
+                    DrinkPassBanner(event: DrinkPassMockData.event) { showsDrinkPass = true }
+                        .padding(.horizontal)
 
                     forumSection
                 }
@@ -82,6 +86,9 @@ struct HomeTabView: View {
             }
             .navigationDestination(for: PostRoute.self) { route in
                 ForumPostDetailView(postID: route.id, store: forum)
+            }
+            .navigationDestination(isPresented: $showsDrinkPass) {
+                DrinkPassDetailView(event: DrinkPassMockData.event)
             }
             .sheet(isPresented: $isComposing) {
                 ForumComposeView(store: forum)
@@ -190,6 +197,7 @@ struct HomeTabView: View {
 
 #Preview {
     HomeTabView()
+        .environment(DrinkPassStore())
         .environment(AppRouter())
         .environment(UserProfileStore())
         .environment(PlannerStore(api: AppEnvironment.makeAPI(), drafts: AppEnvironment.makeDraftStore()))

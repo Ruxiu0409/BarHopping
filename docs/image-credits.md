@@ -38,3 +38,16 @@
 論壇配置由原本 28 次照片引用調整為 20 次，13 篇附圖貼文的照片各用一次。新增照片與既有照片不是同一張，也未選用相同作者、相同場景的近似照。照片的中文描述由縮圖、詳細頁及全螢幕檢視共用為 accessibilityLabel。
 
 Debug 建立假資料時，`ForumPhotoLibrary.validate` 會檢查照片庫與所有貼文的名稱唯一性、登錄關係、每篇最多四張，以及每個名稱能否載入本機 asset。
+
+
+## 龍蛇酒雜官方主視覺
+
+加入日期：2026-11-07。
+
+| 檔名 | 內容 | 來源 | 使用範圍 | 大小 |
+| --- | --- | --- | --- | ---: |
+| `drinkpass-longser9za-keyvisual.jpg` | 深紫黑底、粉紫色「龍蛇 酒雜 LONG SER 9 ZA」logo 與台中心動篇資訊 | 龍蛇酒雜官方主視覺，由使用者提供 | 依使用者指示用於 App 的酒票 banner 與詳細頁；非免費圖庫素材，未宣告其他重製授權 | 79,418 bytes |
+
+資產位置：`BarHopping/BarHopping/Assets.xcassets/drinkpass-longser9za-keyvisual.imageset/`。保持原圖 1200 × 630 px，以 sips 轉存 JPEG 品質 80，小於 250 KB。Banner 上半部與詳細頁頂部完整顯示主視覺，文字內容另放在深色區塊，避免遮住 logo。兩處共用 `DrinkPassArtwork.keyVisualImageName`，圖片隨 App 打包，不在執行時下載。
+
+主視覺印有「TAICHUNG HEARTBEAT · OCT 23-24」，但示範活動資料仍為 2027/01/16。本次依使用者指示保留活動日期與地點，未將圖片上的資訊改寫成活動資料。

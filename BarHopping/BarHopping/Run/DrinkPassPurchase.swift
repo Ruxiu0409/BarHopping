@@ -2,6 +2,7 @@ import Foundation
 
 struct DrinkPassPurchase: Identifiable {
     let id = UUID()
+    let eventName: String
     let option: DrinkPassEvent.Option
     let quantity: Int
 

@@ -13,7 +13,7 @@ enum NotificationsMockData {
         return [
             HomeNotification(id: "group", symbol: "person.3.fill", title: "今晚一起出發", message: "週五審計新村微醺線，19:30 在入口集合。", createdAt: minutesAgo(5), isRead: false),
             HomeNotification(id: "reply", symbol: "bubble.left.and.bubble.right.fill", title: "有人回覆你的貼文", message: "小宇回覆：這間的無酒精特調也很推薦！", createdAt: minutesAgo(20), isRead: false),
-            HomeNotification(id: "tickets", symbol: "ticket.fill", title: "酒精路跑早鳥票提醒", message: "龍蛇酒雜 LONG SER 9 ZA 酒精路跑，記得留意早鳥票資訊。", createdAt: minutesAgo(60), isRead: false),
+            HomeNotification(id: "tickets", symbol: "ticket.fill", title: "酒精路跑早鳥票提醒", message: "龍蛇酒雜 LONG SER 9 ZA，記得留意早鳥票資訊。", createdAt: minutesAgo(60), isRead: false),
             HomeNotification(id: "water", symbol: "drop.fill", title: "喝口水，休息一下", message: "走完一站，補充水分再決定下一站吧。", createdAt: daysAgo(1), isRead: true),
             HomeNotification(id: "like", symbol: "heart.fill", title: "你的分享獲得按讚", message: "阿晴喜歡你的「台中巷弄酒吧口袋名單」。", createdAt: daysAgo(2), isRead: true),
             HomeNotification(id: "draft", symbol: "map.fill", title: "路線草稿等你完成", message: "「草悟道散步串店」已儲存，出發前記得重新計算路線。", createdAt: daysAgo(3), isRead: true),

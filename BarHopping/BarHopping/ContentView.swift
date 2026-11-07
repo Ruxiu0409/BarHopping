@@ -5,6 +5,7 @@ struct ContentView: View {
     @State private var planner = PlannerStore(api: AppEnvironment.makeAPI(), drafts: AppEnvironment.makeDraftStore())
     @State private var userProfile = UserProfileStore()
     @State private var groups = GroupsStore()
+    @State private var drinkPasses = DrinkPassStore()
     @State private var didCheckOnboarding = false
     @State private var showsOnboarding = false
     @AppStorage(OnboardingConfig.completionKey) private var completedOnboarding = false
@@ -40,6 +41,7 @@ struct ContentView: View {
         .environment(planner)
         .environment(userProfile)
         .environment(groups)
+        .environment(drinkPasses)
     }
 
     @ViewBuilder

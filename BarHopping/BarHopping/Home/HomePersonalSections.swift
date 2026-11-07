@@ -20,6 +20,8 @@ struct HomeGreetingHeader: View {
                 VStack(alignment: .leading, spacing: 7) {
                     Text(userProfile.nickname)
                         .font(.title2.bold())
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
                         .foregroundStyle(AppTheme.textPrimary)
                     Text(userProfile.levelTitle)
                         .font(.caption.weight(.semibold))
@@ -39,7 +41,7 @@ struct HomeGreetingHeader: View {
             .multilineTextAlignment(.leading)
             .padding(18)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .appGlassCard(cornerRadius: 22)
+            .appGradientCard(cornerRadius: 22)
             .contentShape(RoundedRectangle(cornerRadius: 22))
         }
         .buttonStyle(.plain)
@@ -120,7 +122,7 @@ struct HomeStatsRow: View {
                     .fixedSize(horizontal: false, vertical: true)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 14)
-                    .appGlassCard(cornerRadius: 14)
+                    .appGradientCard(cornerRadius: 14)
                     .accessibilityElement(children: .ignore)
                     .accessibilityLabel("\(item.title)，\(item.value)")
                 }

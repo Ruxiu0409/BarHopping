@@ -5,8 +5,6 @@ struct RunTabView: View {
     @State private var showRun = false
     @State private var demoMode = false
     @State private var latestRun: FreeRunSession?
-    @State private var showDrinkPass = false
-    @State private var drinkPassPurchases: [DrinkPassPurchase] = []
     @State private var runningStore: FreeRunStore?
 
     var body: some View {
@@ -27,7 +25,7 @@ struct RunTabView: View {
                     if let latestRun {
                         FreeRunLatestCard(session: latestRun)
                     }
-                    DrinkPassBanner(event: DrinkPassMockData.event) { showDrinkPass = true }
+                    DrinkPassWalletSection()
                 }
                 .padding(.horizontal, 20)
                 .padding(.bottom, 24)
@@ -55,9 +53,6 @@ struct RunTabView: View {
                     .padding(.horizontal, 16).padding(.bottom, 8)
                     .foregroundStyle(AppTheme.textPrimary)
                 }
-            }
-            .navigationDestination(isPresented: $showDrinkPass) {
-                DrinkPassDetailView(event: DrinkPassMockData.event, purchases: $drinkPassPurchases)
             }
             .fullScreenCover(isPresented: $showRun) {
                 if let store = runningStore {
@@ -95,4 +90,5 @@ struct RunTabView: View {
 
 #Preview {
     RunTabView()
+        .environment(DrinkPassStore())
 }

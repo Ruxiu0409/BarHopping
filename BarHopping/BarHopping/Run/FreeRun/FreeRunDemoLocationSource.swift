@@ -5,6 +5,10 @@ final class FreeRunDemoLocationSource: FreeRunLocationSource {
     var speedMultiplier = 1.0
     private var path: FreeRunDemoPath
     private var task: Task<Void, Never>?
+    var target: Coordinate?
+    var onHeading: ((Double?) -> Void)?
+    var isPaused = false
+    private var journey: FreeRunDemoJourney?
 
     init(points: [Coordinate]) { path = FreeRunDemoPath(points: points) }
 
@@ -12,15 +16,19 @@ final class FreeRunDemoLocationSource: FreeRunLocationSource {
         stop()
         task = Task { [weak self] in
             guard let self else { return }
-            var first = true
             while !Task.isCancelled {
-                guard let coordinate = path.advance(meters: first ? 0 : FreeRunRules.demoMetersPerSecond * speedMultiplier) else {
-                    onStatus(.unavailable)
-                    return
+                if journey == nil {
+                    guard let origin = path.advance(meters: 0) else {
+                        onStatus(.unavailable)
+                        return
+                    }
+                    journey = FreeRunDemoJourney(coordinate: origin)
                 }
-                first = false
+                guard let coordinate = journey?.advance(toward: target,
+                                                        meters: FreeRunRules.demoMetersPerSecond * speedMultiplier,
+                                                        isPaused: isPaused) else { return }
                 onSample(FreeRunSample(coordinate: coordinate, accuracy: 5, timestamp: .now))
-                onStatus(path.isFinished ? .demoFinished : .tracking)
+                onStatus(.tracking)
                 do { try await Task.sleep(for: .seconds(1)) } catch { return }
             }
         }

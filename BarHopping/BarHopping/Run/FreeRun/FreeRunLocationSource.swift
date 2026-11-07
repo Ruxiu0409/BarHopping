@@ -7,6 +7,7 @@ nonisolated enum FreeRunLocationStatus: Equatable {
 
 @MainActor
 protocol FreeRunLocationSource: AnyObject {
+    var onHeading: ((Double?) -> Void)? { get set }
     func start(onSample: @escaping (FreeRunSample) -> Void, onStatus: @escaping (FreeRunLocationStatus) -> Void)
     func stop()
 }
@@ -19,6 +20,7 @@ final class FreeRunDeviceLocationSource: NSObject, FreeRunLocationSource, CLLoca
     private var onSample: ((FreeRunSample) -> Void)?
     private var onStatus: ((FreeRunLocationStatus) -> Void)?
     private var isRunning = false
+    var onHeading: ((Double?) -> Void)?
 
     override init() {
         super.init()
@@ -52,6 +54,8 @@ final class FreeRunDeviceLocationSource: NSObject, FreeRunLocationSource, CLLoca
         permissionTask?.cancel()
         permissionTask = nil
         manager.stopUpdatingLocation()
+        manager.stopUpdatingHeading()
+        onHeading = nil
         onSample = nil
         onStatus = nil
     }
@@ -61,6 +65,7 @@ final class FreeRunDeviceLocationSource: NSObject, FreeRunLocationSource, CLLoca
         switch manager.authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
             manager.startUpdatingLocation()
+            if CLLocationManager.headingAvailable() { manager.startUpdatingHeading() }
         case .denied, .restricted:
             manager.stopUpdatingLocation()
             onStatus?(.denied)
@@ -71,6 +76,14 @@ final class FreeRunDeviceLocationSource: NSObject, FreeRunLocationSource, CLLoca
 
     nonisolated func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         MainActor.assumeIsolated { updateAuthorization() }
+    }
+
+    nonisolated func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        MainActor.assumeIsolated {
+            guard isRunning else { return }
+            let value = newHeading.trueHeading >= 0 ? newHeading.trueHeading : newHeading.magneticHeading
+            onHeading?(newHeading.headingAccuracy >= 0 && value >= 0 ? value : nil)
+        }
     }
 
     nonisolated func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

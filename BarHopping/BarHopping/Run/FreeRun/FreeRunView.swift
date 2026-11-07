@@ -1,15 +1,20 @@
 import SwiftUI
 
 struct FreeRunView: View {
+    let onCollapse: () -> Void
     let onComplete: (FreeRunSession) -> Void
-    @Environment(\.scenePhase) private var scenePhase
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.openURL) private var openURL
     @State private var store: FreeRunStore
     @State private var confirmEnd = false
+    @State private var showsNearbyBars = false
+    @State private var panelExpanded = false
+    @State private var panelHeight: CGFloat = 380
+    @Environment(\.appReduceMotion) private var appReduceMotion
 
-    init(isDemo: Bool, onComplete: @escaping (FreeRunSession) -> Void) {
-        _store = State(initialValue: FreeRunStore(isDemo: isDemo))
+    init(store: FreeRunStore, onCollapse: @escaping () -> Void, onComplete: @escaping (FreeRunSession) -> Void) {
+        _store = State(initialValue: store)
+        self.onCollapse = onCollapse
         self.onComplete = onComplete
     }
 
@@ -19,17 +24,7 @@ struct FreeRunView: View {
                 FreeRunSummaryView(session: store.session) { onComplete(store.session) }
             } else {
                 runningContent
-                    .navigationTitle("自由路跑")
-                    .navigationBarTitleDisplayMode(.inline)
-                    .safeAreaInset(edge: .bottom) {
-                        Button("結束") { confirmEnd = true }
-                            .font(.headline)
-                            .frame(maxWidth: .infinity, minHeight: 44)
-                            .buttonStyle(.borderedProminent)
-                            .tint(AppTheme.accent)
-                            .padding()
-                            .background(AppTheme.background)
-                    }
+                    .toolbar(.hidden, for: .navigationBar)
                     .confirmationDialog("結束這次路跑？", isPresented: $confirmEnd, titleVisibility: .visible) {
                         Button("結束並查看摘要", role: .destructive) { store.finish() }
                         Button("繼續路跑", role: .cancel) {}
@@ -39,18 +34,7 @@ struct FreeRunView: View {
         .preferredColorScheme(.dark)
         .tint(AppTheme.accentOnDark)
         .interactiveDismissDisabled()
-        .task {
-            if scenePhase == .active { store.start() }
-            while !Task.isCancelled {
-                do { try await Task.sleep(for: .seconds(1)) } catch { break }
-                store.tick()
-            }
-        }
-        .onChange(of: scenePhase) { _, phase in
-            if phase == .active { store.start() } else { store.suspend() }
-        }
-        .onDisappear { store.suspend() }
-        .sensoryFeedback(.impact(weight: .medium), trigger: store.session.activeBarID) { _, new in new != nil }
+        .sensoryFeedback(.impact(weight: .medium), trigger: store.session.hasArrived) { _, new in new }
         .sensoryFeedback(.success, trigger: store.feedbackCount)
         .onChange(of: store.feedbackCount) { _, _ in
             if let name = store.lastRecordedName {
@@ -60,42 +44,139 @@ struct FreeRunView: View {
     }
 
     private var runningContent: some View {
+        GeometryReader { geometry in
+            ZStack(alignment: .bottom) {
+                FreeRunMapView(session: store.session, friends: store.friends, now: store.now,
+                               heatSegments: store.heatSegments, heading: store.heading, bottomInset: panelHeight,
+                               attributions: store.mapAttributions)
+                    .ignoresSafeArea()
+                VStack(spacing: 10) {
+                    FreeRunLiveMetricsCard(session: store.session, now: store.now, status: gpsStatus) {
+                        withAppAnimation(reduceMotion: reduceMotion || appReduceMotion) { panelExpanded.toggle() }
+                    }
+                    .padding(.horizontal, 14)
+                    bottomPanel(maximumHeight: geometry.size.height * 0.5)
+                }
+                .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { panelHeight = $0 }
+            }
+            .overlay(alignment: .topLeading) {
+                VStack(alignment: .leading, spacing: 10) {
+                    Button("收合路跑，繼續在 App 中使用", systemImage: "chevron.down", action: onCollapse)
+                        .labelStyle(.iconOnly).buttonStyle(FreeRunMapButtonStyle())
+                    Text("示範：朋友位置為模擬資料")
+                        .font(.caption2).foregroundStyle(AppTheme.accentOnDark)
+                        .padding(8).background(.ultraThinMaterial, in: Capsule())
+                }
+                .padding(14)
+            }
+        }
+        .foregroundStyle(AppTheme.textPrimary)
+        .background(AppTheme.background)
+        .animation(AppMotion.resolved(AppMotion.reveal, reduceMotion: reduceMotion || appReduceMotion), value: store.session.activeBarID)
+        .sheet(isPresented: $showsNearbyBars) {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    HStack {
+                        Text("附近酒吧").font(.title2.bold())
+                        Spacer()
+                        Button("關閉") { showsNearbyBars = false }
+                    }
+                    nearbyBars
+                }
+                .padding(24)
+            }
+            .presentationDetents([.medium, .large])
+            .presentationDragIndicator(.visible)
+            .preferredColorScheme(.dark)
+        }
+    }
+
+    private var gpsStatus: String {
+        if store.session.isPaused { return "已暫停" }
+        if store.session.isDemo { return "示範模式" }
+        if store.status == .denied { return "定位未授權" }
+        if store.status == .unavailable { return "定位暫時不可用" }
+        if store.session.hasAccurateLocation { return "GPS 已連線" }
+        return store.status == .waiting ? "正在取得 GPS" : "定位精確度不足"
+    }
+
+    private func bottomPanel(maximumHeight: CGFloat) -> some View {
         @Bindable var binding = store
-        return ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
-                if store.session.isDemo {
-                    Label("示範模式 · 審計新村", systemImage: "play.circle.fill")
-                        .font(.headline).foregroundStyle(AppTheme.accentOnDark)
-                    Toggle("加速 ×5", isOn: $binding.accelerated)
-                        .tint(AppTheme.accent)
-                    Text("假定位沿內附路徑前進；買酒只記錄停留，不會付款。")
-                        .font(.footnote).foregroundStyle(AppTheme.textSecondary)
-                    if store.status == .demoFinished {
-                        Text("示範已到終點，可記錄附近酒吧或結束查看摘要。")
-                            .font(.footnote).foregroundStyle(AppTheme.accentOnDark)
+        return VStack(spacing: 10) {
+            Button {
+                withAppAnimation(reduceMotion: reduceMotion || appReduceMotion) { panelExpanded.toggle() }
+            } label: {
+                Capsule().fill(AppTheme.textTertiary).frame(width: 40, height: 5)
+                    .frame(maxWidth: .infinity).frame(height: 22).contentShape(Rectangle())
+            }
+            .accessibilityLabel(panelExpanded ? "收合面板" : "展開面板")
+            .simultaneousGesture(DragGesture(minimumDistance: 15).onEnded { value in
+                withAppAnimation(reduceMotion: reduceMotion || appReduceMotion) {
+                    if abs(value.translation.height) > 25 { panelExpanded = value.translation.height < 0 }
+                }
+            })
+            ScrollView {
+                VStack(alignment: .leading, spacing: 12) {
+                    nextStopCard
+                    if let name = store.lastRecordedName {
+                        Label("已記錄：\(name)", systemImage: "checkmark.circle.fill")
+                            .font(.caption).foregroundStyle(AppTheme.success)
+                    }
+                    if panelExpanded {
+                        locationNotice
+                        Text("已停留 \(store.session.uniqueBarCount) 間酒吧").font(.headline)
+                        if store.session.isDemo {
+                            Toggle("示範定位 · 加速 ×5", isOn: $binding.accelerated)
+                            Text("假定位直線前往下一站，抵達後等你買酒；非實際步行路線。")
+                                .font(.footnote).foregroundStyle(AppTheme.textSecondary)
+                        }
+                        if let error = store.heatmapError { Text(error).font(.footnote) }
+                        Button("附近酒吧", systemImage: "list.bullet") { showsNearbyBars = true }
+                            .buttonStyle(.bordered)
+                        Text("飲酒後請勿騎車開車").font(.footnote).foregroundStyle(AppTheme.textSecondary)
+                        SafeRideButton()
+                        Button("結束路跑", role: .destructive) { confirmEnd = true }.buttonStyle(.bordered)
                     }
                 }
-                FreeRunMetricsView(session: store.session, now: store.now)
-                locationNotice
-                if let bar = store.session.activeBar {
-                    arrivalCard(bar)
-                        .id(bar.id)
-                        .transition(AppMotion.transition(.reveal, reduceMotion: reduceMotion))
-                }
-                if let name = store.lastRecordedName {
-                    Label("已記錄：\(name)", systemImage: "checkmark.circle.fill")
-                        .font(.subheadline).foregroundStyle(AppTheme.success)
-                }
-                nearbyBars
-                Text("飲酒後請勿騎車開車")
-                    .font(.footnote).foregroundStyle(AppTheme.textSecondary)
-                SafeRideButton()
             }
-            .padding(20)
-            .animation(AppMotion.resolved(AppMotion.reveal, reduceMotion: reduceMotion), value: store.session.activeBarID)
+            .frame(maxHeight: panelExpanded ? maximumHeight : 150)
+            .scrollBounceBehavior(.basedOnSize)
+            HStack(spacing: 12) {
+                Button {
+                    store.togglePause()
+                } label: {
+                    Label(store.session.isPaused ? "繼續" : "暫停", systemImage: store.session.isPaused ? "play.fill" : "pause.fill")
+                        .font(.title3.bold()).frame(maxWidth: .infinity, minHeight: 52)
+                }
+                .buttonStyle(.borderedProminent).buttonBorderShape(.capsule).tint(AppTheme.accent)
+                if store.session.isPaused {
+                    Button("結束") { confirmEnd = true }
+                        .font(.headline).frame(minHeight: 52).padding(.horizontal, 16)
+                        .buttonStyle(.bordered).buttonBorderShape(.capsule)
+                }
+            }
         }
-        .background(AppTheme.background)
-        .foregroundStyle(AppTheme.textPrimary)
+        .padding(.horizontal, 18).padding(.bottom, 12)
+        .background(AppTheme.surface, in: UnevenRoundedRectangle(topLeadingRadius: 24, topTrailingRadius: 24))
+    }
+
+    @ViewBuilder private var nextStopCard: some View {
+        if let bar = store.session.activeBar {
+            arrivalCard(bar).id(bar.id)
+                .transition(AppMotion.transition(.reveal, reduceMotion: reduceMotion || appReduceMotion))
+        } else {
+            VStack(alignment: .leading, spacing: 10) {
+                Text(store.session.nearby.isEmpty ? "下一站 · 等待定位" : "今晚的酒吧都去過了").font(.headline)
+                if store.session.nearby.isEmpty {
+                    Text("取得準確位置後，會推薦最近的一間酒吧。")
+                        .font(.footnote).foregroundStyle(AppTheme.textSecondary)
+                    Button("等待定位才能買酒") {}.disabled(true)
+                } else {
+                    Button("結束路跑") { confirmEnd = true }.buttonStyle(.borderedProminent)
+                }
+            }
+            .padding(16).frame(maxWidth: .infinity, alignment: .leading)
+        }
     }
 
     @ViewBuilder private var locationNotice: some View {
@@ -120,25 +201,46 @@ struct FreeRunView: View {
     }
 
     private func arrivalCard(_ bar: FreeRunNearbyBar) -> some View {
-        let canRecord = store.session.canRecord(bar.id, at: store.now)
-        return VStack(alignment: .leading, spacing: 12) {
-            Label("附近有酒吧", systemImage: "wineglass.fill")
-                .font(.subheadline).foregroundStyle(AppTheme.accentOnDark)
-            Text(bar.place.name).font(.title2.bold())
-            Text("距離約 \(Int(bar.distance.rounded())) 公尺")
-                .font(.subheadline).foregroundStyle(AppTheme.textSecondary)
-            Button(canRecord ? "買酒" : "已記錄") { store.record() }
-                .font(.title3.bold())
-                .foregroundStyle(.white)
-                .frame(maxWidth: .infinity, minHeight: 54)
-                .background(AppTheme.accent, in: RoundedRectangle(cornerRadius: 12))
+        let canRecord = !store.session.isPaused && store.session.hasAccurateLocation && store.session.hasArrived
+        let remaining = max(0, Int(ceil(bar.distance - FreeRunRules.arrivalMeters)))
+        let buttonTitle = store.session.isPaused ? "已暫停，繼續後才能買酒" : !store.session.hasAccurateLocation ? "定位精確度不足" :
+            (canRecord ? "買酒" : "再走 \(remaining) m 才能買酒")
+        return VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Label(canRecord ? "下一站 · 已抵達" : "下一站", systemImage: canRecord ? "checkmark.circle.fill" : "wineglass.fill")
+                    .font(.subheadline).foregroundStyle(AppTheme.accentOnDark)
+                Spacer()
+                if store.session.hasAccurateLocation {
+                    Text("約 \(Int(bar.distance.rounded())) m · \(NextBarRecommender.walkingMinutes(for: bar.distance)) 分")
+                        .font(.caption).foregroundStyle(AppTheme.textSecondary)
+                }
+            }
+            Text(bar.place.name).font(.headline)
+            Button(buttonTitle) { store.record() }
+                .font(.headline)
+                .foregroundStyle(canRecord ? .white : AppTheme.textSecondary)
+                .frame(maxWidth: .infinity, minHeight: 44)
+                .background(canRecord ? AppTheme.accent : AppTheme.elevated, in: RoundedRectangle(cornerRadius: 12))
                 .disabled(!canRecord)
-                .accessibilityHint(canRecord ? "記錄在這間酒吧停留，不會付款" : "同一間酒吧十分鐘內不重複記錄")
-            Text(canRecord ? "只記錄停留，不會付款。" : "10 分鐘內不重複記錄。")
-                .font(.caption).foregroundStyle(AppTheme.textSecondary)
+                .accessibilityHint(canRecord ? "記錄在這間酒吧停留，之後推薦下一間，不會付款" :
+                    (store.session.isPaused ? "路跑已暫停，請先按繼續" : store.session.hasAccurateLocation ? "須進入下一站四十公尺內才能買酒" : "需要五十公尺以內的定位精確度"))
+            if panelExpanded {
+                Text("距離與時間為直線估算，請依實際道路行走。買酒只記錄，不會付款。")
+                    .font(.caption2).foregroundStyle(AppTheme.textSecondary)
+            }
+            if let alternative = store.session.nearby.first(where: {
+                $0.id != bar.id && $0.distance <= FreeRunRules.arrivalMeters && store.session.canRecord($0.id, at: store.now)
+            }), store.session.hasAccurateLocation {
+                Button("你在 \(alternative.place.name) 附近，改去這間") { store.selectBar(alternative.id) }
+                    .font(.caption).foregroundStyle(AppTheme.accentOnDark)
+            }
         }
-        .padding(20)
+        .padding(16)
         .appGlassCard()
+        .overlay(RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius, style: .continuous)
+            .strokeBorder(AppTheme.accentOnDark.opacity(canRecord ? 0.9 : 0.4), lineWidth: canRecord ? 2 : 1)
+            .allowsHitTesting(false))
+        .animation(AppMotion.resolved(AppMotion.tap, reduceMotion: reduceMotion), value: canRecord)
     }
 
     private var nearbyBars: some View {
@@ -156,10 +258,17 @@ struct FreeRunView: View {
                             .font(.caption).foregroundStyle(AppTheme.textSecondary)
                     }
                     Spacer()
-                    if bar.distance <= FreeRunRules.arrivalMeters {
-                        Button("查看") { store.selectBar(bar.id) }
+                    if store.session.canRecord(bar.id, at: store.now) {
+                        Button(bar.id == store.session.activeBarID ? "下一站" : "改去這間") {
+                            store.selectBar(bar.id)
+                            showsNearbyBars = false
+                        }
                             .buttonStyle(.bordered)
-                            .accessibilityLabel("查看 \(bar.place.name)")
+                            .accessibilityLabel("將 \(bar.place.name) 設為下一站")
+                            .disabled(store.session.isPaused || !store.session.hasAccurateLocation)
+                    } else {
+                        Label("已買過", systemImage: "checkmark.circle.fill")
+                            .font(.caption).foregroundStyle(AppTheme.accentOnDark)
                     }
                 }
                 .padding(.vertical, 4)

@@ -4,7 +4,6 @@ nonisolated enum FreeRunRules {
     static let arrivalMeters = 40.0
     static let departureMeters = 60.0
     static let maximumAccuracyMeters = 50.0
-    static let repeatInterval: TimeInterval = 10 * 60
     static let demoMetersPerSecond = 3.5
 
     static func distance(_ a: Coordinate, _ b: Coordinate) -> Double {
@@ -46,23 +45,49 @@ nonisolated struct FreeRunSession {
     private(set) var distanceMeters = 0.0
     private(set) var nearby: [FreeRunNearbyBar] = []
     private(set) var activeBarID: String?
+    private(set) var hasArrived = false
+    private(set) var pausedAt: Date?
+    private var pausedSeconds: TimeInterval = 0
     private(set) var hasAccurateLocation = false
+    private(set) var currentCoordinate: Coordinate?
+    private(set) var trackSegments: [[Coordinate]] = []
     private var previous: FreeRunSample?
 
     var activeBar: FreeRunNearbyBar? { nearby.first { $0.id == activeBarID } }
     var uniqueBarCount: Int { Set(visits.map(\.barID)).count }
 
-    func elapsed(at date: Date) -> TimeInterval { max(0, (endedAt ?? date).timeIntervalSince(startedAt)) }
+    var isPaused: Bool { pausedAt != nil }
+
+    func elapsed(at date: Date) -> TimeInterval {
+        let end = endedAt ?? date
+        let currentPause = pausedAt.map { max(0, end.timeIntervalSince($0)) } ?? 0
+        return max(0, end.timeIntervalSince(startedAt) - pausedSeconds - currentPause)
+    }
+
+    mutating func pause(at date: Date) {
+        guard endedAt == nil, pausedAt == nil else { return }
+        pausedAt = date
+        previous = nil
+        hasArrived = false
+    }
+
+    mutating func resume(at date: Date) {
+        guard endedAt == nil, let pausedAt else { return }
+        pausedSeconds += max(0, date.timeIntervalSince(pausedAt))
+        self.pausedAt = nil
+        previous = nil
+        updateArrival()
+    }
 
     func canRecord(_ id: String, at date: Date) -> Bool {
-        !visits.contains { $0.barID == id && date.timeIntervalSince($0.timestamp) < FreeRunRules.repeatInterval }
+        !visits.contains { $0.barID == id }
     }
 
     mutating func breakTracking() {
         previous = nil
-        activeBarID = nil
+        hasArrived = false
         hasAccurateLocation = false
-        nearby = []
+        currentCoordinate = nil
     }
 
     mutating func receive(_ sample: FreeRunSample, places: [Place], now: Date) {
@@ -75,8 +100,14 @@ nonisolated struct FreeRunSession {
         }
         if let last = samples.last, sample.timestamp <= last.timestamp { return }
         hasAccurateLocation = true
+        currentCoordinate = sample.coordinate
         nearby = places.map { FreeRunNearbyBar(place: $0, distance: FreeRunRules.distance(sample.coordinate, $0.coordinate)) }
             .sorted { $0.distance == $1.distance ? $0.id < $1.id : $0.distance < $1.distance }
+        if activeBarID == nil {
+            activeBarID = NextBarRecommender.recommend(near: sample.coordinate, places: places,
+                                                       excluding: Set(visits.map(\.barID)))?.id
+        }
+        if isPaused { hasArrived = false; return }
         if let previous {
             let distance = FreeRunRules.distance(previous.coordinate, sample.coordinate)
             let seconds = sample.timestamp.timeIntervalSince(previous.timestamp)
@@ -84,36 +115,42 @@ nonisolated struct FreeRunSession {
             if distance >= 3, seconds > 0, distance / seconds <= (isDemo ? 20 : 12) {
                 distanceMeters += distance
                 samples.append(sample)
+                trackSegments[trackSegments.count - 1].append(sample.coordinate)
                 self.previous = sample
             } else if distance / max(seconds, 0.001) > (isDemo ? 20 : 12) {
                 self.previous = sample
+                trackSegments.append([sample.coordinate])
             }
         } else {
             samples.append(sample)
+            trackSegments.append([sample.coordinate])
             previous = sample
         }
-        if let current = activeBar, current.distance <= FreeRunRules.departureMeters {
-            if !canRecord(current.id, at: now),
-               let next = nearby.first(where: { $0.distance <= FreeRunRules.arrivalMeters && canRecord($0.id, at: now) }) {
-                activeBarID = next.id
-            }
-        } else {
-            activeBarID = nearby.first { $0.distance <= FreeRunRules.arrivalMeters }?.id
-        }
+        updateArrival()
     }
 
     mutating func selectBar(_ id: String) {
-        guard hasAccurateLocation, nearby.contains(where: { $0.id == id && $0.distance <= FreeRunRules.arrivalMeters }) else { return }
+        guard endedAt == nil, !isPaused, hasAccurateLocation, canRecord(id, at: .now), nearby.contains(where: { $0.id == id }) else { return }
         activeBarID = id
+        hasArrived = false
+        updateArrival()
     }
 
     @discardableResult
     mutating func record(at date: Date) -> FreeRunVisit? {
-        guard endedAt == nil, hasAccurateLocation, let bar = activeBar,
+        guard endedAt == nil, !isPaused, hasAccurateLocation, hasArrived, let bar = activeBar,
               bar.distance <= FreeRunRules.departureMeters, canRecord(bar.id, at: date) else { return nil }
         let visit = FreeRunVisit(barID: bar.id, name: bar.place.name, timestamp: date, coordinate: bar.place.coordinate)
         visits.append(visit)
+        activeBarID = nearby.first { canRecord($0.id, at: date) }?.id
+        hasArrived = false
+        updateArrival()
         return visit
+    }
+
+    private mutating func updateArrival() {
+        guard hasAccurateLocation, let bar = activeBar else { hasArrived = false; return }
+        hasArrived = bar.distance <= (hasArrived ? FreeRunRules.departureMeters : FreeRunRules.arrivalMeters)
     }
 
     mutating func finish(at date: Date) {

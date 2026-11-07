@@ -13,6 +13,12 @@ struct FreeRunSummaryView: View {
                         .foregroundStyle(AppTheme.accentOnDark)
                 }
                 FreeRunMetricsView(session: session, now: session.endedAt ?? .now)
+                if !session.samples.isEmpty || !session.visits.isEmpty {
+                    FreeRunMapView(session: session, friends: [], now: session.endedAt ?? .now, isSummary: true)
+                        .frame(height: 240)
+                        .clipShape(RoundedRectangle(cornerRadius: AppTheme.cardCornerRadius))
+                        .accessibilityLabel("這次路跑的完整軌跡與停留酒吧地圖")
+                }
                 Text("停留紀錄").font(.title2.bold())
                 if session.visits.isEmpty {
                     Text("這次沒有記錄停留的酒吧。")

@@ -11,7 +11,7 @@ struct LaunchAppIconView: View {
                 .frame(width: side, height: side)
                 .clipShape(RoundedRectangle(cornerRadius: side * 0.2237, style: .continuous))
                 .shadow(color: .black.opacity(0.12), radius: side * 0.025, y: side * 0.02)
-                .accessibilityLabel("BarHopping")
+                .accessibilityLabel("逢酒必喝 BarHopping")
                 .frame(width: proxy.size.width, height: proxy.size.height)
         }
         .aspectRatio(1, contentMode: .fit)

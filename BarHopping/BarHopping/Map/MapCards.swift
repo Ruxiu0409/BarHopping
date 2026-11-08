@@ -12,9 +12,16 @@ struct PlaceCard: View {
 
     var body: some View {
         let editorialInfo = PlaceEditorialInfo.forPlace(place)
+        let photoURL = editorialInfo?.photoURL ?? place.photoURL
+        let photoCredit = editorialInfo?.photoCredit ?? place.photoAttribution
+        let summary = editorialInfo?.summary ?? place.summary
+        let phoneNumber = editorialInfo?.phoneNumber ?? place.phoneNumber
+        let openingHours = editorialInfo?.openingHours ?? place.openingHoursText
+        let websiteURL = editorialInfo?.websiteURL ?? place.websiteURL
+        let websiteLabel = editorialInfo?.websiteLabel ?? (place.websiteURL == nil ? nil : "店家網站")
         VStack(alignment: .leading, spacing: 8) {
-            if let editorialInfo, let photoURL = editorialInfo.photoURL {
-                venuePhoto(photoURL, credit: editorialInfo.photoCredit)
+            if let photoURL {
+                venuePhoto(photoURL, credit: photoCredit)
             }
 
             HStack(alignment: .top) {
@@ -38,38 +45,40 @@ struct PlaceCard: View {
                 .accessibilityLabel("關閉")
             }
 
-            if let editorialInfo {
-                Text(editorialInfo.summary)
+            if let summary {
+                Text(summary)
                     .font(.caption)
                     .foregroundStyle(MapTheme.textSecondary)
                     .fixedSize(horizontal: false, vertical: true)
-                if let phoneNumber = editorialInfo.phoneNumber,
-                   let phoneURL = URL(string: "tel:\(phoneNumber.filter { $0.isNumber || $0 == "+" })") {
-                    Link(destination: phoneURL) {
-                        Label(phoneNumber, systemImage: "phone")
-                            .font(.caption.weight(.medium))
-                    }
-                    .tint(MapTheme.accentOnDark)
+            }
+            if let phoneNumber,
+               let phoneURL = URL(string: "tel:\(phoneNumber.filter { $0.isNumber || $0 == "+" })") {
+                Link(destination: phoneURL) {
+                    Label(phoneNumber, systemImage: "phone")
+                        .font(.caption.weight(.medium))
                 }
+                .tint(MapTheme.accentOnDark)
             }
 
             infoRow("mappin.and.ellipse", place.address)
-            infoRow("clock", editorialInfo?.openingHours ?? place.openingHoursText ?? (editorialInfo == nil ? nil : "請查看店家最新營業公告"))
+            infoRow("clock", openingHours)
 
-            if let editorialInfo {
+            if editorialInfo != nil || photoCredit != nil || websiteURL != nil {
                 HStack {
-                    Text(editorialInfo.photoCredit ?? "資料來源：\(editorialInfo.sourceTitle)")
+                    Text(photoCredit ?? editorialInfo.map { "資料來源：\($0.sourceTitle)" } ?? "店家資訊")
                         .font(.system(size: 10))
                         .foregroundStyle(MapTheme.textSecondary)
                     Spacer(minLength: 4)
-                    if let websiteURL = editorialInfo.websiteURL, let websiteLabel = editorialInfo.websiteLabel {
+                    if let websiteURL, let websiteLabel {
                         Link(websiteLabel, destination: websiteURL)
                             .font(.caption.weight(.semibold))
                             .tint(MapTheme.accentOnDark)
                     }
-                    Link("來源", destination: editorialInfo.sourceURL)
-                        .font(.caption.weight(.semibold))
-                        .tint(MapTheme.accentOnDark)
+                    if let editorialInfo {
+                        Link("來源", destination: editorialInfo.sourceURL)
+                            .font(.caption.weight(.semibold))
+                            .tint(MapTheme.accentOnDark)
+                    }
                 }
             }
 

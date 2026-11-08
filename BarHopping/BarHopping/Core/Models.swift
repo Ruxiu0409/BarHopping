@@ -24,6 +24,13 @@ nonisolated struct Place: Codable, Hashable, Identifiable, Sendable {
     var source: String          // "osm"
     var sourceId: String        // 例如 "node/123456"
     var updatedAt: Date
+
+    /// 由已授權的店家資料提供者補齊；目錄資料缺少時保持 nil。
+    var photoURL: URL? = nil
+    var photoAttribution: String? = nil
+    var phoneNumber: String? = nil
+    var websiteURL: URL? = nil
+    var summary: String? = nil
 }
 
 nonisolated struct Waypoint: Codable, Hashable, Identifiable, Sendable {

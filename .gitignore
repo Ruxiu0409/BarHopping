@@ -5,3 +5,4 @@ xcuserdata/
 *.xcuserstate
 tools/**/__pycache__/
 BarHopping/BarHopping/Onboarding/Fonts/*.otf
+BarHopping/Configuration/GooglePlacesSecrets.xcconfig

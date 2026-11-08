@@ -1,0 +1,3 @@
+// Local key is intentionally excluded from Git.
+GOOGLE_PLACES_API_KEY =
+#include? "GooglePlacesSecrets.xcconfig"
